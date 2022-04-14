@@ -103,6 +103,7 @@ jobs:
           start: npm run start:mocks
           wait-on: "http://localhost:8811"
         env:
+          NODE_ENV: "test"
           PORT: "8811"
 
   build:
