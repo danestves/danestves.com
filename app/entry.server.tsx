@@ -1,21 +1,22 @@
-import type { EntryContext } from "@remix-run/node";
+// Dependencies
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
+import type { EntryContext } from "@remix-run/node";
 
 export default function handleRequest(
   request: Request,
-  responseStatusCode: number,
-  responseHeaders: Headers,
-  remixContext: EntryContext
+  statusCode: number,
+  headers: Headers,
+  context: EntryContext
 ) {
-  const markup = renderToString(
-    <RemixServer context={remixContext} url={request.url} />
+  let markup = renderToString(
+    <RemixServer context={context} url={request.url} />
   );
 
-  responseHeaders.set("Content-Type", "text/html");
+  headers.set("Content-Type", "text/html");
 
   return new Response("<!DOCTYPE html>" + markup, {
-    status: responseStatusCode,
-    headers: responseHeaders,
+    status: statusCode,
+    headers,
   });
 }
