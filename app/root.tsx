@@ -37,6 +37,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function App() {
+  console.info("🚨", "process.env:", process.env.NODE_ENV, "🚨");
+
   return (
     <html lang="en" className="h-full">
       <head>
