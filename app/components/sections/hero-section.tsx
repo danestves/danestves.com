@@ -37,14 +37,14 @@ function HeroSection() {
       </div>
 
       {/* Floating Card */}
-      <div className="mx-auto -mt-16 w-full max-w-[332px] rounded-[20px] bg-secondary/80 pt-3 pr-5 pb-4 pl-8 backdrop-blur-sm dark:bg-secondary/[0.65] md:-mt-32 lg:absolute lg:top-1/2 lg:right-1/2 lg:mt-auto lg:mr-32">
-        <h1 className="text-2xl font-black uppercase text-white">
+      <div className="mx-auto -mt-16 w-full max-w-[332px] rounded-[20px] bg-secondary/90 pt-3 pr-5 pb-4 pl-8 text-[#212121] backdrop-blur-sm md:-mt-32 lg:absolute lg:top-1/2 lg:right-1/2 lg:mt-auto lg:mr-32">
+        <h1 className="text-2xl font-black uppercase">
           daniel esteves{" "}
           <span aria-label="victory hand" role="img">
             ✌️
           </span>
         </h1>
-        <p className="mt-1 text-xs text-white">
+        <p className="mt-1 text-xs">
           Senior Frontend Engineer @{" "}
           <a
             href="https://www.reworth.co/"
