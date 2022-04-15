@@ -10,7 +10,12 @@ const supportedInputs = new Set([
   MimeType.TIFF,
 ]);
 
-const supportedOutputs = new Set([MimeType.JPEG, MimeType.PNG, MimeType.WEBP]);
+const supportedOutputs = new Set([
+  MimeType.AVIF,
+  MimeType.JPEG,
+  MimeType.PNG,
+  MimeType.WEBP,
+]);
 
 export const sharpTransformer: Transformer = {
   name: "sharpTransformer",
@@ -46,6 +51,10 @@ export const sharpTransformer: Transformer = {
           },
         }),
       })
+      .avif({
+        force: outputContentType === MimeType.AVIF,
+        quality,
+      })
       .jpeg({
         quality,
         progressive: true,
@@ -56,12 +65,6 @@ export const sharpTransformer: Transformer = {
         compressionLevel,
         force: outputContentType === MimeType.PNG,
       })
-      // Possible, but requires additional sharp config
-      // .gif({
-      //   loop,
-      //   delay: delay ? [delay] : undefined,
-      //   force: outputContentType === MimeType.GIF,
-      // })
       .webp({
         quality,
         force: outputContentType === MimeType.WEBP,
