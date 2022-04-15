@@ -20,6 +20,7 @@ import type {
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
 import { getEnv } from "./utils/env.server";
+import { getDomainUrl } from "./utils/misc";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -33,12 +34,20 @@ export const meta: MetaFunction = () => ({
 
 type LoaderData = {
   ENV: ReturnType<typeof getEnv>;
+  requestInfo: {
+    origin: string;
+    path: string;
+  };
   user: Awaited<ReturnType<typeof getUser>>;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
   return json<LoaderData>({
     ENV: getEnv(),
+    requestInfo: {
+      origin: getDomainUrl(request),
+      path: new URL(request.url).pathname,
+    },
     user: await getUser(request),
   });
 };
