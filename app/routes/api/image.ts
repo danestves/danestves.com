@@ -17,7 +17,7 @@ export const customResolver: Resolver = async (
   options,
   basePath
 ) => {
-  if (asset.startsWith("/") && (asset.length === 1 || asset[1] !== "/")) {
+  if (url.startsWith("/") && (url.length === 1 || url[1] !== "/")) {
     return fsResolver(asset, url, options, basePath);
   } else {
     return fetchResolver(asset, url, options, basePath);
