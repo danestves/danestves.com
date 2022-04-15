@@ -1,8 +1,8 @@
 // Dependencies
-import { Image, MimeType } from "remix-image";
+import { Image } from "remix-image";
 
 // Internals
-import { useWebp } from "~/hooks/use-webp";
+import { useNextGenImageFormat } from "~/hooks/use-next-gen-image-format";
 import { Rings } from "../rings";
 
 function HeroSection() {
@@ -21,7 +21,7 @@ function HeroSection() {
             height={646}
             width={637}
             options={{
-              contentType: useWebp() ? MimeType.WEBP : undefined,
+              contentType: useNextGenImageFormat(),
             }}
             responsive={[
               {
