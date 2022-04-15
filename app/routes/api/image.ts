@@ -27,7 +27,7 @@ export const customResolver: Resolver = async (
 const config: LoaderConfig = {
   cache: new DiskCache(),
   resolver: customResolver,
-  selfUrl: "http://localhost:3000",
+  selfUrl: process.env.SELF_URL!,
   transformer: sharpTransformer,
 };
 
