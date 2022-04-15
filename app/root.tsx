@@ -9,7 +9,9 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
+import { useTranslation } from "react-i18next";
 import { useFathom } from "remix-fathom";
+import { useChangeLanguage } from "remix-i18next";
 import type {
   LinksFunction,
   LoaderFunction,
@@ -20,7 +22,13 @@ import type {
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
 import { getEnv } from "./utils/env.server";
+import { i18n } from "./utils/i18n.server";
 import { getDomainUrl } from "./utils/misc";
+import type { Handle } from "./types";
+
+export const handle: Handle = {
+  i18n: "common",
+};
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -34,6 +42,7 @@ export const meta: MetaFunction = () => ({
 
 type LoaderData = {
   ENV: ReturnType<typeof getEnv>;
+  locale: string;
   requestInfo: {
     origin: string;
     path: string;
@@ -42,8 +51,11 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+  const locale = await i18n.getLocale(request);
+
   return json<LoaderData>({
     ENV: getEnv(),
+    locale,
     requestInfo: {
       origin: getDomainUrl(request),
       path: new URL(request.url).pathname,
@@ -54,15 +66,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function App() {
   const data = useLoaderData<LoaderData>();
+  const { i18n } = useTranslation();
 
   useFathom("VKGOHQVT", {
     excludedDomains: ["localhost"],
     spa: "history",
     url: "https://khonshu.danestves.dev/script.js",
   });
+  useChangeLanguage(data.locale);
 
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" dir={i18n.dir()}>
       <head>
         <Meta />
         <Links />
