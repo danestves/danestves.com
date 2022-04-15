@@ -42,6 +42,7 @@ export let loader: LoaderFunction = async ({ request }) => {
 export default function App() {
   useFathom("VKGOHQVT", {
     includedDomains: ["danestves.dev", "danestves-dev-staging.fly.dev/"],
+    url: "https://khonshu.danestves.dev/script.js",
   });
 
   return (
