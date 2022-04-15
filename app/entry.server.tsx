@@ -2,6 +2,7 @@
 import { RemixServer } from "@remix-run/react";
 import isbot from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
+import { etag } from "remix-etag";
 import { PassThrough } from "stream";
 import type { EntryContext } from "@remix-run/node";
 
@@ -28,13 +29,13 @@ export default function handleRequest(
 
           headers.set("Content-Type", "text/html");
 
-          resolve(
-            // @ts-ignore - We know this is a WritableStream
-            new Response(body, {
-              status: didError ? 500 : statusCode,
-              headers,
-            })
-          );
+          // @ts-ignore - We know that the stream is a PassThrough
+          let response = new Response(body, {
+            status: didError ? 500 : statusCode,
+            headers,
+          });
+
+          resolve(etag({ request, response }));
           pipe(body);
         },
         onShellError(err) {

@@ -41,6 +41,7 @@
     "isbot": "^3.4.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "remix-etag": "^0.2.1",
     "remix-fathom": "^0.0.9",
     "tiny-invariant": "^1.2.0"
   },
