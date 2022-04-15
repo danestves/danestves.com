@@ -1,5 +1,10 @@
 // Dependencies
-import { imageLoader, DiskCache } from "remix-image/server";
+import {
+  DiskCache,
+  MimeType,
+  fsResolver,
+  imageLoader,
+} from "remix-image/server";
 import type { LoaderConfig } from "remix-image/server";
 import type { LoaderFunction } from "@remix-run/node";
 
@@ -8,6 +13,10 @@ import { sharpTransformer } from "~/utils/image-transformer.server";
 
 const config: LoaderConfig = {
   cache: new DiskCache(),
+  defaultOptions: {
+    contentType: MimeType.WEBP,
+  },
+  resolver: fsResolver,
   selfUrl: "http://localhost:3000",
   transformer: sharpTransformer,
 };

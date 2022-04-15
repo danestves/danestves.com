@@ -1,7 +1,7 @@
 // Dependencies
-import type { Transformer } from "remix-image";
 import { MimeType } from "remix-image";
 import sharp from "sharp";
+import type { Transformer } from "remix-image";
 
 const supportedInputs = new Set([
   MimeType.JPEG,

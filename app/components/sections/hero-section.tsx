@@ -1,13 +1,12 @@
+// Dependencies
+import { Image } from "remix-image";
+
 // Internals
-import { Image } from "../image";
 import { Rings } from "../rings";
 
 function HeroSection() {
   return (
-    <section
-      className="container relative overflow-hidden"
-      id="danestves-section-hero"
-    >
+    <section className="container relative overflow-hidden" id="hero">
       <div className="relative left-1/2 mx-auto h-auto w-[563px] -translate-x-1/2 sm:left-[46%] md:left-[38%] lg:left-auto lg:w-full lg:max-w-[731px] lg:transform-none">
         <Rings className="h-auto w-full" />
       </div>
@@ -23,44 +22,13 @@ function HeroSection() {
             responsive={[
               {
                 size: {
-                  height: 324.52,
+                  height: 324,
                   width: 320,
                 },
                 maxWidth: 320,
               },
-              {
-                size: {
-                  height: 646,
-                  width: 637,
-                },
-                maxWidth: 637,
-              },
             ]}
           />
-          {/* <BlurrableImage
-            blurDataUrl={getImageBlur(
-              getImageBuilder(images.heroMask.id, images.heroMask.alt)
-            )}
-            className="relative pb-[calc((637/646)*100%)]"
-            img={
-              <img
-                className="absolute w-full"
-                {...getImgProps(
-                  getImageBuilder(images.heroMask.id, images.heroMask.alt),
-                  {
-                    widths: [318, 646, 984, 1312, 1740],
-                    sizes: [
-                      '(max-width: 1023px) 80vw',
-                      '(min-width: 1024px) and (max-width: 1279px) 50vw',
-                      '(min-width: 1280px) 984px',
-                    ],
-                  }
-                )}
-                height={646}
-                width={637}
-              />
-            }
-          /> */}
         </div>
       </div>
 
