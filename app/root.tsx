@@ -40,7 +40,12 @@ export let loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function App() {
-  useFathom("VKGOHQVT");
+  useFathom("VKGOHQVT", {
+    includedDomains: [
+      "https://danestves.dev",
+      "https://danestves-dev-staging.fly.dev/",
+    ],
+  });
 
   return (
     <html lang="en" className="h-full">
