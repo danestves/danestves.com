@@ -7,6 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import { useFathom } from "remix-fathom";
 import type {
@@ -18,30 +19,36 @@ import type {
 // Internals
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
+import { getEnv } from "./utils/env.server";
 
-export let links: LinksFunction = () => {
+export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
 };
 
-export let meta: MetaFunction = () => ({
+export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Remix Notes",
   viewport: "width=device-width,initial-scale=1",
 });
 
 type LoaderData = {
+  ENV: ReturnType<typeof getEnv>;
   user: Awaited<ReturnType<typeof getUser>>;
 };
 
-export let loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request }) => {
   return json<LoaderData>({
+    ENV: getEnv(),
     user: await getUser(request),
   });
 };
 
 export default function App() {
+  const data = useLoaderData<LoaderData>();
+
   useFathom("VKGOHQVT", {
-    includedDomains: ["danestves.dev", "danestves-dev-staging.fly.dev/"],
+    excludedDomains: ["localhost"],
+    spa: "history",
     url: "https://khonshu.danestves.dev/script.js",
   });
 
@@ -55,6 +62,11 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(data.ENV)};`,
+          }}
+        />
         <LiveReload />
       </body>
     </html>

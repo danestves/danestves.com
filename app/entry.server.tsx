@@ -6,7 +6,12 @@ import { etag } from "remix-etag";
 import { PassThrough } from "stream";
 import type { EntryContext } from "@remix-run/node";
 
-let ABORT_DELAY = 5000;
+// Internals
+import { getEnv } from "~/utils/env.server";
+
+global.ENV = getEnv();
+
+const ABORT_DELAY = 5000;
 
 export default function handleRequest(
   request: Request,
@@ -14,14 +19,14 @@ export default function handleRequest(
   headers: Headers,
   context: EntryContext
 ) {
-  let callbackName = isbot(request.headers.get("user-agent"))
+  const callbackName = isbot(request.headers.get("user-agent"))
     ? "onAllReady"
     : "onShellReady";
 
   return new Promise((resolve, reject) => {
     let didError = false;
 
-    let { pipe, abort } = renderToPipeableStream(
+    const { pipe, abort } = renderToPipeableStream(
       <RemixServer context={context} url={request.url} />,
       {
         [callbackName]() {
