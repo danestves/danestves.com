@@ -24,7 +24,7 @@ import type { Theme } from "remix-themes";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
 import { getEnv } from "./utils/env.server";
-import { i18n } from "./utils/i18n.server";
+import { i18n, i18nStorage } from "./utils/i18n.server";
 import { getDomainUrl } from "./utils/misc";
 import { themeSessionResolver } from "./utils/theme.server";
 import type { Handle } from "./types";
@@ -61,16 +61,24 @@ export const loader: LoaderFunction = async ({ request }) => {
   const locale = await i18n.getLocale(request);
   const { getTheme } = await themeSessionResolver(request);
 
-  return json<LoaderData>({
-    ENV: getEnv(),
-    locale,
-    requestInfo: {
-      origin: getDomainUrl(request),
-      path: new URL(request.url).pathname,
+  const headers = new Headers();
+  headers.append("Set-Cookie", await i18nStorage.serialize(locale));
+
+  return json<LoaderData>(
+    {
+      ENV: getEnv(),
+      locale,
+      requestInfo: {
+        origin: getDomainUrl(request),
+        path: new URL(request.url).pathname,
+      },
+      user: await getUser(request),
+      theme: getTheme(),
     },
-    user: await getUser(request),
-    theme: getTheme(),
-  });
+    {
+      headers,
+    }
+  );
 };
 
 function App() {

@@ -2,7 +2,7 @@
 import { createCookieSessionStorage } from "@remix-run/node";
 import { createThemeSessionResolver } from "remix-themes";
 
-const sessionStorage = createCookieSessionStorage({
+export const themeStorage = createCookieSessionStorage({
   cookie: {
     name: "__danestves_theme",
     expires: new Date("2222-11-29"),
@@ -17,4 +17,4 @@ const sessionStorage = createCookieSessionStorage({
   },
 });
 
-export const themeSessionResolver = createThemeSessionResolver(sessionStorage);
+export const themeSessionResolver = createThemeSessionResolver(themeStorage);

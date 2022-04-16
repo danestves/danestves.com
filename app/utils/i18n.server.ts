@@ -20,6 +20,7 @@ export const i18n = new RemixI18Next({
   detection: {
     fallbackLanguage: "en",
     supportedLanguages: ["en", "es"],
+    cookie: i18nStorage,
   },
   i18next: {
     backend: { loadPath: resolve("./public/locales/{{lng}}/{{ns}}.json") },
