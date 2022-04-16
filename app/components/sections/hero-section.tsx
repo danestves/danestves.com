@@ -19,7 +19,7 @@ function HeroSection() {
         <div className="-mt-12 h-auto w-[249px] sm:w-full sm:max-w-[248px] md:mt-auto lg:max-w-[320px]">
           <Image
             alt="Daniel Esteves"
-            src="/hero-mask.png"
+            src="/hero-mask.webp"
             className="w-full"
             height={646}
             width={637}
