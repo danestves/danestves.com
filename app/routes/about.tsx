@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 
 // Internals
+import { Link } from "~/components/link";
 import { LinkedInIcon } from "~/components/icons/linkedin";
 import { HeroSection } from "~/components/sections/hero-section";
 import { externalLinks } from "~/external-links";
@@ -25,7 +26,7 @@ type LoaderData = {
 export const loader: LoaderFunction = async ({ request }) => {
   const t = await i18n.getFixedT(request, "pages");
 
-  return json({
+  return json<LoaderData>({
     seo: {
       title: t("about.seo.title"),
       description: t("about.seo.description"),
@@ -63,25 +64,20 @@ export default function AboutPage() {
           }}
         ></p>
         <div className="flex justify-center space-x-4">
-          <a
+          <Link
             className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-primary bg-transparent py-2 px-4 text-body transition-colors duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:bg-primary hover:text-white dark:text-body-dark dark:hover:text-body-darker"
-            href={externalLinks.linkedin}
-            rel="noopener noreferrer"
-            target="_blank"
+            to={externalLinks.linkedin}
           >
             {t("about.buttons.0")}
             <LinkedInIcon className="ml-2 -mr-1 inline h-auto w-5" />
-          </a>
-          <a
+          </Link>
+          <Link
             className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-transparent bg-primary py-2 px-4 text-white transition duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:brightness-105 dark:text-body-darker dark:hover:bg-primary-600"
-            download
-            href={externalLinks.resume}
-            rel="noopener noreferrer"
-            target="_blank"
+            to={externalLinks.resume}
           >
             {t("about.buttons.1")}
             <DocumentTextIcon className="ml-2 -mr-1 inline h-auto w-5" />
-          </a>
+          </Link>
         </div>
       </div>
     </>

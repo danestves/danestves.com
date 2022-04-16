@@ -4,6 +4,7 @@ import { Image } from "remix-image";
 
 // Internals
 import { useNextGenImageFormat } from "~/hooks/use-next-gen-image-format";
+import { Link } from "../link";
 import { Rings } from "../rings";
 
 function HeroSection() {
@@ -49,14 +50,12 @@ function HeroSection() {
         </h1>
         <p className="mt-1 text-xs">
           Senior Frontend Engineer @{" "}
-          <a
+          <Link
             className="rounded focus-within:ring-2 focus-within:ring-secondary focus:outline-none"
-            href="https://www.reworth.co/"
-            rel="noopener noreferrer"
-            target="_blank"
+            to="https://www.reworth.co/"
           >
             REWORTH
-          </a>
+          </Link>
           . <br />{" "}
           <span
             dangerouslySetInnerHTML={{
