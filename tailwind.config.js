@@ -34,6 +34,11 @@ module.exports = {
           900: "#00291D",
           DEFAULT: "#00C389",
         },
+        body: {
+          dark: "#B4B4B4",
+          darker: "#292929",
+          DEFAULT: "#595959",
+        },
       },
       container: {
         center: true,
