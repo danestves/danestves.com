@@ -22,12 +22,14 @@ const Flag = ({ ...props }: FlagProps): JSX.Element => {
       responsive={[
         {
           size: {
-            width: 24,
-            height: 24,
+            width: 48,
+            height: 48,
           },
-          maxWidth: 24,
+          maxWidth: 48,
         },
       ]}
+      height={48}
+      width={48}
     />
   );
 };
