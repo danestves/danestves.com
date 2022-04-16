@@ -3,26 +3,12 @@ import { compile as compileRedirectPath, pathToRegexp } from "path-to-regexp";
 import type { RequestHandler } from "express";
 import type { Key } from "path-to-regexp";
 
-function typedBoolean<T>(
-  value: T
-): value is Exclude<T, "" | 0 | false | null | undefined> {
+function typedBoolean<T>(value: T): value is Exclude<T, "" | 0 | false | null | undefined> {
   return Boolean(value);
 }
 
-function getRedirectsMiddleware({
-  redirectsString,
-}: {
-  redirectsString: string;
-}): RequestHandler {
-  const possibleMethods = [
-    "HEAD",
-    "GET",
-    "POST",
-    "PUT",
-    "DELETE",
-    "PATCH",
-    "*",
-  ];
+function getRedirectsMiddleware({ redirectsString }: { redirectsString: string }): RequestHandler {
+  const possibleMethods = ["HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "*"];
   const redirects = redirectsString
     .split("\n")
     .map((line, lineNumber) => {
@@ -52,9 +38,7 @@ function getRedirectsMiddleware({
       }
       const keys: Array<Key> = [];
 
-      const toUrl = to.includes("//")
-        ? new URL(to)
-        : new URL(`https://same_host${to}`);
+      const toUrl = to.includes("//") ? new URL(to) : new URL(`https://same_host${to}`);
       try {
         return {
           methods,
@@ -67,9 +51,7 @@ function getRedirectsMiddleware({
         };
       } catch (error: unknown) {
         // if parsing the redirect fails, we'll warn, but we won't crash
-        console.error(
-          `Failed to parse redirect on line ${lineNumber}: "${line}"`
-        );
+        console.error(`Failed to parse redirect on line ${lineNumber}: "${line}"`);
         return null;
       }
     })
@@ -88,10 +70,7 @@ function getRedirectsMiddleware({
     }
     for (const redirect of redirects) {
       try {
-        if (
-          !redirect.methods.includes("*") &&
-          !redirect.methods.includes(req.method)
-        ) {
+        if (!redirect.methods.includes("*") && !redirect.methods.includes(req.method)) {
           continue;
         }
         const match = req.path.match(redirect.from);
@@ -99,11 +78,7 @@ function getRedirectsMiddleware({
 
         const params: Record<string, string> = {};
         const paramValues = match.slice(1);
-        for (
-          let paramIndex = 0;
-          paramIndex < paramValues.length;
-          paramIndex++
-        ) {
+        for (let paramIndex = 0; paramIndex < paramValues.length; paramIndex++) {
           const paramValue = paramValues[paramIndex];
           const key = redirect.keys[paramIndex];
           if (key && paramValue) {

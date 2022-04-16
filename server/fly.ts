@@ -4,11 +4,7 @@ import type { RequestHandler } from "express";
 const { FLY, PRIMARY_REGION, FLY_REGION } = process.env;
 const isPrimaryRegion = PRIMARY_REGION === FLY_REGION;
 
-const getReplayResponse: RequestHandler = function getReplayResponse(
-  req,
-  res,
-  next
-) {
+const getReplayResponse: RequestHandler = function getReplayResponse(req, res, next) {
   const { method, path: pathname } = req;
   if (method === "GET" || method === "OPTIONS" || method === "HEAD") {
     return next();

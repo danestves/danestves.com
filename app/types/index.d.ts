@@ -1,8 +1,5 @@
 // Dependencies
-import type {
-  LinkProps as RemixLinkProps,
-  NavLinkProps as RemixNavLinkProps,
-} from "@remix-run/react";
+import type { LinkProps as RemixLinkProps, NavLinkProps as RemixNavLinkProps } from "@remix-run/react";
 
 export type Handle = {
   i18n?: string | Array<string>;

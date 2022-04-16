@@ -72,10 +72,7 @@ app.use(
       // If we ever change our font (which we quite possibly never will)
       // then we'll just want to change the filename or something...
       // Remix fingerprints its assets so we can cache forever
-      if (
-        relativePath.startsWith("fonts") ||
-        relativePath.startsWith("build")
-      ) {
+      if (relativePath.startsWith("fonts") || relativePath.startsWith("build")) {
         res.setHeader("cache-control", "public, max-age=31536000, immutable");
       }
     },
@@ -89,9 +86,7 @@ app.use((req, res, next) => {
   onFinished(res, () => {
     const referrer = req.get("referer");
     if (res.statusCode === 404 && referrer) {
-      console.info(
-        `👻 404 on ${req.method} ${req.path} referred by: ${referrer}`
-      );
+      console.info(`👻 404 on ${req.method} ${req.path} referred by: ${referrer}`);
     }
   });
   next();
@@ -103,11 +98,7 @@ app.all(
     ? createRequestHandler({ build: require("../build") })
     : (req, res, next) => {
         purgeRequireCache();
-        return createRequestHandler({ build: require("../build"), mode: MODE })(
-          req,
-          res,
-          next
-        );
+        return createRequestHandler({ build: require("../build"), mode: MODE })(req, res, next);
       }
 );
 

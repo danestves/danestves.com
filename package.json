@@ -36,7 +36,8 @@
   "eslintIgnore": [
     "/node_modules",
     "/build",
-    "/public/build"
+    "/public/build",
+    "/server-build"
   ],
   "dependencies": {
     "@balavishnuvj/remix-seo": "^1.0.2",

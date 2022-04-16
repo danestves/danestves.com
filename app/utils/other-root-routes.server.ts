@@ -2,10 +2,7 @@
 import { generateRobotsTxt, generateSitemap } from "@balavishnuvj/remix-seo";
 import type { EntryContext } from "@remix-run/server-runtime";
 
-type Handler = (
-  request: Request,
-  remixContext: EntryContext
-) => Promise<Response | null> | null;
+type Handler = (request: Request, remixContext: EntryContext) => Promise<Response | null> | null;
 
 export const otherRootRoutes: Record<string, Handler> = {
   "/robots.txt": async () => {

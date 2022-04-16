@@ -10,10 +10,7 @@ import { useMatches } from "@remix-run/react";
  */
 export function useMatchesData<T>(id: string): T | undefined {
   const matchingRoutes = useMatches();
-  const route = React.useMemo(
-    () => matchingRoutes.find((route) => route.id === id),
-    [matchingRoutes, id]
-  );
+  const route = React.useMemo(() => matchingRoutes.find((route) => route.id === id), [matchingRoutes, id]);
 
   return route?.data as T;
 }

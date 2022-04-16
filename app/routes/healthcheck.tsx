@@ -6,8 +6,7 @@ import { prisma } from "~/db.server";
 
 // learn more: https://fly.io/docs/reference/configuration/#services-http_checks
 export const loader: LoaderFunction = async ({ request }) => {
-  const host =
-    request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
+  const host = request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
 
   try {
     const url = new URL("/", `http://${host}`);

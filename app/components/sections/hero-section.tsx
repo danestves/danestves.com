@@ -19,10 +19,8 @@ function HeroSection() {
         <div className="-mt-12 h-auto w-[249px] sm:w-full sm:max-w-[248px] md:mt-auto lg:max-w-[320px]">
           <Image
             alt="Daniel Esteves"
-            src="/hero-mask.webp"
             className="w-full"
             height={646}
-            width={637}
             options={{
               contentType: useNextGenImageFormat(),
             }}
@@ -35,6 +33,8 @@ function HeroSection() {
                 maxWidth: 498,
               },
             ]}
+            src="/hero-mask.webp"
+            width={637}
           />
         </div>
       </div>
@@ -50,10 +50,10 @@ function HeroSection() {
         <p className="mt-1 text-xs">
           Senior Frontend Engineer @{" "}
           <a
+            className="rounded focus-within:ring-2 focus-within:ring-secondary focus:outline-none"
             href="https://www.reworth.co/"
             rel="noopener noreferrer"
             target="_blank"
-            className="rounded focus-within:ring-2 focus-within:ring-secondary focus:outline-none"
           >
             REWORTH
           </a>
@@ -67,9 +67,7 @@ function HeroSection() {
       </div>
 
       {/* Search Trigger */}
-      <div className="absolute bottom-1/4 hidden lg:right-[13%] lg:block xl:right-[20%]">
-        {/* <Search /> */}
-      </div>
+      <div className="absolute bottom-1/4 hidden lg:right-[13%] lg:block xl:right-[20%]">{/* <Search /> */}</div>
     </section>
   );
 }

@@ -20,9 +20,7 @@ function getScrollPosition(): ScrollPosition {
 }
 
 function useScrollPosition(): ScrollPosition {
-  const [position, setPosition] = React.useState<ScrollPosition>(() =>
-    getScrollPosition()
-  );
+  const [position, setPosition] = React.useState<ScrollPosition>(() => getScrollPosition());
 
   React.useEffect(() => {
     let requestRunning: number | null = null;

@@ -3,9 +3,7 @@ import * as React from "react";
 import { MimeType } from "remix-image";
 
 function useNextGenImageFormat() {
-  const [format, setFormat] = React.useState<MimeType | undefined>(
-    MimeType.WEBP
-  );
+  const [format, setFormat] = React.useState<MimeType | undefined>(MimeType.WEBP);
 
   React.useEffect(() => {
     const elem = document.createElement("canvas");

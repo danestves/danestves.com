@@ -3,19 +3,9 @@ import { MimeType } from "remix-image";
 import sharp from "sharp";
 import type { Transformer } from "remix-image";
 
-const supportedInputs = new Set([
-  MimeType.JPEG,
-  MimeType.PNG,
-  MimeType.WEBP,
-  MimeType.TIFF,
-]);
+const supportedInputs = new Set([MimeType.JPEG, MimeType.PNG, MimeType.WEBP, MimeType.TIFF]);
 
-const supportedOutputs = new Set([
-  MimeType.AVIF,
-  MimeType.JPEG,
-  MimeType.PNG,
-  MimeType.WEBP,
-]);
+const supportedOutputs = new Set([MimeType.AVIF, MimeType.JPEG, MimeType.PNG, MimeType.WEBP]);
 
 export const sharpTransformer: Transformer = {
   name: "sharpTransformer",
@@ -23,18 +13,7 @@ export const sharpTransformer: Transformer = {
   supportedOutputs,
   transform: async (
     { data },
-    {
-      contentType: outputContentType,
-      width,
-      height,
-      fit,
-      position,
-      background,
-      quality,
-      compressionLevel,
-      loop,
-      delay,
-    }
+    { contentType: outputContentType, width, height, fit, position, background, quality, compressionLevel, loop, delay }
   ) => {
     const image = sharp(data);
 
