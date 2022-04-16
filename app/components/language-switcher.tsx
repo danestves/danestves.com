@@ -30,7 +30,7 @@ function LanguageSwitcher() {
   return (
     <div className="relative lg:w-40">
       <Listbox value={currentLanguage} onChange={onChange}>
-        <Listbox.Button className="inline-flex items-center space-x-4 rounded-full focus:outline-none focus:ring-4 focus:ring-secondary/50 md:rounded-md md:py-2 md:px-4">
+        <Listbox.Button className="inline-flex items-center space-x-4 rounded-full focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary md:rounded-md md:py-2 md:px-4">
           <div className="h-9 w-9 rounded-full md:h-6 md:w-6">
             <Flag />
           </div>
@@ -51,30 +51,20 @@ function LanguageSwitcher() {
             {languages.map((lang) => (
               <Listbox.Option
                 key={lang.code}
-                className={({ active, selected }) =>
+                className={({ selected }) =>
                   clsx(
-                    "group mx-auto inline-flex w-full cursor-default select-none items-center space-x-4 py-2 px-4 transition-colors duration-200",
-                    active && !selected && "bg-secondary",
-                    selected && "dark:bg-[#202020]"
+                    "group mx-auto inline-flex w-full cursor-default select-none items-center space-x-4 py-2 px-4 text-secondary transition-colors duration-100 focus-within:bg-secondary focus-within:text-white hover:bg-secondary hover:text-white focus:bg-secondary focus:text-white active:bg-secondary active:text-white",
+                    selected && "bg-secondary/10 hover:bg-secondary"
                   )
                 }
                 value={lang}
               >
-                {({ selected }) => (
-                  <>
-                    <div className="h-6 w-6 rounded-full">
-                      <Flag locale={lang.code} />
-                    </div>
-                    <span
-                      className={clsx(
-                        "w-full justify-between font-semibold uppercase transition-colors duration-200 group-hover:text-white",
-                        selected ? "text-white" : "text-secondary"
-                      )}
-                    >
-                      {lang.name}
-                    </span>
-                  </>
-                )}
+                <div className="h-6 w-6 rounded-full">
+                  <Flag locale={lang.code} />
+                </div>
+                <span className="w-full justify-between font-semibold uppercase transition-colors duration-100">
+                  {lang.name}
+                </span>
               </Listbox.Option>
             ))}
           </Listbox.Options>

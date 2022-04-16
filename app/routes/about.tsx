@@ -64,7 +64,7 @@ export default function AboutPage() {
         ></p>
         <div className="flex justify-center space-x-4">
           <a
-            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-primary bg-transparent py-2 px-4 text-body transition-colors duration-100 hover:bg-primary hover:text-white dark:text-body-dark dark:hover:text-body-darker"
+            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-primary bg-transparent py-2 px-4 text-body transition-colors duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:bg-primary hover:text-white dark:text-body-dark dark:hover:text-body-darker"
             href={externalLinks.linkedin}
             rel="noopener noreferrer"
             target="_blank"
@@ -73,7 +73,7 @@ export default function AboutPage() {
             <LinkedInIcon className="ml-2 -mr-1 inline h-auto w-5" />
           </a>
           <a
-            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-transparent bg-primary py-2 px-4 text-white transition duration-100 hover:brightness-105 dark:text-body-darker dark:hover:bg-primary-600"
+            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-transparent bg-primary py-2 px-4 text-white transition duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:brightness-105 dark:text-body-darker dark:hover:bg-primary-600"
             download
             href={externalLinks.resume}
             rel="noopener noreferrer"

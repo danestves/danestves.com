@@ -21,6 +21,7 @@ import type {
 } from "@remix-run/server-runtime";
 
 // Internals
+import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
@@ -107,6 +108,7 @@ function App() {
       <body className="h-full bg-white transition duration-500 dark:bg-[#292929]">
         <Header />
         <Outlet />
+        <Footer />
         <ScrollRestoration />
         <Scripts />
         <script

@@ -23,8 +23,8 @@ const links: Array<NavLinkProps> = [
   {
     to: "/about",
     name: {
-      en: "About",
-      es: "Sobre mí",
+      en: "About me",
+      es: "Acerca de mí",
     },
     prefetch: "intent",
   },
@@ -185,7 +185,7 @@ function Header() {
           </div>
 
           <NavLink
-            className="hidden h-9 w-9 focus:rounded focus:outline-none focus:ring-4 focus:ring-secondary/50 lg:inline-block"
+            className="hidden h-9 w-9 focus-within:rounded focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary lg:inline-block"
             to="/"
           >
             <span className="sr-only">@danestves</span>

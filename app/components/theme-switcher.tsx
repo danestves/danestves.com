@@ -29,7 +29,7 @@ function ThemeSwitcher() {
     <Switch
       aria-label="Toggle dark mode"
       checked={theme === Theme.DARK}
-      className="inline-flex rounded-full bg-secondary p-2 text-white focus:outline-none focus:ring-4 focus:ring-secondary/50 dark:text-[#292929]"
+      className="focus-within:outline-secondarydark:text-[#292929] inline-flex rounded-full bg-secondary p-2 text-white focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary"
       defaultChecked={theme === Theme.DARK}
       onChange={onChange}
     >
