@@ -16,7 +16,7 @@ function HeroSection() {
       </div>
 
       <div className="absolute top-1/2 left-1/2 mt-2 -translate-x-1/2 -translate-y-1/2 md:mt-3">
-        <div className="-mt-8 h-auto w-[249px] sm:w-full sm:max-w-[248px] md:mt-auto lg:max-w-[320px]">
+        <div className="-mt-12 h-auto w-[249px] sm:w-full sm:max-w-[248px] md:mt-auto lg:max-w-[320px]">
           <Image
             alt="Daniel Esteves"
             src="/hero-mask.png"
@@ -53,6 +53,7 @@ function HeroSection() {
             href="https://www.reworth.co/"
             rel="noopener noreferrer"
             target="_blank"
+            className="rounded focus-within:ring-2 focus-within:ring-secondary focus:outline-none"
           >
             REWORTH
           </a>

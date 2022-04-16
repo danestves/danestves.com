@@ -1,3 +1,6 @@
+// Dependencies
+const defaultConfig = require("tailwindcss/defaultConfig");
+
 /** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig} */
 module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
@@ -35,6 +38,9 @@ module.exports = {
       container: {
         center: true,
         padding: "1rem",
+      },
+      fontFamily: {
+        sans: ["Inter", ...defaultConfig.theme.fontFamily.sans],
       },
     },
   },
