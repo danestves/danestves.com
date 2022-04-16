@@ -6,7 +6,7 @@ import {
   imageLoader,
 } from "remix-image/server";
 import type { LoaderConfig, Resolver } from "remix-image/server";
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/server-runtime";
 
 // Internals
 import { sharpTransformer } from "~/utils/image-transformer.server";

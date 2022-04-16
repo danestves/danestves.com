@@ -1,5 +1,5 @@
 // Dependencies
-import { json } from "@remix-run/node";
+import { json } from "@remix-run/server-runtime";
 import {
   Links,
   LiveReload,
@@ -18,13 +18,12 @@ import type {
   LinksFunction,
   LoaderFunction,
   MetaFunction,
-} from "@remix-run/node";
+} from "@remix-run/server-runtime";
 
 // Internals
 import { Header } from "./components/header";
 import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
 import { getEnv } from "./utils/env.server";
 import { i18n, i18nStorage } from "./utils/i18n.server";
 import { getDomainUrl } from "./utils/misc";
@@ -56,7 +55,6 @@ export type RootLoaderData = {
     origin: string;
     path: string;
   };
-  user: Awaited<ReturnType<typeof getUser>>;
   theme: Theme | null;
   country?: string;
 };
@@ -76,7 +74,6 @@ export const loader: LoaderFunction = async ({ request }) => {
         origin: getDomainUrl(request),
         path: new URL(request.url).pathname,
       },
-      user: await getUser(request),
       theme: getTheme() ?? Theme.DARK,
     },
     {

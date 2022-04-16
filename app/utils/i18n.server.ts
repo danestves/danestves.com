@@ -1,4 +1,5 @@
 // Dependencies
+// Dependencies
 import { createCookie } from "@remix-run/node";
 import Backend from "i18next-fs-backend";
 import { resolve } from "node:path";
