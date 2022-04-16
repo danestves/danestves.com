@@ -37,11 +37,7 @@ function Themed({
       </ClientOnly>
     );
   } else {
-    return (
-      <ClientOnly>
-        {() => (themeToReference === "light" ? light : dark)}
-      </ClientOnly>
-    );
+    return <ClientOnly>{() => (themeToReference === "light" ? light : dark)}</ClientOnly>;
   }
 }
 

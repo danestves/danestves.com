@@ -7,29 +7,19 @@ import type { NavLinkProps } from "@remix-run/react";
 import { Link } from "./link";
 
 function RenderLink(
-  {
-    to,
-    children,
-    className,
-    prefetch,
-    reloadDocument,
-    replace,
-    state,
-    style,
-    ...props
-  }: NavLinkProps,
+  { to, children, className, prefetch, reloadDocument, replace, state, style, ...props }: NavLinkProps,
   ref: React.Ref<HTMLAnchorElement>
 ) {
   if (to.toString().startsWith("http")) {
     return (
       <Link
-        to={to}
         className={className?.toString()}
         prefetch={prefetch}
         reloadDocument={reloadDocument}
         replace={replace}
         state={state}
         style={style as React.CSSProperties}
+        to={to}
         {...props}
         ref={ref}
       >
@@ -40,12 +30,12 @@ function RenderLink(
 
   return (
     <RemixNavLink
-      to={to}
       className={className}
       prefetch={prefetch}
       reloadDocument={reloadDocument}
       replace={replace}
       state={state}
+      to={to}
       {...props}
       ref={ref}
     >

@@ -29,17 +29,14 @@ function ThemeSwitcher() {
     <Switch
       aria-label="Toggle dark mode"
       checked={theme === Theme.DARK}
-      className="focus-within:outline-secondarydark:text-[#292929] inline-flex rounded-full bg-secondary p-2 text-white focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary"
+      className="inline-flex rounded-full bg-secondary p-2 text-white transition-colors duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary dark:text-body-darker"
       defaultChecked={theme === Theme.DARK}
       onChange={onChange}
     >
       <MoonIcon className="inline-block h-auto w-[21px]" />
 
       <span className="sr-only">
-        <Themed
-          dark={t("header.switcher.theme.dark")}
-          light={t("header.switcher.theme.light")}
-        />
+        <Themed dark={t("header.switcher.theme.dark")} light={t("header.switcher.theme.light")} />
       </span>
     </Switch>
   );

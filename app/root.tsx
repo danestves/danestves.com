@@ -1,29 +1,18 @@
 // Dependencies
 import { json } from "@remix-run/server-runtime";
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-} from "@remix-run/react";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import { useFathom } from "remix-fathom";
 import { useChangeLanguage } from "remix-i18next";
 import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/server-runtime";
+import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 
 // Internals
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { LeftSidebar } from "./components/left-sidebar";
+import { RightSidebar } from "./components/right-sidebar";
 import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getEnv } from "./utils/env.server";
@@ -96,11 +85,7 @@ function App() {
   useChangeLanguage(data.locale);
 
   return (
-    <html
-      lang={data.locale}
-      className={clsx("h-full", data.theme)}
-      dir={i18n.dir()}
-    >
+    <html className={clsx("h-full", data.theme)} dir={i18n.dir()} lang={data.locale}>
       <head>
         <Meta />
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
@@ -109,6 +94,7 @@ function App() {
       <body className="h-full bg-white transition duration-500 dark:bg-[#292929]">
         <Header />
         <LeftSidebar />
+        <RightSidebar />
 
         <Outlet />
 

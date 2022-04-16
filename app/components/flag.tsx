@@ -17,8 +17,8 @@ const Flag = ({ ...props }: FlagProps): JSX.Element => {
 
   return (
     <Image
-      src={src}
       alt="Country flag"
+      height={1024}
       responsive={[
         {
           size: {
@@ -28,7 +28,7 @@ const Flag = ({ ...props }: FlagProps): JSX.Element => {
           maxWidth: 72,
         },
       ]}
-      height={1024}
+      src={src}
       width={1024}
     />
   );

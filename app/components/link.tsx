@@ -8,16 +8,16 @@ function RenderLink(
   ref: React.Ref<HTMLAnchorElement>
 ) {
   if (to.toString().startsWith("http")) {
-    return <a {...props} href={to.toString()} ref={ref} />;
+    return <a {...props} href={to.toString()} ref={ref} rel="noopener noreferrer" target="_blank" />;
   }
 
   return (
     <RemixLink
-      to={to}
       prefetch={prefetch}
       reloadDocument={reloadDocument}
       replace={replace}
       state={state}
+      to={to}
       {...props}
       ref={ref}
     />

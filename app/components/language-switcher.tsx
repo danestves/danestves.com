@@ -19,17 +19,14 @@ function LanguageSwitcher() {
   const persistLanguageRef = React.useRef(persistLanguage);
 
   const onChange = async (language: typeof languages[0]) => {
-    persistLanguageRef.current.submit(
-      { lang: language.code },
-      { action: "action/set-language", method: "post" }
-    );
+    persistLanguageRef.current.submit({ lang: language.code }, { action: "action/set-language", method: "post" });
   };
 
   const currentLanguage = languages.find((l) => l.code === i18n.language);
 
   return (
     <div className="relative lg:w-40">
-      <Listbox value={currentLanguage} onChange={onChange}>
+      <Listbox onChange={onChange} value={currentLanguage}>
         <Listbox.Button className="inline-flex items-center space-x-4 rounded-full focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary md:rounded-md md:py-2 md:px-4">
           <div className="h-9 w-9 rounded-full md:h-6 md:w-6">
             <Flag />
@@ -50,13 +47,13 @@ function LanguageSwitcher() {
           <Listbox.Options className="absolute right-0 mt-1 w-min overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
             {languages.map((lang) => (
               <Listbox.Option
-                key={lang.code}
                 className={({ selected }) =>
                   clsx(
                     "group mx-auto inline-flex w-full cursor-default select-none items-center space-x-4 py-2 px-4 text-secondary transition-colors duration-100 focus-within:bg-secondary focus-within:text-white hover:bg-secondary hover:text-white focus:bg-secondary focus:text-white active:bg-secondary active:text-white",
                     selected && "bg-secondary/10 hover:bg-secondary"
                   )
                 }
+                key={lang.code}
                 value={lang}
               >
                 <div className="h-6 w-6 rounded-full">

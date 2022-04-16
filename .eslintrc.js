@@ -18,5 +18,6 @@ module.exports = {
   },
   rules: {
     "jsx-a11y/anchor-has-content": "off",
+    "react/jsx-sort-props": 2,
   },
 };

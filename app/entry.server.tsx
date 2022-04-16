@@ -32,9 +32,7 @@ export default async function handleRequest(
   }
 
   const instance = createInstance();
-  const callbackName = isbot(request.headers.get("user-agent"))
-    ? "onAllReady"
-    : "onShellReady";
+  const callbackName = isbot(request.headers.get("user-agent")) ? "onAllReady" : "onShellReady";
   const lng = await i18n.getLocale(request);
   const ns = i18n.getRouteNamespaces(context);
 

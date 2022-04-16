@@ -67,7 +67,10 @@ function LeftSidebar() {
       </ul>
 
       <div className="fixed bottom-8 left-12 z-10">
-        <NavLink className="font-semibold uppercase text-secondary" to="/blog">
+        <NavLink
+          className="font-semibold uppercase text-secondary transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary"
+          to="/blog"
+        >
           blog
         </NavLink>
       </div>

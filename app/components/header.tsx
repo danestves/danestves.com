@@ -124,11 +124,7 @@ function Header() {
                       </Popover.Button>
                     </div>
                   </div>
-                  <ul
-                    className="px-2 pt-2 pb-3"
-                    itemScope
-                    itemType="https://schema.org/SiteNavigationElement"
-                  >
+                  <ul className="px-2 pt-2 pb-3" itemScope itemType="https://schema.org/SiteNavigationElement">
                     {mobileLinks.map(({ name, to, ...link }) => (
                       <li itemProp="name" key={nanoid()}>
                         <Popover.Button
@@ -152,21 +148,18 @@ function Header() {
                       {socialLinks.map(({ icon: Icon, name, to, ...item }) => (
                         <Popover.Button
                           as={NavLink}
-                          to={to}
                           key={nanoid()}
+                          to={to}
                           {...item}
                           className="block rounded-md px-3 py-2 text-base font-semibold uppercase text-[#989898] hover:text-primary"
                         >
-                          <span className="sr-only">
-                            {typeof name === "string" ? name : null}
-                          </span>
+                          <span className="sr-only">{typeof name === "string" ? name : null}</span>
                           {Icon && (
                             <Icon
                               className={clsx(
                                 "h-6 w-6",
                                 typeof name === "string"
-                                  ? name?.includes("github") &&
-                                      "text-[#333] dark:text-white"
+                                  ? name?.includes("github") && "text-[#333] dark:text-white"
                                   : null
                               )}
                             />

@@ -1,10 +1,7 @@
 // Dependencies
 import * as React from "react";
 
-function RenderRings(
-  props: React.SVGProps<SVGSVGElement>,
-  ref: React.LegacyRef<SVGSVGElement>
-) {
+function RenderRings(props: React.SVGProps<SVGSVGElement>, ref: React.LegacyRef<SVGSVGElement>) {
   return (
     <svg
       fill="none"
@@ -78,8 +75,6 @@ function RenderRings(
   );
 }
 
-const Rings = React.forwardRef<SVGSVGElement, React.SVGProps<SVGSVGElement>>(
-  RenderRings
-);
+const Rings = React.forwardRef<SVGSVGElement, React.SVGProps<SVGSVGElement>>(RenderRings);
 
 export { Rings };
