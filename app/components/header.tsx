@@ -76,6 +76,10 @@ const socialLinks: Array<NavLinkProps> = [
 const mobileLinks: Array<NavLinkProps> = [
   {
     to: "/",
+    name: {
+      en: "Home",
+      es: "Inicio",
+    },
   },
   ...links,
 ];
@@ -87,8 +91,8 @@ function Header() {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 z-20 w-full px-6 transition-all duration-200 lg:px-12",
-        y >= 104 ? "bg-white py-2 shadow dark:bg-[#292929]" : "py-6"
+        "fixed top-0 left-0 z-20 w-full px-6 transition-all duration-100 lg:px-12",
+        y >= 16 ? "bg-white/95 py-2 shadow backdrop-blur dark:bg-body-darker/75" : "py-6"
       )}
     >
       <div className="flex w-full items-center justify-between">
@@ -114,11 +118,14 @@ function Header() {
               >
                 <div className="overflow-hidden rounded-lg  shadow-md ring-1 ring-black/10 dark:ring-white/10">
                   <div className="flex items-center justify-between px-5 pt-4">
-                    <NavLink to="/">
+                    <NavLink
+                      className="focus-within:rounded focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary"
+                      to="/"
+                    >
                       <Logo className="h-8 w-auto" />
                     </NavLink>
                     <div className="-mr-2">
-                      <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 ring-1 ring-black/10 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary dark:bg-[#292929] dark:text-gray-200 dark:ring-white/10">
+                      <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 ring-1 ring-black/10 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary hover:bg-gray-100 hover:text-gray-500 dark:bg-[#292929] dark:text-gray-200 dark:ring-white/10">
                         <span className="sr-only">Close menu</span>
                         <XIcon aria-hidden="true" className="h-6 w-6" />
                       </Popover.Button>
@@ -132,7 +139,7 @@ function Header() {
                           itemProp="url"
                           to={to}
                           {...link}
-                          className="block rounded-md py-2 px-3 text-base font-semibold uppercase text-[#989898] hover:text-primary"
+                          className="block rounded-md py-2 px-3 text-base font-semibold uppercase text-body/60 transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary hover:text-primary dark:text-body-dark dark:hover:text-primary"
                         >
                           {typeof name === "string"
                             ? name
@@ -151,7 +158,7 @@ function Header() {
                           key={nanoid()}
                           to={to}
                           {...item}
-                          className="block rounded-md px-3 py-2 text-base font-semibold uppercase text-[#989898] hover:text-primary"
+                          className="block rounded-md px-3 py-2 text-base font-semibold uppercase focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary"
                         >
                           <span className="sr-only">{typeof name === "string" ? name : null}</span>
                           {Icon && (
@@ -159,7 +166,7 @@ function Header() {
                               className={clsx(
                                 "h-6 w-6",
                                 typeof name === "string"
-                                  ? name?.includes("github") && "text-[#333] dark:text-white"
+                                  ? name?.toLowerCase().includes("github") && "text-[#333] dark:text-white"
                                   : null
                               )}
                             />
