@@ -25,7 +25,7 @@ function LanguageSwitcher() {
   const currentLanguage = languages.find((l) => l.code === i18n.language);
 
   return (
-    <div className="relative lg:w-40">
+    <div className="relative flex lg:w-40">
       <Listbox onChange={onChange} value={currentLanguage}>
         <Listbox.Button className="inline-flex items-center space-x-4 rounded-full focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary md:rounded-md md:py-2 md:px-4">
           <div className="h-9 w-9 rounded-full md:h-6 md:w-6">

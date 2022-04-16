@@ -6,6 +6,7 @@ import { Image } from "remix-image";
 import { useNextGenImageFormat } from "~/hooks/use-next-gen-image-format";
 import { Link } from "../link";
 import { Rings } from "../rings";
+import { Search } from "../search";
 
 function HeroSection() {
   const { t } = useTranslation("sections");
@@ -66,7 +67,9 @@ function HeroSection() {
       </div>
 
       {/* Search Trigger */}
-      <div className="absolute bottom-1/4 hidden lg:right-[13%] lg:block xl:right-[20%]">{/* <Search /> */}</div>
+      <div className="absolute bottom-1/4 hidden lg:right-[13%] lg:block xl:right-[20%]">
+        <Search />
+      </div>
     </section>
   );
 }

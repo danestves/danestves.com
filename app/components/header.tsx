@@ -16,6 +16,7 @@ import { YoutubeIcon } from "./icons/youtube";
 import { LanguageSwitcher } from "./language-switcher";
 import { Logo } from "./logo";
 import { NavLink } from "./navlink";
+import { Search } from "./search";
 import { ThemeSwitcher } from "./theme-switcher";
 import type { NavLinkProps } from "~/types";
 
@@ -209,7 +210,9 @@ function Header() {
         </div>
 
         <div className="flex items-center space-x-6">
-          <div className="block lg:hidden">{/* <Search /> */}</div>
+          <div className="block lg:hidden">
+            <Search />
+          </div>
 
           <LanguageSwitcher />
         </div>
