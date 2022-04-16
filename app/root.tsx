@@ -21,6 +21,7 @@ import type {
 } from "@remix-run/node";
 
 // Internals
+import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
 import { getEnv } from "./utils/env.server";
@@ -35,9 +36,8 @@ export const handle: Handle = {
 
 export const links: LinksFunction = () => {
   return [
-    { rel: "preconnect", href: "https://rsms.me" },
-    { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
     { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "stylesheet", href: mainStylesheetUrl },
   ];
 };
 

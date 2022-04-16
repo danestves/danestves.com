@@ -40,7 +40,7 @@ module.exports = {
         padding: "1rem",
       },
       fontFamily: {
-        sans: ["Inter", ...defaultConfig.theme.fontFamily.sans],
+        sans: ["Inter var", ...defaultConfig.theme.fontFamily.sans],
       },
     },
   },
