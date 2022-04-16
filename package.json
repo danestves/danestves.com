@@ -33,6 +33,8 @@
     "/public/build"
   ],
   "dependencies": {
+    "@headlessui/react": "^0.0.0-insiders.b4a4e0b",
+    "@heroicons/react": "^1.0.6",
     "@next-boost/hybrid-disk-cache": "^0.3.0",
     "@prisma/client": "^3.12.0",
     "@remix-run/node": "^1.4.0",

@@ -9,16 +9,16 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
+import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import { useFathom } from "remix-fathom";
 import { useChangeLanguage } from "remix-i18next";
-import { PreventFlashOnWrongTheme, ThemeProvider } from "remix-themes";
+import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
 import type {
   LinksFunction,
   LoaderFunction,
   MetaFunction,
 } from "@remix-run/node";
-import type { Theme } from "remix-themes";
 
 // Internals
 import tailwindStylesheetUrl from "./styles/tailwind.css";
@@ -55,6 +55,7 @@ type LoaderData = {
   };
   user: Awaited<ReturnType<typeof getUser>>;
   theme: Theme | null;
+  country?: string;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -73,7 +74,7 @@ export const loader: LoaderFunction = async ({ request }) => {
         path: new URL(request.url).pathname,
       },
       user: await getUser(request),
-      theme: getTheme(),
+      theme: getTheme() ?? Theme.DARK,
     },
     {
       headers,
@@ -93,7 +94,11 @@ function App() {
   useChangeLanguage(data.locale);
 
   return (
-    <html lang="en" className="h-full" dir={i18n.dir()}>
+    <html
+      lang={data.locale}
+      className={clsx("h-full", data.theme)}
+      dir={i18n.dir()}
+    >
       <head>
         <Meta />
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
