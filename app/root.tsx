@@ -35,6 +35,7 @@ export const handle: Handle = {
 
 export const links: LinksFunction = () => {
   return [
+    { rel: "preconnect", href: "https://rsms.me" },
     { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
     { rel: "stylesheet", href: tailwindStylesheetUrl },
   ];
