@@ -29,10 +29,10 @@ function HeroSection() {
             responsive={[
               {
                 size: {
-                  height: 324,
-                  width: 320,
+                  height: 504,
+                  width: 498,
                 },
-                maxWidth: 320,
+                maxWidth: 498,
               },
             ]}
           />
