@@ -12,11 +12,13 @@ import {
 import { useTranslation } from "react-i18next";
 import { useFathom } from "remix-fathom";
 import { useChangeLanguage } from "remix-i18next";
+import { PreventFlashOnWrongTheme, ThemeProvider } from "remix-themes";
 import type {
   LinksFunction,
   LoaderFunction,
   MetaFunction,
 } from "@remix-run/node";
+import type { Theme } from "remix-themes";
 
 // Internals
 import tailwindStylesheetUrl from "./styles/tailwind.css";
@@ -24,6 +26,7 @@ import { getUser } from "./session.server";
 import { getEnv } from "./utils/env.server";
 import { i18n } from "./utils/i18n.server";
 import { getDomainUrl } from "./utils/misc";
+import { themeSessionResolver } from "./utils/theme.server";
 import type { Handle } from "./types";
 
 export const handle: Handle = {
@@ -51,10 +54,12 @@ type LoaderData = {
     path: string;
   };
   user: Awaited<ReturnType<typeof getUser>>;
+  theme: Theme | null;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
   const locale = await i18n.getLocale(request);
+  const { getTheme } = await themeSessionResolver(request);
 
   return json<LoaderData>({
     ENV: getEnv(),
@@ -64,10 +69,11 @@ export const loader: LoaderFunction = async ({ request }) => {
       path: new URL(request.url).pathname,
     },
     user: await getUser(request),
+    theme: getTheme(),
   });
 };
 
-export default function App() {
+function App() {
   const data = useLoaderData<LoaderData>();
   const { i18n } = useTranslation();
 
@@ -82,6 +88,7 @@ export default function App() {
     <html lang="en" className="h-full" dir={i18n.dir()}>
       <head>
         <Meta />
+        <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
       </head>
       <body className="h-full bg-white dark:bg-[#292929]">
@@ -96,5 +103,15 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function AppWithProviders() {
+  const data = useLoaderData<LoaderData>();
+
+  return (
+    <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
+      <App />
+    </ThemeProvider>
   );
 }

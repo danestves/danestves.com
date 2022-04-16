@@ -55,6 +55,7 @@
     "remix-fathom": "^0.0.9",
     "remix-i18next": "^4.0.0",
     "remix-image": "^0.3.16",
+    "remix-themes": "^1.1.4",
     "sharp": "^0.30.3",
     "tiny-invariant": "^1.2.0"
   },
