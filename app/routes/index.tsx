@@ -1,5 +1,4 @@
 // Internals
-import { LanguageSwitcher } from "~/components/language-switcher";
 import { HeroSection } from "~/components/sections/hero-section";
 import type { Handle } from "~/types";
 
@@ -11,7 +10,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <LanguageSwitcher />
     </>
   );
 }

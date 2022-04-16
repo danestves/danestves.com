@@ -14,7 +14,7 @@ const languages = [
 ];
 
 function LanguageSwitcher() {
-  const { i18n } = useTranslation("common");
+  const { i18n } = useTranslation();
   const persistLanguage = useFetcher();
   const persistLanguageRef = React.useRef(persistLanguage);
 
@@ -28,7 +28,7 @@ function LanguageSwitcher() {
   const currentLanguage = languages.find((l) => l.code === i18n.language);
 
   return (
-    <div className="w-40">
+    <div className="relative lg:w-40">
       <Listbox value={currentLanguage} onChange={onChange}>
         <Listbox.Button className="inline-flex items-center space-x-4 rounded-full focus:outline-none focus:ring-4 focus:ring-secondary/50 md:rounded-md md:py-2 md:px-4">
           <div className="h-9 w-9 rounded-full md:h-6 md:w-6">
@@ -47,7 +47,7 @@ function LanguageSwitcher() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute mt-1 w-min overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
+          <Listbox.Options className="absolute right-0 mt-1 w-min overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
             {languages.map((lang) => (
               <Listbox.Option
                 key={lang.code}

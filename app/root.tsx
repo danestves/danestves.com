@@ -21,6 +21,7 @@ import type {
 } from "@remix-run/node";
 
 // Internals
+import { Header } from "./components/header";
 import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
@@ -32,6 +33,7 @@ import type { Handle } from "./types";
 
 export const handle: Handle = {
   i18n: "common",
+  id: "root",
 };
 
 export const links: LinksFunction = () => {
@@ -47,7 +49,7 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-type LoaderData = {
+export type RootLoaderData = {
   ENV: ReturnType<typeof getEnv>;
   locale: string;
   requestInfo: {
@@ -66,7 +68,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const headers = new Headers();
   headers.append("Set-Cookie", await i18nStorage.serialize(locale));
 
-  return json<LoaderData>(
+  return json<RootLoaderData>(
     {
       ENV: getEnv(),
       locale,
@@ -84,7 +86,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 function App() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<RootLoaderData>();
   const { i18n } = useTranslation();
 
   useFathom("VKGOHQVT", {
@@ -105,7 +107,8 @@ function App() {
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
       </head>
-      <body className="h-full bg-white dark:bg-[#292929]">
+      <body className="h-full bg-white transition duration-500 dark:bg-[#292929]">
+        <Header />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -121,7 +124,7 @@ function App() {
 }
 
 export default function AppWithProviders() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<RootLoaderData>();
 
   return (
     <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
