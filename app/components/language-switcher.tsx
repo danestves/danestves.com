@@ -31,7 +31,7 @@ function LanguageSwitcher() {
           <div className="h-9 w-9 rounded-full md:h-6 md:w-6">
             <Flag />
           </div>
-          <span className="sr-only inline-flex font-semibold uppercase text-secondary md:not-sr-only">
+          <span className="sr-only inline-flex font-semibold uppercase text-primary md:not-sr-only">
             {currentLanguage?.name}{" "}
             <span aria-label="waving hand" className="ml-1" role="img">
               👋🏻
@@ -44,19 +44,24 @@ function LanguageSwitcher() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute right-0 mt-1 w-min overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
+          <Listbox.Options className="absolute right-0 mt-1 w-min rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
             {languages.map((lang) => (
               <Listbox.Option
-                className={({ selected }) =>
+                className={({ active, selected }) =>
                   clsx(
-                    "group mx-auto inline-flex w-full cursor-default select-none items-center space-x-4 py-2 px-4 text-secondary transition-colors duration-100 focus-within:bg-secondary focus-within:text-white hover:bg-secondary hover:text-white focus:bg-secondary focus:text-white active:bg-secondary active:text-white",
-                    selected && "bg-secondary/10 hover:bg-secondary"
+                    "mx-auto inline-flex w-full cursor-default select-none items-center space-x-4 rounded-md px-4 py-2 transition-colors duration-100 focus-within:bg-primary focus-within:text-white focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:bg-primary hover:text-white",
+                    selected
+                      ? "bg-primary/10 text-primary hover:bg-primary"
+                      : active
+                      ? "bg-primary text-white"
+                      : "text-primary",
+                    active && "!bg-primary !text-white outline outline-2 outline-offset-2 outline-secondary"
                   )
                 }
                 key={lang.code}
                 value={lang}
               >
-                <div className="h-6 w-6 rounded-full">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full">
                   <Flag locale={lang.code} />
                 </div>
                 <span className="w-full justify-between font-semibold uppercase transition-colors duration-100">

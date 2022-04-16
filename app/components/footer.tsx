@@ -49,14 +49,14 @@ function Footer() {
           to="/"
         >
           <span className="sr-only">@danestves</span>
-          <Logo aria-hidden="true" className="h-9 w-9" />
+          <Logo aria-hidden="true" className="h-9 w-9 text-secondary" />
         </NavLink>
 
         <ul className="flex flex-col items-center justify-center xs:flex-row xs:space-x-4">
           {links.map(({ name, to, prefetch, ...link }) => (
             <li key={nanoid()}>
               <NavLink
-                className="text-xs font-semibold uppercase leading-3 text-body/80 transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-secondary dark:text-body-dark/80 dark:hover:text-secondary"
+                className="text-xs font-semibold uppercase leading-3 text-body/80 transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-primary dark:text-body-dark/80 dark:hover:text-primary"
                 prefetch={prefetch}
                 to={to}
                 {...link}

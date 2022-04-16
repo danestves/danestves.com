@@ -50,7 +50,7 @@ function RightSidebar() {
 
       <div className="fixed right-12 bottom-8 z-10">
         <Link
-          className="font-semibold uppercase text-secondary transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary"
+          className="font-semibold uppercase text-primary transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-primary-600"
           to="https://twitter.com/messages/compose?recipient_id=554765148"
         >
           contact{" "}

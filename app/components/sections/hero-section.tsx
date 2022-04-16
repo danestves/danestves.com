@@ -40,7 +40,7 @@ function HeroSection() {
       </div>
 
       {/* Floating Card */}
-      <div className="mx-auto -mt-16 w-full max-w-[332px] -translate-y-1/2 rounded-[20px] bg-primary/[.65] pt-3 pr-5 pb-4 pl-8 text-[#293845] backdrop-blur-[2px] dark:text-[#292929] md:-mt-32 lg:absolute lg:top-1/2 lg:right-1/2 lg:mt-auto lg:mr-32">
+      <div className="mx-auto -mt-16 w-full max-w-[332px] -translate-y-1/2 rounded-[20px] bg-primary/[.65] pt-3 pr-5 pb-4 pl-8 text-[#293845] backdrop-blur-[2px] dark:text-body-darker md:-mt-32 lg:absolute lg:top-1/2 lg:right-1/2 lg:mt-auto lg:mr-32">
         <h1 className="text-2xl font-black uppercase">
           daniel esteves{" "}
           <span aria-label="victory hand" role="img">

@@ -51,7 +51,7 @@ function LeftSidebar() {
         {links.map(({ name, to, prefetch, ...link }) => (
           <li itemProp="name" key={nanoid()}>
             <NavLink
-              className="text-xs font-semibold uppercase leading-3 text-body transition-colors duration-100 vertical-rl focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary dark:text-body-dark dark:hover:text-secondary"
+              className="text-xs font-semibold uppercase leading-3 text-body transition-colors duration-100 vertical-rl focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-primary dark:text-body-dark dark:hover:text-primary"
               itemProp="url"
               prefetch={prefetch}
               to={to}
@@ -68,7 +68,7 @@ function LeftSidebar() {
 
       <div className="fixed bottom-8 left-12 z-10">
         <NavLink
-          className="font-semibold uppercase text-secondary transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary"
+          className="font-semibold uppercase text-primary transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-primary-600"
           to="/blog"
         >
           blog

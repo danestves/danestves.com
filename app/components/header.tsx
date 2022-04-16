@@ -95,7 +95,7 @@ function Header() {
         y >= 16 ? "bg-white/95 py-2 shadow backdrop-blur dark:bg-body-darker/75" : "py-6"
       )}
     >
-      <div className="flex w-full items-center justify-between">
+      <div className="relative flex w-full items-center justify-between">
         <div className="flex items-center space-x-6 lg:space-x-0">
           <Popover className="lg:hidden">
             <Popover.Button className="block rounded-md focus:outline-none focus:ring-4 focus:ring-secondary/50">
@@ -113,19 +113,19 @@ function Header() {
               leaveTo="opacity-0 scale-95"
             >
               <Popover.Panel
-                className="absolute inset-x-0 top-0 z-10 origin-top-left bg-white/80 p-2 backdrop-blur-lg transition dark:bg-[#292929]/80 lg:hidden"
+                className="fixed inset-x-0 top-0 z-10 origin-top-left bg-white/80 p-2 backdrop-blur-lg transition dark:bg-body-darker/80 lg:hidden"
                 focus
               >
                 <div className="overflow-hidden rounded-lg  shadow-md ring-1 ring-black/10 dark:ring-white/10">
                   <div className="flex items-center justify-between px-5 pt-4">
                     <NavLink
-                      className="focus-within:rounded focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary"
+                      className="focus-within:rounded focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary"
                       to="/"
                     >
-                      <Logo className="h-8 w-auto" />
+                      <Logo className="h-8 w-auto text-secondary" />
                     </NavLink>
                     <div className="-mr-2">
-                      <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 ring-1 ring-black/10 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary hover:bg-gray-100 hover:text-gray-500 dark:bg-[#292929] dark:text-gray-200 dark:ring-white/10">
+                      <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 ring-1 ring-black/10 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:bg-gray-100 hover:text-gray-500 dark:bg-body-darker dark:text-gray-200 dark:ring-white/10">
                         <span className="sr-only">Close menu</span>
                         <XIcon aria-hidden="true" className="h-6 w-6" />
                       </Popover.Button>
@@ -139,7 +139,7 @@ function Header() {
                           itemProp="url"
                           to={to}
                           {...link}
-                          className="block rounded-md py-2 px-3 text-base font-semibold uppercase text-body/60 transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary hover:text-primary dark:text-body-dark dark:hover:text-primary"
+                          className="block rounded-md py-2 px-3 text-base font-semibold uppercase text-body/60 transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-primary dark:text-body-dark dark:hover:text-primary"
                         >
                           {typeof name === "string"
                             ? name
@@ -158,7 +158,7 @@ function Header() {
                           key={nanoid()}
                           to={to}
                           {...item}
-                          className="block rounded-md px-3 py-2 text-base font-semibold uppercase focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary"
+                          className="block rounded-md px-3 py-2 text-base font-semibold uppercase focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary"
                         >
                           <span className="sr-only">{typeof name === "string" ? name : null}</span>
                           {Icon && (
@@ -189,17 +189,17 @@ function Header() {
             to="/"
           >
             <span className="sr-only">@danestves</span>
-            <Logo aria-hidden="true" className="h-9 w-9" />
+            <Logo aria-hidden="true" className="h-9 w-9 text-secondary" />
           </NavLink>
         </div>
 
-        <div className="flex lg:pl-24">
+        <div className="absolute left-1/2 flex -translate-x-1/2">
           <NavLink
-            className="inline-block h-9 w-9 focus:rounded focus:outline-none focus:ring-4 focus:ring-secondary/50 lg:hidden"
+            className="inline-block h-9 w-9 focus-within:rounded focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary lg:hidden"
             to="/"
           >
             <span className="sr-only">@danestves</span>
-            <Logo aria-hidden="true" className="h-9 w-9" />
+            <Logo aria-hidden="true" className="h-9 w-9 text-secondary" />
           </NavLink>
 
           {/* We put a padding left to simulate that in desktop is centered */}

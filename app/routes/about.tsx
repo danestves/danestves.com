@@ -50,12 +50,12 @@ export default function AboutPage() {
       <HeroSection />
 
       <div className="container max-w-[977px] space-y-4">
-        <h1 className="text-secondary-darker text-center text-[26px] font-black uppercase text-secondary">
+        <h2 className="text-secondary-darker text-center text-[26px] font-black uppercase text-primary">
           {t("about.title")}{" "}
           <span aria-label="victory hand" role="img">
             ✌️
           </span>
-        </h1>
+        </h2>
         <p
           className="text-lg text-body dark:text-body-dark"
           dangerouslySetInnerHTML={{

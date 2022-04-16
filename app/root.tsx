@@ -91,7 +91,7 @@ function App() {
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
       </head>
-      <body className="h-full bg-white transition duration-500 dark:bg-[#292929]">
+      <body className="h-full bg-white transition duration-500 dark:bg-body-darker">
         <Header />
         <LeftSidebar />
         <RightSidebar />
