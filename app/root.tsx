@@ -23,6 +23,7 @@ import type {
 // Internals
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
+import { LeftSidebar } from "./components/left-sidebar";
 import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getEnv } from "./utils/env.server";
@@ -107,7 +108,10 @@ function App() {
       </head>
       <body className="h-full bg-white transition duration-500 dark:bg-[#292929]">
         <Header />
+        <LeftSidebar />
+
         <Outlet />
+
         <Footer />
         <ScrollRestoration />
         <Scripts />
