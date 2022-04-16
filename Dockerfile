@@ -54,7 +54,7 @@ COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
 
 COPY --from=build /app/build /app/build
 COPY --from=build /app/public /app/public
-COPY --from=build /app/public /app/server-build
+COPY --from=build /app/server-build /app/server-build
 ADD . .
 
 CMD ["npm", "start"]
