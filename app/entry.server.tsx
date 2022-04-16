@@ -12,6 +12,7 @@ import type { EntryContext } from "@remix-run/node";
 
 // Internals
 import { getEnv } from "~/utils/env.server";
+import { otherRootRouteHandlers } from "./utils/other-root-routes.server";
 import { i18n } from "./utils/i18n.server";
 
 global.ENV = getEnv();
@@ -24,6 +25,12 @@ export default async function handleRequest(
   headers: Headers,
   context: EntryContext
 ) {
+  for (const handler of otherRootRouteHandlers) {
+    const otherRouteResponse = await handler(request, context);
+
+    if (otherRouteResponse) return otherRouteResponse;
+  }
+
   const instance = createInstance();
   const callbackName = isbot(request.headers.get("user-agent"))
     ? "onAllReady"

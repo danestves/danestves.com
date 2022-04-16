@@ -40,6 +40,7 @@
     "/public/build"
   ],
   "dependencies": {
+    "@balavishnuvj/remix-seo": "^1.0.2",
     "@headlessui/react": "^0.0.0-insiders.b4a4e0b",
     "@heroicons/react": "^1.0.6",
     "@next-boost/hybrid-disk-cache": "^0.3.0",
