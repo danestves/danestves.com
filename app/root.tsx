@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { useFathom } from "remix-fathom";
 import { useChangeLanguage } from "remix-i18next";
 import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
+import { StructuredData } from "remix-utils";
+import type { HandleStructuredData } from "remix-utils";
 import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 
 // Internals
@@ -13,15 +15,49 @@ import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { LeftSidebar } from "./components/left-sidebar";
 import { RightSidebar } from "./components/right-sidebar";
+import { externalLinks } from "./external-links";
 import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getEnv } from "./utils/env.server";
 import { i18n, i18nStorage } from "./utils/i18n.server";
 import { getDomainUrl } from "./utils/misc";
+import { description as seoDescription, getSeo, getSeoMeta } from "./utils/seo";
 import { themeSessionResolver } from "./utils/theme.server";
 import type { Handle } from "./types";
 
-export const handle: Handle = {
+let [seoMeta, seoLinks] = getSeo();
+
+export const handle: HandleStructuredData<RootLoaderData> & Handle = {
+  structuredData(data) {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Daniel Esteves - @danestves",
+        url: externalLinks.self,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        image: `${data.requestInfo.origin}/hero-mask.png`,
+        jobTitle: "Senior Frontend Engineer",
+        name: "Daniel Esteves",
+        sameAs: [
+          externalLinks.github,
+          externalLinks.instagram,
+          externalLinks.linkedin,
+          externalLinks.self,
+          externalLinks.twitter,
+          externalLinks.youtube,
+        ],
+        url: externalLinks.self,
+        worksFor: {
+          "@type": "Organization",
+          name: "REWORTH",
+        },
+      },
+    ];
+  },
   i18n: "common",
   id: "root",
 };
@@ -30,14 +66,41 @@ export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: mainStylesheetUrl },
+    ...seoLinks,
   ];
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix Notes",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const meta: MetaFunction = ({ data }) => {
+  const { locale, requestInfo } = data as RootLoaderData;
+
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    ...seoMeta,
+    ...getSeoMeta({
+      // @ts-ignore - locale is a valid index
+      description: seoDescription[locale as any].join(" "),
+      openGraph: {
+        images: [
+          {
+            alt: "Daniel Esteves - @danestves",
+            url: `${requestInfo.origin}/hero-mask.png`,
+            height: 630,
+            width: 1200,
+          },
+        ],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        image: {
+          alt: "Daniel Esteves - @danestves",
+          url: `${requestInfo.origin}/hero-mask.png`,
+        },
+      },
+    }),
+  };
+};
 
 export type RootLoaderData = {
   ENV: ReturnType<typeof getEnv>;
@@ -90,6 +153,8 @@ function App() {
         <Meta />
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
+
+        <StructuredData />
       </head>
       <body className="h-full bg-white transition duration-500 dark:bg-body-darker">
         <Header />

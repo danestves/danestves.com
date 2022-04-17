@@ -3,6 +3,7 @@ import { DocumentTextIcon } from "@heroicons/react/outline";
 import { json } from "@remix-run/server-runtime";
 import { useTranslation } from "react-i18next";
 import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { HandleStructuredData } from "remix-utils";
 
 // Internals
 import { Link } from "~/components/link";
@@ -10,9 +11,19 @@ import { LinkedInIcon } from "~/components/icons/linkedin";
 import { HeroSection } from "~/components/sections/hero-section";
 import { externalLinks } from "~/external-links";
 import { i18n } from "~/utils/i18n.server";
+import { getSeoMeta } from "~/utils/seo";
 import type { Handle } from "~/types";
 
-export const handle: Handle = {
+export const handle: HandleStructuredData<LoaderData> & Handle = {
+  structuredData(data) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: data.seo.title,
+      description: data.seo.description,
+      url: `${externalLinks.self}/about`,
+    };
+  },
   i18n: ["pages", "sections"],
 };
 
@@ -36,10 +47,15 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export const meta: MetaFunction = ({ data }) => {
   const dataLoader = data as LoaderData;
+  const title = dataLoader.seo.title;
 
   return {
-    title: dataLoader.seo.title,
-    description: dataLoader.seo.description,
+    ...getSeoMeta({
+      title,
+      description: dataLoader.seo.description,
+    }),
+    "og:image:alt": title,
+    "twitter:image:alt": title,
   };
 };
 

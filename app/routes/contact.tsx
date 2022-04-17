@@ -7,16 +7,28 @@ import { useHydrated } from "remix-utils";
 import { ValidatedForm, useIsSubmitting, validationError } from "remix-validated-form";
 import { z } from "zod";
 import type { ActionFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { HandleStructuredData } from "remix-utils";
 
 // Internals
 import { SpinIcon } from "~/components/icons/spin";
 import { Input } from "~/components/input";
 import { TextArea } from "~/components/textarea";
+import { externalLinks } from "~/external-links";
 import { i18n } from "~/utils/i18n.server";
 import { sendContactEmail } from "~/utils/mail.server";
+import { getSeoMeta } from "~/utils/seo";
 import type { Handle } from "~/types";
 
-export const handle: Handle = {
+export const handle: HandleStructuredData<LoaderData> & Handle = {
+  structuredData(data) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: data.seo.title,
+      description: data.seo.description,
+      url: `${externalLinks.self}/about`,
+    };
+  },
   i18n: ["errors", "pages"],
 };
 
@@ -68,10 +80,15 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export const meta: MetaFunction = ({ data }) => {
   const dataLoader = data as LoaderData;
+  const title = dataLoader.seo.title;
 
   return {
-    title: dataLoader.seo.title,
-    description: dataLoader.seo.description,
+    ...getSeoMeta({
+      title,
+      description: dataLoader.seo.description,
+    }),
+    "og:image:alt": title,
+    "twitter:image:alt": title,
   };
 };
 
@@ -103,8 +120,17 @@ export default function ContactPage() {
   return (
     <div className="w-full py-32">
       <div className="container mx-auto mt-5 max-w-xl">
+        <h1 className="text-secondary-darker text-center text-[26px] font-black uppercase dark:text-primary">
+          {t("contact.seo.title")}{" "}
+          <span aria-label="victory hand" role="img">
+            ✌️
+          </span>
+        </h1>
+
+        <p className="text-center text-lg text-body/80 dark:text-body-dark/80">{t("contact.seo.description")}</p>
+
         <ValidatedForm
-          className="space-y-6"
+          className="mt-8 space-y-6"
           method="post"
           noValidate={isHydrated}
           resetAfterSubmit

@@ -48,6 +48,13 @@ const links: Array<NavLinkProps> = [
     to: "/blog",
     name: "Blog",
   },
+  {
+    to: "/contact",
+    name: {
+      en: "Contact",
+      es: "Contacto",
+    },
+  },
 ];
 
 const socialLinks: Array<NavLinkProps> = [
