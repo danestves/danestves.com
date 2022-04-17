@@ -23,5 +23,8 @@
       "plural": "views",
       "singular": "view"
     }
+  },
+  "footer": {
+    "copyright": "All rights reserved."
   }
 }

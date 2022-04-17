@@ -23,5 +23,8 @@
       "plural": "visitas",
       "singular": "visita"
     }
+  },
+  "footer": {
+    "copyright": "Todos los derechos reservados."
   }
 }

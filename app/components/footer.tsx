@@ -36,10 +36,17 @@ const links: Array<NavLinkProps> = [
     to: "/blog",
     name: "Blog",
   },
+  {
+    to: "/contact",
+    name: {
+      en: "Contact",
+      es: "Contacto",
+    },
+  },
 ];
 
 function Footer() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation("common");
 
   return (
     <footer className="w-full py-8">
@@ -71,7 +78,7 @@ function Footer() {
         </ul>
 
         <p className="text-center text-xs font-semibold leading-3 text-body dark:text-body-dark">
-          © {new Date().getFullYear()} Daniel Esteves. All rights reserved.
+          © {new Date().getFullYear()} Daniel Esteves. {t("footer.copyright")}
         </p>
       </div>
     </footer>
