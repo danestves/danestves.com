@@ -12,6 +12,35 @@
     ],
     "buttons": ["LinkedIn", "Ver CV"]
   },
+  "contact": {
+    "seo": {
+      "title": "Contáctame 📧",
+      "description": "Estoy disponible para trabajos independientes, colaboraciones o simplemente para saludar. Si quieres ponerte en contacto conmigo, rellena el siguiente formulario."
+    },
+    "form": {
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Nick Fury"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "nick.fury@shield.com"
+      },
+      "subject": {
+        "label": "Asunto",
+        "placeholder": "Daniel, necesito ayuda para salvar el mundo 🦸♂️"
+      },
+      "message": {
+        "label": "Mensaje",
+        "placeholder": "Quedemos en la playa y hablemos del futuro del mundo 🌊",
+        "caption": "Puedes usar Markdown para formatear tu mensaje"
+      },
+      "submit": {
+        "label": "Enviar",
+        "sending": "Enviando..."
+      }
+    }
+  },
   "posts": {
     "seo": {
       "title": "El jardín digital 🌱 de Daniel Esteves",

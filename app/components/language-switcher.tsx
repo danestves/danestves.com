@@ -44,7 +44,7 @@ function LanguageSwitcher() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute right-0 mt-1 w-min rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
+          <Listbox.Options className="absolute top-full right-0 mt-1 w-min rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
             {languages.map((lang) => (
               <Listbox.Option
                 className={({ active, selected }) =>

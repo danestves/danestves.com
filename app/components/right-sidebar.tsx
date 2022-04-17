@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 // Internals
 import { externalLinks } from "~/external-links";
 import { Link } from "./link";
+import { NavLink } from "./navlink";
 import type { LinkProps } from "~/types";
 
 const links: Array<LinkProps> = [
@@ -49,15 +50,15 @@ function RightSidebar() {
       </ul>
 
       <div className="fixed right-12 bottom-8 z-10">
-        <Link
+        <NavLink
           className="font-semibold uppercase text-primary transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-primary-600"
-          to="https://twitter.com/messages/compose?recipient_id=554765148"
+          to="/contact"
         >
           contact{" "}
           <span aria-label="call me hand" role="img">
             🤙
           </span>
-        </Link>
+        </NavLink>
       </div>
     </aside>
   );

@@ -1,0 +1,23 @@
+{
+  "name": {
+    "errors": {
+      "required": "El nombre es requerido"
+    }
+  },
+  "email": {
+    "errors": {
+      "required": "El email es requerido",
+      "email": "El email no es válido"
+    }
+  },
+  "subject": {
+    "errors": {
+      "required": "El asunto es requerido"
+    }
+  },
+  "message": {
+    "errors": {
+      "required": "El mensaje es requerido"
+    }
+  }
+}

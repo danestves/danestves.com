@@ -1,0 +1,23 @@
+{
+  "name": {
+    "errors": {
+      "nonempty": "Please enter your name"
+    }
+  },
+  "email": {
+    "errors": {
+      "nonempty": "Please enter your email",
+      "email": "Please enter a valid email"
+    }
+  },
+  "subject": {
+    "errors": {
+      "nonempty": "Please enter a subject"
+    }
+  },
+  "message": {
+    "errors": {
+      "nonempty": "Please enter a message"
+    }
+  }
+}
