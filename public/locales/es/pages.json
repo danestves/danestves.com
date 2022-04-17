@@ -38,7 +38,8 @@
       "submit": {
         "label": "Enviar",
         "sending": "Enviando..."
-      }
+      },
+      "success": "Gracias por contactarte conmigo, me pondré en contacto contigo lo antes posible."
     }
   },
   "posts": {

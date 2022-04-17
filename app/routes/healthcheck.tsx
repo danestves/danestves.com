@@ -2,7 +2,7 @@
 import type { LoaderFunction } from "@remix-run/server-runtime";
 
 // Internals
-import { prisma } from "~/db.server";
+import { prisma } from "~/utils/db.server";
 
 // learn more: https://fly.io/docs/reference/configuration/#services-http_checks
 export const loader: LoaderFunction = async ({ request }) => {

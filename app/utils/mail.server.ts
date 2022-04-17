@@ -1,13 +1,7 @@
 // Dependencies
-import Mailgun from "mailgun-js";
 
 // Internals
 import { markdownToHtmlDocument } from "./markdown.server";
-
-const mailgun = Mailgun({
-  apiKey: process.env.MAILGUN_API_KEY!,
-  domain: process.env.MAILGUN_DOMAIN!,
-});
 
 type MailData = {
   email: string;
@@ -16,18 +10,24 @@ type MailData = {
   text: string;
 };
 
-async function sendContactEmail(
-  { email, name, subject, text }: MailData,
-  callback?: (error: Mailgun.Error, body: Mailgun.messages.SendResponse) => void
-) {
+async function sendContactEmail({ email, name, subject, text }: MailData): Promise<{ message: string; id?: string }> {
+  const auth = `${Buffer.from(`api:${process.env.MAILGUN_API_KEY}`).toString("base64")}`;
   const html = await markdownToHtmlDocument(text);
+  const body = new URLSearchParams({
+    to: `"Daniel Esteves" <${process.env.MAILGUN_TO}>`,
+    from: `"${name}" <${email}>`,
+    html,
+    subject,
+    text,
+  });
 
-  return mailgun
-    .messages()
-    .send(
-      { to: `"Daniel Esteves" <${process.env.MAILGUN_TO}>`, from: `"${name}" <${email}>`, html, subject, text },
-      callback
-    );
+  return fetch(`https://api.mailgun.net/v3/${process.env.MAILGUN_DOMAIN}/messages`, {
+    body,
+    headers: {
+      Authorization: `Basic ${auth}`,
+    },
+    method: "post",
+  }).then((res) => res.json());
 }
 
 export { sendContactEmail };

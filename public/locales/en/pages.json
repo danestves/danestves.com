@@ -38,7 +38,8 @@
       "submit": {
         "label": "Send",
         "sending": "Sending..."
-      }
+      },
+      "success": "Thanks for contacting me, I will get back to you as soon as possible."
     }
   },
   "posts": {

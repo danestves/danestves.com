@@ -1,5 +1,6 @@
 // Dependencies
 import { ArrowSmRightIcon } from "@heroicons/react/outline";
+import { useActionData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
 import { withZod } from "@remix-validated-form/with-zod";
 import { useTranslation } from "react-i18next";
@@ -12,6 +13,7 @@ import type { HandleStructuredData } from "remix-utils";
 // Internals
 import { SpinIcon } from "~/components/icons/spin";
 import { Input } from "~/components/input";
+import { Link } from "~/components/link";
 import { TextArea } from "~/components/textarea";
 import { externalLinks } from "~/external-links";
 import { i18n } from "~/utils/i18n.server";
@@ -26,7 +28,7 @@ export const handle: HandleStructuredData<LoaderData> & Handle = {
       "@type": "ContactPage",
       name: data.seo.title,
       description: data.seo.description,
-      url: `${externalLinks.self}/about`,
+      url: `${externalLinks.self}/contact`,
     };
   },
   i18n: ["errors", "pages"],
@@ -41,6 +43,13 @@ export const validator = withZod(
   })
 );
 
+type ActionData = {
+  fieldErrors?: {
+    [key: string]: string;
+  };
+  success?: boolean;
+};
+
 export const action: ActionFunction = async ({ request }) => {
   const result = await validator.validate(await request.formData());
 
@@ -50,14 +59,25 @@ export const action: ActionFunction = async ({ request }) => {
 
   const data = result.data;
 
-  await sendContactEmail({
+  const emailSent = await sendContactEmail({
     email: data.email,
     name: data.name,
     subject: data.subject,
     text: data.message,
   });
 
-  return json({ success: true });
+  if (!emailSent.id) {
+    return validationError(
+      {
+        fieldErrors: {
+          emailSent: "Cannot send email",
+        },
+      },
+      result.submittedData
+    );
+  }
+
+  return json<ActionData>({ success: true });
 };
 
 type LoaderData = {
@@ -113,7 +133,35 @@ function SubmitButton() {
   );
 }
 
+function FormError() {
+  const { t } = useTranslation("errors");
+
+  return (
+    <div
+      className="mb-4 rounded-lg bg-red-100 p-4 text-sm text-red-700 dark:bg-red-200 dark:text-red-800"
+      id="contact-form-error"
+      role="alert"
+    >
+      <span className="font-medium">
+        {t("contactForm.0")}{" "}
+        <span aria-label="disapointed face" role="img">
+          😞
+        </span>
+      </span>{" "}
+      ! {t("contactForm.1")} {t("contactForm.2")}{" "}
+      <Link className="font-medium underline" to={externalLinks.twitterDm}>
+        {t("contactForm.3")}{" "}
+        <span aria-label="bird" role="img">
+          🐦
+        </span>
+      </Link>
+      .
+    </div>
+  );
+}
+
 export default function ContactPage() {
+  const actionData = useActionData<ActionData>();
   const { t } = useTranslation("pages");
   const isHydrated = useHydrated();
 
@@ -130,6 +178,7 @@ export default function ContactPage() {
         <p className="text-center text-lg text-body/80 dark:text-body-dark/80">{t("contact.seo.description")}</p>
 
         <ValidatedForm
+          aria-describedby={!actionData?.success ? "contact-form-error" : undefined}
           className="mt-8 space-y-6"
           method="post"
           noValidate={isHydrated}
@@ -168,9 +217,20 @@ export default function ContactPage() {
             rows={6}
           />
 
-          <div className="flex justify-end">
-            <SubmitButton />
+          <div className="flex items-center justify-end">
+            {actionData?.success ? (
+              <p>
+                {t("contact.form.success")}
+                <span aria-label="party popper emoji" role="img">
+                  🎉
+                </span>
+              </p>
+            ) : (
+              <SubmitButton />
+            )}
           </div>
+
+          {actionData?.fieldErrors?.emailSent ? <FormError /> : null}
         </ValidatedForm>
       </div>
     </div>

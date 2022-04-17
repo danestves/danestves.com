@@ -1,4 +1,10 @@
 {
+  "contactForm": [
+    "Hubo un problema al enviar tu correo",
+    "Pero no te preocupes, se lo he notificado a Daniel.",
+    "Si el problema persiste, por favor",
+    "ponte en contacto conmigo en Twitter"
+  ],
   "name": {
     "errors": {
       "required": "El nombre es requerido"
