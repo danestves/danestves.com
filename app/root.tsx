@@ -28,7 +28,7 @@ import type { Handle } from "./types";
 let [seoMeta, seoLinks] = getSeo();
 
 export const handle: HandleStructuredData<RootLoaderData> & Handle = {
-  structuredData(data) {
+  structuredData() {
     return [
       {
         "@context": "https://schema.org",
@@ -39,13 +39,14 @@ export const handle: HandleStructuredData<RootLoaderData> & Handle = {
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        image: `${data.requestInfo.origin}/hero-mask.png`,
+        image: `${externalLinks.self}/hero-mask.png`,
         jobTitle: "Senior Frontend Engineer",
         name: "Daniel Esteves",
         sameAs: [
           externalLinks.github,
           externalLinks.instagram,
           externalLinks.linkedin,
+          externalLinks.resume,
           externalLinks.self,
           externalLinks.twitter,
           externalLinks.youtube,
@@ -71,7 +72,7 @@ export const links: LinksFunction = () => {
 };
 
 export const meta: MetaFunction = ({ data }) => {
-  const { locale, requestInfo } = data as RootLoaderData;
+  const { locale } = data as RootLoaderData;
 
   return {
     charset: "utf-8",
@@ -84,7 +85,7 @@ export const meta: MetaFunction = ({ data }) => {
         images: [
           {
             alt: "Daniel Esteves - @danestves",
-            url: `${requestInfo.origin}/hero-mask.png`,
+            url: `${externalLinks.self}/hero-mask.png`,
             height: 630,
             width: 1200,
           },
@@ -95,7 +96,7 @@ export const meta: MetaFunction = ({ data }) => {
         card: "summary_large_image",
         image: {
           alt: "Daniel Esteves - @danestves",
-          url: `${requestInfo.origin}/hero-mask.png`,
+          url: `${externalLinks.self}/hero-mask.png`,
         },
       },
     }),
