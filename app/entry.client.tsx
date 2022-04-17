@@ -21,7 +21,7 @@ i18next
     fallbackLng: "en",
     ns: getInitialNamespaces(),
     supportedLngs: ["en", "es"],
-    react: { useSuspense: false },
+    react: { useSuspense: true },
   })
   .then(() => {
     return hydrateRoot(

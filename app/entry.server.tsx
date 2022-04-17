@@ -45,7 +45,7 @@ export default async function handleRequest(
       defaultNS: "common",
       fallbackLng: "en",
       // Disable suspense again here
-      react: { useSuspense: false },
+      react: { useSuspense: true },
       lng, // The locale we detected above
       ns, // The namespaces the routes about to render want to use
       backend: {
