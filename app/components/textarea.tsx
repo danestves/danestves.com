@@ -18,13 +18,15 @@ function RenderTextArea(
     autoComplete = "off",
     caption,
     className,
-    id,
+    id: propId,
     ...props
   }: TextAreaProps,
   ref: React.LegacyRef<HTMLTextAreaElement>
 ) {
+  const useId = React.useId();
   const { t } = useTranslation("errors");
   const { error, getInputProps } = useField(name);
+  const id = `${propId}-${useId}`;
 
   return (
     <div>

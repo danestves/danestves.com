@@ -17,14 +17,16 @@ function RenderInput(
     "aria-describedby": ariaDescribedBy,
     autoComplete = "off",
     className,
-    id,
+    id: propId,
     type = "text",
     ...props
   }: InputProps,
   ref: React.LegacyRef<HTMLInputElement>
 ) {
+  const useId = React.useId();
   const { t } = useTranslation("errors");
   const { error, getInputProps } = useField(name);
+  const id = `${propId}-${useId}`;
 
   return (
     <div>
