@@ -7,6 +7,45 @@ on:
   pull_request: {}
 
 jobs:
+  changes:
+    name: 🔍 Determine Changes
+    runs-on: ubuntu-latest
+    outputs:
+      DEPLOYABLE: ${{steps.changes.outputs.DEPLOYABLE}}
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: "50"
+
+      - name: 🛠 Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: ⚙️ Determine Staging Changes
+        if: ${{ github.ref == 'refs/heads/dev' }}
+        id: changes
+        run: >-
+          echo ::set-output name=DEPLOYABLE::$(node ./other/is-deployable.js)
+        env:
+          FLY_APP_NAME: ${{ secrets.FLY_APP_NAME_STAGING }}
+
+      - name: ⚙️ Determine Production Changes
+        if: ${{ github.ref == 'refs/heads/main' }}
+        id: changes
+        run: >-
+          echo ::set-output name=DEPLOYABLE::$(node ./other/is-deployable.js)
+        env:
+          FLY_APP_NAME: ${{ secrets.FLY_APP_NAME }}
+
+      - name: ❓ Deployable
+        run: >-
+          echo "DEPLOYABLE: ${{steps.changes.outputs.DEPLOYABLE}}"
+
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
