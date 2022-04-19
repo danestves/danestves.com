@@ -26,14 +26,14 @@ jobs:
 
       - name: 💿 Refresh Staging Content
         if: ${{ github.ref == 'refs/heads/dev' }}
-        run: node ./others/refresh-content.js
+        run: node ./other/refresh-content.js
         env:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
           FLY_APP_NAME: ${{ secrets.FLY_APP_NAME_STAGING }}
 
       - name: 💿 Refresh Production Content
         if: ${{ github.ref == 'refs/heads/main' }}
-        run: node ./others/refresh-content.js
+        run: node ./other/refresh-content.js
         env:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
           FLY_APP_NAME: ${{ secrets.FLY_APP_NAME }}
