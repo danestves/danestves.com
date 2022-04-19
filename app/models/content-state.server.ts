@@ -2,13 +2,15 @@
 import { prisma } from "~/utils/db.server";
 
 export async function getContentState() {
-  return prisma.contentState.findUnique({
+  const rows = await prisma.contentState.findUnique({
     select: {
       sha: true,
       timestamp: true,
     },
     where: { key: "content" },
   });
+
+  return rows;
 }
 
 export async function setContentSHA(sha: string) {
