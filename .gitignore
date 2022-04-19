@@ -218,6 +218,7 @@ sketch
 /server-build
 /tmp
 /app/styles/**/*.css
+app/**/*.ignore.*
 
 ### prisma ###
 /prisma/data.db
