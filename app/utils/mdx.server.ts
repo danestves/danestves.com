@@ -105,7 +105,7 @@ export async function getMdxListItems({ contentDirectory }: { contentDirectory: 
     await updateMdx(pagesToUpdates, contentDirectory);
   }
 
-  return getContentList();
+  return getContentList(contentDirectory);
 }
 
 /**
