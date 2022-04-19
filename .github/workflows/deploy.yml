@@ -26,12 +26,19 @@ jobs:
         with:
           node-version: 16
 
+      - name: 👀 Read app name
+        uses: SebRollen/toml-action@v1.0.0
+        id: app_name
+        with:
+          file: "fly.toml"
+          field: "app"
+
       - name: Set environment variables
         run: |
           if [[ ${{ github.ref == 'refs/heads/dev' }} ]]; then
-            echo "FLY_APP_NAME=${{ secrets.FLY_APP_NAME_STAGING }}" >> $GITHUB_ENV
+            echo "FLY_APP_NAME=${{ steps.app_name.outputs.value }}-staging" >> $GITHUB_ENV
           else
-            echo "FLY_APP_NAME=${{ secrets.FLY_APP_NAME }}" >> $GITHUB_ENV
+            echo "FLY_APP_NAME=${{ steps.app_name.outputs.value }}" >> $GITHUB_ENV
           fi
 
       - name: ⚙️ Determine Changes
