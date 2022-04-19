@@ -19,7 +19,7 @@ function LanguageSwitcher() {
   const persistLanguageRef = React.useRef(persistLanguage);
 
   const onChange = async (language: typeof languages[0]) => {
-    persistLanguageRef.current.submit({ lang: language.code }, { action: "action/set-language", method: "post" });
+    persistLanguageRef.current.submit({ lang: language.code }, { action: "_action/set-language", method: "post" });
   };
 
   const currentLanguage = languages.find((l) => l.code === i18n.language);

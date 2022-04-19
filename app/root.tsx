@@ -182,7 +182,7 @@ export default function AppWithProviders() {
   const data = useLoaderData<RootLoaderData>();
 
   return (
-    <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
+    <ThemeProvider specifiedTheme={data.theme} themeAction="_action/set-theme">
       <App />
     </ThemeProvider>
   );

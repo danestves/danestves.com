@@ -21,7 +21,7 @@ function ThemeSwitcher() {
   const onChange = (_checked: boolean) => {
     persistThemeRef.current.submit(
       { theme: data?.theme === Theme.DARK ? Theme.LIGHT : Theme.DARK },
-      { action: "action/set-theme", method: "post" }
+      { action: "_action/set-theme", method: "post" }
     );
   };
 
