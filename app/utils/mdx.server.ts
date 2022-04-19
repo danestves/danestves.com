@@ -104,6 +104,7 @@ export async function getMdxListItems({ contentDirectory }: { contentDirectory: 
   if (pagesToUpdates && pagesToUpdates.length > 0) {
     await updateMdx(pagesToUpdates, contentDirectory);
   }
+
   return getContentList();
 }
 
