@@ -16,6 +16,7 @@ type ThrottleOptions = {
 
 const cache = new lruCache({
   ttl: 1000 * 60,
+  maxSize: 10000,
   sizeCalculation: (value) => Buffer.byteLength(JSON.stringify(value)),
 });
 
