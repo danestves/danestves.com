@@ -29,9 +29,9 @@ jobs:
       - name: Set environment variables
         run: |
           if [[ ${{ github.ref == 'refs/heads/dev' }} ]]; then
-            echo "FLY_APP_NAME=${{ FLY_APP_NAME_STAGING }}" >> $GITHUB_ENV
+            echo "FLY_APP_NAME=${{ secrets.FLY_APP_NAME_STAGING }}" >> $GITHUB_ENV
           else
-            echo "FLY_APP_NAME=${{ FLY_APP_NAME }}" >> $GITHUB_ENV
+            echo "FLY_APP_NAME=${{ secrets.FLY_APP_NAME }}" >> $GITHUB_ENV
           fi
 
       - name: ⚙️ Determine Changes
