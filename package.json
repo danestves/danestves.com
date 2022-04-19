@@ -22,7 +22,7 @@
     "build": "run-s build:*",
     "postbuild": "metronome postbuild",
     "build:css": "npm run generate:css -- --production",
-    "build:remix": "cross-env NODE_ENV=production dotenv -e .env remix build --sourcemap",
+    "build:remix": "cross-env NODE_ENV=production dotenv -e .env remix build --sourcemap && node ./other/build-info.js",
     "build:server": "node ./other/build-server.js",
     "format": "prettier --write .",
     "generate:css": "postcss styles/**/*.css --base styles --dir app/styles",
