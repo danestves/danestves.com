@@ -26,12 +26,18 @@ jobs:
         with:
           node-version: 16
 
+      - name: Set environment variables
+        run: |
+          if [[ ${{ github.ref == 'refs/heads/dev' }} ]]; then
+            echo "FLY_APP_NAME=${{ FLY_APP_NAME_STAGING }}" >> $GITHUB_ENV
+          else
+            echo "FLY_APP_NAME=${{ FLY_APP_NAME }}" >> $GITHUB_ENV
+          fi
+
       - name: ⚙️ Determine Changes
         id: changes
         run: >-
           echo ::set-output name=DEPLOYABLE::$(node ./other/is-deployable.js)
-        env:
-          FLY_APP_NAME: if (${{ github.ref == 'refs/heads/dev' }}) { ${{ secrets.FLY_APP_NAME_STAGING }} } else { ${{ secrets.FLY_APP_NAME }} }
 
       - name: ❓ Deployable
         run: >-
