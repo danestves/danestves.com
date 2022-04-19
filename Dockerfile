@@ -27,6 +27,12 @@ RUN npm prune --production
 # Build the app
 FROM base as build
 
+ARG COMMIT_SHA
+ENV COMMIT_SHA=$COMMIT_SHA
+ARG GITHUB_REPOSITORY
+ENV GITHUB_REPOSITORY=$GITHUB_REPOSITORY
+ENV NODE_ENV=production
+
 WORKDIR /app
 
 COPY --from=deps /app/node_modules /app/node_modules
@@ -40,6 +46,8 @@ RUN npm run build
 # Finally, build the production image with minimal footprint
 FROM base
 
+ARG GITHUB_REPOSITORY
+ENV GITHUB_REPOSITORY=$GITHUB_REPOSITORY
 ENV DATABASE_URL=file:/data/sqlite.db
 ENV PORT="8080"
 ENV NODE_ENV="production"
