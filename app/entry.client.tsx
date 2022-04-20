@@ -20,8 +20,9 @@ i18next
     },
     fallbackLng: "en",
     ns: getInitialNamespaces(),
-    supportedLngs: ["en", "es"],
+    partialBundledLanguages: true,
     react: { useSuspense: true },
+    supportedLngs: ["en", "es"],
   })
   .then(() => {
     return hydrateRoot(
