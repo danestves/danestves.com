@@ -76,6 +76,7 @@ app.use(
 const publicAbsolutePath = here("../public");
 
 app.use(
+  "/build",
   express.static(publicAbsolutePath, {
     immutable: true,
     maxAge: "1y",
@@ -95,6 +96,8 @@ app.use(
     },
   })
 );
+
+app.use(express.static("public", { maxAge: "1w" }));
 
 app.use(morgan("tiny"));
 
