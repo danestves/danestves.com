@@ -124,7 +124,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   return json<RootLoaderData>(
     {
       ENV: getEnv(),
-      locale,
+      locale: locale ?? "en",
       requestInfo: {
         origin: getDomainUrl(request),
         path: new URL(request.url).pathname,

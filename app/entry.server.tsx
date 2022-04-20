@@ -37,17 +37,15 @@ export default async function handleRequest(
   const ns = i18n.getRouteNamespaces(context);
 
   await instance
-    .use(initReactI18next) // Tell our instance to use react-i18next
-    .use(Backend) // Setup our backend
+    .use(initReactI18next)
+    .use(Backend)
     .init({
-      // And configure i18next as usual
       supportedLngs: ["es", "en"],
       defaultNS: "common",
       fallbackLng: "en",
-      // Disable suspense again here
       react: { useSuspense: true },
-      lng, // The locale we detected above
-      ns, // The namespaces the routes about to render want to use
+      lng,
+      ns,
       backend: {
         loadPath: resolve("./public/locales/{{lng}}/{{ns}}.json"),
       },

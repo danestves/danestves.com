@@ -1,11 +1,16 @@
 // Dependencies
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
-import type { LoaderFunction } from "@remix-run/server-runtime";
+import type { HeadersFunction, LoaderFunction } from "@remix-run/server-runtime";
 
 // Internals
 import { i18n } from "~/utils/i18n.server";
 import { getMdxListItems } from "~/utils/mdx.server";
+
+export const headers: HeadersFunction = ({ loaderHeaders }) => ({
+  "Cache-Control": loaderHeaders.get("Cache-Control") ?? "private, max-age=60",
+  Vary: "Cookie",
+});
 
 type LoaderData = {
   posts: Array<{
@@ -20,9 +25,17 @@ export const loader: LoaderFunction = async ({ request }) => {
   const locale = await i18n.getLocale(request);
   const posts = await getMdxListItems({ contentDirectory: `blog/${locale}` });
 
-  return json<LoaderData>({
-    posts,
-  });
+  return json<LoaderData>(
+    {
+      posts,
+    },
+    {
+      headers: {
+        "Cache-Control": "private, max-age=60",
+        Vary: "Cookie",
+      },
+    }
+  );
 };
 
 export default function BlogPage() {
