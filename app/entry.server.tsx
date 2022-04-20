@@ -12,6 +12,7 @@ import type { EntryContext } from "@remix-run/node";
 
 // Internals
 import { getEnv } from "~/utils/env.server";
+import i18nOptions from "~/utils/i18n-options";
 import { otherRootRouteHandlers } from "./utils/other-root-routes.server";
 import { i18n } from "./utils/i18n.server";
 
@@ -40,10 +41,7 @@ export default async function handleRequest(
     .use(initReactI18next)
     .use(Backend)
     .init({
-      supportedLngs: ["es", "en"],
-      defaultNS: "common",
-      fallbackLng: "en",
-      react: { useSuspense: false },
+      ...i18nOptions,
       lng,
       ns,
       backend: {
