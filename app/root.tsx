@@ -3,7 +3,7 @@ import { json } from "@remix-run/server-runtime";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
-import { useFathom } from "remix-fathom";
+// import { useFathom } from "remix-fathom";
 import { useChangeLanguage } from "remix-i18next";
 import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
 import { StructuredData } from "remix-utils";
@@ -141,11 +141,11 @@ function App() {
   const data = useLoaderData<RootLoaderData>();
   const { i18n } = useTranslation();
 
-  useFathom("VKGOHQVT", {
-    excludedDomains: ["localhost"],
-    spa: "history",
-    url: "https://khonshu.danestves.dev/script.js",
-  });
+  // useFathom("VKGOHQVT", {
+  //   excludedDomains: ["localhost"],
+  //   spa: "history",
+  //   url: "https://khonshu.danestves.dev/script.js",
+  // });
   useChangeLanguage(data.locale);
 
   return (
