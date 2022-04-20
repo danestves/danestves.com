@@ -97,8 +97,6 @@ app.use(
   })
 );
 
-app.use(express.static("public", { maxAge: "1w" }));
-
 app.use(morgan("tiny"));
 
 // log the referrer for 404s
