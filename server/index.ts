@@ -60,13 +60,25 @@ app.use((req, res, next) => {
   }
 });
 
-app.use(compression());
+app.use(
+  compression({
+    filter: (req, res) => {
+      // disable compression for document requests to allow chunked streaming
+      if (req.headers["accept"] && req.headers["accept"].indexOf("text/html") !== -1) {
+        return false;
+      }
+
+      return compression.filter(req, res);
+    },
+  })
+);
 
 const publicAbsolutePath = here("../public");
 
 app.use(
   express.static(publicAbsolutePath, {
-    maxAge: "1w",
+    immutable: true,
+    maxAge: "1y",
     setHeaders(res, resourcePath) {
       const relativePath = resourcePath.replace(`${publicAbsolutePath}/`, "");
       if (relativePath.startsWith("build/info.json")) {
