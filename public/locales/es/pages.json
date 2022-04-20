@@ -28,11 +28,11 @@
       },
       "subject": {
         "label": "Asunto",
-        "placeholder": "Daniel, necesito ayuda para salvar el mundo 🦸♂️"
+        "placeholder": "Daniel, ¿has escuchado de la Iniciativa Vengadores 🦸‍♂️?"
       },
       "message": {
         "label": "Mensaje",
-        "placeholder": "Quedemos en la playa y hablemos del futuro del mundo 🌊",
+        "placeholder": "Surgió una idea, y Stark la conoce. Llamada la Iniciativa Vengadores. La idea era buscar y reunir a un grupo de personas excepcionales, y tratar de convertirlas en algo más. Ver si podían unirse cuando necesitáramos que libraran las batallas que no podríamos ganar...",
         "caption": "Puedes usar Markdown para formatear tu mensaje"
       },
       "submit": {

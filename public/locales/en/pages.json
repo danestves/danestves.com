@@ -28,11 +28,11 @@
       },
       "subject": {
         "label": "Subject",
-        "placeholder": "Daniel, I need help to save the world 🦸‍♂️"
+        "placeholder": "Daniel, have you heard of the Avengers Initiative 🦸‍♂️?"
       },
       "message": {
         "label": "Message",
-        "placeholder": "Let's meet on the beach and talk about the future of the world 🌊",
+        "placeholder": "An idea came up, and Stark knows about it. Called the Avengers Initiative. The idea was to find and bring together a group of exceptional people, and try to turn them into something more. See if they could come together when we needed them to fight the battles we couldn't win....",
         "caption": "You can use Markdown to format your message"
       },
       "submit": {
