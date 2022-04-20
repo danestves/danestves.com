@@ -111,7 +111,6 @@ export type RootLoaderData = {
     path: string;
   };
   theme: Theme | null;
-  country?: string;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -129,7 +128,7 @@ export const loader: LoaderFunction = async ({ request }) => {
         origin: getDomainUrl(request),
         path: new URL(request.url).pathname,
       },
-      theme: getTheme() ?? Theme.DARK,
+      theme: getTheme() ?? Theme.LIGHT,
     },
     {
       headers,
