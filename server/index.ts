@@ -76,7 +76,6 @@ app.use(
 const publicAbsolutePath = here("../public");
 
 app.use(
-  "/build",
   express.static(publicAbsolutePath, {
     immutable: true,
     maxAge: "1y",
