@@ -18,4 +18,8 @@ function getRequiredEnvVar(key: string, env = process.env): string {
   throw new Error(`Environment variable ${key} is not defined`);
 }
 
-export { getDomainUrl, getRequiredEnvVar };
+function removeTrailingSlash(s: string) {
+  return s.endsWith("/") ? s.slice(0, -1) : s;
+}
+
+export { getDomainUrl, getRequiredEnvVar, removeTrailingSlash };

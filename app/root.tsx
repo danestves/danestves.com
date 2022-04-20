@@ -3,7 +3,7 @@ import { json } from "@remix-run/server-runtime";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
-// import { useFathom } from "remix-fathom";
+import { useFathom } from "remix-fathom";
 import { useChangeLanguage } from "remix-i18next";
 import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
 import { StructuredData } from "remix-utils";
@@ -20,7 +20,7 @@ import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getEnv } from "./utils/env.server";
 import { i18n, i18nStorage } from "./utils/i18n.server";
-import { getDomainUrl } from "./utils/misc";
+import { getDomainUrl, removeTrailingSlash } from "./utils/misc";
 import { description as seoDescription, getSeo, getSeoMeta } from "./utils/seo";
 import { themeSessionResolver } from "./utils/theme.server";
 import type { Handle } from "./types";
@@ -141,17 +141,17 @@ function App() {
   const data = useLoaderData<RootLoaderData>();
   const { i18n } = useTranslation();
 
-  // useFathom("VKGOHQVT", {
-  //   excludedDomains: ["localhost"],
-  //   spa: "history",
-  //   url: "https://khonshu.danestves.dev/script.js",
-  // });
-  useChangeLanguage(data.locale);
+  useFathom("VKGOHQVT", {
+    excludedDomains: ["localhost"],
+    spa: "history",
+    url: "https://khonshu.danestves.dev/script.js",
+  });
 
   return (
     <html className={clsx("h-full", data.theme)} dir={i18n.dir()} lang={data.locale}>
       <head>
         <Meta />
+        <link href={removeTrailingSlash(`${data.requestInfo.origin}${data.requestInfo.path}`)} rel="canonical" />
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
 
@@ -180,6 +180,8 @@ function App() {
 
 export default function AppWithProviders() {
   const data = useLoaderData<RootLoaderData>();
+
+  useChangeLanguage(data.locale);
 
   return (
     <ThemeProvider specifiedTheme={data.theme} themeAction="_action/set-theme">
