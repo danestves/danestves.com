@@ -20,8 +20,7 @@ i18next
     },
     fallbackLng: "en",
     ns: getInitialNamespaces(),
-    partialBundledLanguages: true,
-    react: { useSuspense: true },
+    react: { useSuspense: false },
     supportedLngs: ["en", "es"],
   })
   .then(() => {

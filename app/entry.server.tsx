@@ -43,7 +43,7 @@ export default async function handleRequest(
       supportedLngs: ["es", "en"],
       defaultNS: "common",
       fallbackLng: "en",
-      react: { useSuspense: true },
+      react: { useSuspense: false },
       lng,
       ns,
       backend: {
