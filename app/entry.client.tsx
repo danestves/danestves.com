@@ -3,7 +3,7 @@ import { RemixBrowser } from "@remix-run/react";
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
-import { hydrateRoot } from "react-dom/client";
+import { hydrate } from "react-dom";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { getInitialNamespaces } from "remix-i18next";
 
@@ -25,11 +25,11 @@ if (!i18next.isInitialized) {
       ns: getInitialNamespaces(),
     })
     .then(() => {
-      return hydrateRoot(
-        document,
+      return hydrate(
         <I18nextProvider i18n={i18next}>
           <RemixBrowser />
-        </I18nextProvider>
+        </I18nextProvider>,
+        document
       );
     });
 }

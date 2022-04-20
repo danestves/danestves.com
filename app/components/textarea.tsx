@@ -1,6 +1,7 @@
 // Dependencies
 import * as React from "react";
 import clsx from "clsx";
+import { nanoid } from "nanoid";
 import { useTranslation } from "react-i18next";
 import { useField } from "remix-validated-form";
 
@@ -23,7 +24,7 @@ function RenderTextArea(
   }: TextAreaProps,
   ref: React.LegacyRef<HTMLTextAreaElement>
 ) {
-  const useId = React.useId();
+  const useId = nanoid(6);
   const { t } = useTranslation("errors");
   const { error, getInputProps } = useField(name);
   const id = `${propId}-${useId}`;
