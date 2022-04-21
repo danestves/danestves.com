@@ -1,8 +1,8 @@
 // Dependencies
 import * as React from "react";
-import { ChevronRightIcon } from "@heroicons/react/outline";
+import { ChevronRightIcon, ExclamationIcon, SupportIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { KBarResults, NO_GROUP, useMatches } from "kbar";
+import { KBarContext, KBarResults, NO_GROUP, useMatches } from "kbar";
 import type { ActionImpl } from "kbar";
 
 type RenderParams<T = ActionImpl | string> = {
@@ -11,7 +11,10 @@ type RenderParams<T = ActionImpl | string> = {
 };
 
 function Results() {
+  const { getState: getQuery } = React.useContext(KBarContext);
   const { results } = useMatches();
+
+  const query = getQuery().searchQuery;
 
   const onRender = React.useCallback(({ active, item }: RenderParams) => {
     if (typeof item === "string") {
@@ -59,15 +62,48 @@ function Results() {
 
           <span className={clsx("flex-auto truncate", Icon && "ml-3")}>{item.name}</span>
 
-          {item.shortcut ? (
-            <span className="ml-3 flex-none text-xs font-semibold text-gray-500 dark:text-gray-400">
-              <kbd className="font-sans">{item.shortcut}</kbd>
+          {item?.shortcut?.length ? (
+            <span className="inline-flex space-y-2">
+              {item.shortcut.map((shortcut, index) => (
+                <kbd
+                  className={clsx(
+                    "inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-[3px] bg-gray-50 px-2 text-xs uppercase dark:bg-gray-900",
+                    active ? "border-gray-300 dark:border-gray-700" : "border-gray-200 dark:border-gray-800"
+                  )}
+                  key={index}
+                >
+                  {shortcut}
+                </kbd>
+              ))}
             </span>
           ) : null}
         </div>
       </div>
     );
   }, []);
+
+  if (query === "?") {
+    return (
+      <div className="py-14 px-6 text-center text-sm sm:px-14">
+        <SupportIcon aria-hidden="true" className="mx-auto h-6 w-6 text-gray-400" />
+        <p className="mt-4 font-semibold text-gray-900 dark:text-gray-200">Help with searching</p>
+        <p className="mt-2 text-gray-500">
+          Use this tool to quickly search for blogs and projects across my entire website. You can also use the search
+          modifiers found in the footer below to limit the results to just users or projects.
+        </p>
+      </div>
+    );
+  }
+
+  if (query !== "?" && !results?.length) {
+    return (
+      <div className="py-14 px-6 text-center text-sm sm:px-14">
+        <ExclamationIcon aria-hidden="true" className="mx-auto h-6 w-6 text-gray-400" />
+        <p className="mt-4 font-semibold text-gray-900 dark:text-gray-200">No results found</p>
+        <p className="mt-2 text-gray-500">We couldn't find anything with that term. Please try again.</p>
+      </div>
+    );
+  }
 
   return <KBarResults items={results.filter((i) => i !== NO_GROUP)} onRender={onRender} />;
 }

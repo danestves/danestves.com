@@ -14,6 +14,7 @@ import { GithubIcon } from "~/components/icons/github";
 import { YoutubeIcon } from "~/components/icons/youtube";
 import { externalLinks } from "~/external-links";
 import { Results } from "./results";
+import { Footer } from "./footer";
 
 function CommandBar({ children }: { children?: React.ReactNode }) {
   const persistTheme = useFetcher();
@@ -160,12 +161,11 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
           enterMs: 250,
           exitMs: 100,
         },
-        enableHistory: true,
       }}
     >
       <KBarPortal>
         <KBarPositioner className="z-30 bg-white/80 backdrop-blur transition-colors duration-500 dark:bg-gray-900/80">
-          <KBarAnimator className="mx-auto w-full max-w-xl divide-y divide-gray-500 divide-opacity-10 overflow-hidden rounded-xl bg-white drop-shadow-2xl transition duration-200 dark:divide-opacity-20 dark:bg-gray-900">
+          <KBarAnimator className="mx-auto w-full max-w-xl overflow-hidden rounded-xl bg-white ring-1 ring-black ring-opacity-5 drop-shadow-2xl transition duration-200 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5">
             {/* Search */}
             <div className="relative border-b border-gray-500 border-opacity-10 dark:border-opacity-20">
               <SearchIcon
@@ -183,6 +183,8 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
             <div className="p-2">
               <Results />
             </div>
+
+            <Footer key="kbar-footer" />
           </KBarAnimator>
         </KBarPositioner>
       </KBarPortal>
