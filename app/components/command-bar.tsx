@@ -1,6 +1,14 @@
 // Dependencies
 import * as React from "react";
-import { ChevronRightIcon, CodeIcon, HomeIcon, MailIcon, PencilIcon } from "@heroicons/react/outline";
+import {
+  ChevronRightIcon,
+  CodeIcon,
+  ColorSwatchIcon,
+  HomeIcon,
+  MailIcon,
+  PencilIcon,
+  TranslateIcon,
+} from "@heroicons/react/outline";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useFetcher, useNavigate } from "@remix-run/react";
 import clsx from "clsx";
@@ -57,11 +65,21 @@ function RenderResults() {
 
           {item.parent ? (
             <>
-              <span className={clsx(active ? "text-gray-600 dark:text-gray-500" : "text-gray-500 dark:text-gray-700")}>
+              <span
+                className={clsx(
+                  "transition-colors duration-200",
+                  active ? "text-gray-600 dark:text-gray-500" : "text-gray-500 dark:text-gray-700"
+                )}
+              >
                 {item.ancestors.find((ancestor) => ancestor.id === (item as ActionImpl).parent)?.name}
               </span>
 
-              <ChevronRightIcon className="h-5 w-5 text-gray-500 dark:text-gray-700" />
+              <ChevronRightIcon
+                className={clsx(
+                  "h-5 w-5 transition-colors duration-200",
+                  active ? "text-gray-600 dark:text-gray-500" : "text-gray-500 dark:text-gray-700"
+                )}
+              />
             </>
           ) : null}
 
@@ -119,11 +137,17 @@ function LoadCustomActions() {
 
 function CommandBar({ children }: { children?: React.ReactNode }) {
   const persistTheme = useFetcher();
+  const persistLanguage = useFetcher();
   const persistThemeRef = React.useRef(persistTheme);
+  const persistLanguageRef = React.useRef(persistLanguage);
   const navigate = useNavigate();
 
   const changeTheme = (theme: Theme) => {
     persistThemeRef.current.submit({ theme }, { action: "_action/set-theme", method: "post" });
+  };
+
+  const changeLanguage = async (lang: string) => {
+    persistLanguageRef.current.submit({ lang }, { action: "_action/set-language", method: "post" });
   };
 
   const actions: Array<Action> = [
@@ -156,6 +180,7 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
     {
       id: "theme",
       name: "Change theme...",
+      icon: ColorSwatchIcon,
       keywords: "theme",
       section: "Utilities",
       shortcut: ["t"],
@@ -175,6 +200,30 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
       parent: "theme",
       perform: () => changeTheme(Theme.DARK),
       shortcut: ["d"],
+    },
+    {
+      id: "language",
+      name: "Change language...",
+      icon: TranslateIcon,
+      keywords: "language i18n spanish english español ingles en es",
+      section: "Utilities",
+      shortcut: ["l"],
+    },
+    {
+      id: "en-i18n",
+      name: "English",
+      keywords: "english ingles en",
+      parent: "language",
+      perform: () => changeLanguage("en"),
+      shortcut: ["e"],
+    },
+    {
+      id: "es-i18n",
+      name: "Español",
+      keywords: "spanish español es",
+      parent: "language",
+      perform: () => changeLanguage("es"),
+      shortcut: ["s"],
     },
     {
       id: "twitter",
