@@ -1,4 +1,10 @@
 {
+  "index": {
+    "seo": {
+      "title": "Daniel Esteves",
+      "description": "Daniel Esteves es un geek al que le encanta leer cómics y que trabaja como frontend engineer, speaker y profesor con años de experiencia en la construcción, creación y optimización de web applications."
+    }
+  },
   "about": {
     "seo": {
       "title": "Sobre Daniel Esteves 📑",

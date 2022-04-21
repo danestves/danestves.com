@@ -4,6 +4,7 @@ import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderD
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import { useFathom } from "remix-fathom";
+import { Toaster } from "react-hot-toast";
 import { useChangeLanguage } from "remix-i18next";
 import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
 import { StructuredData } from "remix-utils";
@@ -11,6 +12,7 @@ import type { HandleStructuredData } from "remix-utils";
 import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 
 // Internals
+import { CommandBar } from "./components/command-bar";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { LeftSidebar } from "./components/left-sidebar";
@@ -157,13 +159,24 @@ function App() {
         <StructuredData />
       </head>
       <body className="h-full bg-white transition duration-500 dark:bg-body-darker">
-        <Header />
-        <LeftSidebar />
-        <RightSidebar />
+        <CommandBar>
+          <Header />
+          <LeftSidebar />
+          <RightSidebar />
 
-        <Outlet />
+          <Outlet />
 
-        <Footer />
+          <Toaster
+            containerClassName="print:hidden"
+            toastOptions={{
+              duration: 5000,
+              position: "bottom-right",
+            }}
+          />
+
+          <Footer />
+        </CommandBar>
+
         <ScrollRestoration />
         <Scripts />
         <script

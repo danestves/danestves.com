@@ -68,5 +68,6 @@ module.exports = {
       };
       addUtilities(newUtilities);
     }),
+    require("@tailwindcss/forms"),
   ],
 };
