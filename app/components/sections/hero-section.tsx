@@ -52,7 +52,7 @@ function HeroSection() {
         <p className="mt-1 text-xs">
           Senior Frontend Engineer @{" "}
           <Link
-            className="rounded focus-within:ring-2 focus-within:ring-secondary focus:outline-none"
+            className="rounded underline decoration-1 underline-offset-2 hover:decoration-2 focus:decoration-2 focus:outline-none"
             to="https://www.reworth.co/"
           >
             REWORTH

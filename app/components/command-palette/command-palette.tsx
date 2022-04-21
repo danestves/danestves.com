@@ -26,6 +26,7 @@ import { useMatchesData } from "~/hooks/use-matches-data";
 import { removeTrailingSlash } from "~/utils/misc";
 import { Results } from "./results";
 import { Footer } from "./footer";
+import { ServerActions } from "./server-actions";
 import type { RootLoaderData } from "~/root";
 
 function CommandPalette({ children }: { children?: React.ReactNode }) {
@@ -195,6 +196,7 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
         },
       }}
     >
+      <ServerActions />
       <KBarPortal>
         <KBarPositioner className="z-30 bg-white/80 backdrop-blur transition-colors duration-500 dark:bg-gray-900/80">
           <KBarAnimator className="mx-auto w-full max-w-xl overflow-hidden rounded-xl bg-white ring-1 ring-black ring-opacity-5 drop-shadow-2xl transition duration-200 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5">

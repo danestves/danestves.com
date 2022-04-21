@@ -53,7 +53,7 @@ function Results() {
 
               <ChevronRightIcon
                 className={clsx(
-                  "h-5 w-5 transition-colors duration-200",
+                  "h-5 w-5 flex-none transition-colors duration-200",
                   active ? "text-gray-600 dark:text-gray-500" : "text-gray-500 dark:text-gray-700"
                 )}
               />

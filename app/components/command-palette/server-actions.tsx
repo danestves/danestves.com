@@ -14,10 +14,12 @@ function ServerActions() {
 
   React.useEffect(() => {
     const loadContent = async () => {
-      const contentActions = await fetch("/api/kbar");
+      const contentActions = await fetch("_content/get-kbar-actions.json");
       const { actions } = (await contentActions.json()) as {
         actions: ServerAction[];
       };
+
+      console.info({ contentActions });
 
       const newActions: Action[] = actions.map(({ link, ...props }) => ({
         ...props,

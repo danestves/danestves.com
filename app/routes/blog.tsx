@@ -4,6 +4,8 @@ import { json } from "@remix-run/server-runtime";
 import type { HeadersFunction, LoaderFunction } from "@remix-run/server-runtime";
 
 // Internals
+import { Link } from "~/components/link";
+import { PostCard } from "~/components/post-card";
 import { i18n } from "~/utils/i18n.server";
 import { getMdxListItems } from "~/utils/mdx.server";
 
@@ -15,7 +17,7 @@ export const headers: HeadersFunction = ({ loaderHeaders }) => ({
 type LoaderData = {
   posts: Array<{
     timestamp: Date;
-    frontmatter: string;
+    frontmatter: Record<string, unknown>;
     slug: string;
     title: string;
   }>;
@@ -23,7 +25,16 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
   const locale = await i18n.getLocale(request);
-  const posts = await getMdxListItems({ contentDirectory: `blog/${locale}` });
+  const data = await getMdxListItems({ contentDirectory: `blog/${locale}` });
+  const posts = data
+    .map((post) => ({
+      ...post,
+      frontmatter: JSON.parse(post.frontmatter),
+      // Remove the locale from the slug, we only use it with locale prefixes to be able to
+      // use the slug as unique identifier for the blog post on Prisma.
+      slug: post.slug.replace(`${locale}-`, ""),
+    }))
+    .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
 
   return json<LoaderData>(
     {
@@ -51,7 +62,19 @@ export default function BlogPage() {
       </h1>
 
       <div className="container mx-auto mt-5 max-w-[977px]">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">{JSON.stringify(data, null, 2)}</div>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {data.posts.map((post, i) => (
+            <PostCard
+              as={Link}
+              className="block overflow-hidden rounded-lg p-1 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-primary"
+              descriptionClassName="line-clamp-3"
+              key={post.slug}
+              post={post.frontmatter}
+              prefetch="intent"
+              to={`/blog/${post.slug}`}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );
