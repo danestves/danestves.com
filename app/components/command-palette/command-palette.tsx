@@ -44,6 +44,7 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
     persistLanguageRef.current.submit({ lang }, { action: "_action/set-language", method: "post" });
   };
 
+  // @ts-ignore
   const actions: Array<Action> = [
     {
       id: "home",
@@ -186,42 +187,47 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
   });
 
   return (
-    <KBarProvider
-      actions={[...actions]}
-      options={{
-        animations: {
-          enterMs: 250,
-          exitMs: 100,
-        },
-      }}
-    >
-      <KBarPortal>
-        <KBarPositioner className="z-30 bg-white/80 backdrop-blur transition-colors duration-500 dark:bg-gray-900/80">
-          <KBarAnimator className="mx-auto w-full max-w-xl overflow-hidden rounded-xl bg-white ring-1 ring-black ring-opacity-5 drop-shadow-2xl transition duration-200 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5">
-            {/* Search */}
-            <div className="relative border-b border-gray-500 border-opacity-10 dark:border-opacity-20">
-              <SearchIcon
-                aria-hidden="true"
-                className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-900 text-opacity-40 transition duration-200 dark:text-gray-500 dark:text-opacity-100"
-              />
+    <>
+      {/* @ts-ignore */}
+      <KBarProvider
+        actions={[...actions]}
+        options={{
+          animations: {
+            enterMs: 250,
+            exitMs: 100,
+          },
+        }}
+      >
+        <KBarPortal>
+          {/* @ts-ignore */}
+          <KBarPositioner className="z-30 bg-white/80 backdrop-blur transition-colors duration-500 dark:bg-gray-900/80">
+            {/* @ts-ignore */}
+            <KBarAnimator className="mx-auto w-full max-w-xl overflow-hidden rounded-xl bg-white ring-1 ring-black ring-opacity-5 drop-shadow-2xl transition duration-200 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5">
+              {/* Search */}
+              <div className="relative border-b border-gray-500 border-opacity-10 dark:border-opacity-20">
+                <SearchIcon
+                  aria-hidden="true"
+                  className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-900 text-opacity-40 transition duration-200 dark:text-gray-500 dark:text-opacity-100"
+                />
 
-              <KBarSearch
-                className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder-gray-500 outline-none transition duration-200 focus:ring-0 dark:text-white sm:text-sm"
-                placeholder="Search..."
-              />
-            </div>
+                <KBarSearch
+                  className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder-gray-500 outline-none transition duration-200 focus:ring-0 dark:text-white sm:text-sm"
+                  placeholder="Search..."
+                />
+              </div>
 
-            {/* Results */}
-            <div className="p-2">
-              <Results />
-            </div>
+              {/* Results */}
+              <div className="p-2">
+                <Results />
+              </div>
 
-            <Footer key="kbar-footer" />
-          </KBarAnimator>
-        </KBarPositioner>
-      </KBarPortal>
-      {children}
-    </KBarProvider>
+              <Footer key="kbar-footer" />
+            </KBarAnimator>
+          </KBarPositioner>
+        </KBarPortal>
+        {children}
+      </KBarProvider>
+    </>
   );
 }
 
