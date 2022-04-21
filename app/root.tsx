@@ -12,7 +12,7 @@ import type { HandleStructuredData } from "remix-utils";
 import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 
 // Internals
-import { CommandBar } from "./components/command-bar";
+import { CommandPalette } from "./components/command-palette";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { LeftSidebar } from "./components/left-sidebar";
@@ -159,7 +159,7 @@ function App() {
         <StructuredData />
       </head>
       <body className="h-full bg-white transition duration-500 dark:bg-body-darker">
-        <CommandBar>
+        <CommandPalette>
           <Header />
           <LeftSidebar />
           <RightSidebar />
@@ -175,7 +175,7 @@ function App() {
           />
 
           <Footer />
-        </CommandBar>
+        </CommandPalette>
 
         <ScrollRestoration />
         <Scripts />

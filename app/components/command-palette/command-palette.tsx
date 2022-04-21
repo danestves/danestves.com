@@ -1,10 +1,19 @@
 // Dependencies
 import * as React from "react";
-import { CodeIcon, ColorSwatchIcon, HomeIcon, MailIcon, PencilIcon, TranslateIcon } from "@heroicons/react/outline";
+import {
+  ClipboardIcon,
+  CodeIcon,
+  ColorSwatchIcon,
+  HomeIcon,
+  MailIcon,
+  PencilIcon,
+  TranslateIcon,
+} from "@heroicons/react/outline";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useFetcher, useNavigate } from "@remix-run/react";
 import * as Fathom from "fathom-client";
 import { KBarAnimator, KBarPortal, KBarPositioner, KBarProvider, KBarSearch } from "kbar";
+import toast from "react-hot-toast";
 import { Theme } from "remix-themes";
 import type { Action } from "kbar";
 
@@ -13,15 +22,19 @@ import { TwitterIcon } from "~/components/icons/twitter";
 import { GithubIcon } from "~/components/icons/github";
 import { YoutubeIcon } from "~/components/icons/youtube";
 import { externalLinks } from "~/external-links";
+import { useMatchesData } from "~/hooks/use-matches-data";
+import { removeTrailingSlash } from "~/utils/misc";
 import { Results } from "./results";
 import { Footer } from "./footer";
+import type { RootLoaderData } from "~/root";
 
-function CommandBar({ children }: { children?: React.ReactNode }) {
+function CommandPalette({ children }: { children?: React.ReactNode }) {
   const persistTheme = useFetcher();
   const persistLanguage = useFetcher();
   const persistThemeRef = React.useRef(persistTheme);
   const persistLanguageRef = React.useRef(persistLanguage);
   const navigate = useNavigate();
+  const rootData = useMatchesData<RootLoaderData>("root");
 
   const changeTheme = (theme: Theme) => {
     persistThemeRef.current.submit({ theme }, { action: "_action/set-theme", method: "post" });
@@ -105,6 +118,25 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
       parent: "language",
       perform: () => changeLanguage("es"),
       shortcut: ["s"],
+    },
+    {
+      id: "copy-to-clipboard",
+      name: "Copy URL to clipboard",
+      icon: ClipboardIcon,
+      keywords: "copy to clipboard copiar",
+      perform: async () => {
+        await navigator.clipboard.writeText(
+          removeTrailingSlash(`${rootData?.requestInfo.origin}${rootData?.requestInfo.path}`)
+        );
+
+        toast.success("Copied to clipboard!", {
+          className:
+            "bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5",
+          duration: 3000,
+        });
+      },
+      section: "Utilities",
+      shortcut: ["c", "c"],
     },
     {
       id: "twitter",
@@ -193,4 +225,4 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
   );
 }
 
-export default CommandBar;
+export default CommandPalette;

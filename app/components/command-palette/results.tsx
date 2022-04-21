@@ -63,13 +63,10 @@ function Results() {
           <span className={clsx("flex-auto truncate", Icon && "ml-3")}>{item.name}</span>
 
           {item?.shortcut?.length ? (
-            <span className="inline-flex space-y-2">
+            <span className="inline-flex items-center space-x-1">
               {item.shortcut.map((shortcut, index) => (
                 <kbd
-                  className={clsx(
-                    "inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-[3px] bg-gray-50 px-2 text-xs uppercase dark:bg-gray-900",
-                    active ? "border-gray-300 dark:border-gray-700" : "border-gray-200 dark:border-gray-800"
-                  )}
+                  className="inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-2 border-gray-300 bg-gray-50 px-2 text-xs uppercase dark:border-gray-700 dark:bg-gray-900"
                   key={index}
                 >
                   {shortcut}
