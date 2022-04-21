@@ -66,7 +66,7 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
       shortcut: ["t"],
     },
     {
-      id: "light-mode",
+      id: "light",
       name: "Light",
       keywords: "light",
       parent: "theme",
@@ -74,7 +74,7 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
       shortcut: ["l"],
     },
     {
-      id: "dark-mode",
+      id: "dark",
       name: "Dark",
       keywords: "dark",
       parent: "theme",
@@ -90,7 +90,7 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
       shortcut: ["l"],
     },
     {
-      id: "en-i18n",
+      id: "en",
       name: "English",
       keywords: "english ingles en",
       parent: "language",
@@ -98,7 +98,7 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
       shortcut: ["e"],
     },
     {
-      id: "es-i18n",
+      id: "es",
       name: "Español",
       keywords: "spanish español es",
       parent: "language",

@@ -2,7 +2,7 @@
 import * as React from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { KBarResults, useMatches } from "kbar";
+import { KBarResults, NO_GROUP, useMatches } from "kbar";
 import type { ActionImpl } from "kbar";
 
 type RenderParams<T = ActionImpl | string> = {
@@ -69,7 +69,7 @@ function Results() {
     );
   }, []);
 
-  return <KBarResults items={results} onRender={onRender} />;
+  return <KBarResults items={results.filter((i) => i !== NO_GROUP)} onRender={onRender} />;
 }
 
 export { Results };
