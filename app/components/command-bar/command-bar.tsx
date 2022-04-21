@@ -3,6 +3,7 @@ import * as React from "react";
 import { CodeIcon, ColorSwatchIcon, HomeIcon, MailIcon, PencilIcon, TranslateIcon } from "@heroicons/react/outline";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useFetcher, useNavigate } from "@remix-run/react";
+import * as Fathom from "fathom-client";
 import { KBarAnimator, KBarPortal, KBarPositioner, KBarProvider, KBarSearch } from "kbar";
 import { Theme } from "remix-themes";
 import type { Action } from "kbar";
@@ -136,7 +137,20 @@ function CommandBar({ children }: { children?: React.ReactNode }) {
       perform: () => window.open(externalLinks.githubSourceCode, "_blank"),
       section: "Social",
     },
-  ];
+  ].map((action) => {
+    const obj = { ...action };
+
+    if (action.perform) {
+      obj.perform = async () => {
+        action.perform();
+
+        const prefix = action.parent ? `${action.parent}-` : "";
+        Fathom.trackGoal(`cmd-${prefix}${action.id}`, 0);
+      };
+    }
+
+    return obj;
+  });
 
   return (
     <KBarProvider
