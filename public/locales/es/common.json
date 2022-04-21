@@ -12,7 +12,7 @@
   },
   "components": {
     "post-card": {
-      "published": "Publicado en"
+      "published": "Publicado el"
     },
     "search": {
       "button": {

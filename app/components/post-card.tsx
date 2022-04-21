@@ -62,7 +62,7 @@ function PostCard<T extends React.ElementType = "div">({
         <time dateTime={post.published_at}>
           {formatDate({
             date: new Date(post.published_at!).toISOString().slice(0, 19),
-            formatter: "MMM. d yyy",
+            formatter: i18n.language === "en" ? "MMMM d, YYYY" : "d MMMM YYYY",
             locale: i18n.language,
           })}
         </time>
