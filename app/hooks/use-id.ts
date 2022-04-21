@@ -34,6 +34,7 @@ function useId(): string | undefined;
 function useId(providedId?: number | string | undefined | null) {
   // TODO: Remove error flag when updating internal deps to React 18. None of
   // our tricks will play well with concurrent rendering anyway.
+  // @ts-expect-error
   if (typeof React.useId === "function") {
     // @ts-expect-error
     let id = React.useId(providedId);
