@@ -1,5 +1,4 @@
 // Dependencies
-import endent from "endent";
 import { useKBar } from "kbar";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
@@ -28,9 +27,6 @@ function Search() {
           You can also press <Kbd>Control + K</Kbd> or <Kbd>⌘ + K</Kbd> to open the menu!
         </p>,
         {
-          className: endent`
-            bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5
-          `,
           icon: "💬",
         }
       );

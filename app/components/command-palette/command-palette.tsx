@@ -30,6 +30,7 @@ import { ServerActions } from "./server-actions";
 import type { RootLoaderData } from "~/root";
 
 function CommandPalette({ children }: { children?: React.ReactNode }) {
+  const [rawQuery, setRawQuery] = React.useState("");
   const persistTheme = useFetcher();
   const persistLanguage = useFetcher();
   const persistThemeRef = React.useRef(persistTheme);
@@ -194,6 +195,10 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
           enterMs: 250,
           exitMs: 100,
         },
+        callbacks: {
+          onQueryChange: (query) => setRawQuery(query),
+        },
+        enableHistory: true,
       }}
     >
       <ServerActions />
@@ -207,18 +212,15 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
                 className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-900 text-opacity-40 transition duration-200 dark:text-gray-500 dark:text-opacity-100"
               />
 
-              <KBarSearch
-                className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder-gray-500 outline-none transition duration-200 focus:ring-0 dark:text-white sm:text-sm"
-                placeholder="Search..."
-              />
+              <KBarSearch className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder-gray-500 outline-none transition duration-200 focus:ring-0 dark:text-white sm:text-sm" />
             </div>
 
             {/* Results */}
             <div className="p-2">
-              <Results />
+              <Results rawQuery={rawQuery} />
             </div>
 
-            <Footer key="kbar-footer" />
+            <Footer rawQuery={rawQuery} />
           </KBarAnimator>
         </KBarPositioner>
       </KBarPortal>

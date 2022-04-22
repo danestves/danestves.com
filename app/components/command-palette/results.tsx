@@ -2,7 +2,7 @@
 import * as React from "react";
 import { ChevronRightIcon, ExclamationIcon, SupportIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { KBarContext, KBarResults, NO_GROUP, useMatches } from "kbar";
+import { KBarResults, NO_GROUP, useKBar, useMatches } from "kbar";
 import type { ActionImpl } from "kbar";
 
 type RenderParams<T = ActionImpl | string> = {
@@ -10,11 +10,19 @@ type RenderParams<T = ActionImpl | string> = {
   active: boolean;
 };
 
-function Results() {
-  const { getState: getQuery } = React.useContext(KBarContext);
-  const { results } = useMatches();
+type CommandPaletteResultsProps = {
+  rawQuery: string;
+};
 
-  const query = getQuery().searchQuery;
+function Results({ rawQuery }: CommandPaletteResultsProps) {
+  const { results } = useMatches();
+  const kbar = useKBar();
+
+  React.useEffect(() => {
+    if (rawQuery === "#") {
+      kbar.query.setCurrentRootAction("blog");
+    }
+  }, [kbar.query, rawQuery]);
 
   const onRender = React.useCallback(({ active, item }: RenderParams) => {
     if (typeof item === "string") {
@@ -79,7 +87,7 @@ function Results() {
     );
   }, []);
 
-  if (query === "?") {
+  if (rawQuery === "?") {
     return (
       <div className="py-14 px-6 text-center text-sm sm:px-14">
         <SupportIcon aria-hidden="true" className="mx-auto h-6 w-6 text-gray-400" />
@@ -92,7 +100,7 @@ function Results() {
     );
   }
 
-  if (query !== "?" && !results?.length) {
+  if (rawQuery !== "?" && !results?.length) {
     return (
       <div className="py-14 px-6 text-center text-sm sm:px-14">
         <ExclamationIcon aria-hidden="true" className="mx-auto h-6 w-6 text-gray-400" />

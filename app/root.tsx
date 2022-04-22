@@ -2,6 +2,7 @@
 import { json } from "@remix-run/server-runtime";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
+import endent from "endent";
 import { useTranslation } from "react-i18next";
 import { useFathom } from "remix-fathom";
 import { Toaster } from "react-hot-toast";
@@ -169,6 +170,9 @@ function App() {
           <Toaster
             containerClassName="print:hidden"
             toastOptions={{
+              className: endent`
+                bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5
+              `,
               duration: 5000,
               position: "bottom-right",
             }}
