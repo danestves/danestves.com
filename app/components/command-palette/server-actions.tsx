@@ -19,8 +19,6 @@ function ServerActions() {
         actions: ServerAction[];
       };
 
-      console.info({ contentActions });
-
       const newActions: Action[] = actions.map(({ link, ...props }) => ({
         ...props,
         perform: async () => navigate(link),

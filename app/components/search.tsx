@@ -1,5 +1,4 @@
 // Dependencies
-import { InformationCircleIcon } from "@heroicons/react/outline";
 import endent from "endent";
 import { useKBar } from "kbar";
 import toast from "react-hot-toast";
@@ -7,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 // Internals
 import { SearchIcon } from "./icons/search";
+import { Kbd } from "./kbd";
 
 function Search() {
   const kbar = useKBar();
@@ -24,21 +24,13 @@ function Search() {
       kbar.query.toggle();
 
       toast(
-        <span>
-          You can also press{" "}
-          <kbd className="inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-2 border-gray-300 bg-gray-50 px-2 text-xs dark:border-gray-400/20 dark:bg-black/20">
-            Control + K
-          </kbd>{" "}
-          or{" "}
-          <kbd className="inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-2 border-gray-300 bg-gray-50 px-2 text-xs dark:border-gray-400/20 dark:bg-black/20">
-            ⌘ + K
-          </kbd>{" "}
-          to open the menu!
-        </span>,
+        <p>
+          You can also press <Kbd>Control + K</Kbd> or <Kbd>⌘ + K</Kbd> to open the menu!
+        </p>,
         {
           className: endent`
-          bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5
-        `,
+            bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5
+          `,
           icon: "💬",
         }
       );

@@ -31,7 +31,7 @@ export const handle: HandleStructuredData<LoaderData> & Handle = {
       url: `${externalLinks.self}/contact`,
     };
   },
-  i18n: ["errors", "pages"],
+  i18n: ["errors"],
 };
 
 export const validator = withZod(

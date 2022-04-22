@@ -24,7 +24,7 @@ export const handle: HandleStructuredData<LoaderData> & Handle = {
       url: `${externalLinks.self}/about`,
     };
   },
-  i18n: ["pages", "sections"],
+  i18n: ["sections"],
 };
 
 type LoaderData = {

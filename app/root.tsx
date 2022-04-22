@@ -61,7 +61,7 @@ export const handle: HandleStructuredData<RootLoaderData> & Handle = {
       },
     ];
   },
-  i18n: "common",
+  i18n: ["common", "pages"],
   id: "root",
 };
 
