@@ -68,8 +68,16 @@ export const handle: HandleStructuredData<RootLoaderData> & Handle = {
 
 export const links: LinksFunction = () => {
   return [
-    { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: mainStylesheetUrl },
+    { href: tailwindStylesheetUrl, rel: "stylesheet" },
+    { href: mainStylesheetUrl, rel: "stylesheet" },
+    {
+      href: "/apple-touch-icon.png",
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+    },
+    { href: "/favicon-32x32.png", rel: "icon", sizes: "32x32", type: "image/png" },
+    { href: "/favicon-16x16.png", rel: "icon", sizes: "16x16", type: "image/png" },
+    { href: "/site.webmanifest", rel: "manifest" },
     ...seoLinks,
   ];
 };
