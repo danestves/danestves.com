@@ -85,7 +85,7 @@ export const links: LinksFunction = () => {
 };
 
 export const meta: MetaFunction = ({ data }) => {
-  const { locale } = data as RootLoaderData;
+  const { locale, requestInfo } = data as RootLoaderData;
 
   return {
     charset: "utf-8",
@@ -95,11 +95,21 @@ export const meta: MetaFunction = ({ data }) => {
     ...getSeoMeta({
       // @ts-ignore - locale is a valid index
       description: seoDescription[locale as any].join(" "),
+      languageAlternates: [
+        {
+          href: `${requestInfo.origin}/?lng=en`,
+          hrefLang: "en",
+        },
+        {
+          href: `${requestInfo.origin}/?lng=es`,
+          hrefLang: "es",
+        },
+      ],
       openGraph: {
         images: [
           {
             alt: "Daniel Esteves - @danestves",
-            url: `${externalLinks.self}/hero-mask.png`,
+            url: `${requestInfo.origin}/hero-mask.png`,
             height: 630,
             width: 1200,
           },
@@ -110,7 +120,7 @@ export const meta: MetaFunction = ({ data }) => {
         card: "summary_large_image",
         image: {
           alt: "Daniel Esteves - @danestves",
-          url: `${externalLinks.self}/hero-mask.png`,
+          url: `${requestInfo.origin}/hero-mask.png`,
         },
       },
     }),

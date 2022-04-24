@@ -19,16 +19,6 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
   title,
   titleTemplate: "%s - @danestves",
   description: description.en.join(" "),
-  languageAlternates: [
-    {
-      href: "/?lng=en",
-      hrefLang: "en",
-    },
-    {
-      href: "/?lng=es",
-      hrefLang: "es",
-    },
-  ],
   twitter: {
     card: "summary_large_image",
     creator: {
