@@ -168,7 +168,7 @@ export default function ContactPage() {
   return (
     <div className="w-full py-32">
       <div className="container mx-auto mt-5 max-w-xl">
-        <h1 className="text-center text-[26px] font-black uppercase text-primary">
+        <h1 className="text-center text-[26px] font-black uppercase text-primary-700 dark:text-primary">
           {t("contact.seo.title")}{" "}
           <span aria-label="victory hand" role="img">
             ✌️

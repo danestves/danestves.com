@@ -54,7 +54,7 @@ export default function BlogPage() {
 
   return (
     <main className="w-full py-32">
-      <h1 className="text-center text-[26px] font-black uppercase text-primary">
+      <h1 className="text-center text-[26px] font-black uppercase text-primary-700 dark:text-primary">
         Blog{" "}
         <span aria-label="victory hand" role="img">
           ✌️
@@ -63,14 +63,13 @@ export default function BlogPage() {
 
       <div className="container mx-auto mt-5 max-w-[977px]">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {data.posts.map((post, i) => (
+          {data.posts.map((post) => (
             <PostCard
               as={Link}
               className="block overflow-hidden rounded-lg p-1 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-primary"
               descriptionClassName="line-clamp-3"
               key={post.slug}
               post={post.frontmatter}
-              prefetch="intent"
               to={`/blog/${post.slug}`}
             />
           ))}

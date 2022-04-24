@@ -64,7 +64,7 @@ function PostCard<T extends React.ElementType = "div">({
         width={1920}
       />
 
-      <p className="mt-4 text-xs font-semibold text-secondary">
+      <p className="mt-4 text-xs font-semibold text-secondary-700 dark:text-secondary">
         {t("components.post-card.published")}{" "}
         <time dateTime={post.published_at}>
           {formatDate({
@@ -74,7 +74,7 @@ function PostCard<T extends React.ElementType = "div">({
           })}
         </time>
       </p>
-      <h2 className="mt-[6px] text-xl font-bold text-primary">{post.title}</h2>
+      <h2 className="mt-[6px] text-xl font-bold text-primary-700 dark:text-primary">{post.title}</h2>
       <p className={clsx("mt-[6px] text-xs font-semibold text-[#838383]", descriptionClassName)}>
         {post?.seo?.description}
       </p>

@@ -36,7 +36,7 @@ function RightSidebar() {
         {links.map(({ name, ...link }) => (
           <li itemProp="name" key={nanoid()}>
             <Link
-              className="text-xs font-semibold uppercase leading-3 text-body/80 transition-colors duration-100 vertical-rl focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:text-primary dark:text-body-dark dark:hover:text-primary"
+              className="text-xs font-semibold uppercase leading-3 text-body transition-colors duration-100 vertical-rl focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary-700 hover:text-primary-700 dark:text-body-dark dark:focus-within:outline-secondary dark:hover:text-primary"
               itemProp="url"
               {...link}
             >
