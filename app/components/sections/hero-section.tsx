@@ -35,7 +35,7 @@ function HeroSection() {
                 maxWidth: 498,
               },
             ]}
-            src="/hero-mask.webp"
+            src="/hero-mask.png"
             width={637}
           />
         </div>
