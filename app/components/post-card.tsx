@@ -47,10 +47,10 @@ function PostCard<T extends React.ElementType = "div">({
         responsive={[
           {
             size: {
-              width: 1920,
-              height: 1080,
+              width: 240,
+              height: 135,
             },
-            maxWidth: 1920,
+            maxWidth: 240,
           },
         ]}
         src={post.cover}

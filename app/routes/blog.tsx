@@ -52,8 +52,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function BlogPage() {
   const data = useLoaderData<LoaderData>();
 
-  console.info(data);
-
   return (
     <main className="w-full py-32">
       <h1 className="text-center text-[26px] font-black uppercase text-primary">
