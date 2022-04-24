@@ -25,9 +25,9 @@ export async function generateFeed(request: Request) {
     description: "Blog posts by Daniel Esteves",
     favicon: `${baseUrl}/favicon.ico`,
     feedLinks: {
-      atom: `${blogUrl}/blog/atom.xml`,
-      json: `${blogUrl}/blog/rss.json`,
-      rss: `${blogUrl}/blog/rss.xml`,
+      atom: `${blogUrl}/atom.xml`,
+      json: `${blogUrl}.json`,
+      rss: `${blogUrl}/rss.xml`,
     },
     generator: "@danestves",
     language: locale,

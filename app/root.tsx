@@ -78,8 +78,9 @@ export const links: LinksFunction = () => {
     { href: "/favicon-32x32.png", rel: "icon", sizes: "32x32", type: "image/png" },
     { href: "/favicon-16x16.png", rel: "icon", sizes: "16x16", type: "image/png" },
     { href: "/site.webmanifest", rel: "manifest" },
-    { href: "/blog/rss.json", rel: "alternate", type: "application/json" },
-    { href: "/blog/rss.xml", rel: "alternate", type: "application/rss+xml" },
+    { href: "/blog.json", rel: "alternate", type: "application/json", title: "Daniel Esteves blog JSON Feed" },
+    { href: "/blog/atom.xml", rel: "alternate", type: "application/atom+xml", title: "Daniel Esteves blog Atom Feed" },
+    { href: "/blog/rss.xml", rel: "alternate", type: "application/rss+xml", title: "Daniel Esteves blog RSS Feed" },
     ...seoLinks,
   ];
 };
