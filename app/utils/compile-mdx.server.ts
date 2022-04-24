@@ -79,7 +79,7 @@ async function compileMdxImpl<FrontmatterType extends Record<string, unknown>>({
         rehypePlugins: [
           ...(options.rehypePlugins ?? []),
           rehypeImageLazyLoading,
-          rehypeProbeImageSize,
+          [rehypeProbeImageSize, { staticDir: "public" }],
           rehypeSlug,
           [rehypeAutolinkHeadings, { behavior: "wrap" }],
           rehypeCodeTitles,
