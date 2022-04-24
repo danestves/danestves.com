@@ -220,6 +220,9 @@ sketch
 /app/styles/**/*.css
 app/**/*.ignore.*
 
+### lighthouse ###
+/lighthouse
+
 ### prisma ###
 /prisma/data.db
 /prisma/data.db-journal
