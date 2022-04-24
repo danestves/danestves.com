@@ -39,7 +39,7 @@ function PostCard<T extends React.ElementType = "div">({
     <Wrapper {...props}>
       <Image
         alt={post.title}
-        className="aspect-w-16 aspect-h-9 flex overflow-hidden rounded-lg bg-primary/50"
+        className="flex aspect-video overflow-hidden rounded-lg bg-black/10 dark:bg-white/10"
         height={1080}
         options={{
           contentType: useNextGenImageFormat(),
@@ -47,35 +47,23 @@ function PostCard<T extends React.ElementType = "div">({
         responsive={[
           {
             size: {
-              width: 240,
-              height: 135,
+              width: 640,
+              height: 360,
             },
-            maxWidth: 240,
+            maxWidth: 640,
+          },
+          {
+            size: {
+              width: 320,
+              height: 180,
+            },
+            maxWidth: 320,
           },
         ]}
         src={post.cover}
         width={1920}
       />
-      {/* <BlurrableImage
-        blurDataUrl={post.cover.blur}
-        className="aspect-w-16 aspect-h-9 flex overflow-hidden rounded-lg bg-primary/50"
-        img={
-          <img
-            className="rounded-lg"
-            {...getImgProps(getImageBuilder(post.cover.id, post.cover.alt), {
-              widths: [240, 320, 480, 640, 960, 1280, 1920],
-              sizes: [
-                "(max-width:639px) 80vw",
-                "(min-width:640px) and (max-width:1023px) 40vw",
-                "(min-width:1024px) and (max-width:1620px) 25vw",
-                "240px",
-              ],
-            })}
-            height={1080}
-            width={1920}
-          />
-        }
-      /> */}
+
       <p className="mt-4 text-xs font-semibold text-secondary">
         {t("components.post-card.published")}{" "}
         <time dateTime={post.published_at}>
