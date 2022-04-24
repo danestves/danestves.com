@@ -148,6 +148,7 @@ export async function getMdxPage({
   }
 
   const pages = await downloadMdx([{ slug }], contentDirectory);
+  console.info({ pages });
   const [compiledPage] = await compileMdxPages(pages);
 
   if (!compiledPage) {
