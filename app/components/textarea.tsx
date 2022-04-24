@@ -67,10 +67,7 @@ function RenderTextArea(
           {t(`${name}.errors.${error}`)}
         </p>
       ) : caption ? (
-        <p
-          className="mt-2 text-base italic text-body/80 dark:text-body-dark/80"
-          id={ariaDescribedBy ?? `${id}-description`}
-        >
+        <p className="mt-2 text-base italic text-body dark:text-body-dark" id={ariaDescribedBy ?? `${id}-description`}>
           {caption}
         </p>
       ) : null}

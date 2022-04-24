@@ -119,7 +119,7 @@ function SubmitButton() {
   return (
     <button
       aria-disabled={isSubmitting ? "true" : undefined}
-      className="inline-flex items-center rounded-md border border-transparent bg-primary px-4 py-2 text-base font-medium text-white shadow-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-75 dark:text-body-darker"
+      className="inline-flex items-center rounded-md border border-transparent bg-primary px-4 py-2 text-base font-medium text-body-darker shadow-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-75 dark:text-body-darker"
       disabled={isSubmitting ?? undefined}
       type="submit"
     >
@@ -175,7 +175,7 @@ export default function ContactPage() {
           </span>
         </h1>
 
-        <p className="text-center text-lg text-body/80 dark:text-body-dark/80">{t("contact.seo.description")}</p>
+        <p className="text-center text-lg text-body dark:text-body-dark">{t("contact.seo.description")}</p>
 
         <ValidatedForm
           aria-describedby={!actionData?.success ? "contact-form-error" : undefined}

@@ -81,14 +81,14 @@ export default function AboutPage() {
         ></p>
         <div className="flex justify-center space-x-4">
           <Link
-            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-primary bg-transparent py-2 px-4 text-body transition-colors duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:bg-primary hover:text-white dark:text-body-dark dark:hover:text-body-darker"
+            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-primary bg-transparent py-2 px-4 text-body transition-colors duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:bg-primary hover:text-body-darker dark:text-body-dark dark:hover:text-body-darker"
             to={externalLinks.linkedin}
           >
             {t("about.buttons.0")}
             <LinkedInIcon className="ml-2 -mr-1 inline h-auto w-5" />
           </Link>
           <Link
-            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-transparent bg-primary py-2 px-4 text-white transition duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:brightness-105 dark:text-body-darker dark:hover:bg-primary-600"
+            className="text-secondary-darker inline-flex min-w-[100px] items-center rounded-md border border-transparent bg-primary py-2 px-4 text-body-darker transition duration-100 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary hover:brightness-105 dark:text-body-darker dark:hover:bg-primary-600"
             to={externalLinks.resume}
           >
             {t("about.buttons.1")}
