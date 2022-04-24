@@ -21,11 +21,11 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
   description: description.en.join(" "),
   languageAlternates: [
     {
-      href: "https://danestves.com/?lng=en",
+      href: "/?lng=en",
       hrefLang: "en",
     },
     {
-      href: "https://danestves.com/?lng=es",
+      href: "/?lng=es",
       hrefLang: "es",
     },
   ],
