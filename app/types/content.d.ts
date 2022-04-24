@@ -14,10 +14,7 @@ export type MdxPage = {
     title?: string;
     published?: boolean;
     published_at?: string;
-    cover?: {
-      id?: string;
-      alt?: string;
-    };
+    cover?: string;
     seo?: {
       title?: string;
       description?: string;

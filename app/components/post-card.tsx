@@ -2,11 +2,11 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
+import { Image } from "remix-image";
 
 // Internals
-// import { getImageBuilder, getImgProps } from "~/images";
+import { useNextGenImageFormat } from "~/hooks/use-next-gen-image-format";
 import { formatDate } from "~/utils/date";
-// import { BlurrableImage } from "./blurrable-image";
 import type { MdxPage } from "~/types";
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
@@ -37,6 +37,25 @@ function PostCard<T extends React.ElementType = "div">({
 
   return (
     <Wrapper {...props}>
+      <Image
+        alt={post.title}
+        className="aspect-w-16 aspect-h-9 flex overflow-hidden rounded-lg bg-primary/50"
+        height={1080}
+        options={{
+          contentType: useNextGenImageFormat(),
+        }}
+        responsive={[
+          {
+            size: {
+              width: 1920,
+              height: 1080,
+            },
+            maxWidth: 1920,
+          },
+        ]}
+        src={post.cover}
+        width={1920}
+      />
       {/* <BlurrableImage
         blurDataUrl={post.cover.blur}
         className="aspect-w-16 aspect-h-9 flex overflow-hidden rounded-lg bg-primary/50"
