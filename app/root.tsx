@@ -88,6 +88,7 @@ export const meta: MetaFunction = ({ data }) => {
   return {
     charset: "utf-8",
     viewport: "width=device-width,initial-scale=1",
+    "theme-color": "",
     ...seoMeta,
     ...getSeoMeta({
       // @ts-ignore - locale is a valid index
@@ -161,6 +162,8 @@ function App() {
     <html className={clsx("h-full", data.theme)} dir={i18n.dir()} lang={data.locale}>
       <head>
         <Meta />
+        <meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color" />
+        <meta content="#222222" media="(prefers-color-scheme: dark)" name="theme-color" />
         <link href={removeTrailingSlash(`${data.requestInfo.origin}${data.requestInfo.path}`)} rel="canonical" />
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
