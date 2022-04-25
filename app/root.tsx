@@ -15,10 +15,7 @@ import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/ser
 
 // Internals
 import { CommandPalette } from "./components/command-palette";
-import { Footer } from "./components/footer";
-import { Header } from "./components/header";
-import { LeftSidebar } from "./components/left-sidebar";
-import { RightSidebar } from "./components/right-sidebar";
+import { Layout } from "./components/layout";
 import { externalLinks } from "./external-links";
 import mainStylesheetUrl from "./styles/main.css";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
@@ -190,25 +187,21 @@ function App() {
       </head>
       <body className="h-full bg-white transition duration-500 dark:bg-body-darker">
         <CommandPalette>
-          <Header />
-          <LeftSidebar />
-          <RightSidebar />
+          <Layout>
+            <Outlet />
+          </Layout>
+        </CommandPalette>
 
-          <Outlet />
-
-          <Toaster
-            containerClassName="print:hidden"
-            toastOptions={{
-              className: endent`
+        <Toaster
+          containerClassName="print:hidden"
+          toastOptions={{
+            className: endent`
                 bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5
               `,
-              duration: 5000,
-              position: "bottom-right",
-            }}
-          />
-
-          <Footer />
-        </CommandPalette>
+            duration: 5000,
+            position: "bottom-right",
+          }}
+        />
 
         <ScrollRestoration />
         <Scripts />
