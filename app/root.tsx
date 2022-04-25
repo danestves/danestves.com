@@ -1,4 +1,5 @@
 // Dependencies
+import { Flyyer } from "@flyyer/flyyer";
 import { json } from "@remix-run/server-runtime";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
@@ -87,6 +88,10 @@ export const links: LinksFunction = () => {
 
 export const meta: MetaFunction = ({ data }) => {
   const { locale, requestInfo } = data as RootLoaderData;
+  const flyyer = new Flyyer({
+    project: "danestves",
+    path: requestInfo.path,
+  });
 
   return {
     charset: "utf-8",
@@ -110,7 +115,7 @@ export const meta: MetaFunction = ({ data }) => {
         images: [
           {
             alt: "Daniel Esteves - @danestves",
-            url: `${requestInfo.origin}/hero-mask.png`,
+            url: flyyer.href(),
             height: 630,
             width: 1200,
           },
@@ -121,7 +126,7 @@ export const meta: MetaFunction = ({ data }) => {
         card: "summary_large_image",
         image: {
           alt: "Daniel Esteves - @danestves",
-          url: `${requestInfo.origin}/hero-mask.png`,
+          url: flyyer.href(),
         },
       },
     }),

@@ -39,6 +39,7 @@
   ],
   "dependencies": {
     "@balavishnuvj/remix-seo": "^1.0.2",
+    "@flyyer/flyyer": "^3.4.1",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
     "@next-boost/hybrid-disk-cache": "^0.3.0",
