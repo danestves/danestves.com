@@ -2,13 +2,23 @@
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
 import invariant from "tiny-invariant";
-import type { HeadersFunction, LoaderFunction } from "@remix-run/server-runtime";
+import type { HeadersFunction, LinksFunction, LoaderFunction } from "@remix-run/server-runtime";
 
 // Internals
+import prismOne from "~/styles/prism-one.css";
 import { i18n } from "~/utils/i18n.server";
 import { useMdxComponent } from "~/utils/mdx";
 import { getMdxPage } from "~/utils/mdx.server";
 import type { MdxComponent } from "~/types";
+
+export let links: LinksFunction = () => {
+  return [
+    {
+      rel: "stylesheet",
+      href: prismOne,
+    },
+  ];
+};
 
 export const headers: HeadersFunction = ({ loaderHeaders }) => {
   return {
@@ -41,8 +51,19 @@ export default function Blog() {
   const Component = useMdxComponent(data.code);
 
   return (
-    <article className="prose prose-zinc dark:prose-invert lg:prose-lg mx-auto min-h-screen max-w-4xl pt-24">
-      <Component />
-    </article>
+    <main className="w-full py-32">
+      <h2 className="text-center text-[26px] font-black uppercase text-primary-700 dark:text-primary">
+        Blog{" "}
+        <span aria-label="victory hand" role="img">
+          ✌️
+        </span>
+      </h2>
+
+      <div className="container mx-auto mt-5 max-w-[977px]">
+        <div className="prose prose-lg max-w-full dark:prose-dark">
+          <Component />
+        </div>
+      </div>
+    </main>
   );
 }

@@ -28,3 +28,11 @@
 
 @tailwind utilities;
 @tailwind screens;
+
+.prose img {
+  @apply rounded-xl;
+}
+
+.prose .rehype-code-title + pre {
+  @apply mt-0 rounded-t-none;
+}

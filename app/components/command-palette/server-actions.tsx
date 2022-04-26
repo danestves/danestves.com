@@ -18,7 +18,7 @@ function ServerActions() {
     const abortController = new AbortController();
     const { signal } = abortController;
     const loadContent = async (signal: AbortSignal) => {
-      const contentActions = await fetch("_content/get-kbar-actions.json");
+      const contentActions = await fetch("/_content/get-kbar-actions.json");
       const { actions } = (await contentActions.json()) as {
         actions: ServerAction[];
       };

@@ -3,10 +3,14 @@ import * as mdxBundler from "mdx-bundler/client";
 import * as React from "react";
 
 // Internals
+import { Image } from "~/components/image";
+import { Link } from "~/components/link";
 import { CodePen } from "~/components/mdx";
 
 const mdxComponents = {
   CodePen,
+  Image,
+  a: Link,
 };
 
 /**
@@ -18,7 +22,13 @@ function getMdxComponent(code: string) {
   const Component = mdxBundler.getMDXComponent(code);
 
   function KCDMdxComponent({ components, ...rest }: Parameters<typeof Component>["0"]) {
-    return <Component components={{ ...mdxComponents, ...components }} {...rest} />;
+    return (
+      <Component
+        // @ts-expect-error
+        components={{ ...mdxComponents, ...components }}
+        {...rest}
+      />
+    );
   }
 
   return KCDMdxComponent;

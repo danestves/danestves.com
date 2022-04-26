@@ -17,11 +17,34 @@ One of the most tedious things when writing posts is not writing the post itself
 
 I have already some time testing [Flyyer](https://flyyer.io) which is a _`og:image` as a service_, what this service promises us is to create `templates` with React or Vue and use them to create images based on them, in these `templates` we can pass variables with which we can build our images, for example the `title` and the `backgroundImg` of a post and we can get the following results:
 
-[![Image preview with Twitter design](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-1)](https://flyyer.io)
+<a href="https://flyyer.io">
+  <Image
+    alt="Image preview with Twitter design"
+    height={420}
+    src="/posts/how-to-create-awesome-ogimages-using-react-components/image-1.png"
+    width={608}
+  />
+</a>
 
 We can even detect if the `userAgent` is WhatsApp and generate a specific image for it:
 
-[![Preview image with WhatsApp design](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-2)](https://flyyer.io)
+<a href="https://flyyer.io">
+  <Image
+    alt="Preview image with WhatsApp design"
+    height={164}
+    responsive={[
+      {
+        size: {
+          height: 224,
+          width: 720,
+        },
+        maxWidth: 720,
+      },
+    ]}
+    src="/posts/how-to-create-awesome-ogimages-using-react-components/image-2.png"
+    width={528}
+  />
+</a>
 
 In this case as an example it is just a gray square, but we can put anything in there; thanks to the way [Flyyer](https://flyyer.io) works we can generate a different view depending on the `userAgent`, which currently supports a lot of them:
 
