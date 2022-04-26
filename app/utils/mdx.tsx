@@ -5,10 +5,11 @@ import * as React from "react";
 // Internals
 import { Image } from "~/components/image";
 import { Link } from "~/components/link";
-import { CodePen } from "~/components/mdx";
+import { CodePen, CodeSandbox } from "~/components/mdx";
 
 const mdxComponents = {
   CodePen,
+  CodeSandbox,
   Image,
   a: Link,
 };

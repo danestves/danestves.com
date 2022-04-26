@@ -1,7 +1,7 @@
 // Internals
 import { GeneralObserver } from "../general-observer";
 
-export interface ICodePenProps {
+export interface CodePenProps {
   /** CodePen id */
   codePenId: string;
   /** Height for the iFrame */
@@ -23,7 +23,7 @@ function CodePen({
   clickToLoad = false,
   editable = false,
   theme = "default",
-}: ICodePenProps) {
+}: CodePenProps) {
   return (
     <GeneralObserver height={height}>
       <iframe
