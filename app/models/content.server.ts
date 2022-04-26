@@ -55,6 +55,7 @@ export async function getContent(slug: string) {
       slug: true,
       timestamp: true,
       title: true,
+      views: true,
     },
     where: { slug, published: true },
   });
@@ -158,4 +159,11 @@ export async function deleteContent(slug: string) {
   const result = await queue.add(() => deleteSlug(slug));
 
   return result;
+}
+
+export async function upsertViews(slug: string) {
+  const queue = await getQueue();
+  const result = await queue.add(() => prisma.content.update({ where: { slug }, data: { views: { increment: 1 } } }));
+
+  return result.views ?? 0;
 }

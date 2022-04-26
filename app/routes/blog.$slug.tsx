@@ -24,6 +24,7 @@ import { getMdxPage } from "~/utils/mdx.server";
 import { getSeoMeta } from "~/utils/seo";
 import type { RootLoaderData } from "~/root";
 import type { Handle, MdxComponent } from "~/types";
+import { Views } from "~/components/views";
 
 export const handle: HandleStructuredData<LoaderData> & Handle = {
   structuredData(data) {
@@ -192,7 +193,7 @@ export default function Blog() {
                 width={1080}
               />
 
-              {/* <Views slug={slug} views={views} /> */}
+              <Views slug={data.slug} />
 
               <div className="absolute right-6 bottom-6 flex flex-1 justify-end">
                 <button
