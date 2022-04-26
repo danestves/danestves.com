@@ -13,7 +13,7 @@ export const sharpTransformer: Transformer = {
   supportedOutputs,
   transform: async (
     { data },
-    { contentType: outputContentType, width, height, fit, position, background, quality, compressionLevel, loop, delay }
+    { contentType: outputContentType, width, height, fit, position, background, quality, compressionLevel }
   ) => {
     const image = sharp(data);
 

@@ -2,11 +2,10 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
-import { Image } from "remix-image";
 
 // Internals
-import { useNextGenImageFormat } from "~/hooks/use-next-gen-image-format";
 import { formatDate } from "~/utils/date";
+import { Image } from "./image";
 import type { MdxPage } from "~/types";
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
@@ -41,9 +40,6 @@ function PostCard<T extends React.ElementType = "div">({
         alt={post.title}
         className="flex aspect-video overflow-hidden rounded-lg bg-black/10 dark:bg-white/10"
         height={1080}
-        options={{
-          contentType: useNextGenImageFormat(),
-        }}
         responsive={[
           {
             size: {

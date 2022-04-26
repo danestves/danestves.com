@@ -1,10 +1,9 @@
 // Dependencies
 import { useTranslation } from "react-i18next";
-import { Image } from "remix-image";
 
 // Internals
-import { useNextGenImageFormat } from "~/hooks/use-next-gen-image-format";
 import { Link } from "../link";
+import { Image } from "../image";
 import { Rings } from "../rings";
 import { Search } from "../search";
 
@@ -23,9 +22,6 @@ function HeroSection() {
             alt="Daniel Esteves"
             className="w-full"
             height={646}
-            options={{
-              contentType: useNextGenImageFormat(),
-            }}
             responsive={[
               {
                 size: {
