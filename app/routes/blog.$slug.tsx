@@ -147,6 +147,15 @@ export default function Blog() {
               alt={data.frontmatter.title}
               className="flex aspect-video overflow-hidden rounded-[18px] bg-primary/50 shadow"
               height={1080}
+              responsive={[
+                {
+                  size: {
+                    width: 480,
+                    height: 270,
+                  },
+                  maxWidth: 480,
+                },
+              ]}
               src={data.frontmatter.cover}
               width={1920}
             />
@@ -156,6 +165,15 @@ export default function Blog() {
                 alt="Daniel Esteves"
                 className="relative h-20 w-20 overflow-hidden rounded-full bg-black/10 drop-shadow-lg dark:bg-white/10"
                 height={1080}
+                responsive={[
+                  {
+                    size: {
+                      width: 80,
+                      height: 80,
+                    },
+                    maxWidth: 80,
+                  },
+                ]}
                 src="/me-transparent.png"
                 width={1080}
               />
