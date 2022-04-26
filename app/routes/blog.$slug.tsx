@@ -150,6 +150,13 @@ export default function Blog() {
               responsive={[
                 {
                   size: {
+                    width: 656,
+                    height: 370,
+                  },
+                  maxWidth: 656,
+                },
+                {
+                  size: {
                     width: 480,
                     height: 270,
                   },
@@ -166,6 +173,13 @@ export default function Blog() {
                 className="relative h-20 w-20 overflow-hidden rounded-full bg-black/10 drop-shadow-lg dark:bg-white/10"
                 height={1080}
                 responsive={[
+                  {
+                    size: {
+                      width: 160,
+                      height: 160,
+                    },
+                    maxWidth: 160,
+                  },
                   {
                     size: {
                       width: 80,
