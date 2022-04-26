@@ -23,7 +23,7 @@ function RenderLink(
       reloadDocument={reloadDocument}
       replace={replace}
       state={state}
-      to={hrefValue}
+      to={href ? href : to}
       {...props}
       ref={ref}
     />

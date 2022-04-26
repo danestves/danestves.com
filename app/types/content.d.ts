@@ -4,7 +4,6 @@ export type MdxComponent = {
   title: string;
   code: string;
   timestamp: Date;
-  description?: string;
 };
 
 export type MdxPage = {
