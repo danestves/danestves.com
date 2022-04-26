@@ -168,5 +168,6 @@ export async function getMdxPage({
     slug,
     timestamp: new Date(compiledPage.frontmatter.published_at ?? ""),
     title: compiledPage.frontmatter.title ?? "",
+    views: data?.views ?? 0,
   };
 }
