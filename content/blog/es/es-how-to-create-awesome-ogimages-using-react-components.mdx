@@ -17,11 +17,34 @@ Una de las cosas más tediosas al escribir posts no es escribirlo en si, es enco
 
 Tengo ya un tiempo probando [Flyyer](https://flyyer.io) el cual es un _`og:image` as a service_, lo que nos promete este servicio es crear `templates` con React o Vue y usarlos para crear imágenes en base a ellos, en estos `templates` podemos pasarle variables con los que podamos construir nuestras imágenes, por ejemplo el `title` y el `backgroundImg` de un post y podemos obtener los siguientes resultados:
 
-[![Preview de image con diseño de Twitter](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-1)](https://flyyer.io)
+<a href="https://flyyer.io">
+  <Image
+    alt="Preview de image con diseño de Twitter"
+    height={420}
+    src="/posts/how-to-create-awesome-ogimages-using-react-components/image-1.png"
+    width={608}
+  />
+</a>
 
 Inclusive podemos detectar si el `userAgent` es WhatsApp y generar una imagen específica para el:
 
-[![Preview de image con diseño de WhatsApp](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-2)](https://flyyer.io)
+<a href="https://flyyer.io">
+  <Image
+    alt="Preview de image con diseño de WhatsApp"
+    height={164}
+    responsive={[
+      {
+        size: {
+          height: 224,
+          width: 720,
+        },
+        maxWidth: 720,
+      },
+    ]}
+    src="/posts/how-to-create-awesome-ogimages-using-react-components/image-2.png"
+    width={528}
+  />
+</a>
 
 En este caso como ejemplo es solo un cuadrado gris, pero podemos meter lo que sea allí; gracias a la manera en cómo funciona [Flyyer](https://flyyer.io) podemos generar un view distinto dependiendo del `userAgent`, que actualmente son muchísimos los que soporta:
 
@@ -68,7 +91,7 @@ Ahora iniciemos creando una app de Flyyer:
 yarn create flyyer-app flyyer-tutorial
 ```
 
-Se te presentarán algunas opciones para crear la aplicación, para este tutorial seguiremos con la opción de `react-typescript-tailwind` (si aún no sabes de TypeScript te recomiendo [este post](/posts/how-typescript-enforced-cleaner-architecture-in-react-app?lng=es) donde enseño TS con React), luego de elegir esa opción le damos enter y esperamos a que se cree la carpeta con la aplicación.
+Se te presentarán algunas opciones para crear la aplicación, para este tutorial seguiremos con la opción de `react-typescript-tailwind` (si aún no sabes de TypeScript te recomiendo [este post](/blog/how-typescript-enforced-cleaner-architecture-in-react-app?lng=es) donde enseño TS con React), luego de elegir esa opción le damos enter y esperamos a que se cree la carpeta con la aplicación.
 
 !> Antes de que se termine necesitaremos una `FLYYER_KEY` para poder hacer deploy de nuestra aplicación dentro de Flyyer, para eso nos crearemos una cuenta en Flyyer y tomaremos la key de nuestra cuenta, puedes [entrar aquí](https://flyyer.com/dashboard/settings). Guarda esta llave ya que la utilizaremos más adelante.
 
@@ -156,11 +179,21 @@ Ahora para ver nuestro componente iniciamos el servidor de desarrollo con
 yarn start
 ```
 
-![Inicio de servidor de desarrollo con la terminal](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-3)
+<Image
+  alt="Inicio de servidor de desarrollo con la terminal"
+  height={342}
+  src="/posts/how-to-create-awesome-ogimages-using-react-components/image-3.png"
+  width={607}
+/>
 
 Para ver nuestro componente ingresamos a <a aria-label="Flyyer Studio" href="https://flyyer.github.io/flyyer-studio/">Flyyer Studio</a> y tendremos la siguiente pantalla
 
-![Flyyer Studio](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-4)
+<Image
+  alt="Flyyer Studio"
+  height={1001}
+  src="/posts/how-to-create-awesome-ogimages-using-react-components/image-4.png"
+  width={1156}
+/>
 
 Ahora esta grandiosa pantalla es donde tendremos refrescado automático cada vez que cambiamos algo en el componente y en donde le podemos pasar variables para ver cómo actúa nuestro componente:
 
@@ -171,7 +204,12 @@ Ahora esta grandiosa pantalla es donde tendremos refrescado automático cada vez
 | User agent | Podemos emular el agente desde donde queremos ver la imagen, por ahora tiene `default` que es el navegador y WhatsApp, pero poco a poco irán agregando más          |
 | Variables  | Y aquí se puede decir que es donde sucede la magia, es donde pasaremos todas las variables en formato JSON y jugaremos con ellas para ver cómo actúa nuestra imagen |
 
-![Flyyer Studio](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-5)
+<Image
+  alt="Flyyer Studio"
+  height={1001}
+  src="/posts/how-to-create-awesome-ogimages-using-react-components/image-5.png"
+  width={1156}
+/>
 
 Ahora vamos a crear un custom component para cuando sea la vista de WhatsApp
 
@@ -231,7 +269,12 @@ export default function MainTemplate({ agent, variables }: TemplateProps) {
 
 Con eso, ahora nos vamos a nuestro navegador y cambiamos el `User agent` a WhatsApp
 
-![Flyyer Studio con Whatsapp como agent](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-to-create-awesome-ogimages-using-react-components/image-6)
+<Image
+  alt="Flyyer Studio con Whatsapp como agent"
+  height={1001}
+  src="/posts/how-to-create-awesome-ogimages-using-react-components/image-6.png"
+  width={1156}
+/>
 
 Veremos que ahora tenemos nuestra vista de cómo se vería la imagen en WhatsApp, y así podemos personalizar como nosotros queramos la vista en WhatsApp y la vista normal. Recuerda que no únicamente tenemos solo WhatsApp, tenemos toda una lista de agents que podemos utilizar para personalizar las imágenes.
 
