@@ -25,5 +25,5 @@ model Content {
   updatedAt        DateTime @updatedAt
   published        Boolean
   requiresUpdate   Boolean? @default(false)
-  views            Int?     @default(0)
+  views            Int?     @default(1)
 }
