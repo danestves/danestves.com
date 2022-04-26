@@ -45,9 +45,7 @@ async function compileMdxImpl<FrontmatterType extends Record<string, unknown>>({
 }) {
   const { default: rehypeAutolinkHeadings } = await import("rehype-autolink-headings");
   const { default: rehypeCodeTitles } = await import("rehype-code-titles");
-  const { default: rehypeImageLazyLoading } = await import("rehype-plugin-image-native-lazy-loading");
   const { default: rehypePrism } = await import("rehype-prism-plus");
-  const { default: rehypeProbeImageSize } = await import("rehype-probe-image-size");
   const { default: rehypeSlug } = await import("rehype-slug");
   const { default: remarkGfm } = await import("remark-gfm");
   // @ts-ignore - remark-hint is not typed
@@ -74,12 +72,9 @@ async function compileMdxImpl<FrontmatterType extends Record<string, unknown>>({
     const { code, frontmatter } = await bundleMDX({
       source: indexFile.content,
       files: filesObject,
-      // @ts-ignore - rehype-plugin-image-native-lazy-loading and rehype-probe-image-size are not correctly typed
       mdxOptions: (options) => ({
         rehypePlugins: [
           ...(options.rehypePlugins ?? []),
-          rehypeImageLazyLoading,
-          [rehypeProbeImageSize, { staticDir: "public" }],
           rehypeSlug,
           [rehypeAutolinkHeadings, { behavior: "wrap" }],
           rehypeCodeTitles,
