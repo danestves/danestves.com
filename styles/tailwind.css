@@ -24,13 +24,19 @@
 }
 
 @tailwind components;
+
+@layer components {
+  .prose-lg :where(pre):not(:where([class~="not-prose"] *)) {
+    border-radius: 18px;
+  }
+}
 /* purgecss end ignore */
 
 @tailwind utilities;
 @tailwind screens;
 
 .prose img {
-  @apply rounded-xl;
+  border-radius: 18px;
 }
 
 .prose .rehype-code-title + pre {

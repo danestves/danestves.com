@@ -134,7 +134,7 @@ export default function Blog() {
 
   return (
     <main className="w-full py-32">
-      <h2 className="text-center text-[26px] font-black uppercase text-primary-700 dark:text-primary">
+      <h2 className="text-center text-[26px] font-black uppercase text-primary-light dark:text-primary">
         Blog{" "}
         <span aria-label="victory hand" role="img">
           ✌️
@@ -210,8 +210,8 @@ export default function Blog() {
             </div>
           </div>
           <div className="col-span-12 space-y-4 md:col-span-5">
-            <h1 className="text-2xl font-bold text-primary">{data.title}</h1>
-            <p className="text-xs font-bold text-secondary">
+            <h1 className="text-2xl font-bold text-primary-light dark:text-primary">{data.title}</h1>
+            <p className="text-xs font-bold text-secondary-700 dark:text-secondary">
               {t("published")}{" "}
               <time dateTime={new Date(data.frontmatter.published_at!).toISOString()}>
                 {formatDate({

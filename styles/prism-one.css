@@ -88,8 +88,8 @@ pre {
   background-color: var(--syntax-bg);
   border-bottom-width: 1px;
   border-color: rgba(55, 65, 81, 1);
-  border-top-left-radius: 0.375rem;
-  border-top-right-radius: 0.375rem;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
   color: var(--syntax-fg);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem /* 14px */;
@@ -189,13 +189,13 @@ pre[class*="language-"] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
-  border-radius: 0.3em;
+  border-radius: 18px;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
   padding: 0.2em 0.3em;
-  border-radius: 0.3em;
+  border-radius: 18px;
   white-space: normal;
 }
 

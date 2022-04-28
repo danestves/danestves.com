@@ -38,7 +38,7 @@ function PostCard<T extends React.ElementType = "div">({
     <Wrapper {...props}>
       <Image
         alt={post.title}
-        className="flex aspect-video overflow-hidden rounded-lg bg-black/10 dark:bg-white/10"
+        className="flex aspect-video rounded-2xl bg-black/10 dark:bg-white/10"
         height={1080}
         responsive={[
           {
@@ -70,7 +70,7 @@ function PostCard<T extends React.ElementType = "div">({
           })}
         </time>
       </p>
-      <h2 className="mt-[6px] text-xl font-bold text-primary-700 dark:text-primary">{post.title}</h2>
+      <h2 className="mt-[6px] text-xl font-bold text-primary-light dark:text-primary">{post.title}</h2>
       <p className={clsx("mt-[6px] text-xs font-semibold text-[#838383]", descriptionClassName)}>
         {post?.seo?.description}
       </p>

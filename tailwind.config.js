@@ -20,6 +20,7 @@ module.exports = {
           700: "#13678B",
           800: "#0D465E",
           900: "#06212D",
+          light: "#071D49",
           DEFAULT: "#29ABE2",
         },
         secondary: {
@@ -55,8 +56,8 @@ module.exports = {
         DEFAULT: {
           css: {
             "--tw-prose-body": theme("colors.body.DEFAULT"),
-            "--tw-prose-headings": theme("colors.primary[700]"),
-            "--tw-prose-links": theme("colors.primary[700]"),
+            "--tw-prose-headings": theme("colors.primary.light"),
+            "--tw-prose-links": theme("colors.primary.light"),
             "--tw-prose-counters": theme("colors.body.DEFAULT"),
             "--tw-prose-pre-code": "var(--syntax-fg)",
             "--tw-prose-pre-bg": "var(--syntax-bg)",

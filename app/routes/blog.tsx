@@ -54,7 +54,7 @@ export default function BlogPage() {
 
   return (
     <main className="w-full py-32">
-      <h1 className="text-center text-[26px] font-black uppercase text-primary-700 dark:text-primary">
+      <h1 className="text-center text-[26px] font-black uppercase text-primary-light dark:text-primary">
         Blog{" "}
         <span aria-label="victory hand" role="img">
           ✌️

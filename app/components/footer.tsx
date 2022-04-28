@@ -63,7 +63,7 @@ function Footer() {
           {links.map(({ name, to, prefetch, ...link }) => (
             <li key={nanoid()}>
               <NavLink
-                className="text-xs font-semibold uppercase leading-3 text-body transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary-700 hover:text-primary-700 dark:text-body-dark dark:focus-within:outline-secondary dark:hover:text-primary"
+                className="text-xs font-semibold uppercase leading-3 text-body transition-colors duration-100 focus-within:rounded-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary-700 hover:text-primary-light dark:text-body-dark dark:focus-within:outline-secondary dark:hover:text-primary"
                 prefetch={prefetch}
                 to={to}
                 {...link}

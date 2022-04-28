@@ -28,3 +28,4 @@ export interface NavLinkProps extends RemixNavLinkProps {
 
 export * from "./content";
 export * from "./github";
+export * from "./youtube";
