@@ -1,0 +1,44 @@
+/* purgecss start ignore */
+@tailwind base;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* clears the 'X' from Internet Explorer */
+  input[type="search"]::-ms-clear,
+  input[type="search"]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* clears the 'X' from Chrome */
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+@tailwind components;
+
+@layer components {
+  .prose-lg :where(pre):not(:where([class~="not-prose"] *)) {
+    border-radius: 18px;
+  }
+}
+/* purgecss end ignore */
+
+@tailwind utilities;
+@tailwind screens;
+
+.prose img {
+  border-radius: 18px;
+}
+
+.prose .rehype-code-title + pre {
+  @apply mt-0 rounded-t-none;
+}

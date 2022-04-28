@@ -1,0 +1,42 @@
+name: 🌀 Refresh all content
+on:
+  workflow_dispatch:
+
+jobs:
+  refresh-cache:
+    name: 🌟 Refresh Content
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' }}
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: "50"
+
+      - name: 🛠 Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: 👀 Read app name
+        uses: SebRollen/toml-action@v1.0.0
+        id: app_name
+        with:
+          file: "fly.toml"
+          field: "app"
+
+      - name: Set environment variables
+        run: |
+          if [[ ${{ github.ref == 'refs/heads/dev' }} ]]; then
+            echo "FLY_APP_NAME=${{ steps.app_name.outputs.value }}-staging" >> $GITHUB_ENV
+          else
+            echo "FLY_APP_NAME=${{ steps.app_name.outputs.value }}" >> $GITHUB_ENV
+          fi
+
+      - name: 💿 Refresh all Content
+        run: node ./other/refresh-all-content.js
+        env:
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}

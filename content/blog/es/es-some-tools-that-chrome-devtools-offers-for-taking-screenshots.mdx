@@ -1,0 +1,204 @@
+---
+title: "¿Cómo hacer capturas de pantalla con Google Chrome DevTools?"
+cover: "/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/banner.png"
+published: true
+published_at: "02-05-2020"
+tags: ["Herramientas"]
+seo:
+  {
+    title: "¿Cómo hacer capturas de pantalla con Google Chrome DevTools?",
+    description: "Descubre cómo utilizar las herramientas de Google Chrome para realizar fácilmente capturas de pantalla de sitios web o de cualquier otra página web.",
+  }
+---
+
+## ¿Sabías que podemos tomar capturas desde el navegador sin extensiones?
+
+Normalmente cuando necesitamos sacar capturas de sitios web tipo full-size de todo el sitio o queremos capturar una zona en particular usamos herramientas como:
+
+- [Lightshot](https://prnt.sc/)
+- [FireShot](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg?hl=es)
+- Viejo y confiable Paint con la tecla de PrtScn 🧙‍♂️
+- Entre otros
+
+Pero ahora Chrome DevTools nos brinda una mejor manera de realizar este tipo de capturas de pantalla para cualquier propósito 🤩.
+
+Primero te explicaré para qué sirve Chrome DevTools (y las DevTools de otros navegadores en general):
+
+- Puedes inspeccionar el código de un sitio web para personalizarlo y moverlo a gusto para hacer ediciones más rápidas y luego pasar al código 🖌
+- Podemos ver en la consola si hay algún error con nuestro código o poder hacer debug de movimientos de nuestra aplicación o sitio ⚠️
+- Podemos ver en la pestaña de "Network" todas las solicitudes que hace nuestro sitio sobre imágenes, estilos, scripts y mucho más 📶
+- Inclusivo desde el DevTools podemos ver la página en diferentes dispositivos como 4K, Laptop, iPad, iPhone y mucho más 📱
+
+Pero en este preciso post vamos a hablar sobre las capturas de pantalla, en otros post vamos a abordar más a fondo cómo podemos sacarle provecho a esta asombrosa herramienta que nos brindan los navegadores.
+
+## ¿Cómo abrir el Chrome DevTools?
+
+Abrimos nuestro navegador Chrome y presionamos lo siguiente:
+
+- **En Mac:** fn + F12
+- **En Windows:** F12
+- **En Linux:** F12
+
+Nos encontraremos con esta ventana que se abre en la página que deseemos:
+
+<Image
+  alt="Captura de pantalla de danestves.com con consola del navegador abierta"
+  height={899}
+  responsive={[
+    {
+      size: {
+        width: 1920,
+        height: 899,
+      },
+      maxWidth: 1920,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-1.png"
+  width={1920}
+/>
+
+Como podremos ver a la izquierda se visualiza el código y a la derecha podemos ver las clases que tiene el elemento el cual podemos modificar cualquier CSS que queramos, cambiando colores, tamaños y todo lo que se nos ocurra directamente desde el navegador; en posteriores posts voy a comentar como hago para maquetar sitios usando primero el DevTools y después yéndome a código.
+
+Ahora nos vamos a parar en cualquier elemento usando el mouse y podremos ver todas sus propiedades.
+
+## ¿Cómo sacar capturas de pantalla?
+
+Ahora que tenemos seleccionado algún elemento, en mi caso la parte del texto con botones del inicio de mi página
+
+<Image
+  alt="Captura de pantalla de danestves.com con una sección seleccionada y consola de navegador abierta"
+  height={513}
+  responsive={[
+    {
+      size: {
+        width: 1920,
+        height: 513,
+      },
+      maxWidth: 1920,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-2.png"
+  width={1920}
+/>
+
+Vamos a apretar las siguientes teclas:
+
+- **En Mac:** ⌘ + Shift + P
+- **En Windows:** Ctrl + Shift + P
+- **En Linux:** Ctrl + Shift + P
+
+Esto nos abrirá las siguiente opciones:
+
+<Image
+  alt="Captura de pantalla de comandos de consola de Google Chrome"
+  height={410}
+  responsive={[
+    {
+      size: {
+        width: 710,
+        height: 410,
+      },
+      maxWidth: 710,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-3.png"
+  width={710}
+/>
+
+Ahora vamos a proceder a escribir "screenshot":
+
+<Image
+  alt="Captura de pantalla de comandos de consola de Google Chrome"
+  height={336}
+  responsive={[
+    {
+      size: {
+        width: 832,
+        height: 336,
+      },
+      maxWidth: 832,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-4.png"
+  width={832}
+/>
+
+Con el elemento que ya está seleccionado y el comando que hemos escrito vamos a darle click a la opción que dice "Capture node screenshot" y obtendríamos algo así:
+
+<Image
+  alt="Captura de pantalla de sección de la página web danestves.com"
+  height={249}
+  responsive={[
+    {
+      size: {
+        width: 590,
+        height: 249,
+      },
+      maxWidth: 590,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-5.png"
+  width={590}
+/>
+
+¿Mágico no? Sin instalar nada podremos tomar fotos de exactamente cómo se ve una sección de un website para mostrar. Ahora exploremos las demás secciones:
+
+- Capture area screenshot, nos deja elegir en proporciones cómo queremos sacar nuestra captura de pantalla:
+
+<Image
+  alt="Captura de pantalla vertical del sitio web danestves.com"
+  height={490}
+  responsive={[
+    {
+      size: {
+        width: 125,
+        height: 490,
+      },
+      maxWidth: 125,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-6.png"
+  width={125}
+/>
+
+- Capture full size screenshot, nos permite tomar una captura de todo el sitio web, ojo nos tomará la captura dependiendo del ancho que tengamos la pantalla en ese momento:
+
+<Image
+  alt="Captura de pantalla de tipo full size del sitio web danestves.com"
+  height={2647}
+  responsive={[
+    {
+      size: {
+        width: 1091,
+        height: 2647,
+      },
+      maxWidth: 1091,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-7.png"
+  width={1091}
+/>
+
+- Capture screenshot, nos permite tomar una captura del área visible de la página en ese momento:
+
+<Image
+  alt="Captura de pantalla del área visible del sitio web danestves.com"
+  height={842}
+  responsive={[
+    {
+      size: {
+        width: 1091,
+        height: 842,
+      },
+      maxWidth: 1091,
+    },
+  ]}
+  src="/posts/some-tools-that-chrome-devtools-offers-for-taking-screenshots/image-8.png"
+  width={1091}
+/>
+
+Genial! Ahora tenemos una manera de sacar capturas de sitios web sin necesidad de instalar nada y sacándole provecho a nuestro navegador 😎
+
+Si tienes alguna duda no olvides que acá abajo hay una sección de discusiones en dónde te puedo ayudar con cualquier problema que tengas siguiendo este post
+
+Ya saben, **los veo en el código** 👨‍💻

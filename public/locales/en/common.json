@@ -1,0 +1,30 @@
+{
+  "header": {
+    "switcher": {
+      "language": {
+        "text": "Hello"
+      },
+      "theme": {
+        "dark": "switch to light mode",
+        "light": "switch to dark mode"
+      }
+    }
+  },
+  "components": {
+    "post-card": {
+      "published": "Published at"
+    },
+    "search": {
+      "button": {
+        "label": "Search on this site"
+      }
+    },
+    "views": {
+      "plural": "views",
+      "singular": "view"
+    }
+  },
+  "footer": {
+    "copyright": "All rights reserved."
+  }
+}

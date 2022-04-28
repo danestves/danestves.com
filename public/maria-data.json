@@ -1,0 +1,500 @@
+[
+  {
+    "type": "p",
+    "content": "Hice este regalo porque quiero expresarte a mi manera lo que yo siento por ti."
+  },
+  {
+    "type": "p",
+    "content": "En este punto ya sabes bien lo mucho que te quiero y lo mucho que te adoro, pero quiero que exploremos desde el primer momento en que empezamos a hablar, ¿te parece? 💙"
+  },
+  {
+    "type": "img",
+    "height": 910,
+    "responsive": [
+      {
+        "size": {
+          "width": 656,
+          "height": 910
+        },
+        "maxWidth": 656
+      }
+    ],
+    "src": "/maria/first-chat.png",
+    "width": 656
+  },
+  {
+    "type": "p",
+    "content": "17 de octubre de 2021, nuestro primer chat. Empezamos a hablar por responderte una historia sobre una publicidad de tu tienda en TikTok, ¿quieres que te diga algo? Me costó un mundo poder hacerlo, pero me gustó mucho y me encantó."
+  },
+  {
+    "type": "img",
+    "height": 1792,
+    "responsive": [
+      {
+        "size": {
+          "width": 828,
+          "height": 1792
+        },
+        "maxWidth": 828
+      }
+    ],
+    "src": "/maria/first-whatsapp-chat.jpg",
+    "width": 828
+  },
+  {
+    "type": "p",
+    "content": "29 de octubre de 2021, nuestro segundo chat por WhatsApp. Ese día muy ilusionado porque obtuve tu número, la persona que me llamaba la atención."
+  },
+  {
+    "type": "p",
+    "content": "Después de mucho hablar, compartir fotos lindas, conocernos un poco más; ya en enero sabíamos que ambos nos atraíamos, pero nunca dijimos nada."
+  },
+  {
+    "type": "hr"
+  },
+  {
+    "type": "p",
+    "content": "Luego de hablar bastante y tratar de concretar algo el 30 de enero de 2021 fue nuestra primera cita, fuimos al cine y fue una experiencia maravillosa."
+  },
+  {
+    "type": "img",
+    "height": 3024,
+    "responsive": [
+      {
+        "size": {
+          "width": 504,
+          "height": 378
+        },
+        "maxWidth": 504
+      }
+    ],
+    "src": "/maria/first-date-1.jpg",
+    "width": 4032
+  },
+  {
+    "type": "img",
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 504,
+          "height": 378
+        },
+        "maxWidth": 504
+      }
+    ],
+    "src": "/maria/first-date-2.jpg",
+    "width": 4032
+  },
+  {
+    "type": "img",
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 504,
+          "height": 378
+        },
+        "maxWidth": 504
+      }
+    ],
+    "src": "/maria/first-date-3.jpg",
+    "width": 4032
+  },
+  {
+    "type": "p",
+    "content": "Ese día ambos estábamos muy nerviosos, ¿pero sabes que paso ese día? Fue el día en el que nos agarramos de manos, y nos sentimos muy felices. A pesar de que estabas tan nerviosa, creo que te pude transmitir mi calma y la tranquilidad que tenía yo."
+  },
+  {
+    "type": "p",
+    "content": "Luego de eso nuestras conversaciones fueron incrementando aún más, empezamos a tener un poco más de confianza el uno del otro y empezamos a hablar de todo lo que nos pasó."
+  },
+  {
+    "type": "hr"
+  },
+  {
+    "type": "p",
+    "content": "Poco después, el 20 de febrero de 2021, nuestra segunda cita, el día que conocia a la locura de Tina 😂."
+  },
+  {
+    "type": "img",
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1158,
+          "height": 1544
+        },
+        "maxWidth": 1158
+      }
+    ],
+    "src": "/maria/second-date-1.jpg",
+    "width": 2316
+  },
+  {
+    "type": "img",
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1158,
+          "height": 1544
+        },
+        "maxWidth": 1158
+      }
+    ],
+    "src": "/maria/second-date-2.jpg",
+    "width": 2316
+  },
+  {
+    "type": "img",
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1158,
+          "height": 1544
+        },
+        "maxWidth": 1158
+      }
+    ],
+    "src": "/maria/second-date-3.jpg",
+    "width": 2316
+  },
+  {
+    "type": "img",
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1158,
+          "height": 1544
+        },
+        "maxWidth": 1158
+      }
+    ],
+    "src": "/maria/second-date-4.jpg",
+    "width": 2316
+  },
+  {
+    "type": "img",
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1158,
+          "height": 1544
+        },
+        "maxWidth": 1158
+      }
+    ],
+    "src": "/maria/second-date-5.jpg",
+    "width": 2316
+  },
+  {
+    "type": "p",
+    "content": "Ese día estuvimos un poco más juntos, muchos besos en el cachete, muchos abrazos, nos reímos muchísimo jugando a Mario Kart y en la maquinita que nunca me dió el peluche 😠."
+  },
+  {
+    "type": "p",
+    "content": "También ese día conocí a Tina tu prima, lo que no sabía es que también la iba a llegar a querer, a pesar de estar bien loquita es una amiga bien genial y fue bueno conocerla. Nos reímos muchísimo ese día."
+  },
+  {
+    "type": "p",
+    "content": "Luego de nuestra segunda cita empezamos a tocar temas mas profundos, te hablé sobre mi ansiedad, mi TDAH y los periodos de depresión que tenía; lo mucho que me hacía falta mi papá y lo que me dolía recordar que ya no está aquí, ¿sabes que obtuve de ti? Muchísimo apoyo, muchísimo amor, comprendiste todo lo que te dije y en ese momento entendí que <strong>eras tu</strong>, tu eras <strong>la indicada</strong> y la persona que estaba buscando."
+  },
+  { "type": "hr" },
+  {
+    "type": "p",
+    "content": "Nuestra tercera cita fue una de las más especiales. Ese día pasaron varias cosas: <strong>nos besamos por primera vez</strong>, hablamos de cómo queríamos una relación y aprendiste a usar los palillos chinos 🍾🎉🎊🥳"
+  },
+  {
+    "type": "img",
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 756,
+          "height": 1008
+        },
+        "maxWidth": 756
+      }
+    ],
+    "src": "/maria/third-date-1.jpg",
+    "width": 3024
+  },
+  {
+    "type": "img",
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 756,
+          "height": 1008
+        },
+        "maxWidth": 756
+      }
+    ],
+    "src": "/maria/third-date-2.jpg",
+    "width": 3024
+  },
+  {
+    "type": "img",
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 756,
+          "height": 1008
+        },
+        "maxWidth": 756
+      }
+    ],
+    "src": "/maria/third-date-3.jpg",
+    "width": 3024
+  },
+  {
+    "type": "img",
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 756,
+          "height": 1008
+        },
+        "maxWidth": 756
+      }
+    ],
+    "src": "/maria/third-date-4.jpg",
+    "width": 3024
+  },
+  {
+    "type": "img",
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1008,
+          "height": 756
+        },
+        "maxWidth": 1008
+      }
+    ],
+    "src": "/maria/third-date-5.jpg",
+    "width": 4032
+  },
+  {
+    "type": "img",
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1008,
+          "height": 756
+        },
+        "maxWidth": 1008
+      }
+    ],
+    "src": "/maria/third-date-6.jpg",
+    "width": 4032
+  },
+  {
+    "type": "p",
+    "content": "Esa tercera cita fue demasiado hermosa, y creo que fue el escalón que necesitábamos para saber que podíamos confiar más el uno del otro, nos sentimos más compaginados sobre lo que queríamos en una relación y nos hizo acercarnos aún más el uno del otro."
+  },
+  {
+    "type": "p",
+    "content": "Para mi fue un día extremadamente especial, porque fue el día de nuestro primer beso y uno de los sellos para saber que queríamos algo en serio."
+  },
+  {
+    "type": "hr"
+  },
+  {
+    "type": "p",
+    "content": "Ahora se viene la cita por la cual se selló por completo que queríamos tener una relación juntos, el 13 de marzo de 2021, el día que nos fuimos a la Colonia Tovar."
+  },
+  {
+    "type": "p",
+    "content": "Este día fue crucial para nosotros, tuvimos muchísimos puntos en el que estuvimos solos y pudimos sentarnos a hablar y a partir de allí supimos que queríamos tener una relación, nos ibamos a seguir conociendo, pero ya sabíamos que nos gustábamos y queríamos tener algo juntos."
+  },
+  {
+    "type": "img",
+    "height": 772,
+    "responsive": [
+      {
+        "size": {
+          "width": 579,
+          "height": 772
+        },
+        "maxWidth": 579
+      }
+    ],
+    "src": "/maria/fourth-date-1.jpg",
+    "width": 579
+  },
+  {
+    "type": "img",
+    "height": 1008,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 756,
+          "height": 1008
+        },
+        "maxWidth": 756
+      }
+    ],
+    "src": "/maria/fourth-date-2.jpg",
+    "width": 756
+  },
+  {
+    "type": "img",
+    "height": 756,
+    "options": {
+      "rotate": 180
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1008,
+          "height": 756
+        },
+        "maxWidth": 1008
+      }
+    ],
+    "src": "/maria/fourth-date-3.jpg",
+    "width": 1008
+  },
+  {
+    "type": "img",
+    "height": 1008,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 756,
+          "height": 1008
+        },
+        "maxWidth": 756
+      }
+    ],
+    "src": "/maria/fourth-date-4.jpg",
+    "width": 756
+  },
+  {
+    "type": "img",
+    "height": 756,
+    "options": {
+      "rotate": 180
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 1008,
+          "height": 756
+        },
+        "maxWidth": 1008
+      }
+    ],
+    "src": "/maria/fourth-date-5.jpg",
+    "width": 1008
+  },
+  {
+    "type": "img",
+    "height": 1008,
+    "options": {
+      "rotate": 90
+    },
+    "responsive": [
+      {
+        "size": {
+          "width": 756,
+          "height": 1008
+        },
+        "maxWidth": 756
+      }
+    ],
+    "src": "/maria/fourth-date-6.jpg",
+    "width": 756
+  },
+  {
+    "type": "p",
+    "content": "Este día fue el día en el que de verdad nos sentimos una pareja, riendo, compartiendo, tomando fotos o simplemente estar abrazados viendo las hermosas vistas de la montaña y disfrutar el tiempo juntos."
+  },
+  {
+    "type": "p",
+    "content": "Se que aún faltan otras citas que pasamos y otras fotos, pero pienso dentro de mi que estas citas fue lo que en realidad forjó lo que somos hoy en día, la forma en la que nos tratamos y lo que queremos juntos."
+  },
+  {
+    "type": "p",
+    "content": "Hace poco pasó lo de tu papá, y en ese momento empecé a hacerte sentir que yo estaba ahí para apoyarte, para ayudarte en lo que necesites, mover contactos, estar despierto contigo, lo que fuera, con tal de que te sintieras completamente acompañada."
+  },
+  {
+    "type": "p",
+    "content": "Porque no solamente yo voy a estar en los momentos buenos, porque en los momentos buenos está cualquiera, también en los malos que es donde te das cuenta de verdad quien tienes a tu lado."
+  },
+  {
+    "type": "p",
+    "content": "Por ti empecé a hacer ejercicio y mejorar mi salud tanto mental como física, y es una de las cosas más maravillosas que me ha pasado; en serio no puedo creer que por mi propia voluntad me pare a las 7-8AM a salir a caminar 😳"
+  },
+  {
+    "type": "p",
+    "content": "También hemos empezado a vernos más seguido haciendo ejercicio en las mañanas en el parque y compartir juntos, y creo que ese punto es lo que nos ha vuelto más unidos y hemos estado más felices, amo de verdad vivir tan cerca de ti."
+  },
+  {
+    "type": "p",
+    "content": "Por esto y mucho más que solo tu y yo sabemos <strong>Maria Emilia Marcano Mora</strong>, quiero preguntarte lo siguiente:"
+  },
+  {
+    "type": "h2",
+    "content": "Maria Emilia Marcano Mora, ¿quieres ser mi novia?"
+  },
+  {
+    "type": "h2",
+    "content": "Porque contigo quiero todo, y nada a medias 💙"
+  }
+]

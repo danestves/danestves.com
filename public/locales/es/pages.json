@@ -1,0 +1,57 @@
+{
+  "index": {
+    "seo": {
+      "title": "Daniel Esteves",
+      "description": "Daniel Esteves es un geek al que le encanta leer cómics y que trabaja como frontend engineer, speaker y profesor con años de experiencia en la construcción, creación y optimización de web applications."
+    }
+  },
+  "about": {
+    "seo": {
+      "title": "Sobre Daniel Esteves 📑",
+      "description": "Me encanta programar, pero soy curioso. Cada día intento ser mejor en algo y por eso sigo aprendiendo, para mejorar una habilidad o aprender una nueva."
+    },
+    "title": "Sobre mí",
+    "paragraphs": [
+      "Desde pequeño me he interesado por la informática empezando por los videojuegos, cada vez que jugaba sentía la necesidad de saber cómo está funcionamiento y cómo mi personaje hace cualquier movimiento",
+      "Cuando llegué al instituto empecé a investigar sobre informática y me interesé por cómo se construyen los sitios web sobre todas las redes sociales, me gustaba la idea de que cuando un usuario seleccionaba un menú mostraba más opciones y animaciones, y eso fue lo que me hizo enamorarme del desarrollo web.",
+      "Empecé desde los dieciséis años a trabajar y aprender del frontend, la parte visual de la web; hoy me considero un fullstack porque gracias a los conocimientos que he adquirido puedo construir aplicaciones desde vistas hasta bases de datos y rutas. Me gusta aprender cada día más, integrar nuevas tecnologías y contribuir a nuevos proyectos para mejorar la productividad."
+    ],
+    "buttons": ["LinkedIn", "Ver CV"]
+  },
+  "contact": {
+    "seo": {
+      "title": "Contáctame 📧",
+      "description": "Estoy disponible para trabajos independientes, colaboraciones o simplemente para saludar. Si quieres ponerte en contacto conmigo, rellena el siguiente formulario."
+    },
+    "form": {
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Nick Fury"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "nick.fury@shield.com"
+      },
+      "subject": {
+        "label": "Asunto",
+        "placeholder": "Daniel, ¿has escuchado de la Iniciativa Vengadores 🦸‍♂️?"
+      },
+      "message": {
+        "label": "Mensaje",
+        "placeholder": "Surgió una idea, y Stark la conoce. Llamada la Iniciativa Vengadores. La idea era buscar y reunir a un grupo de personas excepcionales, y tratar de convertirlas en algo más. Ver si podían unirse cuando necesitáramos que libraran las batallas que no podríamos ganar...",
+        "caption": "Puedes usar Markdown para formatear tu mensaje"
+      },
+      "submit": {
+        "label": "Enviar",
+        "sending": "Enviando..."
+      },
+      "success": "Gracias por contactarte conmigo, me pondré en contacto contigo lo antes posible."
+    }
+  },
+  "posts": {
+    "seo": {
+      "title": "El jardín digital 🌱 de Daniel Esteves",
+      "description": "Lee sobre desarrollo web, aplicaciones web, React, Vue, JavaScript, TypeScript, Tailwind, y mucho más en el blog de Daniel Esteves."
+    }
+  }
+}

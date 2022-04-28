@@ -1,0 +1,29 @@
+{
+  "contactForm": [
+    "There was a problem sending your email",
+    "But don't worry, I have notified Daniel about it.",
+    "If the problem persists, please",
+    "contact me on Twitter"
+  ],
+  "name": {
+    "errors": {
+      "nonempty": "Please enter your name"
+    }
+  },
+  "email": {
+    "errors": {
+      "nonempty": "Please enter your email",
+      "email": "Please enter a valid email"
+    }
+  },
+  "subject": {
+    "errors": {
+      "nonempty": "Please enter a subject"
+    }
+  },
+  "message": {
+    "errors": {
+      "nonempty": "Please enter a message"
+    }
+  }
+}
