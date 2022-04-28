@@ -49,11 +49,12 @@ type LoaderData = {
   richtext: Array<Record<string, unknown>>;
 };
 
-export const loader: LoaderFunction = async () => {
-  const data = await import("public/maria-data.json");
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+  const data = await fetch(`${url.origin}/maria-data.json`).then((res) => res.json());
 
   return json<LoaderData>({
-    richtext: data.default,
+    richtext: data,
   });
 };
 
@@ -84,7 +85,7 @@ export default function MariaPage() {
                   alt="María Emilia Marcano Mora, ¿quieres ser mi novia?"
                   className="h-auto w-full rounded-[18px]"
                   key={index}
-                  loading={index !== 0 ? "lazy" : undefined}
+                  loading={index !== 2 ? "lazy" : undefined}
                 />
               );
             default:
