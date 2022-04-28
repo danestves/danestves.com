@@ -31,10 +31,17 @@ function VideosSection(props: Videos) {
                       responsive={[
                         {
                           size: {
-                            width: 1280,
-                            height: 720,
+                            width: 640,
+                            height: 360,
                           },
-                          maxWidth: 1280,
+                          maxWidth: 640,
+                        },
+                        {
+                          size: {
+                            width: 320,
+                            height: 180,
+                          },
+                          maxWidth: 320,
                         },
                       ]}
                       src={video.snippet.thumbnails.maxres.url}
