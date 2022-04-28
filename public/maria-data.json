@@ -9,18 +9,18 @@
   },
   {
     "type": "img",
-    "height": 455,
+    "height": 910,
     "responsive": [
       {
         "size": {
-          "width": 328,
-          "height": 455
+          "width": 656,
+          "height": 910
         },
-        "maxWidth": 328
+        "maxWidth": 656
       }
     ],
     "src": "/maria/first-chat.png",
-    "width": 328
+    "width": 656
   },
   {
     "type": "p",
@@ -58,8 +58,7 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-180",
-    "height": 378,
+    "height": 3024,
     "responsive": [
       {
         "size": {
@@ -70,12 +69,14 @@
       }
     ],
     "src": "/maria/first-date-1.jpg",
-    "width": 504
+    "width": 4032
   },
   {
     "type": "img",
-    "className": "transform rotate-180",
-    "height": 378,
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
     "responsive": [
       {
         "size": {
@@ -86,12 +87,14 @@
       }
     ],
     "src": "/maria/first-date-2.jpg",
-    "width": 504
+    "width": 4032
   },
   {
     "type": "img",
-    "className": "transform rotate-180",
-    "height": 378,
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
     "responsive": [
       {
         "size": {
@@ -102,7 +105,7 @@
       }
     ],
     "src": "/maria/first-date-3.jpg",
-    "width": 504
+    "width": 4032
   },
   {
     "type": "p",
@@ -121,83 +124,93 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 772,
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 579,
-          "height": 772
+          "width": 1158,
+          "height": 1544
         },
-        "maxWidth": 579
+        "maxWidth": 1158
       }
     ],
     "src": "/maria/second-date-1.jpg",
-    "width": 579
+    "width": 2316
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 772,
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 579,
-          "height": 772
+          "width": 1158,
+          "height": 1544
         },
-        "maxWidth": 579
+        "maxWidth": 1158
       }
     ],
     "src": "/maria/second-date-2.jpg",
-    "width": 579
+    "width": 2316
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 772,
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 579,
-          "height": 772
+          "width": 1158,
+          "height": 1544
         },
-        "maxWidth": 579
+        "maxWidth": 1158
       }
     ],
     "src": "/maria/second-date-3.jpg",
-    "width": 579
+    "width": 2316
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 772,
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 579,
-          "height": 772
+          "width": 1158,
+          "height": 1544
         },
-        "maxWidth": 579
+        "maxWidth": 1158
       }
     ],
     "src": "/maria/second-date-4.jpg",
-    "width": 579
+    "width": 2316
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 772,
+    "height": 3088,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 579,
-          "height": 772
+          "width": 1158,
+          "height": 1544
         },
-        "maxWidth": 579
+        "maxWidth": 1158
       }
     ],
     "src": "/maria/second-date-5.jpg",
-    "width": 579
+    "width": 2316
   },
   {
     "type": "p",
@@ -218,99 +231,111 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 504,
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 378,
-          "height": 504
+          "width": 756,
+          "height": 1008
         },
-        "maxWidth": 378
+        "maxWidth": 756
       }
     ],
     "src": "/maria/third-date-1.jpg",
-    "width": 378
+    "width": 3024
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 504,
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 378,
-          "height": 504
+          "width": 756,
+          "height": 1008
         },
-        "maxWidth": 378
+        "maxWidth": 756
       }
     ],
     "src": "/maria/third-date-2.jpg",
-    "width": 378
+    "width": 3024
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 504,
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 378,
-          "height": 504
+          "width": 756,
+          "height": 1008
         },
-        "maxWidth": 378
+        "maxWidth": 756
       }
     ],
     "src": "/maria/third-date-3.jpg",
-    "width": 378
+    "width": 3024
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
-    "height": 504,
+    "height": 4032,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
-          "width": 378,
-          "height": 504
+          "width": 756,
+          "height": 1008
         },
-        "maxWidth": 378
+        "maxWidth": 756
       }
     ],
     "src": "/maria/third-date-4.jpg",
-    "width": 378
+    "width": 3024
   },
   {
     "type": "img",
-    "className": "transform rotate-180",
-    "height": 504,
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
     "responsive": [
       {
         "size": {
-          "width": 378,
-          "height": 504
+          "width": 1008,
+          "height": 756
         },
-        "maxWidth": 378
+        "maxWidth": 1008
       }
     ],
     "src": "/maria/third-date-5.jpg",
-    "width": 378
+    "width": 4032
   },
   {
     "type": "img",
-    "className": "transform rotate-180",
-    "height": 504,
+    "height": 3024,
+    "options": {
+      "rotate": 180
+    },
     "responsive": [
       {
         "size": {
-          "width": 378,
-          "height": 504
+          "width": 1008,
+          "height": 756
         },
-        "maxWidth": 378
+        "maxWidth": 1008
       }
     ],
     "src": "/maria/third-date-6.jpg",
-    "width": 378
+    "width": 4032
   },
   {
     "type": "p",
@@ -348,8 +373,10 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
     "height": 1008,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
@@ -364,8 +391,10 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-180",
     "height": 756,
+    "options": {
+      "rotate": 180
+    },
     "responsive": [
       {
         "size": {
@@ -380,8 +409,10 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
     "height": 1008,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {
@@ -396,8 +427,10 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-180",
     "height": 756,
+    "options": {
+      "rotate": 180
+    },
     "responsive": [
       {
         "size": {
@@ -412,8 +445,10 @@
   },
   {
     "type": "img",
-    "className": "transform rotate-90",
     "height": 1008,
+    "options": {
+      "rotate": 90
+    },
     "responsive": [
       {
         "size": {

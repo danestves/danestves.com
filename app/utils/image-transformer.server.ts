@@ -13,7 +13,7 @@ export const sharpTransformer: Transformer = {
   supportedOutputs,
   transform: async (
     { data },
-    { contentType: outputContentType, width, height, fit, position, background, quality, compressionLevel }
+    { contentType: outputContentType, width, height, fit, position, background, quality, rotate, compressionLevel }
   ) => {
     const image = sharp(data);
 
@@ -30,6 +30,7 @@ export const sharpTransformer: Transformer = {
           },
         }),
       })
+      .rotate(rotate!)
       .avif({
         force: outputContentType === MimeType.AVIF,
         quality,

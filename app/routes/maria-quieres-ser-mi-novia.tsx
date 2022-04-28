@@ -1,5 +1,4 @@
 // Dependencies
-import clsx from "clsx";
 import endent from "endent";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
 import type { MetaFunction } from "@remix-run/server-runtime";
@@ -64,7 +63,15 @@ export default function MariaPage() {
             case "hr":
               return <hr key={index} />;
             case "img":
-              return <Image {...item} className={clsx("h-auto w-full rounded-[18px]", item.className)} key={index} />;
+              return (
+                <Image
+                  {...item}
+                  alt="María Emilia Marcano Mora, ¿quieres ser mi novia?"
+                  className="h-auto w-full rounded-[18px]"
+                  key={index}
+                  loading={index !== 0 ? "lazy" : undefined}
+                />
+              );
             default:
               return (
                 <p
