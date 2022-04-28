@@ -168,9 +168,9 @@ function App() {
   const { i18n } = useTranslation();
 
   useFathom("VKGOHQVT", {
-    // excludedDomains: ["localhost"],
+    excludedDomains: ["localhost"],
+    includedDomains: ["danestves-dev-staging.fly.dev", "danestves.dev"],
     spa: "history",
-    url: "https://khonshu.danestves.dev/script.js",
   });
 
   return (
