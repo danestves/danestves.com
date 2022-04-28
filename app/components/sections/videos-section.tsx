@@ -13,7 +13,7 @@ function VideosSection(props: Videos) {
 
   return (
     <section className="relative mt-5 w-full overflow-hidden pl-4 lg:-mt-24 lg:px-4" id="latest-videos">
-      <h2 className="mx-auto w-full max-w-[977px] text-[26px] font-black uppercase text-primary-light dark:text-primary lg:pl-8">
+      <h2 className="mx-auto w-full max-w-5xl text-[26px] font-black uppercase text-primary-light dark:text-primary lg:pl-8">
         <span>{t("videos.title")}</span> <YoutubeIcon className="ml-3 inline-block h-[22px] w-8" />
       </h2>
 

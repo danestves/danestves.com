@@ -59,7 +59,7 @@ export default function BlogPage() {
         </span>
       </h1>
 
-      <div className="container mx-auto mt-5 max-w-[977px]">
+      <div className="container mx-auto mt-5 max-w-5xl">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {data.posts.map((post) => (
             <PostCard

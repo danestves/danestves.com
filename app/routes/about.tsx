@@ -66,7 +66,7 @@ export default function AboutPage() {
     <>
       <HeroSection />
 
-      <div className="container max-w-[977px] space-y-4">
+      <div className="container max-w-5xl space-y-4">
         <h2 className="text-secondary-darker text-center text-[26px] font-black uppercase text-primary-light dark:text-primary">
           {t("about.title")}{" "}
           <span aria-label="victory hand" role="img">

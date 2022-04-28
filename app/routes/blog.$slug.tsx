@@ -141,7 +141,7 @@ export default function Blog() {
         </span>
       </h2>
 
-      <div className="container mx-auto mt-5 max-w-[977px]">
+      <div className="container mx-auto mt-5 max-w-5xl">
         <div className="mb-6 grid grid-cols-12 items-center gap-y-5 md:gap-10">
           <div className="col-span-12 md:col-span-7">
             <Image

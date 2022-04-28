@@ -26,7 +26,7 @@ function PostsSection({ posts }: PostsSectionProps) {
         </span>
       </h2>
 
-      <div className="mx-auto mt-6 grid max-w-[977px] grid-cols-1 gap-5 lg:grid-cols-3">
+      <div className="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-5 lg:grid-cols-3">
         {posts?.map((post) => (
           <div key={post.slug}>
             <PostCard

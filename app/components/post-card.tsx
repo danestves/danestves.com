@@ -62,10 +62,10 @@ function PostCard<T extends React.ElementType = "div">({
 
       <p className="mt-4 text-xs font-semibold text-secondary-700 dark:text-secondary">
         {t("components.post-card.published")}{" "}
-        <time dateTime={post.published_at}>
+        <time dateTime={new Date(post.published_at!).toISOString()}>
           {formatDate({
-            date: new Date(post.published_at!).toISOString().slice(0, 19),
-            formatter: i18n.language === "en" ? "MMMM d, YYYY" : "d MMMM YYYY",
+            date: post.published_at!,
+            formatter: i18n.language === "en" ? "MMMM DD, YYYY" : "DD MMMM YYYY",
             locale: i18n.language,
           })}
         </time>
