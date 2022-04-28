@@ -169,7 +169,7 @@ function App() {
 
   useFathom("VKGOHQVT", {
     excludedDomains: ["localhost"],
-    includedDomains: ["danestves-dev-staging.fly.dev", "danestves.dev"],
+    includedDomains: ["danestves-dev-staging.fly.dev", "danestves.com", "danestves.dev"],
     spa: "history",
   });
 
