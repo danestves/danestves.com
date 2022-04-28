@@ -1,17 +1,15 @@
 // Dependencies
 import { useTranslation } from "react-i18next";
-import { Image } from "remix-image";
 
 // Internals
-import { useNextGenImageFormat } from "~/hooks/use-next-gen-image-format";
 import { fromNow } from "~/utils/date";
 import { YoutubeIcon } from "../icons/youtube";
+import { Image } from "../image";
 import { Link } from "../link";
 import type { Videos } from "~/types";
 
 function VideosSection(props: Videos) {
   const { i18n, t } = useTranslation("sections");
-  const contentType = useNextGenImageFormat();
 
   return (
     <section className="relative mt-5 w-full overflow-hidden pl-4 lg:-mt-24 lg:px-4" id="latest-videos">
@@ -30,9 +28,6 @@ function VideosSection(props: Videos) {
                       alt={video.snippet.title}
                       className="rounded-xl"
                       height={720}
-                      options={{
-                        contentType,
-                      }}
                       responsive={[
                         {
                           size: {
