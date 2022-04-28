@@ -2,6 +2,7 @@
 import { DocumentTextIcon } from "@heroicons/react/outline";
 import { json } from "@remix-run/server-runtime";
 import { useTranslation } from "react-i18next";
+import type { SEOHandle } from "@balavishnuvj/remix-seo";
 import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import type { HandleStructuredData } from "remix-utils";
 
@@ -14,7 +15,7 @@ import { i18n } from "~/utils/i18n.server";
 import { getSeoMeta } from "~/utils/seo";
 import type { Handle } from "~/types";
 
-export const handle: HandleStructuredData<LoaderData> & Handle = {
+export const handle: HandleStructuredData<LoaderData> & Handle & SEOHandle = {
   structuredData(data) {
     return {
       "@context": "https://schema.org",
@@ -23,6 +24,15 @@ export const handle: HandleStructuredData<LoaderData> & Handle = {
       description: data.seo.description,
       url: `${externalLinks.self}/about`,
     };
+  },
+  getSitemapEntries() {
+    return [
+      {
+        route: "/about",
+        changefreq: "yearly",
+        priority: 0.7,
+      },
+    ];
   },
   i18n: ["sections"],
 };

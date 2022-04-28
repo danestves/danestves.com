@@ -1,6 +1,7 @@
 // Dependencies
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
+import type { SEOHandle } from "@balavishnuvj/remix-seo";
 import type { HeadersFunction, LoaderFunction } from "@remix-run/server-runtime";
 
 // Internals
@@ -8,6 +9,18 @@ import { Link } from "~/components/link";
 import { PostCard } from "~/components/post-card";
 import { i18n } from "~/utils/i18n.server";
 import { getMdxListItems } from "~/utils/mdx.server";
+
+export const handle: SEOHandle = {
+  getSitemapEntries() {
+    return [
+      {
+        route: "/blog",
+        changefreq: "weekly",
+        priority: 0.8,
+      },
+    ];
+  },
+};
 
 export const headers: HeadersFunction = ({ loaderHeaders }) => ({
   "Cache-Control": loaderHeaders.get("Cache-Control") ?? "private, max-age=60",

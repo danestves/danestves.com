@@ -5,24 +5,41 @@ import type { EntryContext } from "@remix-run/server-runtime";
 type Handler = (request: Request, remixContext: EntryContext) => Promise<Response | null> | null;
 
 export const otherRootRoutes: Record<string, Handler> = {
-  "/robots.txt": async () => {
-    return generateRobotsTxt([
+  "/robots.txt": async (request) => {
+    const url = new URL(request.url);
+
+    return generateRobotsTxt(
+      [
+        {
+          type: "userAgent",
+          value: "*",
+        },
+        {
+          type: "allow",
+          value: "/",
+        },
+        {
+          type: "disallow",
+          value: "/maria-quieres-ser-mi-novia",
+        },
+        {
+          type: "sitemap",
+          value: url.origin + "/sitemap.xml",
+        },
+      ],
       {
-        type: "disallow",
-        value: "*",
-      },
-      {
-        type: "sitemap",
-        value: process.env.SELF_URL! + "/sitemap.xml",
-      },
-    ]);
+        appendOnDefaultPolicies: false,
+      }
+    );
   },
   "/sitemap.xml": async (request, context) => {
+    const url = new URL(request.url);
+
     return generateSitemap(request, context, {
+      siteUrl: url.origin,
       headers: {
         "Cache-Control": `public, max-age=${60 * 5}`,
       },
-      siteUrl: process.env.SELF_URL!,
     });
   },
 };

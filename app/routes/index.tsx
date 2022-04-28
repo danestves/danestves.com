@@ -1,6 +1,7 @@
 // Dependencies
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
+import type { SEOHandle } from "@balavishnuvj/remix-seo";
 import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 
 // Internals
@@ -13,7 +14,16 @@ import { getSeoMeta } from "~/utils/seo";
 import { getVideos } from "~/utils/youtube.server";
 import type { Handle, Videos } from "~/types";
 
-export const handle: Handle = {
+export const handle: Handle & SEOHandle = {
+  getSitemapEntries() {
+    return [
+      {
+        route: "",
+        changefreq: "weekly",
+        priority: 1,
+      },
+    ];
+  },
   i18n: "sections",
 };
 

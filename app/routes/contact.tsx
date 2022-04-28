@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useHydrated } from "remix-utils";
 import { ValidatedForm, useIsSubmitting, validationError } from "remix-validated-form";
 import { z } from "zod";
+import type { SEOHandle } from "@balavishnuvj/remix-seo";
 import type { ActionFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import type { HandleStructuredData } from "remix-utils";
 
@@ -21,7 +22,7 @@ import { sendContactEmail } from "~/utils/mail.server";
 import { getSeoMeta } from "~/utils/seo";
 import type { Handle } from "~/types";
 
-export const handle: HandleStructuredData<LoaderData> & Handle = {
+export const handle: HandleStructuredData<LoaderData> & Handle & SEOHandle = {
   structuredData(data) {
     return {
       "@context": "https://schema.org",
@@ -30,6 +31,15 @@ export const handle: HandleStructuredData<LoaderData> & Handle = {
       description: data.seo.description,
       url: `${externalLinks.self}/contact`,
     };
+  },
+  getSitemapEntries() {
+    return [
+      {
+        route: "/contact",
+        changefreq: "yearly",
+        priority: 0.7,
+      },
+    ];
   },
   i18n: ["errors"],
 };

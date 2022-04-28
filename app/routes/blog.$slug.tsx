@@ -20,13 +20,14 @@ import prismOne from "~/styles/prism-one.css";
 import { formatDate } from "~/utils/date";
 import { i18n } from "~/utils/i18n.server";
 import { useMdxComponent } from "~/utils/mdx";
-import { getMdxPage } from "~/utils/mdx.server";
+import { getMdxListItems, getMdxPage } from "~/utils/mdx.server";
 import { getSeoMeta } from "~/utils/seo";
 import type { RootLoaderData } from "~/root";
 import type { Handle, MdxComponent } from "~/types";
 import { Views } from "~/components/views";
+import type { SEOHandle } from "@balavishnuvj/remix-seo";
 
-export const handle: HandleStructuredData<LoaderData> & Handle = {
+export const handle: HandleStructuredData<LoaderData> & SEOHandle & Handle = {
   structuredData(data) {
     return {
       "@context": "https://schema.org",
@@ -45,6 +46,23 @@ export const handle: HandleStructuredData<LoaderData> & Handle = {
         id: `${externalLinks.self}/blog/${data.slug}`,
       },
     };
+  },
+  async getSitemapEntries() {
+    const data = await getMdxListItems({ contentDirectory: "blog/en" });
+    const posts = data.map((post) => ({
+      ...post,
+      frontmatter: JSON.parse(post.frontmatter),
+      // Remove the locale from the slug, we only use it with locale prefixes to be able to
+      // use the slug as unique identifier for the blog post on Prisma.
+      slug: post.slug.replace(`en-`, ""),
+    }));
+
+    return posts.map((post) => ({
+      route: `/blog/${post.slug}`,
+      changefreq: "weekly",
+      lastmod: new Date(post.frontmatter.published_at).toISOString(),
+      priority: 0.7,
+    }));
   },
   i18n: "blog",
 };
