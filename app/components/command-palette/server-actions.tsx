@@ -11,16 +11,16 @@ type ServerAction = Omit<Action, "perform"> & {
 
 function ServerActions() {
   const [customActions, setCustomActions] = React.useState<Action[]>([]);
+  const [locale, setLocale] = React.useState("");
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
   React.useEffect(() => {
-    const abortController = new AbortController();
-    const { signal } = abortController;
-    const loadContent = async (signal: AbortSignal) => {
+    const loadContent = async () => {
       const contentActions = await fetch("/_content/get-kbar-actions.json");
-      const { actions } = (await contentActions.json()) as {
+      const { actions, locale } = (await contentActions.json()) as {
         actions: ServerAction[];
+        locale: string;
       };
 
       const newActions: Action[] = actions.map(({ link, ...props }) => ({
@@ -29,18 +29,17 @@ function ServerActions() {
       }));
 
       setCustomActions(newActions);
+      setLocale(locale);
     };
 
-    loadContent(signal).catch((error) => {
-      const message = error instanceof Error ? error.message : (error as string);
+    if (!customActions.length || i18n.language !== locale) {
+      loadContent().catch((error) => {
+        const message = error instanceof Error ? error.message : (error as string);
 
-      console.error(message);
-    });
-
-    return () => {
-      abortController.abort();
-    };
-  }, [customActions.length, navigate, i18n.language]);
+        console.error(message);
+      });
+    }
+  }, [customActions.length, navigate, i18n.language, locale]);
 
   useRegisterActions(customActions, [customActions]);
 
