@@ -1,18 +1,19 @@
 // Dependencies
+import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server-runtime";
 import endent from "endent";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
-import type { MetaFunction } from "@remix-run/server-runtime";
+import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 
 // Internals
 import { Image } from "~/components/image";
 import { getSeoMeta } from "~/utils/seo";
-import data from "public/maria-data.json";
 
-export let handle: SEOHandle = {
+export const handle: SEOHandle = {
   getSitemapEntries: () => null,
 };
 
-export let meta: MetaFunction = () => {
+export const meta: MetaFunction = () => {
   let title = "María Emilia Marcano Mora, ¿quieres ser mi novia?";
   let description = endent`
     Hola cariño, hice este regalo porque quiero expresarte a mi manera lo que yo siento por ti.
@@ -44,19 +45,33 @@ export let meta: MetaFunction = () => {
   };
 };
 
+type LoaderData = {
+  richtext: Array<Record<string, unknown>>;
+};
+
+export const loader: LoaderFunction = async () => {
+  const data = await import("public/maria-data.json");
+
+  return json<LoaderData>({
+    richtext: data.default,
+  });
+};
+
 export default function MariaPage() {
+  const data = useLoaderData<LoaderData>();
+
   return (
     <main className="pt-32">
       <h1 className="text-center text-4xl font-bold text-primary-light dark:text-primary">Hola, Cariño</h1>
 
       <div className="container mt-6 max-w-md space-y-4 text-justify">
-        {data.map((item, index) => {
+        {data.richtext?.map((item, index) => {
           switch (item.type) {
             case "h2":
               return (
                 <h2
                   className="text-center text-4xl font-bold text-primary-700 dark:text-primary"
-                  dangerouslySetInnerHTML={{ __html: item.content! }}
+                  dangerouslySetInnerHTML={{ __html: item.content as string }}
                   key={index}
                 />
               );
@@ -76,7 +91,7 @@ export default function MariaPage() {
               return (
                 <p
                   className="text-body dark:text-body-dark"
-                  dangerouslySetInnerHTML={{ __html: item.content! }}
+                  dangerouslySetInnerHTML={{ __html: item.content as string }}
                   key={index}
                 />
               );
