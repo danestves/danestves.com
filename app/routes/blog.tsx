@@ -26,15 +26,13 @@ type LoaderData = {
 export const loader: LoaderFunction = async ({ request }) => {
   const locale = await i18n.getLocale(request);
   const data = await getMdxListItems({ contentDirectory: `blog/${locale}` });
-  const posts = data
-    .map((post) => ({
-      ...post,
-      frontmatter: JSON.parse(post.frontmatter),
-      // Remove the locale from the slug, we only use it with locale prefixes to be able to
-      // use the slug as unique identifier for the blog post on Prisma.
-      slug: post.slug.replace(`${locale}-`, ""),
-    }))
-    .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+  const posts = data.map((post) => ({
+    ...post,
+    frontmatter: JSON.parse(post.frontmatter),
+    // Remove the locale from the slug, we only use it with locale prefixes to be able to
+    // use the slug as unique identifier for the blog post on Prisma.
+    slug: post.slug.replace(`${locale}-`, ""),
+  }));
 
   return json<LoaderData>(
     {

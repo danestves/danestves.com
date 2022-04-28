@@ -30,7 +30,7 @@ export async function requiresUpdate(contentDirectory: string) {
   return requiresUpdate;
 }
 
-export async function getContentList(contentDirectory = "blog/en") {
+export async function getContentList(contentDirectory = "blog/en", limit = 1000) {
   const contents = await prisma.content.findMany({
     orderBy: { timestamp: "desc" },
     select: {
@@ -39,6 +39,7 @@ export async function getContentList(contentDirectory = "blog/en") {
       timestamp: true,
       title: true,
     },
+    take: limit,
     where: { contentDirectory, published: true },
   });
 
