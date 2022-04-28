@@ -18,6 +18,12 @@
     ],
     "buttons": ["LinkedIn", "Ver CV"]
   },
+  "blog": {
+    "seo": {
+      "title": "El jardín digital 🌱 de Daniel Esteves",
+      "description": "Lee sobre desarrollo web, aplicaciones web, React, Vue, JavaScript, TypeScript, Tailwind, y mucho más en el blog de Daniel Esteves."
+    }
+  },
   "contact": {
     "seo": {
       "title": "Contáctame 📧",
@@ -46,12 +52,6 @@
         "sending": "Enviando..."
       },
       "success": "Gracias por contactarte conmigo, me pondré en contacto contigo lo antes posible."
-    }
-  },
-  "posts": {
-    "seo": {
-      "title": "El jardín digital 🌱 de Daniel Esteves",
-      "description": "Lee sobre desarrollo web, aplicaciones web, React, Vue, JavaScript, TypeScript, Tailwind, y mucho más en el blog de Daniel Esteves."
     }
   }
 }
