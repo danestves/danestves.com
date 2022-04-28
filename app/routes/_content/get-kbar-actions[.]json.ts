@@ -33,7 +33,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   ];
 
   return json(
-    { actions },
+    { actions, locale },
     {
       headers: {
         "Content-Length": Buffer.byteLength(JSON.stringify({ actions })).toString(),
