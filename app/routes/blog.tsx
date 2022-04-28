@@ -59,8 +59,8 @@ export const loader: LoaderFunction = async ({ request }) => {
     {
       posts,
       seo: {
-        title: t("contact.blog.title"),
-        description: t("contact.blog.description"),
+        title: t("blog.seo.title"),
+        description: t("blog.seo.description"),
       },
     },
     {
