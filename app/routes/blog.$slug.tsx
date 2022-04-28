@@ -40,7 +40,7 @@ export const handle: HandleStructuredData<LoaderData> & SEOHandle & Handle = {
       datePublished: new Date(data.frontmatter.published_at!).toISOString(),
       description: data?.frontmatter?.seo?.description,
       headline: data?.frontmatter?.seo?.title,
-      image: `https://cdn.flyyer.io/v2/danestves/_/_/posts/${data?.slug}`,
+      image: `https://cdn.flyyer.io/v2/danestves/_/_/blog/${data?.slug}`,
       mainEntityOfPage: {
         "@type": "WebPage",
         id: `${externalLinks.self}/blog/${data.slug}`,
