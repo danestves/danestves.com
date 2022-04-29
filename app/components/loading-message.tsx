@@ -37,7 +37,15 @@ function LoadingMessage() {
 
   React.useEffect(() => {
     if (firstRender) return;
-    if (transition.state === "idle") return;
+    if (transition.state === "idle") {
+      // If the transition is idle we want to remove the toast
+      // But let's wait a bit to make sure the transition is done
+      setTimeout(() => {
+        toast.dismiss("loading-message");
+      }, 1000);
+
+      return;
+    }
     setPendingPath(transition.location.pathname);
   }, [transition]);
 
@@ -47,7 +55,7 @@ function LoadingMessage() {
 
   const action = words[0];
   React.useEffect(() => {
-    if (!firstRender && action) {
+    if (!firstRender && action && transition.state !== "idle") {
       toast.loading(
         <div className="pointer-events-auto ml-2 rounded-lg">
           <div className="inline-grid w-64">
@@ -58,7 +66,8 @@ function LoadingMessage() {
           </div>
         </div>,
         {
-          duration: 3000,
+          duration: Infinity,
+          id: "loading-message",
           icon: (
             <svg
               className="h-8 w-8 flex-none animate-spin text-current"
@@ -84,7 +93,7 @@ function LoadingMessage() {
         }
       );
     }
-  }, [action, pendingPath]);
+  }, [action, pendingPath, transition.state]);
 
   return null;
 }
