@@ -3,13 +3,12 @@ on:
   push:
     branches:
       - main
-      - dev
 
 jobs:
   refresh-cache:
     name: 🌟 Refresh Content
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
@@ -24,22 +23,8 @@ jobs:
         with:
           node-version: 16
 
-      - name: 👀 Read app name
-        uses: SebRollen/toml-action@v1.0.0
-        id: app_name
-        with:
-          file: "fly.toml"
-          field: "app"
-
-      - name: Set environment variables
-        run: |
-          if [[ ${{ github.ref == 'refs/heads/dev' }} ]]; then
-            echo "FLY_APP_NAME=${{ steps.app_name.outputs.value }}-staging" >> $GITHUB_ENV
-          else
-            echo "FLY_APP_NAME=${{ steps.app_name.outputs.value }}" >> $GITHUB_ENV
-          fi
-
       - name: 💿 Refresh Content
         run: node ./other/refresh-content.js
         env:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+          FLY_APP_NAME: ${{ secrets.FLY_APP_NAME }}
