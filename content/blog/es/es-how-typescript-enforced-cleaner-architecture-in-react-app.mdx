@@ -66,7 +66,7 @@ export default Post
 
 Genial, podemos comunicarnos más eficientemente, ya que podemos decidir si una prop es requerida o no, si es una cadena u otro tipo, ¡o incluso dar una lista estricta de valores posibles! En nuestro caso, cuando queremos ver nuestro Post, y no le pasamos un título, esto es lo que nos dice el navegador:
 
-![Error de consola al no pasarle la prop title](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-1)
+![Error de consola al no pasarle la prop title](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-1)
 
 ¡Perfecto! Buena captura PropTypes, ¡gracias! Imagínate ahora que podemos tomar esta definición de los tipos de pruebas adicionales y la comprobación de todo nuestro código aún más allá 🚀
 
@@ -110,7 +110,7 @@ TypeScript también viene con un pequeño extra: puede hacerlo justo en el edito
 
 Esto es lo que muestra mi VSCode con una función que tengo para verificar el tiempo de lectura de un texto:
 
-![Función de ejemplo para demostrar como TypeScript analiza el código](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-2)
+![Función de ejemplo para demostrar como TypeScript analiza el código](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-2)
 
 Ahora que estamos en esto, cambiemos también nuestro `<SinglePost />` component:
 
@@ -183,11 +183,11 @@ export default Post
 
 Ahora si pasamos el mouse por encima de nuestro código donde está el componente `<Post />` en `single-post.tsx` veremos el siguiente error:
 
-![Error de TypeScript de una prop faltante](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-3)
+![Error de TypeScript de una prop faltante](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-3)
 
 Al agregar la nueva prop y abrir las comillas nos daremos cuenta que TypeScript ahora nos está autocompletando los size posibles que se le puede pasar y adicionalmente nos dice que debemos pasarle el prop correcto porque de otra forma no corresponde con los types que se declararon:
 
-![Error de TypeScript de la prop imageSize](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-4)
+![Error de TypeScript de la prop imageSize](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-4)
 
 Asombroso, ¿no lo crees? 😎
 

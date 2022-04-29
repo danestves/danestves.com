@@ -27,7 +27,7 @@ export const meta: MetaFunction = () => {
         images: [
           {
             alt: title,
-            url: "https://danestves.com/maria/og.jpg",
+            url: "https://danestves.com/img/maria/og.jpg",
           },
         ],
         type: "website",
@@ -36,7 +36,7 @@ export const meta: MetaFunction = () => {
         card: "summary_large_image",
         image: {
           alt: title,
-          url: "https://danestves.com/maria/og.jpg",
+          url: "https://danestves.com/img/maria/og.jpg",
         },
       },
     }),

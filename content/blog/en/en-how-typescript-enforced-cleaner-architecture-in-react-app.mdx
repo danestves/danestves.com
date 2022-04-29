@@ -66,7 +66,7 @@ export default Post
 
 Great, we can communicate more efficiently, since we can decide if a prop is required or not, if it is a string or another type, or even give a strict list of possible values! In our case, when we want to see our Post, and we don't pass it a title, this is what the browser tells us:
 
-![Console error when not passing the prop title to it](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-1)
+![Console error when not passing the prop title to it](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-1)
 
 Perfect! Nice catch PropTypes, thanks! Imagine now that we can take this definition of additional test types and testing all of our code even further 🚀
 
@@ -110,7 +110,7 @@ TypeScript also comes with a little extra: you can do it right in the code edito
 
 This is what my VSCode shows with a function I have to check the read time of a text:
 
-![Example function to demonstrate how TypeScript parses code](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-2)
+![Example function to demonstrate how TypeScript parses code](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-2)
 
 While we're at it, let's also change our `<SinglePost />` component:
 
@@ -183,11 +183,11 @@ export default Post
 
 Now if we hover the mouse over our code where the `<Post />` component is in `single-post.tsx` we will see the following error:
 
-![TypeScript error of a missing prop](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-3)
+![TypeScript error of a missing prop](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-3)
 
 By adding the new prop and opening the quotes we will notice that TypeScript is now autocompleting the possible sizes that can be passed to it and additionally telling us that we must pass it the correct prop because otherwise it does not match the types that were declared:
 
-![TypeScript error of the prop imageSize](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/blog/how-typescript-enforced-cleaner-architecture-in-react-app/image-4)
+![TypeScript error of the prop imageSize](https://res.cloudinary.com/danestves/image/upload/f_auto,q_auto,dpr_2.0/posts/how-typescript-enforced-cleaner-architecture-in-react-app/image-4)
 
 Amazing, don't you think? 😎
 

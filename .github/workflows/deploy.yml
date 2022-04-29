@@ -71,7 +71,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🔬 Lint
-        run: npm run lint
+        run: yarn lint
 
   typecheck:
     name: ʦ TypeScript
@@ -94,7 +94,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🔎 Type check
-        run: npm run typecheck --if-present
+        run: yarn typecheck
 
   build:
     name: 🐳 Build

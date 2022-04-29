@@ -12,9 +12,9 @@ const Flag = ({ ...props }: FlagProps): JSX.Element => {
   let { i18n } = useTranslation("common");
   let locale = props.locale || i18n.language;
 
-  let src = `/flag/US.png`;
+  let src = `/img/flag/US.png`;
   if (locale === "es") {
-    src = `/flag/VE.png`;
+    src = `/img/flag/VE.png`;
   }
 
   return (

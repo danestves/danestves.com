@@ -1,15 +1,9 @@
 // Dependencies
-import { json, redirect } from "@remix-run/server-runtime";
-import type { SEOHandle } from "@balavishnuvj/remix-seo";
+import { json } from "@remix-run/server-runtime";
 import type { ActionFunction } from "@remix-run/server-runtime";
 
 // Internals
 import { i18nStorage } from "~/utils/i18n.server";
-import type { Handle } from "~/types";
-
-export const handle: SEOHandle & Handle = {
-  getSitemapEntries: () => null,
-};
 
 export const action: ActionFunction = async ({ request }) => {
   const requestText = await request.text();
@@ -34,9 +28,3 @@ export const action: ActionFunction = async ({ request }) => {
     }
   );
 };
-
-export const loader = () => redirect("/", { status: 404 });
-
-export default function MarkRead() {
-  return <div>Oops... You should not see this.</div>;
-}
