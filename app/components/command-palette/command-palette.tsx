@@ -46,6 +46,7 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
     persistLanguageRef.current.submit({ lang }, { action: "_action/set-language", method: "post" });
   };
 
+  // @ts-expect-error - we can pass a a children reference
   const actions: Array<Action> = [
     {
       id: "home",
