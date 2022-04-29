@@ -196,7 +196,7 @@ function App() {
           containerClassName="print:hidden"
           toastOptions={{
             className: endent`
-                bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5
+                bg-white text-body border border-black border-opacity-10 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-10
               `,
             duration: 5000,
             position: "bottom-right",
