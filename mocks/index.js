@@ -1,3 +1,2 @@
-require("tsconfig-paths/register");
-require("ts-node").register({ transpileOnly: true });
+require("esbuild-register/dist/node").register();
 require("./start");

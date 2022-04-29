@@ -19,7 +19,7 @@
         "maxWidth": 656
       }
     ],
-    "src": "/maria/first-chat.png",
+    "src": "/img/maria/first-chat.png",
     "width": 656
   },
   {
@@ -38,7 +38,7 @@
         "maxWidth": 828
       }
     ],
-    "src": "/maria/first-whatsapp-chat.jpg",
+    "src": "/img/maria/first-whatsapp-chat.jpg",
     "width": 828
   },
   {
@@ -68,7 +68,7 @@
         "maxWidth": 504
       }
     ],
-    "src": "/maria/first-date-1.jpg",
+    "src": "/img/maria/first-date-1.jpg",
     "width": 4032
   },
   {
@@ -86,7 +86,7 @@
         "maxWidth": 504
       }
     ],
-    "src": "/maria/first-date-2.jpg",
+    "src": "/img/maria/first-date-2.jpg",
     "width": 4032
   },
   {
@@ -104,7 +104,7 @@
         "maxWidth": 504
       }
     ],
-    "src": "/maria/first-date-3.jpg",
+    "src": "/img/maria/first-date-3.jpg",
     "width": 4032
   },
   {
@@ -137,7 +137,7 @@
         "maxWidth": 1158
       }
     ],
-    "src": "/maria/second-date-1.jpg",
+    "src": "/img/maria/second-date-1.jpg",
     "width": 2316
   },
   {
@@ -155,7 +155,7 @@
         "maxWidth": 1158
       }
     ],
-    "src": "/maria/second-date-2.jpg",
+    "src": "/img/maria/second-date-2.jpg",
     "width": 2316
   },
   {
@@ -173,7 +173,7 @@
         "maxWidth": 1158
       }
     ],
-    "src": "/maria/second-date-3.jpg",
+    "src": "/img/maria/second-date-3.jpg",
     "width": 2316
   },
   {
@@ -191,7 +191,7 @@
         "maxWidth": 1158
       }
     ],
-    "src": "/maria/second-date-4.jpg",
+    "src": "/img/maria/second-date-4.jpg",
     "width": 2316
   },
   {
@@ -209,7 +209,7 @@
         "maxWidth": 1158
       }
     ],
-    "src": "/maria/second-date-5.jpg",
+    "src": "/img/maria/second-date-5.jpg",
     "width": 2316
   },
   {
@@ -244,7 +244,7 @@
         "maxWidth": 756
       }
     ],
-    "src": "/maria/third-date-1.jpg",
+    "src": "/img/maria/third-date-1.jpg",
     "width": 3024
   },
   {
@@ -262,7 +262,7 @@
         "maxWidth": 756
       }
     ],
-    "src": "/maria/third-date-2.jpg",
+    "src": "/img/maria/third-date-2.jpg",
     "width": 3024
   },
   {
@@ -280,7 +280,7 @@
         "maxWidth": 756
       }
     ],
-    "src": "/maria/third-date-3.jpg",
+    "src": "/img/maria/third-date-3.jpg",
     "width": 3024
   },
   {
@@ -298,7 +298,7 @@
         "maxWidth": 756
       }
     ],
-    "src": "/maria/third-date-4.jpg",
+    "src": "/img/maria/third-date-4.jpg",
     "width": 3024
   },
   {
@@ -316,7 +316,7 @@
         "maxWidth": 1008
       }
     ],
-    "src": "/maria/third-date-5.jpg",
+    "src": "/img/maria/third-date-5.jpg",
     "width": 4032
   },
   {
@@ -334,7 +334,7 @@
         "maxWidth": 1008
       }
     ],
-    "src": "/maria/third-date-6.jpg",
+    "src": "/img/maria/third-date-6.jpg",
     "width": 4032
   },
   {
@@ -368,7 +368,7 @@
         "maxWidth": 579
       }
     ],
-    "src": "/maria/fourth-date-1.jpg",
+    "src": "/img/maria/fourth-date-1.jpg",
     "width": 579
   },
   {
@@ -386,7 +386,7 @@
         "maxWidth": 756
       }
     ],
-    "src": "/maria/fourth-date-2.jpg",
+    "src": "/img/maria/fourth-date-2.jpg",
     "width": 756
   },
   {
@@ -404,7 +404,7 @@
         "maxWidth": 1008
       }
     ],
-    "src": "/maria/fourth-date-3.jpg",
+    "src": "/img/maria/fourth-date-3.jpg",
     "width": 1008
   },
   {
@@ -422,7 +422,7 @@
         "maxWidth": 756
       }
     ],
-    "src": "/maria/fourth-date-4.jpg",
+    "src": "/img/maria/fourth-date-4.jpg",
     "width": 756
   },
   {
@@ -440,7 +440,7 @@
         "maxWidth": 1008
       }
     ],
-    "src": "/maria/fourth-date-5.jpg",
+    "src": "/img/maria/fourth-date-5.jpg",
     "width": 1008
   },
   {
@@ -458,7 +458,7 @@
         "maxWidth": 756
       }
     ],
-    "src": "/maria/fourth-date-6.jpg",
+    "src": "/img/maria/fourth-date-6.jpg",
     "width": 756
   },
   {

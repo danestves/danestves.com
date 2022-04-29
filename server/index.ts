@@ -1,6 +1,5 @@
 // Dependencies
 import { createRequestHandler } from "@remix-run/express";
-import { installGlobals } from "@remix-run/node/globals";
 import compression from "compression";
 import express from "express";
 import fs from "fs";
@@ -11,8 +10,6 @@ import path from "path";
 // Internals
 import { getRedirectsMiddleware } from "./redirects";
 import { getReplayResponse } from "./fly";
-
-installGlobals();
 
 const here = (...d: Array<string>) => path.join(__dirname, ...d);
 
@@ -112,10 +109,10 @@ app.use((req, res, next) => {
 app.all(
   "*",
   MODE === "production"
-    ? createRequestHandler({ build: require("../build") })
+    ? createRequestHandler({ build: require(BUILD_DIR) })
     : (req, res, next) => {
         purgeRequireCache();
-        return createRequestHandler({ build: require("../build"), mode: MODE })(req, res, next);
+        return createRequestHandler({ build: require(BUILD_DIR), mode: MODE })(req, res, next);
       }
 );
 
@@ -124,7 +121,7 @@ app.listen(port, () => {
   // preload the build so we're ready for the first request
   // we want the server to start accepting requests asap, so we wait until now
   // to preload the build
-  require("../build");
+  require(BUILD_DIR);
   console.log(`Express server listening on port ${port}`);
 });
 
