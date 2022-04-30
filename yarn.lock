@@ -912,7 +912,7 @@
     eslint-plugin-react-hooks "^4.3.0"
     eslint-plugin-testing-library "^5.0.5"
 
-"@remix-run/express@1.4.3":
+"@remix-run/express@1.4.3", "@remix-run/express@^1.4.3":
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/@remix-run/express/-/express-1.4.3.tgz#38c377ee88fbb952ed90e537547c0d4d92ad48ec"
   integrity sha512-GK/+eZd4TylqK4ZpGMhcO9cOJbbAgg3oWD8XqSGuYrjDI3uuwXTeOoq8kr/+o0USJhAhs7uLCQbEGgaayl01lg==
