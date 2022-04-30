@@ -278,15 +278,16 @@ export default function Blog() {
 
         <Giscus
           category="Comments"
-          categoryId="DIC_kwDODBPThs4CBCeF"
+          categoryId="DIC_kwDOHLb5is4CO3k1"
+          emitMetadata="1"
           id="comments"
           inputPosition="top"
           lang={i18n.language}
           loading="lazy"
           mapping="pathname"
           reactionsEnabled="1"
-          repo="danestves/danestves.dev"
-          repoId="481753482"
+          repo="danestves/danestves.com"
+          repoId="R_kgDOHLb5ig"
           theme={theme as Theme}
         />
       </div>
