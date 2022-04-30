@@ -29,8 +29,6 @@ POST,DELETE,PATCH,PUT  /                                                https://
 /config(.*)                                                             https://www.youtube.com/watch?v=dQw4w9WgXcQ
 /console(.*)                                                            https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
-/post/:slug*                                                            /blog/:slug*
-/posts/:slug*                                                           /blog/:slug*
 /rss                                                                    /blog/rss.xml
 /rss.xml                                                                /blog/rss.xml
 /feed                                                                   /blog/rss.xml
@@ -38,3 +36,12 @@ POST,DELETE,PATCH,PUT  /                                                https://
 /blog/rss                                                               /blog/rss.xml
 /blog/feed                                                              /blog/rss.xml
 /blog/blog/rss.xml                                                      /blog/rss.xml
+
+# old urls
+/danestves.pdf                                                          /about
+/post/:slug*                                                            /blog/:slug*
+/posts/:slug*                                                           /blog/:slug*
+/es/posts/:slug*                                                        /blog/:slug*?lng=es
+/linkedin                                                               https://www.linkedin.com/in/danestves
+/twitter                                                                https://twitter.com/danestves
+/youtube                                                                https://www.youtube.com/channel/UC6YYVDKZC3mu1iB8IOCFqcw
