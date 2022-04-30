@@ -11,8 +11,7 @@ import { VideosSection } from "~/components/sections/videos-section";
 import { i18n } from "~/utils/i18n.server";
 import { getMdxListItems } from "~/utils/mdx.server";
 import { getSeoMeta } from "~/utils/seo";
-import { getVideos } from "~/utils/youtube.server";
-import type { Handle, Videos } from "~/types";
+import type { Handle, Video } from "~/types";
 
 export const handle: Handle & SEOHandle = {
   getSitemapEntries() {
@@ -34,7 +33,7 @@ type LoaderData = {
     slug: string;
     title: string;
   }>;
-  videos: Videos;
+  videos: Array<Video>;
   seo: {
     title: string;
     description: string;
@@ -42,11 +41,12 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
   const locale = await i18n.getLocale(request);
   const [t, posts, videos] = await Promise.all([
     i18n.getFixedT(request, "pages"),
     getMdxListItems({ contentDirectory: `blog/${locale}`, limit: 3 }),
-    getVideos(),
+    fetch(`${url.origin}/data/youtube.json`).then((res) => res.json()),
   ]);
 
   return json<LoaderData>({
@@ -85,7 +85,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <VideosSection {...data.videos} />
+      <VideosSection videos={data.videos} />
       <PostsSection posts={data.posts} />
     </>
   );
