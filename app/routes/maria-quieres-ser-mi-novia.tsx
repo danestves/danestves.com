@@ -51,7 +51,7 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
-  const data = await fetch(`${url.origin}/maria-data.json`).then((res) => res.json());
+  const data = await fetch(`${url.origin}/data/maria.json`).then((res) => res.json());
 
   return json<LoaderData>({
     richtext: data,
