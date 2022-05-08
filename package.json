@@ -65,7 +65,7 @@
     "fathom-client": "^3.4.1",
     "feed": "^4.2.2",
     "fs-extra": "^10.1.0",
-    "i18next": "^21.7.1",
+    "i18next": "^21.8.0",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-fs-backend": "^1.1.4",
     "i18next-http-backend": "^1.4.0",
