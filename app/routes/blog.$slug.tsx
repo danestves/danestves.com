@@ -95,6 +95,8 @@ export const meta: MetaFunction = ({ data, parentsData }) => {
     "flyyer:title": loaderData?.title,
     "og:image:alt": loaderData.frontmatter.seo?.title,
     "twitter:image:alt": loaderData.frontmatter.seo?.title,
+    "article:published_time": new Date(loaderData.frontmatter.published_at!).toISOString(),
+    "article:modified_time": new Date(loaderData.frontmatter.published_at!).toISOString(),
   };
 };
 
