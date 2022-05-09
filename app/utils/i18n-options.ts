@@ -6,7 +6,7 @@ const options: InitOptions = {
   fallbackLng: "en",
   fallbackNS: "common",
   react: {
-    useSuspense: true,
+    useSuspense: false,
   },
   supportedLngs: ["en", "es"],
 };

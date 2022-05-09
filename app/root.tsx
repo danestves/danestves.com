@@ -140,6 +140,7 @@ export const loader: LoaderFunction = async ({ request, context }) => {
   const locale = await i18n.getLocale(request);
   const { getTheme } = await themeSessionResolver(request);
 
+  console.info({ context });
   const path = new URL(request.url).pathname;
   const flyyer = new Flyyer({
     project: "danestves",
