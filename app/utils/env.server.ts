@@ -3,6 +3,7 @@ function getEnv() {
     FLY: process.env.FLY,
     NODE_ENV: process.env.NODE_ENV,
     PRIMARY_REGION: process.env.PRIMARY_REGION,
+    SENTRY_DSN: process.env.SENTRY_DSN,
   };
 }
 
