@@ -1,9 +1,11 @@
 // Dependencies
+import * as React from "react";
 import { ArrowSmRightIcon } from "@heroicons/react/outline";
 import { useActionData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
 import { withZod } from "@remix-validated-form/with-zod";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "remix-themes";
 import { useHydrated } from "remix-utils";
 import { ValidatedForm, useIsSubmitting, validationError } from "remix-validated-form";
 import { z } from "zod";
@@ -17,6 +19,7 @@ import { Input } from "~/components/input";
 import { Link } from "~/components/link";
 import { TextArea } from "~/components/textarea";
 import { externalLinks } from "~/external-links";
+import HCaptcha from "~/services/hcaptcha";
 import { i18n } from "~/utils/i18n.server";
 import { sendContactEmail } from "~/utils/mail.server";
 import { getSeoMeta } from "~/utils/seo";
@@ -171,9 +174,32 @@ function FormError() {
 }
 
 export default function ContactPage() {
+  const [token, setToken] = React.useState<string | undefined>();
+  const captchaRef = React.useRef<HCaptcha | null>(null);
   const actionData = useActionData<ActionData>();
-  const { t } = useTranslation("pages");
+  const { i18n, t } = useTranslation("pages");
+  const [theme] = useTheme();
   const isHydrated = useHydrated();
+
+  const onSubmit = async (_data: Record<string, unknown>, e: React.FormEvent<HTMLFormElement>) => {
+    if (!captchaRef.current) {
+      e.preventDefault();
+    }
+
+    try {
+      await captchaRef?.current?.execute({
+        async: true,
+      });
+    } catch (error) {
+      console.error("Captcha error:", error);
+
+      e.preventDefault();
+    }
+  };
+
+  const onVerify = (token: string, _ekey: string) => {
+    setToken(token);
+  };
 
   return (
     <div className="w-full py-32">
@@ -192,7 +218,8 @@ export default function ContactPage() {
           className="mt-8 space-y-6"
           method="post"
           noValidate={isHydrated}
-          resetAfterSubmit
+          onSubmit={onSubmit}
+          resetAfterSubmit={!!token}
           validator={validator}
         >
           <Input
@@ -241,6 +268,15 @@ export default function ContactPage() {
           </div>
 
           {actionData?.fieldErrors?.emailSent ? <FormError /> : null}
+
+          <HCaptcha
+            languageOverride={i18n.language}
+            onVerify={onVerify}
+            ref={captchaRef}
+            sitekey={process.env.HCAPTCHA_SITE_KEY!}
+            size="invisible"
+            theme={theme as "light" | "dark"}
+          />
         </ValidatedForm>
       </div>
     </div>
