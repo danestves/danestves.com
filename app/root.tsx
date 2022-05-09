@@ -84,11 +84,7 @@ export const links: LinksFunction = () => {
 };
 
 export const meta: MetaFunction = ({ data }) => {
-  const { locale, requestInfo } = data as RootLoaderData;
-  const flyyer = new Flyyer({
-    project: "danestves",
-    path: requestInfo.path,
-  });
+  const { flyyer, locale, requestInfo } = data as RootLoaderData;
 
   return {
     charset: "utf-8",
@@ -96,8 +92,7 @@ export const meta: MetaFunction = ({ data }) => {
     "theme-color": "",
     ...seoMeta,
     ...getSeoMeta({
-      // @ts-ignore - locale is a valid index
-      description: seoDescription[locale as any].join(" "),
+      description: seoDescription[locale as "en" | "es"].join(" "),
       languageAlternates: [
         {
           href: `${requestInfo.origin}/?lng=en`,
@@ -112,7 +107,7 @@ export const meta: MetaFunction = ({ data }) => {
         images: [
           {
             alt: "Daniel Esteves - @danestves",
-            url: flyyer.href(),
+            url: flyyer,
             height: 630,
             width: 1200,
           },
@@ -123,7 +118,7 @@ export const meta: MetaFunction = ({ data }) => {
         card: "summary_large_image",
         image: {
           alt: "Daniel Esteves - @danestves",
-          url: flyyer.href(),
+          url: flyyer,
         },
       },
     }),
@@ -132,6 +127,7 @@ export const meta: MetaFunction = ({ data }) => {
 
 export type RootLoaderData = {
   ENV: ReturnType<typeof getEnv>;
+  flyyer: string;
   locale: string;
   requestInfo: {
     origin: string;
@@ -144,16 +140,23 @@ export const loader: LoaderFunction = async ({ request }) => {
   const locale = await i18n.getLocale(request);
   const { getTheme } = await themeSessionResolver(request);
 
+  const path = new URL(request.url).pathname;
+  const flyyer = new Flyyer({
+    project: "danestves",
+    path,
+  });
+
   const headers = new Headers();
   headers.append("Set-Cookie", await i18nStorage.serialize(locale));
 
   return json<RootLoaderData>(
     {
       ENV: getEnv(),
+      flyyer: flyyer.href(),
       locale: locale ?? "en",
       requestInfo: {
         origin: getDomainUrl(request),
-        path: new URL(request.url).pathname,
+        path,
       },
       theme: getTheme() ?? Theme.LIGHT,
     },
