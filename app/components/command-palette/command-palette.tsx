@@ -15,6 +15,7 @@ import * as Fathom from "fathom-client";
 import { KBarAnimator, KBarPortal, KBarPositioner, KBarProvider, KBarSearch } from "kbar";
 import toast from "react-hot-toast";
 import { Theme } from "remix-themes";
+import { useTranslation } from "react-i18next";
 import type { Action } from "kbar";
 
 // Internals
@@ -37,6 +38,7 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
   const persistLanguageRef = React.useRef(persistLanguage);
   const navigate = useNavigate();
   const rootData = useMatchesData<RootLoaderData>("root");
+  const { i18n, t } = useTranslation("command-palette");
 
   const changeTheme = (theme: Theme) => {
     persistThemeRef.current.submit({ theme }, { action: "_action/set-theme", method: "post" });
@@ -47,146 +49,151 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
   };
 
   // @ts-expect-error - we can pass a a children reference
-  const actions: Array<Action> = [
-    {
-      id: "home",
-      name: "Home",
-      icon: HomeIcon,
-      keywords: "home inicio",
-      perform: () => navigate("/"),
-      section: "Pages",
-      shortcut: ["h"],
-    },
-    {
-      id: "blog",
-      name: "Blog",
-      icon: PencilIcon,
-      keywords: "blog blogs post posts",
-      section: "Pages",
-      shortcut: ["b"],
-    },
-    {
-      id: "contact",
-      name: "Contact",
-      icon: MailIcon,
-      keywords: "contact contacto mail",
-      perform: () => navigate("/contact"),
-      section: "Pages",
-      shortcut: ["c"],
-    },
-    {
-      id: "theme",
-      name: "Change theme...",
-      icon: ColorSwatchIcon,
-      keywords: "theme",
-      section: "Utilities",
-      shortcut: ["t"],
-    },
-    {
-      id: "light",
-      name: "Light",
-      keywords: "light",
-      parent: "theme",
-      perform: () => changeTheme(Theme.LIGHT),
-      shortcut: ["l"],
-    },
-    {
-      id: "dark",
-      name: "Dark",
-      keywords: "dark",
-      parent: "theme",
-      perform: () => changeTheme(Theme.DARK),
-      shortcut: ["d"],
-    },
-    {
-      id: "language",
-      name: "Change language...",
-      icon: TranslateIcon,
-      keywords: "language i18n spanish english español ingles en es",
-      section: "Utilities",
-      shortcut: ["l"],
-    },
-    {
-      id: "en",
-      name: "English",
-      keywords: "english ingles en",
-      parent: "language",
-      perform: () => changeLanguage("en"),
-      shortcut: ["e"],
-    },
-    {
-      id: "es",
-      name: "Español",
-      keywords: "spanish español es",
-      parent: "language",
-      perform: () => changeLanguage("es"),
-      shortcut: ["s"],
-    },
-    {
-      id: "copy-to-clipboard",
-      name: "Copy URL to clipboard",
-      icon: ClipboardIcon,
-      keywords: "copy to clipboard copiar",
-      perform: async () => {
-        await navigator.clipboard.writeText(
-          removeTrailingSlash(`${rootData?.requestInfo.origin}${rootData?.requestInfo.path}`)
-        );
+  const actions: Array<Action> = React.useMemo(
+    () =>
+      [
+        {
+          id: "home",
+          name: t("actions.home.name"),
+          icon: HomeIcon,
+          keywords: "home inicio",
+          perform: () => navigate("/"),
+          section: "Pages",
+          shortcut: ["h"],
+        },
+        {
+          id: "blog",
+          name: "Blog",
+          icon: PencilIcon,
+          keywords: "blog blogs post posts",
+          section: "Pages",
+          shortcut: ["b"],
+        },
+        {
+          id: "contact",
+          name: t("actions.contact.name"),
+          icon: MailIcon,
+          keywords: "contact contacto mail",
+          perform: () => navigate("/contact"),
+          section: "Pages",
+          shortcut: ["c"],
+        },
+        {
+          id: "theme",
+          name: t("actions.theme.name"),
+          icon: ColorSwatchIcon,
+          keywords: "theme",
+          section: t("actions.section.utilities"),
+          shortcut: ["t"],
+        },
+        {
+          id: "light",
+          name: "Light",
+          keywords: "light",
+          parent: "theme",
+          perform: () => changeTheme(Theme.LIGHT),
+          shortcut: ["l"],
+        },
+        {
+          id: "dark",
+          name: "Dark",
+          keywords: "dark",
+          parent: "theme",
+          perform: () => changeTheme(Theme.DARK),
+          shortcut: ["d"],
+        },
+        {
+          id: "language",
+          name: t("actions.language.name"),
+          icon: TranslateIcon,
+          keywords: "language i18n spanish english español ingles en es",
+          section: t("actions.section.utilities"),
+          shortcut: ["l"],
+        },
+        {
+          id: "en",
+          name: "English",
+          keywords: "english ingles en",
+          parent: "language",
+          perform: () => changeLanguage("en"),
+          shortcut: ["e"],
+        },
+        {
+          id: "es",
+          name: "Español",
+          keywords: "spanish español es",
+          parent: "language",
+          perform: () => changeLanguage("es"),
+          shortcut: ["s"],
+        },
+        {
+          id: "copy-to-clipboard",
+          name: t("actions.copy-to-clipboard.name"),
+          icon: ClipboardIcon,
+          keywords: "copy to clipboard copiar",
+          perform: async () => {
+            await navigator.clipboard.writeText(
+              removeTrailingSlash(`${rootData?.requestInfo.origin}${rootData?.requestInfo.path}`)
+            );
 
-        toast.success("Copied to clipboard!", {
-          className:
-            "bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5",
-          duration: 3000,
-        });
-      },
-      section: "Utilities",
-      shortcut: ["c", "c"],
-    },
-    {
-      id: "twitter",
-      name: "Twitter",
-      icon: TwitterIcon,
-      keywords: "twitter",
-      perform: () => window.open(externalLinks.twitterFollow, "_blank"),
-      section: "Social",
-    },
-    {
-      id: "youtube",
-      name: "YouTube",
-      icon: YoutubeIcon,
-      keywords: "youtube",
-      perform: () => window.open(externalLinks.youtube, "_blank"),
-      section: "Social",
-    },
-    {
-      id: "github",
-      name: "GitHub",
-      icon: GithubIcon,
-      keywords: "github",
-      perform: () => window.open(externalLinks.github, "_blank"),
-      section: "Social",
-    },
-    {
-      id: "source-code",
-      name: "View source code",
-      icon: CodeIcon,
-      keywords: "source code codigo fuente",
-      perform: () => window.open(externalLinks.githubSourceCode, "_blank"),
-      section: "Social",
-    },
-  ].map((action) => {
-    const obj = { ...action };
+            toast.success(t("actions.copy-to-clipboard.toast"), {
+              className:
+                "bg-white text-body border border-black border-opacity-5 dark:bg-body-darker dark:text-body-dark dark:border-white dark:border-opacity-5",
+              duration: 3000,
+            });
+          },
+          section: "Utilities",
+          shortcut: ["c", "c"],
+        },
+        {
+          id: "twitter",
+          name: "Twitter",
+          icon: TwitterIcon,
+          keywords: "twitter",
+          perform: () => window.open(externalLinks.twitterFollow, "_blank"),
+          section: "Social",
+        },
+        {
+          id: "youtube",
+          name: "YouTube",
+          icon: YoutubeIcon,
+          keywords: "youtube",
+          perform: () => window.open(externalLinks.youtube, "_blank"),
+          section: "Social",
+        },
+        {
+          id: "github",
+          name: "GitHub",
+          icon: GithubIcon,
+          keywords: "github",
+          perform: () => window.open(externalLinks.github, "_blank"),
+          section: "Social",
+        },
+        {
+          id: "source-code",
+          name: t("actions.source-code.name"),
+          icon: CodeIcon,
+          keywords: "source code codigo fuente",
+          perform: () => window.open(externalLinks.githubSourceCode, "_blank"),
+          section: "Social",
+        },
+      ].map((action) => {
+        const obj = { ...action };
 
-    if (action.perform) {
-      obj.perform = async () => {
-        action.perform();
+        if (action.perform) {
+          obj.perform = async () => {
+            action.perform();
 
-        const prefix = action.parent ? `${action.parent}-` : "";
-        Fathom.trackGoal(`cmd-${prefix}${action.id}`, 0);
-      };
-    }
+            const prefix = action.parent ? `${action.parent}-` : "";
+            Fathom.trackGoal(`cmd-${prefix}${action.id}`, 0);
+          };
+        }
 
-    return obj;
-  });
+        return obj;
+      }),
+    // eslint-disable-next-line
+    [i18n.language]
+  );
 
   return (
     <KBarProvider

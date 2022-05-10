@@ -1,0 +1,27 @@
+{
+  "actions": {
+    "home": {
+      "name": "Inicio"
+    },
+    "contact": {
+      "name": "Contacto"
+    },
+    "theme": {
+      "name": "Cambiar tema..."
+    },
+    "language": {
+      "name": "Cambiar idioma..."
+    },
+    "copy-to-clipboard": {
+      "name": "Copiar la URL en el portapapeles",
+      "toast": "¡Copiado en el portapapeles!"
+    },
+    "source-code": {
+      "name": "Ver código fuente"
+    },
+    "section": {
+      "utilities": "Utilidades"
+    }
+  },
+  "footer": ["Escribe", "para blogs y", "para ayuda."]
+}

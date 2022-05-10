@@ -1,0 +1,27 @@
+{
+  "actions": {
+    "home": {
+      "name": "Home"
+    },
+    "contact": {
+      "name": "Contact"
+    },
+    "theme": {
+      "name": "Change theme..."
+    },
+    "language": {
+      "name": "Change language..."
+    },
+    "copy-to-clipboard": {
+      "name": "Copy URL to clipboard",
+      "toast": "Copied to clipboard!"
+    },
+    "source-code": {
+      "name": "View source code"
+    },
+    "section": {
+      "utilities": "Utilities"
+    }
+  },
+  "footer": ["Type", "for blogs and", "for help."]
+}
