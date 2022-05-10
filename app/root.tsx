@@ -60,7 +60,7 @@ export const handle: HandleStructuredData<RootLoaderData> & Handle = {
       },
     ];
   },
-  i18n: ["common", "pages"],
+  i18n: ["command-palette", "common", "pages"],
   id: "root",
 };
 
