@@ -3,6 +3,8 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/es";
 
+dayjs.extend(relativeTime);
+
 type FormatDateProps = {
   date: string | Date;
   formatter?: string;
@@ -19,9 +21,7 @@ type FromNowProps = {
 };
 
 const fromNow = ({ date, locale = "en" }: FromNowProps) => {
-  dayjs.extend(relativeTime);
-
-  return dayjs(date).locale(locale).fromNow();
+  return dayjs(new Date(date)).locale(locale).fromNow();
 };
 
 export { formatDate, fromNow };

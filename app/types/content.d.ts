@@ -12,7 +12,7 @@ export type MdxPage = {
   frontmatter: {
     title?: string;
     published?: boolean;
-    published_at?: string;
+    published_at?: string | Date;
     cover?: string;
     seo?: {
       title?: string;

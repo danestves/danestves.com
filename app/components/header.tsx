@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 // Internals
 import { externalLinks } from "~/external-links";
-import { useScrollYPosition } from "~/hooks/use-scroll-y-position";
+import { useSticky } from "~/hooks/use-sticky";
 import { GithubIcon } from "./icons/github";
 import { MenuIcon } from "./icons/menu";
 import { TwitterIcon } from "./icons/twitter";
@@ -94,13 +94,13 @@ const mobileLinks: Array<NavLinkProps> = [
 
 function Header() {
   const { i18n } = useTranslation();
-  const y = useScrollYPosition();
+  const isSticky = useSticky(16);
 
   return (
     <header
       className={clsx(
         "fixed top-0 left-0 z-20 w-full px-6 transition-all duration-100 lg:px-12",
-        y >= 16 ? "bg-white/95 py-2 shadow backdrop-blur dark:bg-body-darker/75" : "py-6"
+        isSticky ? "bg-white/95 py-2 shadow backdrop-blur dark:bg-body-darker/75" : "py-6"
       )}
     >
       <div className="relative flex w-full items-center justify-between">

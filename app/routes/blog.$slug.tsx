@@ -14,6 +14,7 @@ import { GithubIcon } from "~/components/icons/github";
 import { ShareIcon } from "~/components/icons/share";
 import { TwitterIcon } from "~/components/icons/twitter";
 import { Image } from "~/components/image";
+import { Views } from "~/components/views";
 import { externalLinks } from "~/external-links";
 import { useShare } from "~/hooks/use-share";
 import prismOne from "~/styles/prism-one.css";
@@ -24,7 +25,6 @@ import { getMdxListItems, getMdxPage } from "~/utils/mdx.server";
 import { getSeoMeta } from "~/utils/seo";
 import type { RootLoaderData } from "~/root";
 import type { Handle, MdxComponent } from "~/types";
-import { Views } from "~/components/views";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
 
 export const handle: HandleStructuredData<LoaderData> & SEOHandle & Handle = {
@@ -129,6 +129,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   return json<LoaderData>(
     {
       ...mdxPage,
+      frontmatter: {
+        ...mdxPage.frontmatter,
+        published_at: new Date(mdxPage.frontmatter.published_at as string),
+      },
       share: {
         url: url.toString(),
       },
@@ -236,7 +240,7 @@ export default function Blog() {
               <time dateTime={new Date(data.frontmatter.published_at!).toISOString()}>
                 {formatDate({
                   date: new Date(data.frontmatter.published_at!).toISOString(),
-                  formatter: i18n.language === "en" ? "MMMM d, YYYY" : "d MMMM YYYY",
+                  formatter: i18n.language === "en" ? "MMMM DD, YYYY" : "DD MMMM YYYY",
                   locale: i18n.language,
                 })}
               </time>
