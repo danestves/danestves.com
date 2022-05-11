@@ -47,13 +47,20 @@ export const loader: LoaderFunction = async ({ request }) => {
     getMdxListItems({ contentDirectory: `blog/${locale}` }),
     i18n.getFixedT(request, "pages"),
   ]);
-  const posts = data.map((post) => ({
-    ...post,
-    frontmatter: JSON.parse(post.frontmatter),
-    // Remove the locale from the slug, we only use it with locale prefixes to be able to
-    // use the slug as unique identifier for the blog post on Prisma.
-    slug: post.slug.replace(`${locale}-`, ""),
-  }));
+  const posts = data.map((post) => {
+    const frontmatter = JSON.parse(post.frontmatter);
+
+    return {
+      ...post,
+      frontmatter: {
+        ...frontmatter,
+        published_at: new Date(frontmatter.published_at),
+      },
+      // Remove the locale from the slug, we only use it with locale prefixes to be able to
+      // use the slug as unique identifier for the blog post on Prisma.
+      slug: post.slug.replace(`${locale}-`, ""),
+    };
+  });
 
   return json<LoaderData>(
     {

@@ -269,14 +269,16 @@ export default function ContactPage() {
 
           {actionData?.fieldErrors?.emailSent ? <FormError /> : null}
 
-          <HCaptcha
-            languageOverride={i18n.language}
-            onVerify={onVerify}
-            ref={captchaRef}
-            sitekey={process.env.HCAPTCHA_SITE_KEY!}
-            size="invisible"
-            theme={theme as "light" | "dark"}
-          />
+          {ENV.HCAPTCHA_SITE_KEY ? (
+            <HCaptcha
+              languageOverride={i18n.language}
+              onVerify={onVerify}
+              ref={captchaRef}
+              sitekey={ENV.HCAPTCHA_SITE_KEY}
+              size="invisible"
+              theme={theme as "light" | "dark"}
+            />
+          ) : null}
         </ValidatedForm>
       </div>
     </div>

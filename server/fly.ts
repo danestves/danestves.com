@@ -12,11 +12,6 @@ const getReplayResponse: RequestHandler = function getReplayResponse(req, res, n
 
   if (!FLY || isPrimaryRegion) return next();
 
-  if (pathname.includes("__metronome")) {
-    // metronome doesn't need to be replayed...
-    return next();
-  }
-
   const logInfo = {
     pathname,
     method,

@@ -50,14 +50,24 @@ export const loader: LoaderFunction = async ({ request }) => {
   ]);
 
   return json<LoaderData>({
-    posts: posts.map((post) => ({
-      ...post,
-      frontmatter: JSON.parse(post.frontmatter),
-      // Remove the locale from the slug, we only use it with locale prefixes to be able to
-      // use the slug as unique identifier for the blog post on Prisma.
-      slug: post.slug.replace(`${locale}-`, ""),
+    posts: posts.map((post) => {
+      const frontmatter = JSON.parse(post.frontmatter);
+
+      return {
+        ...post,
+        frontmatter: {
+          ...frontmatter,
+          published_at: new Date(frontmatter.published_at),
+        },
+        // Remove the locale from the slug, we only use it with locale prefixes to be able to
+        // use the slug as unique identifier for the blog post on Prisma.
+        slug: post.slug.replace(`${locale}-`, ""),
+      };
+    }),
+    videos: videos.map((video: Record<string, string>) => ({
+      ...video,
+      published_at: new Date(video.published_at),
     })),
-    videos,
     seo: {
       title: t("index.seo.title"),
       description: t("index.seo.description"),

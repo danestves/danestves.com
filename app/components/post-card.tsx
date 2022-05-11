@@ -66,13 +66,15 @@ function PostCard<T extends React.ElementType = "div">({
 
       <p className="mt-4 text-xs font-semibold text-secondary-700 dark:text-secondary">
         {t("components.post-card.published")}{" "}
-        <time dateTime={new Date(post.published_at!).toISOString()}>
-          {formatDate({
-            date: post.published_at!,
-            formatter: i18n.language === "en" ? "MMMM DD, YYYY" : "DD MMMM YYYY",
-            locale: i18n.language,
-          })}
-        </time>
+        {post.published_at ? (
+          <time dateTime={new Date(post.published_at).toISOString()}>
+            {formatDate({
+              date: post.published_at,
+              formatter: i18n.language === "en" ? "MMMM DD, YYYY" : "DD MMMM YYYY",
+              locale: i18n.language,
+            })}
+          </time>
+        ) : null}
       </p>
       <h2 className="mt-[6px] text-xl font-bold text-primary-light dark:text-primary">{post.title}</h2>
       <p className={clsx("mt-[6px] text-xs font-semibold text-[#838383]", descriptionClassName)}>
