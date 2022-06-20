@@ -46,14 +46,7 @@ function HeroSection() {
           </span>
         </h1>
         <p className="mt-1 text-xs">
-          Senior Frontend Engineer @{" "}
-          <Link
-            className="rounded underline decoration-1 underline-offset-2 hover:decoration-2 focus:decoration-2 focus:outline-none"
-            to="https://www.reworth.co/"
-          >
-            REWORTH
-          </Link>
-          . <br />{" "}
+          Senior Frontend Engineer. <br />{" "}
           <span
             dangerouslySetInnerHTML={{
               __html: t("hero.description"),
