@@ -36,6 +36,7 @@ POST,DELETE,PATCH,PUT  /                                                https://
 /blog/rss                                                               /blog/rss.xml
 /blog/feed                                                              /blog/rss.xml
 /blog/blog/rss.xml                                                      /blog/rss.xml
+/contact                                                                https://www.linkedin.com/in/danestves/
 
 # old urls
 /danestves.pdf                                                          /about
