@@ -2,7 +2,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
-/** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}", "./public/maria-data.json"],
   darkMode: "class",
