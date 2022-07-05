@@ -1,6 +1,6 @@
 // Dependencies
 import * as Sentry from "@sentry/node";
-import { isResponse } from "@remix-run/server-runtime/responses";
+import { isResponse } from "@remix-run/server-runtime/dist/responses";
 import { nanoid } from "nanoid";
 import type { ActionFunction, DataFunctionArgs, LoaderFunction, ServerBuild } from "@remix-run/server-runtime";
 import type { Transaction } from "@sentry/types";
