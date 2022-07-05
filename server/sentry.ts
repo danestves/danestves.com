@@ -1,7 +1,6 @@
 // Dependencies
 import * as Sentry from "@sentry/node";
 import { isResponse } from "@remix-run/server-runtime/dist/responses";
-import { nanoid } from "nanoid";
 import type { ActionFunction, DataFunctionArgs, LoaderFunction, ServerBuild } from "@remix-run/server-runtime";
 import type { Transaction } from "@sentry/types";
 import type { Request, Response } from "express";
@@ -66,7 +65,9 @@ export function registerSentry(build: ServerBuild) {
   };
 }
 
-export function sentryLoadContext(req: Request, res: Response) {
+export async function sentryLoadContext(req: Request, res: Response) {
+  const { default: nanoid } = await import("nanoid");
+
   const transaction = Sentry.getCurrentHub().startTransaction({
     op: "request",
     name: `${req.method}: ${req.url}`,
@@ -75,7 +76,7 @@ export function sentryLoadContext(req: Request, res: Response) {
       requestPath: req.url,
     },
     tags: {
-      global_id: nanoid(),
+      global_id: nanoid.nanoid(),
     },
   });
 
