@@ -17,6 +17,11 @@ function RenderImage({ ...props }: ImageProps, ref: React.Ref<HTMLImageElement>)
         ...props.options,
       }}
       ref={ref}
+      style={{
+        ...props.style,
+        minHeight: "100%",
+        minWidth: "100%",
+      }}
     />
   );
 }
