@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from "react";
-import { Image as RemixImage } from "remix-image";
+import { Image as RemixImage, remixImageLoader } from "remix-image";
 import type { ImageProps as RemixImageProps } from "remix-image";
 
 // Internals
@@ -12,6 +12,8 @@ function RenderImage({ ...props }: ImageProps, ref: React.Ref<HTMLImageElement>)
   return (
     <RemixImage
       {...props}
+      loader={remixImageLoader}
+      loaderUrl="/api/image"
       options={{
         contentType: useNextGenImageFormat(),
         ...props.options,

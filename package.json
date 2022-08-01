@@ -69,7 +69,7 @@
     "lru-cache": "^7.13.1",
     "mdx-bundler": "^9.0.1",
     "morgan": "^1.10.0",
-    "nanoid": "3.3.4",
+    "nanoid": "4.0.0",
     "on-finished": "^2.4.1",
     "p-queue": "^7.3.0",
     "path-to-regexp": "^6.2.1",
