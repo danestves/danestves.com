@@ -94,7 +94,7 @@ export default function ContactPage() {
         <p className="text-center text-lg text-body dark:text-body-dark">{t("contact.seo.description")}</p>
 
         <form
-          action="https://kwesforms.com/api/foreign/forms/Ey4Jxyw8L77uDlhtt5Un"
+          action="https://kwesforms.com/api/foreign/forms/lwi5yHohf0fhXC2QqDBZ"
           className="kwes-form mt-8 space-y-6"
           lang={i18n.language}
         >
