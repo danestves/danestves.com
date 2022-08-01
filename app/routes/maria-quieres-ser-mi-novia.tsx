@@ -1,9 +1,9 @@
 // Dependencies
 import { useLoaderData } from "@remix-run/react";
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import endent from "endent";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
-import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 
 // Internals
 import { Image } from "~/components/image";

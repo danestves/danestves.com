@@ -1,6 +1,6 @@
 // Dependencies
 import { Flyyer } from "@flyyer/flyyer";
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
 import endent from "endent";
@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { useChangeLanguage } from "remix-i18next";
 import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
 import { ExternalScripts, StructuredData } from "remix-utils";
-import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 import type { HandleStructuredData } from "remix-utils";
 
 // Internals

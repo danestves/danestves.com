@@ -1,7 +1,7 @@
 // Dependencies
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import nodepath from "path";
-import type { ActionFunction } from "@remix-run/server-runtime";
+import type { ActionFunction } from "@remix-run/node";
 
 // Internals
 import { setContentSHA } from "~/models/content-state.server";

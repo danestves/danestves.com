@@ -1,5 +1,5 @@
 // Dependencies
-import type { LoaderFunction } from "@remix-run/server-runtime";
+import type { LoaderFunction } from "@remix-run/node";
 
 // Internals
 import { generateFeed } from "~/utils/feed.server";

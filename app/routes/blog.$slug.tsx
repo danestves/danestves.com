@@ -1,12 +1,12 @@
 // Dependencies
 import Giscus from "@giscus/react";
 import { useLoaderData } from "@remix-run/react";
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "remix-themes";
 import invariant from "tiny-invariant";
 import type { Theme } from "@giscus/react";
-import type { HeadersFunction, LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { HeadersFunction, LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 import type { HandleStructuredData } from "remix-utils";
 
 // Internals

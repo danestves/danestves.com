@@ -1,9 +1,9 @@
 // Dependencies
 import { MailIcon } from "@heroicons/react/solid";
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import { useTranslation } from "react-i18next";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
-import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import type { ExternalScriptsFunction, HandleStructuredData } from "remix-utils";
 
 // Internals

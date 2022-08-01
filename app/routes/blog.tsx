@@ -1,8 +1,8 @@
 // Dependencies
 import { useLoaderData } from "@remix-run/react";
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
-import type { HeadersFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { HeadersFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 
 // Internals
 import { Link } from "~/components/link";

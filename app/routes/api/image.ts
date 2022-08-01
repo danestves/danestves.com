@@ -1,10 +1,8 @@
 // Dependencies
 import { DiskCache, fetchResolver, fsResolver, imageLoader } from "remix-image/server";
+import { sharpTransformer } from "remix-image-sharp";
 import type { LoaderConfig, Resolver } from "remix-image/server";
-import type { LoaderFunction } from "@remix-run/server-runtime";
-
-// Internals
-import { sharpTransformer } from "~/utils/image-transformer.server";
+import type { LoaderFunction } from "@remix-run/node";
 
 export const customResolver: Resolver = async (asset, url, options, basePath) => {
   if (url.startsWith("/") && (url.length === 1 || url[1] !== "/")) {

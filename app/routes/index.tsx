@@ -1,8 +1,8 @@
 // Dependencies
 import { useLoaderData } from "@remix-run/react";
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
-import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 
 // Internals
 import { HeroSection } from "~/components/sections/hero-section";
@@ -40,7 +40,7 @@ type LoaderData = {
   };
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
+export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);
   const locale = await i18n.getLocale(request);
   const [t, posts, videos] = await Promise.all([
@@ -49,7 +49,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     fetch(`${url.origin}/data/youtube.json`).then((res) => res.json()),
   ]);
 
-  return json<LoaderData>({
+  return json({
     posts: posts.map((post) => {
       const frontmatter = JSON.parse(post.frontmatter);
 
@@ -73,7 +73,7 @@ export const loader: LoaderFunction = async ({ request }) => {
       description: t("index.seo.description"),
     },
   });
-};
+}
 
 export const meta: MetaFunction = ({ data }) => {
   const dataLoader = data as LoaderData;
@@ -90,13 +90,13 @@ export const meta: MetaFunction = ({ data }) => {
 };
 
 export default function HomePage() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <>
       <HeroSection />
       <VideosSection videos={data.videos} />
-      <PostsSection posts={data.posts} />
+      <PostsSection posts={data.posts as any} />
     </>
   );
 }

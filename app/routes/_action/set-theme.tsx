@@ -1,7 +1,7 @@
 // Dependencies
-import { json } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
 import { isTheme } from "remix-themes";
-import type { ActionFunction } from "@remix-run/server-runtime";
+import type { ActionFunction } from "@remix-run/node";
 
 // Internals
 import { themeSessionResolver } from "~/utils/theme.server";

@@ -1,7 +1,7 @@
 // Dependencies
 import * as dns from "dns";
-import { json } from "@remix-run/server-runtime";
-import type { ActionFunction } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
+import type { ActionFunction } from "@remix-run/node";
 
 // Internals
 import { getRequiredEnvVar } from "~/utils/misc";

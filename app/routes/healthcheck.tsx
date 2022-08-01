@@ -1,5 +1,5 @@
 // Dependencies
-import type { LoaderFunction } from "@remix-run/server-runtime";
+import type { LoaderFunction } from "@remix-run/node";
 
 // Internals
 import { i18n } from "~/utils/i18n.server";

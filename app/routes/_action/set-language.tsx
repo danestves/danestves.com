@@ -1,6 +1,6 @@
 // Dependencies
-import { json } from "@remix-run/server-runtime";
-import type { ActionFunction } from "@remix-run/server-runtime";
+import { json } from "@remix-run/node";
+import type { ActionFunction } from "@remix-run/node";
 
 // Internals
 import { i18nStorage } from "~/utils/i18n.server";

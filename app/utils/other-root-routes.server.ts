@@ -1,6 +1,6 @@
 // Dependencies
 import { generateRobotsTxt, generateSitemap } from "@balavishnuvj/remix-seo";
-import type { EntryContext } from "@remix-run/server-runtime";
+import type { EntryContext } from "@remix-run/node";
 
 type Handler = (request: Request, remixContext: EntryContext) => Promise<Response | null> | null;
 
