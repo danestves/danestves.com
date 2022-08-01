@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useCallback, useEffect } from "react";
 import { ChevronRightIcon, ExclamationIcon, SupportIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
 import { KBarResults, NO_GROUP, useKBar, useMatches } from "kbar";
@@ -18,13 +18,13 @@ function Results({ rawQuery }: CommandPaletteResultsProps) {
   const { results } = useMatches();
   const kbar = useKBar();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (rawQuery === "#") {
       kbar.query.setCurrentRootAction("blog");
     }
   }, [kbar.query, rawQuery]);
 
-  const onRender = React.useCallback(({ active, item }: RenderParams) => {
+  const onRender = useCallback(({ active, item }: RenderParams) => {
     if (typeof item === "string") {
       return <h2 className="px-3 pt-4 pb-2 text-xs font-semibold text-gray-500 dark:text-gray-200">{item}</h2>;
     }

@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface IGeneralObserverProps {
   children?: React.ReactNode;
@@ -10,10 +10,10 @@ interface IGeneralObserverProps {
 }
 
 function GeneralObserver({ children, onEnter, height = 0 }: IGeneralObserverProps) {
-  const [isChildVisible, setIsChildVisible] = React.useState(false);
-  const ref = React.useRef<HTMLElement>(null);
+  const [isChildVisible, setIsChildVisible] = useState(false);
+  const ref = useRef<HTMLElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.intersectionRatio > 0) {

@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useMemo } from "react";
 import { useMatches } from "@remix-run/react";
 
 /**
@@ -10,7 +10,7 @@ import { useMatches } from "@remix-run/react";
  */
 export function useMatchesData<T>(id: string): T | undefined {
   const matchingRoutes = useMatches();
-  const route = React.useMemo(() => matchingRoutes.find((route) => route.id === id), [matchingRoutes, id]);
+  const route = useMemo(() => matchingRoutes.find((route) => route.id === id), [matchingRoutes, id]);
 
   return route?.data as T;
 }

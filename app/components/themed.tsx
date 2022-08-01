@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { createElement, useState } from "react";
 import { useTheme } from "remix-themes";
 import { ClientOnly } from "remix-utils";
 
@@ -20,7 +20,7 @@ function Themed({
   initialOnly?: boolean;
 }) {
   const [theme] = useTheme();
-  const [initialTheme] = React.useState(theme);
+  const [initialTheme] = useState(theme);
   const themeToReference = initialOnly ? initialTheme : theme;
   const serverRenderWithUnknownTheme = !theme && typeof window !== "object";
   if (serverRenderWithUnknownTheme) {
@@ -30,8 +30,8 @@ function Themed({
       <ClientOnly>
         {() => (
           <>
-            {React.createElement("dark-mode", null, dark)}
-            {React.createElement("light-mode", null, light)}
+            {createElement("dark-mode", null, dark)}
+            {createElement("light-mode", null, light)}
           </>
         )}
       </ClientOnly>

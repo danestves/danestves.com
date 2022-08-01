@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { forwardRef, useId as reactUseId } from "react";
 import clsx from "clsx";
 
 type TextAreaProps = React.ComponentProps<"textarea"> & {
@@ -22,7 +22,7 @@ function RenderTextArea(
   }: TextAreaProps,
   ref: React.LegacyRef<HTMLTextAreaElement>
 ) {
-  const useId = React.useId();
+  const useId = reactUseId();
   const id = `${propId}-${useId}`;
 
   return (
@@ -51,7 +51,7 @@ function RenderTextArea(
   );
 }
 
-const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(RenderTextArea);
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(RenderTextArea);
 
 export type { TextAreaProps };
 export { TextArea };

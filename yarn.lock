@@ -5922,6 +5922,11 @@ kleur@^4.0.3:
   resolved "https://registry.npmjs.org/kleur/-/kleur-4.1.4.tgz"
   integrity sha512-8QADVssbrFjivHWQU7KkMgptGTl6WAcSdlbBPY4uNF+mWr6DGcKrvY2w4FQJoXch7+fKMjj0dRrL75vk3k23OA==
 
+kwesforms@^2.1.22:
+  version "2.1.22"
+  resolved "https://registry.yarnpkg.com/kwesforms/-/kwesforms-2.1.22.tgz#a223932da7edb7f7f40f2c9e9838f0e58ccad48c"
+  integrity sha512-de5MS5Rf/zdBU7WvZvqoXjXZjgTWGg+q7pQw00r26ybKqBwYa3uFAxCHT/fht/lh/oLiCK3gCCd4Q1zjnDdH1g==
+
 language-subtag-registry@~0.3.2:
   version "0.3.21"
   resolved "https://registry.npmjs.org/language-subtag-registry/-/language-subtag-registry-0.3.21.tgz"

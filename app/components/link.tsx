@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { forwardRef } from "react";
 import { Link as RemixLink } from "@remix-run/react";
 import type { LinkProps as RemixLinkProps } from "@remix-run/react";
 
@@ -30,6 +30,6 @@ function RenderLink(
   );
 }
 
-const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(RenderLink);
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(RenderLink);
 
 export { Link };

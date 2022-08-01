@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { useTransition } from "@remix-run/react";
 import toast from "react-hot-toast";
 
@@ -19,10 +19,10 @@ let firstRender = true;
 
 function LoadingMessage() {
   const transition = useTransition();
-  const [words, setWords] = React.useState<Array<string>>([]);
-  const [pendingPath, setPendingPath] = React.useState("");
+  const [words, setWords] = useState<Array<string>>([]);
+  const [pendingPath, setPendingPath] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (firstRender) return;
     if (transition.state === "idle") return;
     if (transition.state === "loading") setWords(LOADER_WORDS);
@@ -35,7 +35,7 @@ function LoadingMessage() {
     return () => clearInterval(interval);
   }, [pendingPath, transition.state]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (firstRender) return;
     if (transition.state === "idle") {
       // If the transition is idle we want to remove the toast
@@ -49,12 +49,12 @@ function LoadingMessage() {
     setPendingPath(transition.location.pathname);
   }, [transition]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     firstRender = false;
   }, []);
 
   const action = words[0];
-  React.useEffect(() => {
+  useEffect(() => {
     if (!firstRender && action && transition.state !== "idle") {
       toast.loading(
         <div className="pointer-events-auto ml-2 rounded-lg">

@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { forwardRef, useId as reactUseId } from "react";
 import clsx from "clsx";
 
 type InputProps = React.ComponentProps<"input"> & {
@@ -21,7 +21,7 @@ function RenderInput(
   }: InputProps,
   ref: React.LegacyRef<HTMLInputElement>
 ) {
-  const useId = React.useId();
+  const useId = reactUseId();
   const id = `${propId}-${useId}`;
 
   return (
@@ -51,7 +51,7 @@ function RenderInput(
   );
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(RenderInput);
+const Input = forwardRef<HTMLInputElement, InputProps>(RenderInput);
 
 export type { InputProps };
 export { Input };

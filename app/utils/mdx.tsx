@@ -1,6 +1,6 @@
 // Dependencies
 import * as mdxBundler from "mdx-bundler/client";
-import * as React from "react";
+import { useMemo } from "react";
 
 // Internals
 import { Image } from "~/components/image";
@@ -36,5 +36,5 @@ function getMdxComponent(code: string) {
 }
 
 export function useMdxComponent(code: string) {
-  return React.useMemo(() => getMdxComponent(code), [code]);
+  return useMemo(() => getMdxComponent(code), [code]);
 }

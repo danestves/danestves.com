@@ -1,10 +1,12 @@
 // Dependencies
+import { useEffect } from "react";
 import { MailIcon } from "@heroicons/react/solid";
 import { json } from "@remix-run/node";
+import kwesforms from "kwesforms";
 import { useTranslation } from "react-i18next";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import type { ExternalScriptsFunction, HandleStructuredData } from "remix-utils";
+import type { HandleStructuredData } from "remix-utils";
 
 // Internals
 import { Input } from "~/components/input";
@@ -13,15 +15,6 @@ import { externalLinks } from "~/external-links";
 import { i18n } from "~/utils/i18n.server";
 import { getSeoMeta } from "~/utils/seo";
 import type { Handle } from "~/types";
-
-const scripts: ExternalScriptsFunction = () => {
-  return [
-    {
-      src: "https://kwesforms.com/v2/kwes-script.js",
-      defer: true,
-    },
-  ];
-};
 
 export const handle: HandleStructuredData<LoaderData> & Handle & SEOHandle = {
   structuredData(data) {
@@ -43,7 +36,6 @@ export const handle: HandleStructuredData<LoaderData> & Handle & SEOHandle = {
     ];
   },
   i18n: ["errors"],
-  scripts,
 };
 
 type LoaderData = {
@@ -80,6 +72,10 @@ export const meta: MetaFunction = ({ data }) => {
 
 export default function ContactPage() {
   const { i18n, t } = useTranslation("pages");
+
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
 
   return (
     <div className="w-full py-32">

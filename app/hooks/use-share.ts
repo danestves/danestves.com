@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useEffect, useState } from "react";
 import copyToClipboard from "copy-to-clipboard";
 
 /**
@@ -14,16 +14,16 @@ export function useShare(shareData: ShareData): {
   hasShared: boolean;
   share: () => void;
 } {
-  let [hasShared, setShared] = React.useState(false);
-  let [canShare, setCanShare] = React.useState(false);
+  let [hasShared, setShared] = useState(false);
+  let [canShare, setCanShare] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let canShare = "share" in navigator;
 
     setCanShare(canShare);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (hasShared) {
       const timeoutId = setTimeout(() => setShared(false), 3000);
 

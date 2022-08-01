@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { forwardRef } from "react";
 import clsx from "clsx";
 
 function RenderKbd(
@@ -20,8 +20,6 @@ function RenderKbd(
   );
 }
 
-const Kbd = React.forwardRef<HTMLElement, React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>>(
-  RenderKbd
-);
+const Kbd = forwardRef<HTMLElement, React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>>(RenderKbd);
 
 export { Kbd };

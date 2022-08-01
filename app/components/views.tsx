@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useEffect, useRef } from "react";
 import { useFetcher } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 
@@ -10,13 +10,13 @@ type ViewsProps = {
 function Views({ slug }: ViewsProps) {
   const { i18n, t } = useTranslation("common");
   const persistViews = useFetcher();
-  const persistViewsRef = React.useRef(persistViews);
+  const persistViewsRef = useRef(persistViews);
 
-  React.useEffect(() => {
+  useEffect(() => {
     persistViewsRef.current = persistViews;
   }, [persistViews]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     persistViewsRef.current.submit(
       {
         slug,

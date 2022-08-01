@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { forwardRef } from "react";
 import { NavLink as RemixNavLink } from "@remix-run/react";
 import type { NavLinkProps } from "@remix-run/react";
 
@@ -44,6 +44,6 @@ function RenderLink(
   );
 }
 
-const NavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(RenderLink);
+const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(RenderLink);
 
 export { NavLink };

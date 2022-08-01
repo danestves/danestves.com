@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { Fragment, useRef } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { useFetcher } from "@remix-run/react";
 import clsx from "clsx";
@@ -16,7 +16,7 @@ const languages = [
 function LanguageSwitcher() {
   const { i18n } = useTranslation();
   const persistLanguage = useFetcher();
-  const persistLanguageRef = React.useRef(persistLanguage);
+  const persistLanguageRef = useRef(persistLanguage);
 
   const onChange = async (language: typeof languages[0]) => {
     persistLanguageRef.current.submit({ lang: language.code }, { action: "_action/set-language", method: "post" });
@@ -38,12 +38,7 @@ function LanguageSwitcher() {
             </span>
           </span>
         </Listbox.Button>
-        <Transition
-          as={React.Fragment}
-          leave="transition ease-in duration-100"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
+        <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
           <Listbox.Options className="absolute top-full right-0 mt-1 w-min rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-[#303030]">
             {languages.map((lang) => (
               <Listbox.Option

@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useRef } from "react";
 import { Switch } from "@headlessui/react";
 import { useFetcher } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
@@ -12,10 +12,10 @@ import { Themed } from "./themed";
 import type { RootLoaderData } from "~/root";
 
 function ThemeSwitcher() {
-  let { t } = useTranslation("common");
-  let [theme] = useTheme();
+  const { t } = useTranslation("common");
+  const [theme] = useTheme();
   const persistTheme = useFetcher();
-  const persistThemeRef = React.useRef(persistTheme);
+  const persistThemeRef = useRef(persistTheme);
   const data = useMatchesData<RootLoaderData>("root");
 
   const onChange = (_checked: boolean) => {

@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   ClipboardIcon,
   CodeIcon,
@@ -31,11 +31,11 @@ import { ServerActions } from "./server-actions";
 import type { RootLoaderData } from "~/root";
 
 function CommandPalette({ children }: { children?: React.ReactNode }) {
-  const [rawQuery, setRawQuery] = React.useState("");
+  const [rawQuery, setRawQuery] = useState("");
   const persistTheme = useFetcher();
   const persistLanguage = useFetcher();
-  const persistThemeRef = React.useRef(persistTheme);
-  const persistLanguageRef = React.useRef(persistLanguage);
+  const persistThemeRef = useRef(persistTheme);
+  const persistLanguageRef = useRef(persistLanguage);
   const navigate = useNavigate();
   const rootData = useMatchesData<RootLoaderData>("root");
   const { i18n, t } = useTranslation("command-palette");
@@ -49,7 +49,7 @@ function CommandPalette({ children }: { children?: React.ReactNode }) {
   };
 
   // @ts-expect-error - we can pass a a children reference
-  const actions: Array<Action> = React.useMemo(
+  const actions: Array<Action> = useMemo(
     () =>
       [
         {

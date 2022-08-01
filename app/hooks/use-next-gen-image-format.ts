@@ -1,11 +1,11 @@
 // Dependencies
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { MimeType } from "remix-image";
 
 function useNextGenImageFormat() {
-  const [format, setFormat] = React.useState<MimeType | undefined>(MimeType.WEBP);
+  const [format, setFormat] = useState<MimeType | undefined>(MimeType.WEBP);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const elem = document.createElement("canvas");
 
     if (elem.getContext && elem.getContext("2d")) {

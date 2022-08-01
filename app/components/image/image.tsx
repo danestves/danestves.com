@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { forwardRef } from "react";
 import { Image as RemixImage, remixImageLoader } from "remix-image";
 import type { ImageProps as RemixImageProps } from "remix-image";
 
@@ -28,6 +28,6 @@ function RenderImage({ ...props }: ImageProps, ref: React.Ref<HTMLImageElement>)
   );
 }
 
-const Image = React.forwardRef<HTMLImageElement, ImageProps>(RenderImage);
+const Image = forwardRef<HTMLImageElement, ImageProps>(RenderImage);
 
 export default Image;

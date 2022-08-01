@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { nanoid } from "nanoid";
@@ -112,7 +112,7 @@ function Header() {
             </Popover.Button>
 
             <Transition
-              as={React.Fragment}
+              as={Fragment}
               enter="duration-150 ease-out"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"

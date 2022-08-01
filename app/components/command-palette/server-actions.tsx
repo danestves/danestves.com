@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "@remix-run/react";
 import { useRegisterActions } from "kbar";
 import { useTranslation } from "react-i18next";
@@ -10,12 +10,12 @@ type ServerAction = Omit<Action, "perform"> & {
 };
 
 function ServerActions() {
-  const [customActions, setCustomActions] = React.useState<Action[]>([]);
-  const [locale, setLocale] = React.useState("");
+  const [customActions, setCustomActions] = useState<Action[]>([]);
+  const [locale, setLocale] = useState("");
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const loadContent = async () => {
       const contentActions = await fetch("/_content/get-kbar-actions.json");
       const { actions, locale } = (await contentActions.json()) as {

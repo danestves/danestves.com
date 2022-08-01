@@ -1,10 +1,10 @@
 // Dependencies
-import * as React from "react";
+import { useEffect, useState } from "react";
 
 function useSticky(position = 64) {
-  const [isShrunk, setShrunk] = React.useState(false);
+  const [isShrunk, setShrunk] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setShrunk((isShrunk) => {
       if (!isShrunk && (document.body.scrollTop > position || document.documentElement.scrollTop > position)) {
         return true;
@@ -18,7 +18,7 @@ function useSticky(position = 64) {
     });
   }, [position]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handler() {
       setShrunk((isShrunk) => {
         if (!isShrunk && (document.body.scrollTop > position || document.documentElement.scrollTop > position)) {
