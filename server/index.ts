@@ -1,5 +1,4 @@
 // Dependencies
-import * as Sentry from "@sentry/node";
 import { createRequestHandler } from "@remix-run/express";
 import compression from "compression";
 import express from "express";
@@ -10,7 +9,6 @@ import path from "path";
 
 // Internals
 import { getRedirectsMiddleware } from "./redirects";
-import { registerSentry, sentryLoadContext } from "./sentry";
 import { getReplayResponse } from "./fly";
 
 const here = (...d: Array<string>) => path.join(__dirname, ...d);
@@ -20,14 +18,8 @@ const BUILD_DIR = path.join(process.cwd(), "build");
 
 const loadBuild = () => {
   let build = require(BUILD_DIR);
-  build = registerSentry(build);
   return build;
 };
-
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-  tracesSampleRate: 1.0,
-});
 
 const app = express();
 
@@ -122,14 +114,10 @@ app.use((req, res, next) => {
 app.all(
   "*",
   MODE === "production"
-    ? createRequestHandler({ build: loadBuild(), getLoadContext: sentryLoadContext, mode: MODE })
+    ? createRequestHandler({ build: loadBuild(), mode: MODE })
     : (req, res, next) => {
         purgeRequireCache();
-        return createRequestHandler({ build: require(BUILD_DIR), getLoadContext: sentryLoadContext, mode: MODE })(
-          req,
-          res,
-          next
-        );
+        return createRequestHandler({ build: require(BUILD_DIR), mode: MODE })(req, res, next);
       }
 );
 
