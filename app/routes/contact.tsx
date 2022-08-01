@@ -1,29 +1,27 @@
 // Dependencies
-import * as React from "react";
-import { ArrowSmRightIcon } from "@heroicons/react/outline";
-import { useActionData } from "@remix-run/react";
+import { MailIcon } from "@heroicons/react/solid";
 import { json } from "@remix-run/server-runtime";
-import { withZod } from "@remix-validated-form/with-zod";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "remix-themes";
-import { useHydrated } from "remix-utils";
-import { ValidatedForm, useIsSubmitting, validationError } from "remix-validated-form";
-import { z } from "zod";
 import type { SEOHandle } from "@balavishnuvj/remix-seo";
-import type { ActionFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
-import type { HandleStructuredData } from "remix-utils";
+import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { ExternalScriptsFunction, HandleStructuredData } from "remix-utils";
 
 // Internals
-import { SpinIcon } from "~/components/icons/spin";
 import { Input } from "~/components/input";
-import { Link } from "~/components/link";
 import { TextArea } from "~/components/textarea";
 import { externalLinks } from "~/external-links";
-import HCaptcha from "~/services/hcaptcha";
 import { i18n } from "~/utils/i18n.server";
-import { sendContactEmail } from "~/utils/mail.server";
 import { getSeoMeta } from "~/utils/seo";
 import type { Handle } from "~/types";
+
+const scripts: ExternalScriptsFunction = () => {
+  return [
+    {
+      src: "https://kwesforms.com/v2/kwes-script.js",
+      defer: true,
+    },
+  ];
+};
 
 export const handle: HandleStructuredData<LoaderData> & Handle & SEOHandle = {
   structuredData(data) {
@@ -45,52 +43,7 @@ export const handle: HandleStructuredData<LoaderData> & Handle & SEOHandle = {
     ];
   },
   i18n: ["errors"],
-};
-
-export const validator = withZod(
-  z.object({
-    email: z.string().nonempty("nonempty").email("email"),
-    name: z.string().nonempty("nonempty"),
-    subject: z.string().nonempty("nonempty"),
-    message: z.string().nonempty("nonempty"),
-  })
-);
-
-type ActionData = {
-  fieldErrors?: {
-    [key: string]: string;
-  };
-  success?: boolean;
-};
-
-export const action: ActionFunction = async ({ request }) => {
-  const result = await validator.validate(await request.formData());
-
-  if (result.error) {
-    return validationError(result.error, result.submittedData);
-  }
-
-  const data = result.data;
-
-  const emailSent = await sendContactEmail({
-    email: data.email,
-    name: data.name,
-    subject: data.subject,
-    text: data.message,
-  });
-
-  if (!emailSent.id) {
-    return validationError(
-      {
-        fieldErrors: {
-          emailSent: "Cannot send email",
-        },
-      },
-      result.submittedData
-    );
-  }
-
-  return json<ActionData>({ success: true });
+  scripts,
 };
 
 type LoaderData = {
@@ -125,81 +78,8 @@ export const meta: MetaFunction = ({ data }) => {
   };
 };
 
-function SubmitButton() {
-  const { t } = useTranslation("pages");
-  const isSubmitting = useIsSubmitting();
-
-  return (
-    <button
-      aria-disabled={isSubmitting ? "true" : undefined}
-      className="inline-flex items-center rounded-md border border-transparent bg-primary px-4 py-2 text-base font-medium text-body-darker shadow-sm focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-75 dark:text-body-darker"
-      disabled={isSubmitting ?? undefined}
-      type="submit"
-    >
-      {isSubmitting ? t("contact.form.submit.sending") : t("contact.form.submit.label")}
-      {isSubmitting ? (
-        <SpinIcon aria-hidden="true" className="-mr-1 ml-3 h-5 w-5 animate-spin" />
-      ) : (
-        <ArrowSmRightIcon aria-hidden="true" className="-mr-1 ml-3 h-5 w-5" />
-      )}
-    </button>
-  );
-}
-
-function FormError() {
-  const { t } = useTranslation("errors");
-
-  return (
-    <div
-      className="mb-4 rounded-lg bg-red-100 p-4 text-sm text-red-700 dark:bg-red-200 dark:text-red-800"
-      id="contact-form-error"
-      role="alert"
-    >
-      <span className="font-medium">
-        {t("contactForm.0")}{" "}
-        <span aria-label="disapointed face" role="img">
-          😞
-        </span>
-      </span>{" "}
-      ! {t("contactForm.1")} {t("contactForm.2")}{" "}
-      <Link className="font-medium underline" to={externalLinks.twitterDm}>
-        {t("contactForm.3")}{" "}
-        <span aria-label="bird" role="img">
-          🐦
-        </span>
-      </Link>
-      .
-    </div>
-  );
-}
-
 export default function ContactPage() {
-  const [token, setToken] = React.useState<string | undefined>();
-  const captchaRef = React.useRef<HCaptcha | null>(null);
-  const actionData = useActionData<ActionData>();
   const { i18n, t } = useTranslation("pages");
-  const [theme] = useTheme();
-  const isHydrated = useHydrated();
-
-  const onSubmit = async (_data: Record<string, unknown>, e: React.FormEvent<HTMLFormElement>) => {
-    if (!captchaRef.current) {
-      e.preventDefault();
-    }
-
-    try {
-      await captchaRef?.current?.execute({
-        async: true,
-      });
-    } catch (error) {
-      console.error("Captcha error:", error);
-
-      e.preventDefault();
-    }
-  };
-
-  const onVerify = (token: string, _ekey: string) => {
-    setToken(token);
-  };
 
   return (
     <div className="w-full py-32">
@@ -213,20 +93,17 @@ export default function ContactPage() {
 
         <p className="text-center text-lg text-body dark:text-body-dark">{t("contact.seo.description")}</p>
 
-        <ValidatedForm
-          aria-describedby={!actionData?.success ? "contact-form-error" : undefined}
-          className="mt-8 space-y-6"
-          method="post"
-          noValidate={isHydrated}
-          onSubmit={onSubmit}
-          resetAfterSubmit={!!token}
-          validator={validator}
+        <form
+          action="https://kwesforms.com/api/foreign/forms/Ey4Jxyw8L77uDlhtt5Un"
+          className="kwes-form mt-8 space-y-6"
+          lang={i18n.language}
         >
           <Input
             id="name"
             label={t("contact.form.name.label")}
             name="name"
             placeholder={t("contact.form.name.placeholder")}
+            rules="required|min:3|max:255"
           />
 
           <Input
@@ -234,6 +111,7 @@ export default function ContactPage() {
             label={t("contact.form.email.label")}
             name="email"
             placeholder={t("contact.form.email.placeholder")}
+            rules="required|email"
             type="email"
           />
 
@@ -242,6 +120,7 @@ export default function ContactPage() {
             label={t("contact.form.subject.label")}
             name="subject"
             placeholder={t("contact.form.subject.placeholder")}
+            rules="required|min:3|max:255"
           />
 
           <TextArea
@@ -252,34 +131,19 @@ export default function ContactPage() {
             name="message"
             placeholder={t("contact.form.message.placeholder")}
             rows={6}
+            rules="required|min:3|max:320"
           />
 
-          <div className="flex items-center justify-end">
-            {actionData?.success ? (
-              <p>
-                {t("contact.form.success")}
-                <span aria-label="party popper emoji" role="img">
-                  🎉
-                </span>
-              </p>
-            ) : (
-              <SubmitButton />
-            )}
-          </div>
-
-          {actionData?.fieldErrors?.emailSent ? <FormError /> : null}
-
-          {ENV.HCAPTCHA_SITE_KEY ? (
-            <HCaptcha
-              languageOverride={i18n.language}
-              onVerify={onVerify}
-              ref={captchaRef}
-              sitekey={ENV.HCAPTCHA_SITE_KEY}
-              size="invisible"
-              theme={theme as "light" | "dark"}
-            />
-          ) : null}
-        </ValidatedForm>
+          <fieldset className="flex items-center justify-end">
+            <button
+              className="inline-flex items-center rounded-md border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              type="button"
+            >
+              {t("contact.form.submit.label")}
+              <MailIcon aria-hidden="true" className="ml-2 -mr-1 h-5 w-5" />
+            </button>
+          </fieldset>
+        </form>
       </div>
     </div>
   );

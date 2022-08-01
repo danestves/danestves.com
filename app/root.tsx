@@ -9,7 +9,7 @@ import { useFathom } from "remix-fathom";
 import { Toaster } from "react-hot-toast";
 import { useChangeLanguage } from "remix-i18next";
 import { PreventFlashOnWrongTheme, Theme, ThemeProvider } from "remix-themes";
-import { StructuredData } from "remix-utils";
+import { ExternalScripts, StructuredData } from "remix-utils";
 import type { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import type { HandleStructuredData } from "remix-utils";
 
@@ -207,6 +207,7 @@ function App() {
         />
 
         <ScrollRestoration />
+        <ExternalScripts />
         <Scripts />
         <script
           dangerouslySetInnerHTML={{
