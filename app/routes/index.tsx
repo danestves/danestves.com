@@ -46,7 +46,7 @@ export async function loader({ request }: LoaderArgs) {
   const [t, posts, videos] = await Promise.all([
     i18n.getFixedT(request, "pages"),
     getMdxListItems({ contentDirectory: `blog/${locale}`, limit: 3 }),
-    fetch(`${url.origin}/data/youtube.json`).then((res) => res.json()),
+    fetch(`https://${url.host}/data/youtube.json`).then((res) => res.json()),
   ]);
 
   return json({
