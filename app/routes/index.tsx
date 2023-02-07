@@ -43,11 +43,25 @@ type LoaderData = {
 export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);
   const locale = await i18n.getLocale(request);
-  const [t, posts, videos] = await Promise.all([
+  const [t, posts] = await Promise.all([
     i18n.getFixedT(request, "pages"),
-    getMdxListItems({ contentDirectory: `blog/${locale}`, limit: 3 }),
-    fetch(`https://${url.host}/data/youtube.json`).then((res) => res.json()),
+    getMdxListItems({ contentDirectory: `blog/${locale}`, limit: 3 })
   ]);
+  
+  const videos = [
+    {
+      "id": "aEvHZQTPcEU",
+      "duration": "3:22",
+      "title": "TailWhat!? What is TailwindCSS? | @danestves",
+      "published_at": "05-22-2021"
+    },
+    {
+      "id": "MYrMOKtnAFY",
+      "duration": "1:18:22",
+      "title": "🔴 Redes sociales para desarrollo y diseño | UndefinedDevs",
+      "published_at": "04-07-2021"
+    }
+  ]
 
   return json({
     posts: posts.map((post) => {
