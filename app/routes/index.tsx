@@ -109,7 +109,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <VideosSection videos={data.videos} />
+      <VideosSection videos={data.videos as any} />
       <PostsSection posts={data.posts as any} />
     </>
   );
