@@ -30,7 +30,7 @@ export const handle: HandleStructuredData<LoaderData> & Handle & SEOHandle = {
       {
         route: "/about",
         changefreq: "yearly",
-        priority: 0.7,
+        priority: 0.6,
       },
     ];
   },
