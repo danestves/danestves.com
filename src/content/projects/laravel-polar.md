@@ -4,10 +4,10 @@ title: laravel-polar
 subtitle: A package to easily integrate your Laravel application with Polar.sh
 live: "https://github.com/danestves/laravel-polar"
 logo:
-  url: "projects/github.png"
+  url: "/projects/github.png"
   alt: "Laravel Polar"
 image:
-  url: "projects/laravel-polar-og.png"
+  url: "/projects/laravel-polar-og.png"
   alt: "Laravel Polar Integration"
 ---
 

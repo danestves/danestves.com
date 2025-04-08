@@ -4,10 +4,10 @@ title: remix-auth-auth0
 subtitle: An Auth0Strategy for Remix Auth, based on the OAuth2Strategy
 live: "https://github.com/danestves/remix-auth-auth0"
 logo:
-  url: "projects/github.png"
+  url: "/projects/github.png"
   alt: "Remix Auth Auth0"
 image:
-  url: "projects/remix-auth-auth0-og.png"
+  url: "/projects/remix-auth-auth0-og.png"
   alt: "Remix Auth Auth0 first step"
 ---
 
