@@ -45,9 +45,9 @@ export default defineConfig({
   ],
   image: {
     service: imageService({
+      fallbackService: "astro",
       placeholder: "blurhash",
     }),
-    domains: ["i.pinimg.com"],
   },
   redirects: {
     "/work": "https://www.linkedin.com/in/danestves/#experience",
