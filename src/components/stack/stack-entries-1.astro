@@ -1,0 +1,103 @@
+---
+import Text from "#/components/fundations/elements/text.astro";
+import Astro from "#/images/stacklogos/astro.svg?url";
+import Cursor from "#/images/stacklogos/cursor.svg?url";
+import Figma from "#/images/stacklogos/figma.png?url";
+import Laravel from "#/images/stacklogos/laravel.png?url";
+import Tailwind from "#/images/stacklogos/tailwind.svg?url";
+import Zen from "#/images/stacklogos/zen.svg?url";
+
+const stack = [
+  {
+    items: [
+      {
+        rotation: "rotate-6",
+        stackLogo: Figma,
+        name: "Figma",
+        about: "Design Tool",
+        description:
+          "Figma is a vector graphics editor and prototyping tool which is primarily web-based, with additional offline features enabled by desktop applications for macOS and Windows.",
+      },
+      {
+        rotation: "-rotate-12",
+        stackLogo: Laravel,
+        name: "Laravel",
+        about: "PHP Framework",
+        description:
+          "Laravel is a web application framework with expressive, elegant syntax. We've already laid the foundation — freeing you to create without sweating the small things.",
+      },
+      {
+        rotation: "rotate-6",
+        stackLogo: Zen,
+        name: "Zen",
+        about: "Browser",
+        description:
+          "Zen Browser is a free, open-source web browser, a fork of Mozilla Firefox, that prioritizes privacy, customizability, and a streamlined user experience.",
+      },
+      {
+        rotation: "-rotate-12",
+        stackLogo: Tailwind,
+        name: "Tailwind CSS",
+        about: "CSS Framework",
+        description:
+          "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
+      },
+      {
+        rotation: "rotate-6",
+        stackLogo: Astro,
+        name: "Astrojs",
+        about: "Static Site Generator",
+        description:
+          "Astro powers the world's fastest websites, client-side web apps, dynamic API endpoints, and everything in-between.",
+      },
+      {
+        rotation: "-rotate-12",
+        stackLogo: Cursor,
+        name: "Cursor",
+        about: "Code Editor",
+        description: "Built to make you extraordinarily productive, Cursor is the best way to code with AI.",
+      },
+    ],
+  },
+];
+---
+
+<div class="relative mt-6 overflow-hidden">
+  <div class="grid w-full justify-between">
+    <div class="absolute inset-0 left-0 z-10 w-44 bg-gradient-to-r from-white via-transparent dark:from-base-950"></div>
+    <div
+      class="absolute inset-0 left-0 z-10 ml-auto w-44 bg-gradient-to-l from-white via-transparent dark:from-base-950"
+    >
+    </div>
+  </div>
+  {
+    stack.map((section) => (
+      <div role="list" class="animatemarquee flex gap-2 py-12 dark:border-base-700">
+        {section.items.map((item) => (
+          <div
+            class={`group relative flex h-full min-h-72 w-full min-w-72 transform flex-col justify-between overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark ${item.rotation}`}
+          >
+            <div class="flex items-center justify-between gap-x-4">
+              <div>
+                <Text tag="h3" variant="textBase" class="font-medium text-base-900 dark:text-white">
+                  {item.name}
+                </Text>
+                <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+                  {item.about}
+                </Text>
+              </div>
+              <img
+                src={item.stackLogo}
+                alt={item.name}
+                class="size-8 overflow-hidden rounded-xl duration-300 group-hover:-rotate-45 dark:border dark:border-base-700"
+              />
+            </div>
+            <Text tag="p" variant="textBase" class="mt-2 text-base text-base-600 dark:text-base-400">
+              {item.description}
+            </Text>
+          </div>
+        ))}
+      </div>
+    ))
+  }
+</div>

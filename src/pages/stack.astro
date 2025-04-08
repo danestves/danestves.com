@@ -1,0 +1,30 @@
+---
+import Wrapper from "#/components/fundations/containers/wrapper.astro";
+import Text from "#/components/fundations/elements/text.astro";
+import StackEntries2 from "#/components/stack/stack-entries-2.astro";
+import BaseLayout from "#/layouts/base-layout.astro";
+---
+
+<BaseLayout
+  seo={{
+    title: "Stack",
+    description: "Software I use daily and recommend.",
+    useTitleTemplate: true,
+  }}
+>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+      <div class="text-center">
+        <Text tag="h1" variant="displayXL" class="text-balance text-base-600 dark:text-base-400">
+          Software I use daily
+          <span class="font-display tracking-wide italic"> and recommend </span>
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-4 text-base-600 dark:text-base-400">
+          I get askeed about the tools that I use daily and be productive. Here is a list of my favorite software
+          programs, gadgets, and other recommendations.
+        </Text>
+      </div>
+      <StackEntries2 />
+    </Wrapper>
+  </section>
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+
+import logo1 from "#/images/brands/1.svg";
+import logo2 from "#/images/brands/2.svg";
+import logo3 from "#/images/brands/3.svg";
+import logo4 from "#/images/brands/4.svg";
+import logo5 from "#/images/brands/5.svg";
+
+const logos = [
+  { src: logo1, alt: "Platzi" },
+  { src: logo2, alt: "Seeed" },
+  { src: logo3, alt: "Reworth" },
+  { src: logo4, alt: "ClickIT" },
+  { src: logo5, alt: "Brightwell" },
+];
+---
+
+<div class="relative mx-auto mt-12 overflow-hidden overflow-x-hidden py-2">
+  <div class="grid w-full justify-between">
+    <div class="absolute inset-0 left-0 z-10 w-44 bg-gradient-to-r from-white via-transparent dark:from-base-950"></div>
+    <div
+      class="absolute inset-0 left-0 z-10 ml-auto w-44 bg-gradient-to-l from-white via-transparent dark:from-base-950"
+    >
+    </div>
+  </div>
+  <div class="relative flex animate-marquee items-center gap-4 whitespace-nowrap">
+    {
+      logos.map((logo) => (
+        <Image
+          width={200}
+          height={100}
+          layout="full-width"
+          class="h-8 invert filter dark:filter-none"
+          src={logo.src}
+          alt={logo.alt}
+        />
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+
+import ProjectsLayout from "#/layouts/projects-layout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  const paths = projects.map((page) => {
+    return {
+      params: { slug: page.slug },
+      props: { page },
+
+      trailingSlash: false,
+    };
+  });
+  return paths;
+}
+
+const { page } = Astro.props;
+
+const { Content } = await page.render();
+---
+
+<ProjectsLayout
+  frontmatter={page.data}
+  seo={{
+    title: page.data.title,
+    titleTemplate: "%s - Projects | Daniel Esteves",
+    description: page.data.subtitle,
+  }}
+>
+  <Content /></ProjectsLayout
+>

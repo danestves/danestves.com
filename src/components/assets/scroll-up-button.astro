@@ -1,0 +1,32 @@
+---
+import ArrowNarrowUpIcon from "virtual:icons/tabler/arrow-narrow-up";
+---
+
+<!-- Scroll to Top Button -->
+<div class="fixed right-6 bottom-6 z-50">
+  <!-- The button that triggers smooth scroll to the top -->
+  <button
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    class="flex size-12 items-center justify-center rounded-xl bg-base-50 font-semibold text-base-900 opacity-0 shadow-lg ring-1 ring-base-200 transition-opacity duration-300 ring-inset hover:bg-base-200 dark:bg-base-800 dark:text-white dark:ring-base-800 dark:hover:bg-base-900"
+    id="scroll-to-top-btn"
+  >
+    <ArrowNarrowUpIcon class="size-6" />
+  </button>
+</div>
+
+<script>
+  // Get the scroll-to-top button element
+  const scrollToTopBtn = document.getElementById("scroll-to-top-btn");
+
+  // Add an event listener for the scroll event
+  window.addEventListener("scroll", () => {
+    // If the page is scrolled more than 100px, make the button visible
+    if (window.scrollY > 100) {
+      scrollToTopBtn?.classList.remove("opacity-0"); // Remove hidden state
+      scrollToTopBtn?.classList.add("opacity-100"); // Make it fully visible
+    } else {
+      scrollToTopBtn?.classList.remove("opacity-100"); // Remove visible state
+      scrollToTopBtn?.classList.add("opacity-0"); // Make it hidden again
+    }
+  });
+</script>

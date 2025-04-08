@@ -1,0 +1,61 @@
+---
+import DeviceMobileIcon from "virtual:icons/tabler/device-mobile";
+
+import LogoCloud from "#/components/assets/logo-cloud.astro";
+import Link from "#/components/fundations/elements/link.astro";
+import Text from "#/components/fundations/elements/text.astro";
+---
+
+<div class="mt-2 grid gap-2 sm:grid-cols-2">
+  <div
+    class="group rounded-3xl bg-linear-45 from-base-50 to-base-100 p-2 shadow ring-1 ring-base-200 duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-0 dark:hover:shadow-dark"
+  >
+    <div class="relative flex h-full min-h-96 flex-col justify-between overflow-hidden rounded-2xl p-4">
+      <div>
+        <div class="relative flex items-center justify-between sm:items-start">
+          <Text tag="h3" variant="textBase" class="font-medium text-base-900 uppercase dark:text-white">
+            Book a call
+          </Text>
+          <a
+            href="/contact"
+            title="your tile"
+            class="rounded-full bg-black p-1 text-white duration-300 group-hover:-rotate-45 dark:bg-base-50 dark:text-base-900"
+          >
+            <DeviceMobileIcon class="size-4" />
+          </a>
+        </div>
+        <Text tag="p" variant="textBase" class="mt-8 text-base-600 dark:text-base-400">
+          If not sure, you can book an intro call to learn more about my services and get a free consultation to discuss
+          your project.
+        </Text>
+      </div>
+      <div class="">
+        <Link size="sm" variant="default" href="/contact" title="your title">Book an intro call </Link>
+      </div>
+    </div>
+  </div>
+  <div
+    class="group rounded-3xl bg-white p-2 shadow ring-1 ring-base-200 duration-300 ring-inset hover:shadow-light dark:bg-base-950 dark:ring-0 dark:ring-base-800 dark:hover:shadow-dark"
+  >
+    <div class="relative flex h-full min-h-96 flex-col justify-between overflow-hidden rounded-2xl">
+      <div>
+        <div class="p-4 pb-0">
+          <Text
+            tag="h3"
+            variant="display2XL"
+            class="font-display font-medium tracking-wide text-balance text-base-900 italic dark:text-white"
+          >
+            Referral program
+          </Text>
+          <Text tag="p" variant="textLG" class="mt-8 text-balance text-base-600 dark:text-base-400">
+            Refer someone and get 10% off your next project or month of work.
+          </Text>
+        </div>
+        <LogoCloud />
+      </div>
+      <div class="p-4">
+        <Link size="sm" variant="muted" href="#_" title="your title">Join the program </Link>
+      </div>
+    </div>
+  </div>
+</div>

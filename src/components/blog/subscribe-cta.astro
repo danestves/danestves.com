@@ -1,0 +1,29 @@
+---
+import Wrapper from "#/components/fundations/containers/wrapper.astro";
+import Button from "#/components/fundations/elements/button.astro";
+import Text from "#/components/fundations/elements/text.astro";
+---
+
+<section>
+  <Wrapper class="py-12">
+    <div class="text-center">
+      <Text tag="h3" variant="displayXL" class="font-display text-balance text-base-900 italic dark:text-white">
+        Subscribe
+      </Text>
+      <Text tag="p" variant="textBase" class="mt-4 font-medium text-balance text-base-600 dark:text-base-400">
+        Get notified when I publish something new, and unsubscribe at any time.
+      </Text>
+      <form>
+        <div class="mx-auto mt-6 flex max-w-xs flex-col gap-2">
+          <input
+            type="email"
+            required=""
+            placeholder="Email address"
+            aria-label="Email address"
+            class="outline-inset dark:place-holder-text-base-600 h-10 w-full flex-auto appearance-none rounded-full border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 outline outline-base-200 duration-300 focus:border-base-500 focus:outline-4 focus:outline-base-500/10 focus:outline-none sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
+          /><Button type="submit" size="base" variant="default">Join me</Button>
+        </div>
+      </form>
+    </div>
+  </Wrapper>
+</section>

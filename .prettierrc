@@ -1,0 +1,14 @@
+{
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "printWidth": 120,
+  "tabWidth": 2,
+  "tailwindStylesheet": "./src/styles/global.css"
+}

@@ -1,0 +1,22 @@
+---
+import BaseHead from "#/components/fundations/head/base-head.astro";
+import Seo from "#/components/fundations/head/seo.astro";
+import Footer from "#/components/global/footer.astro";
+import Navigation from "#/components/global/navigation.astro";
+
+import "../styles/global.css";
+
+const { seo } = Astro.props;
+---
+
+<html lang="en" class="antialiased">
+  <head>
+    <BaseHead />
+    <Seo {...seo} />
+  </head>
+  <body class="flex min-h-svh flex-col bg-white transition-colors duration-300 dark:bg-base-950">
+    <Navigation />
+    <main class="relative grow"><slot /></main>
+    <Footer />
+  </body>
+</html>

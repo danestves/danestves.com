@@ -1,0 +1,108 @@
+---
+import { Image } from "astro:assets";
+
+import Wrapper from "#/components/fundations/containers/wrapper.astro";
+import Link from "#/components/fundations/elements/link.astro";
+import Text from "#/components/fundations/elements/text.astro";
+import BaseLayout from "#/layouts/base-layout.astro";
+
+const { frontmatter, seo } = Astro.props;
+---
+
+<BaseLayout seo={seo}>
+  <section>
+    <Wrapper class="py-24">
+      <div class="text-center">
+        <Text tag="h1" variant="displayXL" class="text-balance text-base-900 dark:text-white">
+          {frontmatter.title}
+        </Text>
+
+        <Text tag="p" variant="textLG" class="mt-8 text-balance text-base-600 dark:text-base-400">
+          {frontmatter.description}
+        </Text>
+      </div>
+
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <Link
+          size="sm"
+          variant="muted"
+          href={frontmatter.preview}
+          title={frontmatter.preview}
+          aria-label={frontmatter.preview}
+        >
+          Preview demo
+        </Link>
+        <Link size="sm" variant="default" href="#_" title="your title" aria-label="your label">
+          Buy {frontmatter.title} for ${frontmatter.price}
+        </Link>
+      </div>
+
+      <div class="mt-12 space-y-12">
+        <Image
+          src={frontmatter.image.url}
+          alt={frontmatter.image.alt}
+          width={600}
+          height={600}
+          class="w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
+        />
+
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+            Includes
+          </Text>
+          <ul role="list">
+            <!-- Dynamically render highlights -->
+            {
+              frontmatter.highlights.map((highlight) => (
+                <li>
+                  <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+                    {highlight}
+                  </Text>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+            License
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+            {frontmatter.license}
+          </Text>
+        </div>
+        <div class="grid gap-2 sm:grid-cols-2">
+          {
+            frontmatter.images.map((image) => (
+              <Image
+                src={image.url}
+                alt={image.alt}
+                width={400}
+                height={400}
+                class="aspect-[384/246] w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
+              />
+            ))
+          }
+        </div>
+        <dl class="mt-6 grid gap-2 sm:grid-cols-2">
+          {
+            frontmatter.features.map((feature) => (
+              <div class="group relative flex transform flex-col overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
+                <dt>
+                  <Text tag="h3" variant="textLG" class="text-base-900 dark:text-white">
+                    {feature.title}
+                  </Text>
+                </dt>
+                <dd class="mt-24">
+                  <Text tag="p" variant="textLG" class="text-base-600 dark:text-base-400">
+                    {feature.description}
+                  </Text>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

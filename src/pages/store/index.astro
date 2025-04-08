@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+
+import Wrapper from "#/components/fundations/containers/wrapper.astro";
+import Text from "#/components/fundations/elements/text.astro";
+import StoreEntries1 from "#/components/store/store-entries-1.astro";
+import BaseLayout from "#/layouts/base-layout.astro";
+
+const allProducts = await getCollection("store");
+---
+
+<BaseLayout
+  seo={{
+    title: "Store",
+    description:
+      "Shop my selection of digital products to help you grow your business, and to make your life easier and more productive.",
+    useTitleTemplate: true,
+  }}
+>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+      <div class="text-center">
+        <Text tag="h1" variant="displayXL" class="text-balance text-base-900 dark:text-white">
+          Digital products <span class="block font-display font-light tracking-wide italic">for your business</span>
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-8 text-balance text-base-600 dark:text-base-400">
+          Shop my selection of digital products to help you grow your business, and to make your life easier and more
+          productive.
+        </Text>
+      </div>
+      <div class="mt-12 flex flex-col gap-2">
+        {allProducts.map((post) => <StoreEntries1 post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

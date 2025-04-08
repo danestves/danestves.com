@@ -1,0 +1,168 @@
+---
+import Text from "#/components/fundations/elements/text.astro";
+import Astrojs from "#/images/stacklogos/astro.svg";
+import Cursor from "#/images/stacklogos/cursor.svg";
+import Figma from "#/images/stacklogos/figma.png";
+import Framer from "#/images/stacklogos/framer.png";
+import LaravelHerd from "#/images/stacklogos/laravel-herd.png";
+import Laravel from "#/images/stacklogos/laravel.png";
+import Nextjs from "#/images/stacklogos/nextjs.jpeg";
+import Raycast from "#/images/stacklogos/raycast.png";
+import React from "#/images/stacklogos/react.png";
+import Remix from "#/images/stacklogos/remix.png";
+import Session from "#/images/stacklogos/session.png";
+import Tailwind from "#/images/stacklogos/tailwind.svg";
+import Tinkerwell from "#/images/stacklogos/tinkerwell.png";
+import Zen from "#/images/stacklogos/zen.svg";
+import { Image } from "astro:assets";
+
+const stack = [
+  {
+    title: "Design",
+    items: [
+      {
+        stackLogo: Figma,
+        name: "Figma",
+        about: "Design Tool",
+        description:
+          "Figma is a vector graphics editor and prototyping tool which is primarily web-based, with additional offline features enabled by desktop applications for macOS and Windows.",
+      },
+      {
+        stackLogo: Framer,
+        name: "Framer",
+        about: "Design Tool",
+        description: "Framer is a design tool that allows you to create beautiful, responsive websites and apps.",
+      },
+      // Add more items as necessary
+    ],
+  },
+  {
+    title: "Developer Tools",
+    items: [
+      {
+        stackLogo: Zen,
+        name: "Zen",
+        about: "Browser",
+        description:
+          "Zen Browser is a free, open-source web browser, a fork of Mozilla Firefox, that prioritizes privacy, customizability, and a streamlined user experience.",
+      },
+      {
+        stackLogo: React,
+        name: "React",
+        about: "JavaScript Library",
+        description:
+          "React is a JavaScript library for building user interfaces. It's declarative, efficient, and extremely flexible.",
+      },
+      {
+        stackLogo: Remix,
+        name: "Remix",
+        about: "JavaScript Library",
+        description:
+          "Remix is a full stack web framework that lets you focus on the user interface and work with your data.",
+      },
+      {
+        stackLogo: Nextjs,
+        name: "Nextjs",
+        about: "JavaScript Library",
+        description:
+          "Next.js is a React framework for building server-side rendered (SSR), static, and hybrid web applications using React.",
+      },
+      {
+        stackLogo: Laravel,
+        name: "Laravel",
+        about: "PHP Framework",
+        description:
+          "Laravel is a web application framework with expressive, elegant syntax. We've already laid the foundation — freeing you to create without sweating the small things.",
+      },
+      {
+        stackLogo: LaravelHerd,
+        name: "Laravel Herd",
+        about: "Developer Tools",
+        description: "One click PHP development environment. Zero dependencies. Zero headaches.",
+      },
+      {
+        stackLogo: Tinkerwell,
+        name: "Tinkerwell",
+        about: "Developer Tools",
+        description: "Enjoy coding and debugging in an editor designed for fast feedback and quick iterations. ",
+      },
+      {
+        stackLogo: Tailwind,
+        name: "Tailwind CSS",
+        about: "CSS Framework",
+        description:
+          "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
+      },
+      {
+        stackLogo: Astrojs,
+        name: "Astrojs",
+        about: "Static Site Generator",
+        description:
+          "Astro powers the world's fastest websites, client-side web apps, dynamic API endpoints, and everything in-between..",
+      },
+      {
+        stackLogo: Cursor,
+        name: "Cursor",
+        about: "Code Editor",
+        description: "Built to make you extraordinarily productive, Cursor is the best way to code with AI.",
+      },
+    ],
+  },
+  {
+    title: "Productivity",
+    items: [
+      {
+        stackLogo: Session,
+        name: "Session",
+        about: "Focus",
+        description: "Session helps you focus and be more mindful by blocking distractions and tracking your progress",
+      },
+      {
+        stackLogo: Raycast,
+        name: "Raycast",
+        about: "Productivity",
+        description:
+          "A collection of powerful productivity tools all within an extendable launcher. Fast, ergonomic and reliable.",
+      },
+    ],
+  },
+];
+---
+
+<div class="mt-24 flex flex-col gap-12">
+  {
+    stack.map((section) => (
+      <div class="flex flex-col gap-6">
+        <p class="font-display text-2xl tracking-wide text-base-900 italic dark:text-white">{section.title}</p>
+
+        <ul role="list" class="grid gap-2 sm:grid-cols-2 lg:col-span-2">
+          {section.items.map((item) => (
+            <li class="group relative flex h-full min-h-72 w-full transform flex-col justify-between overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
+              <div class="flex items-center justify-between gap-x-4">
+                <div>
+                  <Text tag="h3" variant="textBase" class="font-medium text-base-900 dark:text-white">
+                    {item.name}
+                  </Text>
+                  <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+                    {item.about}
+                  </Text>
+                </div>
+                <Image
+                  layout="full-width"
+                  src={item.stackLogo}
+                  alt={item.name}
+                  width={64}
+                  height={64}
+                  class="size-8 overflow-hidden rounded-lg duration-300 group-hover:-rotate-45 dark:border dark:border-base-700"
+                />
+              </div>
+              <Text tag="p" variant="textBase" class="mt-2 text-base text-base-600 dark:text-base-400">
+                {item.description}
+              </Text>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>

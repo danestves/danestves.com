@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+import LogoCloud from "#/components/assets/logo-cloud.astro";
+import BlogEntries2 from "#/components/blog/blog-entries-2.astro";
+import Wrapper from "#/components/fundations/containers/wrapper.astro";
+import Link from "#/components/fundations/elements/link.astro";
+import Text from "#/components/fundations/elements/text.astro";
+import ProjectEntries2 from "#/components/projects/project-entries-2.astro";
+import StackEntries1 from "#/components/stack/stack-entries-1.astro";
+import Avatar from "#/images/assets/avatar.jpg";
+import BaseLayout from "#/layouts/base-layout.astro";
+
+const allPosts = await getCollection("posts");
+const allProjects = await getCollection("projects");
+
+allPosts.sort((a, b) => {
+  const dateA = a.data.pubDate.getTime();
+  const dateB = b.data.pubDate.getTime();
+  return dateB - dateA;
+});
+allProjects.sort((a, b) => {
+  const dateA = a.data.pubDate.getTime();
+  const dateB = b.data.pubDate.getTime();
+  return dateB - dateA;
+});
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Wrapper variant="standard" class="relative py-24">
+      <div class="text-center">
+        <div class="mt-8 text-balance text-base-900 dark:text-white">
+          <Text tag="h1" variant="displayXL" class="flex items-baseline justify-center gap-3 font-medium">
+            Hi, I'm Daniel
+            <Image
+              width={128}
+              height={128}
+              src={Avatar}
+              layout="full-width"
+              alt="Daniel Esteves"
+              class="size-12 rounded-xl duration-300 ease-in-out hover:scale-150 hover:rotate-6 md:size-16"
+              priority
+            />,
+          </Text>
+          <Text tag="p" variant="displayXL" class="font-display tracking-wide text-base-600 italic dark:text-base-400">
+            software engineer.
+          </Text>
+        </div>
+        <Text tag="p" variant="textLG" class="mt-4 text-balance text-base-600 dark:text-base-400">
+          From frontend beginnings to full-stack solutions, one line of code at a time
+        </Text>
+        <LogoCloud />
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-12">
+      <div class="flex items-end justify-between">
+        <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+          Projects
+        </Text>
+        <Link size="xs" variant="muted" href="/projects">See them all </Link>
+      </div>
+      <div role="list" class="mt-6 grid gap-2 md:grid-cols-2">
+        {
+          allProjects
+            .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+            .slice(0, 2)
+            .map((post) => <ProjectEntries2 post={post} />)
+        }
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-12">
+      <div class="flex items-end justify-between">
+        <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+          Blog
+        </Text>
+        <Link size="xs" variant="muted" href="/blog">Read all my blog posts </Link>
+      </div>
+      <div role="list" class="mt-6 gap-2">
+        {
+          allPosts
+            .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+            .slice(0, 1)
+            .map((post) => <BlogEntries2 post={post} />)
+        }
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-12">
+      <div class="flex items-end justify-between">
+        <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+          Stack
+        </Text>
+        <Link size="xs" variant="muted" href="/stack">Check out my whole stack </Link>
+      </div>
+      <StackEntries1 />
+    </Wrapper>
+  </section>
+</BaseLayout>

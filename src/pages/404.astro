@@ -1,0 +1,27 @@
+---
+// Fundations
+import Wrapper from "#/components/fundations/containers/wrapper.astro";
+import Link from "#/components/fundations/elements/link.astro";
+import Text from "#/components/fundations/elements/text.astro";
+import BaseLayout from "#/layouts/base-layout.astro";
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+      <div class="text-center">
+        <Text tag="h1" variant="displayXL" class="text-balance text-base-900 dark:text-white">
+          Oh, oh...........!
+          <span class="font-display tracking-wide italic"> 404 error </span>
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-4 text-base-600 dark:text-base-400">
+          An error has occurred. The page you are looking for may have been moved, deleted, or does not exist. Please
+          try again. If the problem persists, please contact the site administrator.
+        </Text>
+        <div class="mt-8 flex justify-center">
+          <Link size="sm" variant="muted" href="/">Go back home </Link>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

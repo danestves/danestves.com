@@ -1,0 +1,125 @@
+---
+import { Image } from "astro:assets";
+
+import Wrapper from "#/components/fundations/containers/wrapper.astro";
+import Text from "#/components/fundations/elements/text.astro";
+import Discord from "#/images/sociallogos/discord.svg";
+import Github from "#/images/sociallogos/github.svg";
+import Linkedin from "#/images/sociallogos/linkedin.svg";
+import Spotify from "#/images/sociallogos/spotify.svg";
+import X from "#/images/sociallogos/x.svg";
+import BaseLayout from "#/layouts/base-layout.astro";
+
+const sections = [
+  {
+    title: "Development",
+    items: [
+      {
+        stackLogo: Github,
+        name: "GitHub",
+        username: "@danestves",
+        url: "https://github.com/danestves",
+      },
+    ],
+  },
+  {
+    title: "Social Media",
+    items: [
+      {
+        stackLogo: Linkedin,
+        name: "Linkedin",
+        username: "@danestves",
+        url: "https://www.linkedin.com/in/danestves/",
+      },
+      {
+        stackLogo: X,
+        name: "X",
+        username: "@danestves",
+        url: "https://x.com/danestves",
+      },
+    ],
+  },
+  {
+    title: "Other",
+    items: [
+      {
+        stackLogo: Spotify,
+        name: "Spotify",
+        username: "@danestves",
+        url: "https://open.spotify.com/user/danestves",
+      },
+      {
+        stackLogo: Discord,
+        name: "Discord",
+        username: "@danestves",
+        url: "https://discord.com/invite/danestves",
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  seo={{
+    title: "Socials",
+    description: "I am all around the internet, choose from a variety of social media platforms.",
+    useTitleTemplate: true,
+  }}
+>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+      <div class="text-center">
+        <Text tag="h1" variant="displayXL" class="text-balance text-base-900 dark:text-white">
+          I am all around
+          <span class="font-display tracking-wide italic"> find me on... </span>
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-4 text-balance text-base-600 dark:text-base-400">
+          I am easy to find on the internet, choose from a variety of social media platforms.
+        </Text>
+      </div>
+      <div class="mt-6 space-y-12">
+        {
+          sections.map((section) => (
+            <div class="flex flex-col items-start gap-6">
+              <Text
+                tag="h3"
+                variant="displaySM"
+                class="font-display tracking-wide text-base-900 italic dark:text-white"
+              >
+                {section.title}
+              </Text>
+              <div class="flex w-full flex-col gap-2">
+                {section.items.map((item) => (
+                  <a
+                    href={item.url}
+                    title={item.name}
+                    class="group relative flex h-full w-full transform flex-col overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark"
+                  >
+                    <div class="group flex items-center gap-4 text-base-600 dark:text-base-400">
+                      <Image
+                        src={item.stackLogo}
+                        alt={item.name}
+                        width={200}
+                        height={200}
+                        layout="full-width"
+                        class="size-12 rounded-full duration-300 group-hover:-rotate-45"
+                      />
+                      <div class="text-sm leading-6">
+                        <Text tag="h3" variant="textSM" class="font-medium text-base-900 uppercase dark:text-white">
+                          {item.name}
+                        </Text>
+                        <Text tag="p" variant="textBase" class="text-base-600 dark:text-base-400">
+                          {item.username}
+                        </Text>
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

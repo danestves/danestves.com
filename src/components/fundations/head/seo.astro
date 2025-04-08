@@ -1,0 +1,41 @@
+---
+import { getImagePath } from "astro-opengraph-images";
+import { SEO } from "astro-seo";
+
+const { url, site } = Astro;
+const {
+  title = "Daniel Esteves | Senior Frontend Engineer",
+  description = "Senior Frontend Engineer. Web developer since 16. Passionate about tech, learning, and empowering LATAM through knowledge sharing.",
+  useTitleTemplate = false,
+  image = getImagePath({ url, site }),
+  ...rest
+} = Astro.props;
+---
+
+<SEO
+  title={title}
+  titleTemplate={useTitleTemplate && "%s — Daniel Esteves"}
+  description={description}
+  {...rest}
+  openGraph={{
+    basic: {
+      title: useTitleTemplate ? `${title} — Daniel Esteves` : "Daniel Esteves | Senior Frontend Engineer",
+      image,
+      type: "website",
+    },
+    optional: {
+      description,
+      siteName: useTitleTemplate ? `${title} — Daniel Esteves` : "Daniel Esteves | Senior Frontend Engineer",
+      locale: "en_US",
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    creator: "@danestves",
+    description,
+    image,
+    imageAlt: "Daniel Esteves",
+    site: "@danestves",
+    title: useTitleTemplate ? `${title} — Daniel Esteves` : "Daniel Esteves | Senior Frontend Engineer",
+  }}
+/>
