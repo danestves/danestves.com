@@ -1,3 +1,4 @@
+import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { imageService } from "@unpic/astro/service";
@@ -48,6 +49,7 @@ export default defineConfig({
       placeholder: "blurhash",
     }),
   },
+  adapter: netlify(),
   redirects: {
     "/work": "https://www.linkedin.com/in/danestves/#experience",
   },
