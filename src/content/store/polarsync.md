@@ -20,14 +20,14 @@ checkout: "https://buy.polar.sh/polar_cl_WigNj419BzuY024BHFAnBhsOc7pO2hNhnoncz0E
 description: A powerful Framer plugin that connects your Polar.sh product library to Framer CMS, allowing you to import, manage, and update product data effortlessly.
 
 image:
-  url: "/store/polarsync.png"
+  url: "store/polarsync.png"
   alt: "PolarSync"
 images:
-  - url: "/store/polarsync1.png"
+  - url: "store/polarsync1.png"
     alt: "Screenshot one"
-  - url: "/store/polarsync2.png"
+  - url: "store/polarsync2.png"
     alt: "Screenshot two"
-  - url: "/store/polarsync3.png"
+  - url: "store/polarsync3.png"
     alt: "Screenshot three"
 ---
 

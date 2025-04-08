@@ -1,6 +1,7 @@
 {
   "extends": ["@epic-web/config/typescript"],
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "#/*": ["src/*"]
     }

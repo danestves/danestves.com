@@ -46,11 +46,13 @@ export default defineConfig({
   ],
   image: {
     service: imageService({
-      fallbackService: "netlify",
       placeholder: "blurhash",
     }),
   },
   adapter: netlify(),
+  experimental: {
+    responsiveImages: true,
+  },
   redirects: {
     "/work": "https://www.linkedin.com/in/danestves/#experience",
   },
