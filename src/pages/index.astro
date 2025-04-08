@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from "@unpic/astro";
 import { getCollection } from "astro:content";
 
 import LogoCloud from "#/components/assets/logo-cloud.astro";
@@ -38,10 +38,11 @@ allProjects.sort((a, b) => {
               width={128}
               height={128}
               src={Avatar}
-              layout="full-width"
+              layout="fullWidth"
               alt="Daniel Esteves"
               class="size-12 rounded-xl duration-300 ease-in-out hover:scale-150 hover:rotate-6 md:size-16"
               priority
+              placeholder="blurhash"
             />,
           </Text>
           <Text tag="p" variant="displayXL" class="font-display tracking-wide text-base-600 italic dark:text-base-400">
