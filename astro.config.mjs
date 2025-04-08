@@ -45,7 +45,6 @@ export default defineConfig({
   ],
   image: {
     service: imageService({
-      fallbackService: "astro",
       placeholder: "blurhash",
     }),
   },
