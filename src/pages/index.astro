@@ -68,7 +68,7 @@ allProjects.sort((a, b) => {
           allProjects
             .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
             .slice(0, 2)
-            .map((post) => <ProjectEntries2 post={post} />)
+            .map((post) => <ProjectEntries2 post={post} prefetch />)
         }
       </div>
     </Wrapper>
