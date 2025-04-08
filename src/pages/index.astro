@@ -1,5 +1,5 @@
 ---
-import { Image } from "@unpic/astro";
+import { Image, Source } from "@unpic/astro";
 import { getCollection } from "astro:content";
 
 import LogoCloud from "#/components/assets/logo-cloud.astro";
@@ -29,26 +29,31 @@ allProjects.sort((a, b) => {
 
 <BaseLayout>
   <section class="relative overflow-hidden">
-    <Wrapper variant="standard" class="relative py-24">
+    <Wrapper class="relative py-24" variant="standard">
       <div class="text-center">
         <div class="mt-8 text-balance text-base-900 dark:text-white">
-          <Text tag="h1" variant="displayXL" class="flex items-baseline justify-center gap-3 font-medium">
+          <Text class="flex items-baseline justify-center gap-3 font-medium" tag="h1" variant="displayXL">
             Hi, I'm Daniel
-            <Image
-              width={64}
-              height={64}
-              src={Avatar}
-              alt="Daniel Esteves"
-              class="size-12 rounded-xl duration-300 ease-in-out hover:scale-150 hover:rotate-6 md:size-16"
-              priority
-              placeholder="blurhash"
-            />,
+            <picture class="size-12 md:size-16">
+              <Source height={128} media="(min-width: 768px)" priority src={Avatar} width={128} />
+              <Source height={96} media="(max-width: 768px)" priority src={Avatar} width={96} />
+              <Image
+                alt="Daniel Esteves"
+                class="rounded-xl duration-300 ease-in-out hover:scale-150 hover:rotate-6"
+                height={64}
+                priority
+                src={Avatar}
+                unstyled
+                width={64}
+              />
+            </picture>
+            ,
           </Text>
-          <Text tag="p" variant="displayXL" class="font-display tracking-wide text-base-600 italic dark:text-base-400">
+          <Text class="font-display tracking-wide text-base-600 italic dark:text-base-400" tag="p" variant="displayXL">
             software engineer.
           </Text>
         </div>
-        <Text tag="p" variant="textLG" class="mt-4 text-balance text-base-600 dark:text-base-400">
+        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
           From frontend beginnings to full-stack solutions, one line of code at a time
         </Text>
         <LogoCloud />
@@ -56,14 +61,14 @@ allProjects.sort((a, b) => {
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="py-12">
+    <Wrapper class="py-12" variant="standard">
       <div class="flex items-end justify-between">
-        <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+        <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
           Projects
         </Text>
-        <Link size="xs" variant="muted" href="/projects">See them all </Link>
+        <Link href="/projects" size="xs" variant="muted">See them all </Link>
       </div>
-      <div role="list" class="mt-6 grid gap-2 md:grid-cols-2">
+      <div class="mt-6 grid gap-2 md:grid-cols-2" role="list">
         {
           allProjects
             .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
@@ -74,14 +79,14 @@ allProjects.sort((a, b) => {
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="py-12">
+    <Wrapper class="py-12" variant="standard">
       <div class="flex items-end justify-between">
-        <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+        <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
           Blog
         </Text>
-        <Link size="xs" variant="muted" href="/blog">Read all my blog posts </Link>
+        <Link href="/blog" size="xs" variant="muted">Read all my blog posts </Link>
       </div>
-      <div role="list" class="mt-6 gap-2">
+      <div class="mt-6 gap-2" role="list">
         {
           allPosts
             .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
@@ -92,12 +97,12 @@ allProjects.sort((a, b) => {
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="py-12">
+    <Wrapper class="py-12" variant="standard">
       <div class="flex items-end justify-between">
-        <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+        <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
           Stack
         </Text>
-        <Link size="xs" variant="muted" href="/stack">Check out my whole stack </Link>
+        <Link href="/stack" size="xs" variant="muted">Check out my whole stack </Link>
       </div>
       <StackEntries1 />
     </Wrapper>

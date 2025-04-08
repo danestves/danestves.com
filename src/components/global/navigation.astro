@@ -39,9 +39,9 @@ const navLinks = [
 </style>
 <header>
   <Wrapper variant="standard">
-    <nav role="navigation" class="grid w-full grid-cols-2 items-center justify-between gap-12 py-4">
+    <nav class="grid w-full grid-cols-2 items-center justify-between gap-12 py-4" role="navigation">
       <div class="flex flex-row items-center gap-2">
-        <Text tag="a" variant="textXL" href="/" class="text-center font-display text-base-900 italic dark:text-white">
+        <Text class="text-center font-display text-base-900 italic dark:text-white" href="/" tag="a" variant="textXL">
           Daniel
         </Text>
         <ThemeToggle class="order-first focus:rounded-md focus:outline-2 focus:outline-base-500 md:order-last" />
@@ -51,36 +51,36 @@ const navLinks = [
         <BlogSearch />
 
         <button
-          type="button"
-          id="menuToggle"
-          id="menubutton"
           aria-controls="menu"
           aria-expanded="false"
           aria-label="Toggle menu"
           class="focus:rounded-md focus:outline-2 focus:outline-base-500"
+          id="menuToggle"
+          id="menubutton"
+          type="button"
         >
           <ListTreeIcon class="size-6 shrink-0 text-base-900 transition duration-300 ease-in-out dark:text-white" />
         </button>
         <div
-          id="menuContent"
           class="pointer-events-none fixed inset-0 z-9999 bg-white/20 opacity-0 backdrop-blur-xl transition-opacity duration-300 ease-in-out dark:bg-black/50"
+          id="menuContent"
         >
-          <Wrapper variant="standard" class="relative h-full px-8 py-4">
-            <button id="closeMenu" class="ml-auto flex text-base-900 dark:text-white">
+          <Wrapper class="relative h-full px-8 py-4" variant="standard">
+            <button class="ml-auto flex text-base-900 dark:text-white" id="closeMenu">
               <XIcon class="size-8 shrink-0 stroke-base-950 transition duration-300 ease-in-out dark:stroke-white" />
             </button>
-            <nav role="navigation" class="mt-4 flex flex-col gap-y-2">
+            <nav class="mt-4 flex flex-col gap-y-2" role="navigation">
               {
                 navLinks.map((link) => (
                   <div class="flex justify-end">
                     <Text
-                      tag="a"
-                      variant="textXL"
-                      underlined={true}
-                      href={link.href}
-                      title={link.text}
                       aria-label={link.text}
                       class="block text-right text-base-900 dark:text-white"
+                      href={link.href}
+                      tag="a"
+                      title={link.text}
+                      underlined={true}
+                      variant="textXL"
                     >
                       {link.text}
                     </Text>
@@ -95,7 +95,7 @@ const navLinks = [
   </Wrapper>
 </header>
 
-<script type="module" is:inline>
+<script is:inline type="module">
   // Wait for the DOM content to fully load before executing the script
   document.addEventListener("DOMContentLoaded", () => {
     // Get references to the menu toggle button, menu content, and close button

@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image, Source } from "@unpic/astro";
 
 import ScrollUpButton from "#/components/assets/scroll-up-button.astro";
 import Wrapper from "#/components/fundations/containers/wrapper.astro";
@@ -15,34 +15,41 @@ const { frontmatter, seo } = Astro.props;
   <section>
     <Wrapper class="py-24">
       <div class="text-center">
-        <Image
-          src={frontmatter.logo.url}
-          alt={frontmatter.logo.alt}
-          width={200}
-          height={200}
-          class="mx-auto size-12 rounded-xl shadow ring-base-200 md:size-16 dark:ring-base-800"
-        />
+        <picture class="size-12 md:size-16">
+          <Source height={128} media="(min-width: 768px)" priority src={frontmatter.logo.url} width={128} />
+          <Source height={96} media="(max-width: 768px)" priority src={frontmatter.logo.url} width={96} />
+          <Image
+            alt={frontmatter.logo.alt}
+            alt={frontmatter.logo.alt}
+            class="mx-auto !size-12 rounded-xl shadow ring-base-200 md:!size-16 dark:ring-base-800"
+            height={64}
+            priority
+            src={frontmatter.logo.url}
+            unstyled
+            width={64}
+          />
+        </picture>
         <Text
+          class="mt-8 font-display tracking-wide text-balance text-base-900 italic dark:text-white"
           tag="h1"
           variant="displayXL"
-          class="mt-8 font-display tracking-wide text-balance text-base-900 italic dark:text-white"
         >
           {frontmatter.title}
         </Text>
-        <Text tag="p" variant="textLG" class="mt-4 text-balance text-base-600 dark:text-base-400">
+        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
           {frontmatter.subtitle}
         </Text>
       </div>
       <div class="space-y-6">
         <Image
-          src={frontmatter.image.url}
           alt={frontmatter.image.alt}
-          width={800}
-          height={400}
           class="mt-6 max-h-72 w-full rounded-2xl object-cover object-center shadow ring-1 ring-base-800"
+          height={400}
+          src={frontmatter.image.url}
+          width={800}
         />
         <div class="flex items-center justify-between">
-          <Text tag="p" variant="textSM" class="ml-2 text-base-600 dark:text-base-400">
+          <Text class="ml-2 text-base-600 dark:text-base-400" tag="p" variant="textSM">
             Published: <time
               datetime={new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -59,7 +66,7 @@ const { frontmatter, seo } = Astro.props;
               }</time
             >
           </Text>
-          <Link size="base" variant="muted" href={frontmatter.live} title={frontmatter.title}>See it live </Link>
+          <Link href={frontmatter.live} size="base" title={frontmatter.title} variant="muted">See it live </Link>
         </div>
         <Wrapper variant="prose">
           <slot />

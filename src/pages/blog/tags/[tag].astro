@@ -32,13 +32,13 @@ const { posts } = Astro.props;
   <section>
     <Wrapper class="py-24">
       <div class="text-center">
-        <Text tag="h1" variant="displayXL" class="text-balance text-base-900 dark:text-white">
+        <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
           Blog posts
           <span class="block font-display tracking-wide italic">
             tagged with {tag}
           </span>
         </Text>
-        <Text tag="p" variant="textLG" class="mt-4 text-base-600 dark:text-base-400">
+        <Text class="mt-4 text-base-600 dark:text-base-400" tag="p" variant="textLG">
           Find all the posts tagged with {tag}.
         </Text>
       </div>

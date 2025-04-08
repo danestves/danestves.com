@@ -14,15 +14,15 @@ const posts = await Promise.all(
 
 <div class="relative ml-auto w-full">
   <button
-    type="button"
-    id="searchButton"
-    class="flex items-center text-black focus:rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-base-500 dark:text-white"
     aria-label="Search posts"
+    class="flex items-center text-black focus:rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-base-500 dark:text-white"
+    id="searchButton"
+    type="button"
   >
     <SearchIcon class="size-4" />
   </button>
 
-  <div id="searchModal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true">
+  <div aria-modal="true" class="fixed inset-0 z-50 hidden overflow-y-auto" id="searchModal" role="dialog">
     <div class="min-h-screen px-4 text-center">
       <div class="fixed inset-0 bg-zinc-950/50 backdrop-blur transition-opacity" id="modalOverlay"></div>
       <div
@@ -30,23 +30,23 @@ const posts = await Promise.all(
       >
         <div class="hidden">
           <button
-            type="button"
-            id="closeSearch"
-            class="ml-auto cursor-pointer text-zinc-400 hover:text-zinc-500"
             aria-label="Close search"
+            class="ml-auto cursor-pointer text-zinc-400 hover:text-zinc-500"
+            id="closeSearch"
+            type="button"
           >
             <XIcon class="size-4" />
           </button>
         </div>
         <input
-          type="text"
+          class="h-10 w-full flex-auto appearance-none rounded-full border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 duration-300 placeholder:text-base-600 focus:outline-2 focus:outline-offset-4 focus:outline-base-500 sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
           id="searchInput"
           placeholder="Search posts..."
-          class="h-10 w-full flex-auto appearance-none rounded-full border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 duration-300 placeholder:text-base-600 focus:outline-2 focus:outline-offset-4 focus:outline-base-500 sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
+          type="text"
         />
         <div
-          id="searchResults"
           class="mt-2 scrollbar-hide max-h-100 w-full divide-y divide-zinc-200 overflow-hidden overflow-y-auto rounded-xl border-y border-zinc-200 bg-white dark:divide-white/5 dark:border-y-black dark:bg-black"
+          id="searchResults"
         >
         </div>
       </div>
@@ -54,7 +54,7 @@ const posts = await Promise.all(
   </div>
 </div>
 
-<script is:inline define:vars={{ posts }}>
+<script define:vars={{ posts }} is:inline>
   // Wait for the entire page to load before running the script
   window.addEventListener("load", () => {
     // Get references to various elements in the search UI

@@ -17,16 +17,16 @@ import BaseLayout from "#/layouts/base-layout.astro";
   <section>
     <Wrapper class="py-24">
       <div class="text-center">
-        <Image width={200} height={200} src={Avatar} alt="#_" class="mx-auto size-12 rounded-xl md:size-24" />
-        <Text tag="h1" variant="displayXL" class="mt-12 text-balance text-base-900 dark:text-white">
+        <Image alt="#_" class="mx-auto size-12 rounded-xl md:size-24" height={200} src={Avatar} width={200} />
+        <Text class="mt-12 text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
           My now page
           <span class="font-display tracking-wide italic"> get to now me </span>
         </Text>
-        <Text tag="p" variant="textLG" class="mt-4 text-balance text-base-600 dark:text-base-400">
+        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
           Learn about me and what I am up to right now.
         </Text>
       </div>
-      <Wrapper variant="prose" class="mt-12">
+      <Wrapper class="mt-12" variant="prose">
         <h3>What I'm doing now</h3>
         <p>As of March 2025, here are a few things I'm focused on:</p>
         <ul>

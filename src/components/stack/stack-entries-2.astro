@@ -1,4 +1,6 @@
 ---
+import { Image } from "@unpic/astro";
+
 import Text from "#/components/fundations/elements/text.astro";
 import Astrojs from "#/images/stacklogos/astro.svg";
 import Cursor from "#/images/stacklogos/cursor.svg";
@@ -14,7 +16,6 @@ import Session from "#/images/stacklogos/session.png";
 import Tailwind from "#/images/stacklogos/tailwind.svg";
 import Tinkerwell from "#/images/stacklogos/tinkerwell.png";
 import Zen from "#/images/stacklogos/zen.svg";
-import { Image } from "astro:assets";
 
 const stack = [
   {
@@ -33,7 +34,6 @@ const stack = [
         about: "Design Tool",
         description: "Framer is a design tool that allows you to create beautiful, responsive websites and apps.",
       },
-      // Add more items as necessary
     ],
   },
   {
@@ -135,28 +135,27 @@ const stack = [
       <div class="flex flex-col gap-6">
         <p class="font-display text-2xl tracking-wide text-base-900 italic dark:text-white">{section.title}</p>
 
-        <ul role="list" class="grid gap-2 sm:grid-cols-2 lg:col-span-2">
+        <ul class="grid gap-2 sm:grid-cols-2 lg:col-span-2" role="list">
           {section.items.map((item) => (
             <li class="group relative flex h-full min-h-72 w-full transform flex-col justify-between overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
               <div class="flex items-center justify-between gap-x-4">
                 <div>
-                  <Text tag="h3" variant="textBase" class="font-medium text-base-900 dark:text-white">
+                  <Text class="font-medium text-base-900 dark:text-white" tag="h3" variant="textBase">
                     {item.name}
                   </Text>
-                  <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+                  <Text class="text-base-600 dark:text-base-400" tag="p" variant="textSM">
                     {item.about}
                   </Text>
                 </div>
                 <Image
-                  layout="full-width"
-                  src={item.stackLogo}
                   alt={item.name}
-                  width={64}
-                  height={64}
-                  class="size-8 overflow-hidden rounded-lg duration-300 group-hover:-rotate-45 dark:border dark:border-base-700"
+                  class="overflow-hidden rounded-[15px] duration-300 group-hover:-rotate-45 dark:border dark:border-base-700"
+                  height={48}
+                  src={item.stackLogo}
+                  width={48}
                 />
               </div>
-              <Text tag="p" variant="textBase" class="mt-2 text-base text-base-600 dark:text-base-400">
+              <Text class="mt-2 text-base text-base-600 dark:text-base-400" tag="p" variant="textBase">
                 {item.description}
               </Text>
             </li>

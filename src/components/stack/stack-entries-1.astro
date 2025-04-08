@@ -72,27 +72,27 @@ const stack = [
   </div>
   {
     stack.map((section) => (
-      <div role="list" class="animatemarquee flex gap-2 py-12 dark:border-base-700">
+      <div class="animatemarquee flex gap-2 py-12 dark:border-base-700" role="list">
         {section.items.map((item) => (
           <div
             class={`group relative flex h-full min-h-72 w-full min-w-72 transform flex-col justify-between overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark ${item.rotation}`}
           >
             <div class="flex items-center justify-between gap-x-4">
               <div>
-                <Text tag="h3" variant="textBase" class="font-medium text-base-900 dark:text-white">
+                <Text class="font-medium text-base-900 dark:text-white" tag="h3" variant="textBase">
                   {item.name}
                 </Text>
-                <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+                <Text class="text-base-600 dark:text-base-400" tag="p" variant="textSM">
                   {item.about}
                 </Text>
               </div>
               <img
-                src={item.stackLogo}
                 alt={item.name}
                 class="size-8 overflow-hidden rounded-xl duration-300 group-hover:-rotate-45 dark:border dark:border-base-700"
+                src={item.stackLogo}
               />
             </div>
-            <Text tag="p" variant="textBase" class="mt-2 text-base text-base-600 dark:text-base-400">
+            <Text class="mt-2 text-base text-base-600 dark:text-base-400" tag="p" variant="textBase">
               {item.description}
             </Text>
           </div>

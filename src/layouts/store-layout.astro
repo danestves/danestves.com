@@ -13,41 +13,41 @@ const { frontmatter, seo } = Astro.props;
   <section>
     <Wrapper class="py-24">
       <div class="text-center">
-        <Text tag="h1" variant="displayXL" class="text-balance text-base-900 dark:text-white">
+        <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
           {frontmatter.title}
         </Text>
 
-        <Text tag="p" variant="textLG" class="mt-8 text-balance text-base-600 dark:text-base-400">
+        <Text class="mt-8 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
           {frontmatter.description}
         </Text>
       </div>
 
       <div class="mt-6 flex items-center justify-center gap-4">
         <Link
-          size="sm"
-          variant="muted"
-          href={frontmatter.preview}
-          title={frontmatter.preview}
           aria-label={frontmatter.preview}
+          href={frontmatter.preview}
+          size="sm"
+          title={frontmatter.preview}
+          variant="muted"
         >
           Preview demo
         </Link>
-        <Link size="sm" variant="default" href="#_" title="your title" aria-label="your label">
+        <Link aria-label="your label" href="#_" size="sm" title="your title" variant="default">
           Buy {frontmatter.title} for ${frontmatter.price}
         </Link>
       </div>
 
       <div class="mt-12 space-y-12">
         <Image
-          src={frontmatter.image.url}
           alt={frontmatter.image.alt}
-          width={600}
-          height={600}
           class="w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
+          height={600}
+          src={frontmatter.image.url}
+          width={600}
         />
 
         <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+          <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
             Includes
           </Text>
           <ul role="list">
@@ -55,7 +55,7 @@ const { frontmatter, seo } = Astro.props;
             {
               frontmatter.highlights.map((highlight) => (
                 <li>
-                  <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+                  <Text class="text-base-600 dark:text-base-400" tag="p" variant="textSM">
                     {highlight}
                   </Text>
                 </li>
@@ -64,10 +64,10 @@ const { frontmatter, seo } = Astro.props;
           </ul>
         </div>
         <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+          <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
             License
           </Text>
-          <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400">
+          <Text class="text-base-600 dark:text-base-400" tag="p" variant="textSM">
             {frontmatter.license}
           </Text>
         </div>
@@ -75,11 +75,11 @@ const { frontmatter, seo } = Astro.props;
           {
             frontmatter.images.map((image) => (
               <Image
-                src={image.url}
                 alt={image.alt}
-                width={400}
-                height={400}
                 class="aspect-[384/246] w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
+                height={400}
+                src={image.url}
+                width={400}
               />
             ))
           }
@@ -89,12 +89,12 @@ const { frontmatter, seo } = Astro.props;
             frontmatter.features.map((feature) => (
               <div class="group relative flex transform flex-col overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
                 <dt>
-                  <Text tag="h3" variant="textLG" class="text-base-900 dark:text-white">
+                  <Text class="text-base-900 dark:text-white" tag="h3" variant="textLG">
                     {feature.title}
                   </Text>
                 </dt>
                 <dd class="mt-24">
-                  <Text tag="p" variant="textLG" class="text-base-600 dark:text-base-400">
+                  <Text class="text-base-600 dark:text-base-400" tag="p" variant="textLG">
                     {feature.description}
                   </Text>
                 </dd>

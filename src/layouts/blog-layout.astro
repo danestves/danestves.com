@@ -22,9 +22,9 @@ const { frontmatter, seo } = Astro.props;
     <Wrapper class="py-24">
       <div class="text-center">
         <Text
+          class="mt-8 font-display tracking-wide text-balance text-base-900 italic dark:text-white"
           tag="h1"
           variant="displayXL"
-          class="mt-8 font-display tracking-wide text-balance text-base-900 italic dark:text-white"
         >
           {frontmatter.title}
         </Text>
@@ -45,17 +45,17 @@ const { frontmatter, seo } = Astro.props;
             }</time
           >
         </Text>
-        <Text tag="p" variant="textLG" class="mt-4 text-balance text-base-600 dark:text-base-400">
+        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
           {frontmatter.description}
         </Text>
       </div>
       <div class="space-y-12">
         <Image
-          src={frontmatter.image.url}
           alt={frontmatter.image.alt}
-          width={800}
-          height={400}
           class="mt-6 max-h-72 w-full rounded-2xl object-cover object-center shadow ring-1 ring-base-200 dark:ring-base-800"
+          height={400}
+          src={frontmatter.image.url}
+          width={800}
         />
         <Wrapper variant="prose">
           <slot />
@@ -66,11 +66,11 @@ const { frontmatter, seo } = Astro.props;
               <>
                 {index > 0 && <span class="text-white">·</span>}
                 <Text
-                  tag="a"
-                  variant="textSM"
-                  underlined={true}
-                  href={`/blog/tags/${tag}`}
                   class="text-white capitalize"
+                  href={`/blog/tags/${tag}`}
+                  tag="a"
+                  underlined={true}
+                  variant="textSM"
                 >
                   {tag}
                 </Text>
@@ -83,13 +83,13 @@ const { frontmatter, seo } = Astro.props;
   </section>
   <SubscribeCta />
   <section>
-    <Wrapper variant="standard" class="py-24">
+    <Wrapper class="py-24" variant="standard">
       <div class="text-center">
         <div class="flex items-end justify-between">
-          <Text tag="h3" variant="displaySM" class="font-display tracking-wide text-base-900 italic dark:text-white">
+          <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
             Latest articles
           </Text>
-          <Link size="xs" variant="muted" href="/blog/home">Read all my blog posts </Link>
+          <Link href="/blog/home" size="xs" variant="muted">Read all my blog posts </Link>
         </div>
       </div>
       <div class="mt-12 grid gap-2 sm:grid-cols-2">

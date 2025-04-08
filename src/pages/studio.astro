@@ -81,17 +81,17 @@ const services = [
           services.map((section) => (
             <div class="group relative flex h-full min-h-72 w-full transform flex-col justify-between overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
               <div class="flex items-center justify-between font-display font-medium tracking-wide text-base-900 italic dark:text-white">
-                <Text tag="h3" variant="displaySM" class="text-balance">
+                <Text class="text-balance" tag="h3" variant="displaySM">
                   {section.title}
                 </Text>
-                <Text tag="p" variant="textLG" class="text-balance">
+                <Text class="text-balance" tag="p" variant="textLG">
                   ${section.price}/m
                 </Text>
               </div>
-              <div role="list" class="mt-6">
+              <div class="mt-6" role="list">
                 {section.items.map((item) => (
                   <>
-                    <Text tag="p" variant="textXL" class="text-balance text-base-600 dark:text-base-400">
+                    <Text class="text-balance text-base-600 dark:text-base-400" tag="p" variant="textXL">
                       {item.description}
                     </Text>
                     <ul
@@ -110,12 +110,12 @@ const services = [
               </div>
               <div class="col-span-full mt-12 flex">
                 <Link
-                  size="sm"
-                  variant="default"
-                  href="/forms/contact"
-                  title="your title"
                   aria-label="your label"
                   class="flex h-9 items-center justify-between gap-1 rounded-full bg-base-50 px-4 py-2.5 text-sm font-semibold text-base-900 ring-1 ring-base-200 duration-300 ring-inset hover:bg-base-200"
+                  href="/forms/contact"
+                  size="sm"
+                  title="your title"
+                  variant="default"
                 >
                   Get started
                 </Link>

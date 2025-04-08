@@ -67,13 +67,13 @@ const sections = [
   }}
 >
   <section>
-    <Wrapper variant="standard" class="py-24">
+    <Wrapper class="py-24" variant="standard">
       <div class="text-center">
-        <Text tag="h1" variant="displayXL" class="text-balance text-base-900 dark:text-white">
+        <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
           I am all around
           <span class="font-display tracking-wide italic"> find me on... </span>
         </Text>
-        <Text tag="p" variant="textLG" class="mt-4 text-balance text-base-600 dark:text-base-400">
+        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
           I am easy to find on the internet, choose from a variety of social media platforms.
         </Text>
       </div>
@@ -82,33 +82,33 @@ const sections = [
           sections.map((section) => (
             <div class="flex flex-col items-start gap-6">
               <Text
+                class="font-display tracking-wide text-base-900 italic dark:text-white"
                 tag="h3"
                 variant="displaySM"
-                class="font-display tracking-wide text-base-900 italic dark:text-white"
               >
                 {section.title}
               </Text>
               <div class="flex w-full flex-col gap-2">
                 {section.items.map((item) => (
                   <a
+                    class="group relative flex h-full w-full transform flex-col overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark"
                     href={item.url}
                     title={item.name}
-                    class="group relative flex h-full w-full transform flex-col overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark"
                   >
                     <div class="group flex items-center gap-4 text-base-600 dark:text-base-400">
                       <Image
-                        src={item.stackLogo}
                         alt={item.name}
-                        width={200}
+                        class="size-12 rounded-full duration-300 group-hover:-rotate-45"
                         height={200}
                         layout="full-width"
-                        class="size-12 rounded-full duration-300 group-hover:-rotate-45"
+                        src={item.stackLogo}
+                        width={200}
                       />
                       <div class="text-sm leading-6">
-                        <Text tag="h3" variant="textSM" class="font-medium text-base-900 uppercase dark:text-white">
+                        <Text class="font-medium text-base-900 uppercase dark:text-white" tag="h3" variant="textSM">
                           {item.name}
                         </Text>
-                        <Text tag="p" variant="textBase" class="text-base-600 dark:text-base-400">
+                        <Text class="text-base-600 dark:text-base-400" tag="p" variant="textBase">
                           {item.username}
                         </Text>
                       </div>

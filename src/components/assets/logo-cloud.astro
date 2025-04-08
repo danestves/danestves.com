@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from "@unpic/astro";
 
 import logo1 from "#/images/brands/1.svg";
 import logo2 from "#/images/brands/2.svg";
@@ -27,14 +27,17 @@ const logos = [
   <div class="relative flex animate-marquee items-center gap-4 whitespace-nowrap">
     {
       logos.map((logo) => (
-        <Image
-          width={200}
-          height={100}
-          layout="full-width"
-          class="h-8 invert filter dark:filter-none"
-          src={logo.src}
-          alt={logo.alt}
-        />
+        <picture class="h-8">
+          <Image
+            alt={logo.alt}
+            class="w-full invert filter dark:filter-none"
+            height={100}
+            layout="constrained"
+            src={logo.src}
+            unstyled
+            width={200}
+          />
+        </picture>
       ))
     }
   </div>

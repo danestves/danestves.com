@@ -13,24 +13,24 @@ import Text from "#/components/fundations/elements/text.astro";
     <div class="relative flex h-full min-h-96 flex-col justify-between overflow-hidden rounded-2xl p-4">
       <div>
         <div class="relative flex items-center justify-between sm:items-start">
-          <Text tag="h3" variant="textBase" class="font-medium text-base-900 uppercase dark:text-white">
+          <Text class="font-medium text-base-900 uppercase dark:text-white" tag="h3" variant="textBase">
             Book a call
           </Text>
           <a
+            class="rounded-full bg-black p-1 text-white duration-300 group-hover:-rotate-45 dark:bg-base-50 dark:text-base-900"
             href="/contact"
             title="your tile"
-            class="rounded-full bg-black p-1 text-white duration-300 group-hover:-rotate-45 dark:bg-base-50 dark:text-base-900"
           >
             <DeviceMobileIcon class="size-4" />
           </a>
         </div>
-        <Text tag="p" variant="textBase" class="mt-8 text-base-600 dark:text-base-400">
+        <Text class="mt-8 text-base-600 dark:text-base-400" tag="p" variant="textBase">
           If not sure, you can book an intro call to learn more about my services and get a free consultation to discuss
           your project.
         </Text>
       </div>
       <div class="">
-        <Link size="sm" variant="default" href="/contact" title="your title">Book an intro call </Link>
+        <Link href="/contact" size="sm" title="your title" variant="default">Book an intro call </Link>
       </div>
     </div>
   </div>
@@ -41,20 +41,20 @@ import Text from "#/components/fundations/elements/text.astro";
       <div>
         <div class="p-4 pb-0">
           <Text
+            class="font-display font-medium tracking-wide text-balance text-base-900 italic dark:text-white"
             tag="h3"
             variant="display2XL"
-            class="font-display font-medium tracking-wide text-balance text-base-900 italic dark:text-white"
           >
             Referral program
           </Text>
-          <Text tag="p" variant="textLG" class="mt-8 text-balance text-base-600 dark:text-base-400">
+          <Text class="mt-8 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
             Refer someone and get 10% off your next project or month of work.
           </Text>
         </div>
         <LogoCloud />
       </div>
       <div class="p-4">
-        <Link size="sm" variant="muted" href="#_" title="your title">Join the program </Link>
+        <Link href="#_" size="sm" title="your title" variant="muted">Join the program </Link>
       </div>
     </div>
   </div>

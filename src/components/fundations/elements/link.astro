@@ -35,7 +35,6 @@ const additionalClasses = className ? className.split(" ") : [];
 ---
 
 <a
-  href={href}
   class:list={[
     ...(variant === "link"
       ? [...additionalClasses]
@@ -73,6 +72,7 @@ const additionalClasses = className ? className.split(" ") : [];
           ...additionalClasses,
         ]),
   ]}
+  href={href}
   {...rest}
 >
   <span class="relative z-10 flex items-center">

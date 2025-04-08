@@ -10,22 +10,22 @@ import Text from "#/components/fundations/elements/text.astro";
 
 <footer>
   <Wrapper class="flex flex-col py-24">
-    <a href="/" class="mx-auto"><Logo class="size-8 text-base-900 dark:text-white" /></a>
-    <Text tag="p" variant="textBase" class="mt-12 text-center leading-6 text-balance text-base-600 dark:text-base-400">
+    <a class="mx-auto" href="/"><Logo class="size-8 text-base-900 dark:text-white" /></a>
+    <Text class="mt-12 text-center leading-6 text-balance text-base-600 dark:text-base-400" tag="p" variant="textBase">
       © Copyright Daniel Esteves <span>{new Date().getFullYear()}</span>. All rights reserved.
     </Text>
 
     <div class="mt-12 flex justify-center space-x-6">
-      <a href="https://x.com/danestves" class="text-base-600 dark:text-base-400 dark:hover:text-white">
+      <a class="text-base-600 dark:text-base-400 dark:hover:text-white" href="https://x.com/danestves">
         <span class="sr-only">x</span>
         <BrandXIcon class="size-4" />
       </a>
-      <a href="https://www.youtube.com/@danestves" class="text-base-600 dark:text-base-400 dark:hover:text-white">
+      <a class="text-base-600 dark:text-base-400 dark:hover:text-white" href="https://www.youtube.com/@danestves">
         <span class="sr-only">YouTube</span>
         <BrandYoutubeIcon class="size-4" />
       </a>
 
-      <a href="https://github.com/danestves" class="text-base-600 dark:text-base-400 dark:hover:text-white">
+      <a class="text-base-600 dark:text-base-400 dark:hover:text-white" href="https://github.com/danestves">
         <span class="sr-only">GitHub</span>
         <BrandGithubIcon class="size-4" />
       </a>
