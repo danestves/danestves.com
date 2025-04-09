@@ -1,11 +1,11 @@
 ---
 import { Image } from "@unpic/astro";
 
-import logo1 from "#/images/brands/1.svg?url";
-import logo2 from "#/images/brands/2.svg?url";
-import logo3 from "#/images/brands/3.svg?url";
-import logo4 from "#/images/brands/4.svg?url";
-import logo5 from "#/images/brands/5.svg?url";
+import logo1 from "#/images/brands/1.svg";
+import logo2 from "#/images/brands/2.svg";
+import logo3 from "#/images/brands/3.svg";
+import logo4 from "#/images/brands/4.svg";
+import logo5 from "#/images/brands/5.svg";
 
 const logos = [
   { src: logo1, alt: "Platzi" },
@@ -16,30 +16,56 @@ const logos = [
 ];
 ---
 
-<div class="relative mx-auto mt-12 overflow-hidden overflow-x-hidden py-2">
-  <div class="grid w-full justify-between">
-    <div class="absolute inset-0 left-0 z-10 w-44 bg-gradient-to-r from-white via-transparent dark:from-base-950"></div>
-    <div
-      class="absolute inset-0 left-0 z-10 ml-auto w-44 bg-gradient-to-l from-white via-transparent dark:from-base-950"
-    >
-    </div>
-  </div>
-  <div class="relative flex animate-marquee items-center gap-4 whitespace-nowrap">
-    {
-      logos.map((logo) => (
-        <picture class="h-8">
-          <Image
-            alt={logo.alt}
-            class="w-full invert filter dark:filter-none"
-            height={100}
-            layout="constrained"
-            priority
-            src={logo.src}
-            unstyled
-            width={200}
-          />
-        </picture>
-      ))
+<style>
+  /*
+  * This is a container query used for the demo that does not need to be included
+  */
+  .container-block {
+    container-type: inline-size;
+  }
+
+  @container (max-width: 1100px) {
+    .container-block img:nth-child(3),
+    .container-block img:nth-child(4) {
+      display: none;
     }
+  }
+</style>
+
+<div
+  class="container-block relative mx-auto mt-12 py-2"
+  x-data
+  x-init="
+    $nextTick(() => {
+        const content = $refs.content;
+        const item = $refs.item;
+        const clone = item.cloneNode(true);
+        content.appendChild(clone);
+    });
+  "
+>
+  <div class="relative mx-auto flex items-center overflow-hidden py-2 tracking-wide">
+    <div class="absolute left-0 z-10 h-full w-44 bg-gradient-to-r from-white to-transparent dark:from-base-950"></div>
+    <div class="absolute right-0 z-10 h-full w-44 bg-gradient-to-l from-white to-transparent dark:from-base-950"></div>
+    <div class="flex animate-marquee" x-ref="content">
+      <div class="flex w-full flex-shrink-0 items-center justify-around space-x-4" x-ref="item">
+        {
+          logos.map((logo) => (
+            <picture class="h-8">
+              <Image
+                alt={logo.alt}
+                class="w-full invert filter dark:filter-none"
+                height={100}
+                layout="constrained"
+                priority
+                src={logo.src}
+                unstyled
+                width={200}
+              />
+            </picture>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </div>

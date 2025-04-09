@@ -40,7 +40,7 @@
   --color-base-950: oklch(0.141 0.005 285.823);
 
   /* Keyframes */
-  --animate-marquee: marquee 12s linear infinite;
+  --animate-marquee: marquee 25s linear infinite;
   --animate-rightMarquee: rightMarquee 300s linear infinite;
   --animate-slowMarquee: marquee 300s linear infinite;
   --animate-verticalMarquee: vertical 30s linear infinite;
