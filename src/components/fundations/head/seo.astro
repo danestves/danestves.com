@@ -1,13 +1,11 @@
 ---
-import { getImagePath } from "astro-opengraph-images";
 import { SEO } from "astro-seo";
 
-const { url, site } = Astro;
 const {
   title = "Daniel Esteves | Senior Frontend Engineer",
   description = "Senior Frontend Engineer. Web developer since 16. Passionate about tech, learning, and empowering LATAM through knowledge sharing.",
   useTitleTemplate = false,
-  image = getImagePath({ url, site }),
+  image = "https://danestves.com/og/index.png",
   ...rest
 } = Astro.props;
 ---
