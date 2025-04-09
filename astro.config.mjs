@@ -6,6 +6,8 @@ import { imageService } from "@unpic/astro/service";
 import { defineConfig } from "astro/config";
 import Icons from "unplugin-icons/vite";
 
+import partytown from "@astrojs/partytown";
+
 // https://astro.build/config
 export default defineConfig({
   output: "static",
@@ -28,7 +30,7 @@ export default defineConfig({
     },
   },
   site: "https://danestves.com",
-  integrations: [sitemap(), alpinejs()],
+  integrations: [sitemap(), alpinejs(), partytown()],
   image: {
     service: imageService({
       placeholder: "blurhash",
