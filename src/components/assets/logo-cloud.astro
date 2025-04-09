@@ -48,10 +48,10 @@ const logos = [
     <div class="absolute left-0 z-10 h-full w-44 bg-gradient-to-r from-white to-transparent dark:from-base-950"></div>
     <div class="absolute right-0 z-10 h-full w-44 bg-gradient-to-l from-white to-transparent dark:from-base-950"></div>
     <div class="flex animate-marquee" x-ref="content">
-      <div class="flex w-full flex-shrink-0 items-center justify-around space-x-4" x-ref="item">
+      <div class="flex w-full flex-shrink-0 items-center justify-around -space-x-4" x-ref="item">
         {
           logos.map((logo) => (
-            <picture class="h-8 w-25">
+            <picture class="h-auto w-25">
               <Image
                 alt={logo.alt}
                 class="w-full invert filter dark:filter-none"
