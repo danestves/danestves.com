@@ -1,60 +1,56 @@
 ---
-import ChevronRightIcon from "virtual:icons/tabler/chevron-right";
-
 import LogoCloud from "#/components/assets/logo-cloud.astro";
 import ContactCta from "#/components/forms/contact-cta.astro";
 import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Link from "#/components/fundations/elements/link.astro";
-import Text from "#/components/fundations/elements/text.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 
-const services = [
-  {
-    title: "Design",
-    price: "5,455",
-    items: [
-      {
-        description: "Ideal for emerging businesses requiring continuous design assistance.",
-        includes: [
-          "Brand Style Guide",
-          "Component Library",
-          "UI Patterns",
-          "Interactive Prototypes",
-          "Accessibility Standards",
-          "Responsive Designs",
-          "Design Tokens",
-          "User Flow Diagrams",
-          "Documentation & Guidelines",
-          "Version Control",
-        ],
-      },
-      // Add more items as necessary
-    ],
-  },
-  {
-    title: "Design and  Development",
-    price: "8,455",
-    items: [
-      {
-        description: "Ideal for startups requiring design and front-end development services.",
-        includes: [
-          "Same as in design",
-          "End-to-End Development",
-          "Database Design & Integration",
-          "API Development & Integration",
-          "Front-End & Back-End ",
-          "Security Best Practices",
-          "Scalable Architecture",
-          "Performance Optimization",
-          "Cloud Deployment & CI/CD",
-          "Technical Documentation",
-          "Ongoing Support & Maintenance",
-        ],
-      },
-      // Add more items as necessary
-    ],
-  },
-];
+// const services = [
+//   {
+//     title: "Design",
+//     price: "5,455",
+//     items: [
+//       {
+//         description: "Ideal for emerging businesses requiring continuous design assistance.",
+//         includes: [
+//           "Brand Style Guide",
+//           "Component Library",
+//           "UI Patterns",
+//           "Interactive Prototypes",
+//           "Accessibility Standards",
+//           "Responsive Designs",
+//           "Design Tokens",
+//           "User Flow Diagrams",
+//           "Documentation & Guidelines",
+//           "Version Control",
+//         ],
+//       },
+//       // Add more items as necessary
+//     ],
+//   },
+//   {
+//     title: "Design and  Development",
+//     price: "8,455",
+//     items: [
+//       {
+//         description: "Ideal for startups requiring design and front-end development services.",
+//         includes: [
+//           "Same as in design",
+//           "End-to-End Development",
+//           "Database Design & Integration",
+//           "API Development & Integration",
+//           "Front-End & Back-End ",
+//           "Security Best Practices",
+//           "Scalable Architecture",
+//           "Performance Optimization",
+//           "Cloud Deployment & CI/CD",
+//           "Technical Documentation",
+//           "Ongoing Support & Maintenance",
+//         ],
+//       },
+//       // Add more items as necessary
+//     ],
+//   },
+// ];
 ---
 
 <BaseLayout
@@ -77,7 +73,7 @@ const services = [
         <LogoCloud />
       </div>
       <div class="mt-6 flex flex-col gap-2">
-        {
+        <!-- {
           services.map((section) => (
             <div class="group relative flex h-full min-h-72 w-full transform flex-col justify-between overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
               <div class="flex items-center justify-between font-display font-medium tracking-wide text-base-900 italic dark:text-white">
@@ -122,7 +118,7 @@ const services = [
               </div>
             </div>
           ))
-        }
+        } -->
       </div>
       <ContactCta />
     </Wrapper>
