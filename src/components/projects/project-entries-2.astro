@@ -39,6 +39,7 @@ const { title, url, subtitle, logo } = {
     layout="constrained"
     priority={Astro.props.prefetch}
     src={logo}
+    transition:name={`project-image-${Astro.props.post.slug}`}
     width={512}
   />
 </div>

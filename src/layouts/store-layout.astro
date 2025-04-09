@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from "@unpic/astro";
 
 import Wrapper from "#/components/fundations/containers/wrapper.astro";
 import Link from "#/components/fundations/elements/link.astro";
@@ -13,11 +13,21 @@ const { frontmatter, seo } = Astro.props;
   <section>
     <Wrapper class="py-24">
       <div class="text-center">
-        <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
+        <Text
+          class="text-balance text-base-900 dark:text-white"
+          tag="h1"
+          transition:name={`store-title-${Astro.params.slug}`}
+          variant="displayXL"
+        >
           {frontmatter.title}
         </Text>
 
-        <Text class="mt-8 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
+        <Text
+          class="mt-8 text-balance text-base-600 dark:text-base-400"
+          tag="p"
+          transition:name={`store-description-${Astro.params.slug}`}
+          variant="textLG"
+        >
           {frontmatter.description}
         </Text>
       </div>
@@ -42,7 +52,10 @@ const { frontmatter, seo } = Astro.props;
           alt={frontmatter.image.alt}
           class="w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
           height={600}
+          layout="fullWidth"
+          priority
           src={frontmatter.image.url}
+          transition:name={`store-image-${Astro.params.slug}`}
           width={600}
         />
 
@@ -78,6 +91,7 @@ const { frontmatter, seo } = Astro.props;
                 alt={image.alt}
                 class="aspect-[384/246] w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
                 height={400}
+                layout="fullWidth"
                 src={image.url}
                 width={400}
               />

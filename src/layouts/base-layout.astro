@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from "astro:transitions";
+
 import BaseHead from "#/components/fundations/head/base-head.astro";
 import Seo from "#/components/fundations/head/seo.astro";
 import Footer from "#/components/global/footer.astro";
@@ -9,10 +11,37 @@ import "../styles/global.css";
 const { seo } = Astro.props;
 ---
 
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+  document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  document.addEventListener("astro:after-swap", () => {
+    const isDark = getThemePreference() === "dark";
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+  });
+</script>
+
 <html class="antialiased" lang="en">
   <head>
     <BaseHead />
     <Seo {...seo} />
+    <ClientRouter />
   </head>
   <body class="flex min-h-svh flex-col bg-white transition-colors duration-300 dark:bg-base-950">
     <Navigation />

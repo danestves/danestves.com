@@ -1,3 +1,4 @@
+import alpinejs from "@astrojs/alpinejs";
 import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -44,6 +45,7 @@ export default defineConfig({
       },
       render: presets.blackAndWhite,
     }),
+    alpinejs(),
   ],
   image: {
     service: imageService({

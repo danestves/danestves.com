@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from "@unpic/astro";
 import { getCollection } from "astro:content";
 
 import ScrollUpButton from "#/components/assets/scroll-up-button.astro";
@@ -24,11 +24,12 @@ const { frontmatter, seo } = Astro.props;
         <Text
           class="mt-8 font-display tracking-wide text-balance text-base-900 italic dark:text-white"
           tag="h1"
+          transition:name={`blog-title-${Astro.params.slug}`}
           variant="displayXL"
         >
           {frontmatter.title}
         </Text>
-        <Text class="mt-2 text-xs text-base-900 dark:text-white">
+        <Text class="mt-2 text-xs text-base-900 dark:text-white" transition:name={`blog-date-${Astro.params.slug}`}>
           Published: <time
             datetime={new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
               year: "numeric",
@@ -45,7 +46,12 @@ const { frontmatter, seo } = Astro.props;
             }</time
           >
         </Text>
-        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
+        <Text
+          class="mt-4 text-balance text-base-600 dark:text-base-400"
+          tag="p"
+          transition:name={`blog-description-${Astro.params.slug}`}
+          variant="textLG"
+        >
           {frontmatter.description}
         </Text>
       </div>
@@ -55,6 +61,7 @@ const { frontmatter, seo } = Astro.props;
           class="mt-6 max-h-72 w-full rounded-2xl object-cover object-center shadow ring-1 ring-base-200 dark:ring-base-800"
           height={400}
           src={frontmatter.image.url}
+          unstyled
           width={800}
         />
         <Wrapper variant="prose">

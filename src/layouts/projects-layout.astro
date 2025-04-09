@@ -25,6 +25,7 @@ const { frontmatter, seo } = Astro.props;
             height={64}
             priority
             src={frontmatter.logo.url}
+            transition:name={`project-image-${Astro.params.slug}`}
             unstyled
             width={64}
           />
