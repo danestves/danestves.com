@@ -46,6 +46,7 @@ const { frontmatter, seo } = Astro.props;
           alt={frontmatter.image.alt}
           class="mt-6 max-h-72 w-full rounded-2xl object-cover object-center shadow ring-1 ring-base-800"
           height={400}
+          priority
           src={frontmatter.image.url}
           width={800}
         />
