@@ -5,7 +5,7 @@ import Link from "#/components/fundations/elements/link.astro";
 import Text from "#/components/fundations/elements/text.astro";
 
 const { title, url, description, image, price } = {
-  url: "/store/" + Astro.props.post.slug,
+  url: "/store/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   price: Astro.props.post.data.price,
   description: Astro.props.post.data.description,
@@ -20,7 +20,7 @@ const { title, url, description, image, price } = {
     <Text
       class="flex w-full items-center justify-between font-medium text-balance text-base-900 uppercase dark:text-white"
       tag="h3"
-      transition:name={`store-title-${Astro.props.post.slug}`}
+      transition:name={`store-title-${Astro.props.post.id}`}
       variant="textBase"
     >
       {title} ${price}
@@ -29,7 +29,7 @@ const { title, url, description, image, price } = {
       <Text
         class="mt-8 leading-6 text-balance text-base-600 dark:text-base-400"
         tag="p"
-        transition:name={`store-description-${Astro.props.post.slug}`}
+        transition:name={`store-description-${Astro.props.post.id}`}
         variant="textSM"
       >
         {description}
@@ -42,7 +42,7 @@ const { title, url, description, image, price } = {
     class="order-first h-full rounded-2xl object-cover object-left ring ring-base-200 sm:order-last dark:ring-base-950"
     height={500}
     src={image}
-    transition:name={`store-image-${Astro.props.post.slug}`}
+    transition:name={`store-image-${Astro.props.post.id}`}
     width={500}
   />
 </div>

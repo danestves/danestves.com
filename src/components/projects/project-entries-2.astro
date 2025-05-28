@@ -6,7 +6,7 @@ import Link from "#/components/fundations/elements/link.astro";
 import Text from "#/components/fundations/elements/text.astro";
 
 const { title, url, subtitle, logo } = {
-  url: "/projects/" + Astro.props.post.slug,
+  url: "/projects/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   logo: Astro.props.post.data.logo.url,
   subtitle: Astro.props.post.data.subtitle,
@@ -39,7 +39,7 @@ const { title, url, subtitle, logo } = {
     layout="constrained"
     priority={Astro.props.prefetch}
     src={logo}
-    transition:name={`project-image-${Astro.props.post.slug}`}
+    transition:name={`project-image-${Astro.props.post.id}`}
     width={512}
   />
 </div>
