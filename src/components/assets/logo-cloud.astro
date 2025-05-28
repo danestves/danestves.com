@@ -8,11 +8,11 @@ import logo4 from "#/images/brands/4.svg";
 import logo5 from "#/images/brands/5.svg";
 
 const logos = [
-  { src: logo1, alt: "Platzi" },
-  { src: logo2, alt: "Seeed" },
-  { src: logo3, alt: "Reworth" },
-  { src: logo4, alt: "ClickIT" },
-  { src: logo5, alt: "Brightwell" },
+  { image: logo1, alt: "Platzi" },
+  { image: logo2, alt: "Seeed" },
+  { image: logo3, alt: "Reworth" },
+  { image: logo4, alt: "ClickIT" },
+  { image: logo5, alt: "Brightwell" },
 ];
 ---
 
@@ -59,7 +59,7 @@ const logos = [
                 layout="constrained"
                 objectFit="contain"
                 priority
-                src={logo.src}
+                src={logo.image.src}
                 width={200}
               />
             </picture>
