@@ -1,6 +1,8 @@
+import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const store = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/store" }),
   schema: z.object({
     price: z.string(),
     title: z.string(),
@@ -29,6 +31,7 @@ const store = defineCollection({
 });
 
 const projects = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: z.object({
     pubDate: z.date(),
     title: z.string(),
@@ -45,22 +48,23 @@ const projects = defineCollection({
   }),
 });
 
-// const posts = defineCollection({
-//   schema: z.object({
-//     title: z.string(),
-//     pubDate: z.date(),
-//     description: z.string(),
-//     author: z.string(),
-//     image: z.object({
-//       url: z.string(),
-//       alt: z.string(),
-//     }),
-//     tags: z.array(z.string()),
-//   }),
-// });
+const posts = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/posts" }),
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.date(),
+    description: z.string(),
+    author: z.string(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+    tags: z.array(z.string()),
+  }),
+});
 
 export const collections = {
   store,
   projects,
-  //   posts,
+  posts,
 };
