@@ -1,13 +1,12 @@
 ---
 const siteLinks = [
-  { text: "Work", href: "/projects" },
-  { text: "Studio", href: "/studio" },
-  { text: "Blog", href: "/blog" },
-  { text: "Now", href: "/now" },
-  { text: "Stack", href: "/stack" },
-  { text: "Socials", href: "/socials" },
-  { text: "Contact", href: "/contact" },
-  { text: "Experience", href: "/work" },
+  { text: "Work", href: "/projects/" },
+  { text: "Studio", href: "/studio/" },
+  { text: "Blog", href: "/blog/" },
+  { text: "Now", href: "/now/" },
+  { text: "Stack", href: "/stack/" },
+  { text: "Socials", href: "/socials/" },
+  { text: "Contact", href: "/contact/" },
   { text: "RSS", href: "/rss.xml" },
 ];
 
@@ -26,7 +25,7 @@ const elsewhere = [
       {siteLinks.map((link) => <a href={link.href}>{link.text}</a>)}
     </nav>
     <nav aria-label="Elsewhere" class="foot__links">
-      {elsewhere.map((link) => <a href={link.href}>{link.text}</a>)}
+      {elsewhere.map((link) => <a href={link.href} rel="me">{link.text}</a>)}
     </nav>
   </div>
 </footer>
@@ -61,6 +60,8 @@ const elsewhere = [
     display: inline-flex;
     align-items: center;
     min-height: 32px;
+    /* "X" alone is narrower than a 24px tap target */
+    min-width: 24px;
     color: var(--color-ink-2);
     text-decoration: none;
     white-space: nowrap;

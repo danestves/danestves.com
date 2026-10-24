@@ -1,14 +1,29 @@
 ---
 import { ClientRouter } from "astro:transitions";
 
+import type { ComponentProps } from "astro/types";
+
 import BaseHead from "#/components/fundations/head/base-head.astro";
+import PostHog from "#/components/fundations/head/posthog.astro";
 import Seo from "#/components/fundations/head/seo.astro";
 import Footer from "#/components/global/footer.astro";
 import Navigation from "#/components/global/navigation.astro";
+import { siteNodes, type JsonLdNode } from "#/lib/schema";
 
 import "../styles/global.css";
 
-const { seo } = Astro.props;
+interface Props {
+  seo?: ComponentProps<typeof Seo>;
+  /** Page-specific JSON-LD nodes, added to the site-wide Organization, Person and WebSite. */
+  jsonLd?: JsonLdNode[];
+}
+
+const { seo, jsonLd = [] } = Astro.props;
+// "<" is escaped so no field can close the script tag.
+const graph = JSON.stringify({ "@context": "https://schema.org", "@graph": [...siteNodes, ...jsonLd] }).replace(
+  /</g,
+  "\\u003c",
+);
 ---
 
 <html lang="en">
@@ -38,15 +53,9 @@ const { seo } = Astro.props;
     >
     <BaseHead />
     <Seo {...seo} />
+    <script is:inline set:html={graph} type="application/ld+json" />
     <ClientRouter />
-    <script
-      data-do-not-track="true"
-      data-exclude-search="true"
-      data-website-id="ba752a11-e024-4a9d-8934-47c20607d2e5"
-      defer
-      is:inline
-      src="https://events.danestves.com/script.js"
-      type="text/partytown"></script>
+    <PostHog />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

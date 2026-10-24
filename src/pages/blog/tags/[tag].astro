@@ -26,6 +26,8 @@ const { posts } = Astro.props;
     title: `Blog posts tagged with "${tag}"`,
     description: `Find all the posts tagged with "${tag}".`,
     useTitleTemplate: true,
+    // Thin while the blog is this small; also left out of the sitemap in astro.config.mjs.
+    noindex: true,
   }}
 >
   <div class="shell">
@@ -33,7 +35,7 @@ const { posts } = Astro.props;
       <h1>{tag}</h1>
       <div class="page-head__aside">
         <p class="lead">{posts.length === 1 ? "1 post" : `${posts.length} posts`} tagged {tag}.</p>
-        <p class="links"><a href="/blog/tags">All tags</a><a href="/blog">All posts</a></p>
+        <p class="links"><a href="/blog/tags/">All tags</a><a href="/blog/">All posts</a></p>
       </div>
     </header>
 

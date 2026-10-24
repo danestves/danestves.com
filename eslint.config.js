@@ -6,7 +6,7 @@ import { globalIgnores } from "eslint/config";
 export default [
   js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
-  globalIgnores([".astro/*"]),
+  globalIgnores([".astro/*", ".netlify/*", "dist/*"]),
   {
     plugins: {
       perfectionist,

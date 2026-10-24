@@ -1,7 +1,9 @@
 ---
 kind: app
+category: HealthApplication
 pubDate: 2026-04-22
 title: Vela
+seoTitle: Vela, a private period tracker
 subtitle: A private period tracker that encrypts before anything syncs, with keys the server never holds.
 live: "https://hellovela.app"
 links:
@@ -16,9 +18,6 @@ links:
 logo:
   url: "/projects/vela-icon.webp"
   alt: "Vela"
-image:
-  url: "/projects/vela-calendar.webp"
-  alt: "Vela’s calendar: the cycle by day, with today’s mood and symptoms"
 screens:
   - url: "/projects/vela-calendar.webp"
     alt: "Vela’s calendar: the cycle by day, with today’s mood and symptoms"
@@ -31,6 +30,8 @@ screens:
     width: 1600
     height: 1000
 ---
+
+Vela is a private period tracker for iOS and Android, made by danestves LLC, the software studio of Daniel Esteves.
 
 ## What it does
 

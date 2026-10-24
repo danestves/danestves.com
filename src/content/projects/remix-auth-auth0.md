@@ -3,6 +3,7 @@ kind: package
 install: "npm add remix-auth remix-auth-auth0"
 pubDate: 2021-12-21
 title: remix-auth-auth0
+seoTitle: remix-auth-auth0, Auth0 for Remix Auth
 subtitle: An Auth0Strategy for Remix Auth, based on the OAuth2Strategy
 live: "https://github.com/danestves/remix-auth-auth0"
 logo:

@@ -2,13 +2,13 @@
 import BaseLayout from "#/layouts/base-layout.astro";
 ---
 
-<BaseLayout seo={{ title: "Page not found", useTitleTemplate: true }}>
+<BaseLayout seo={{ title: "Page not found", useTitleTemplate: true, noindex: true }}>
   <div class="shell">
     <header class="page-head">
       <h1>Page not found</h1>
       <div class="page-head__aside">
         <p class="lead">Nothing lives at this address. It may have moved.</p>
-        <p class="links"><a href="/">Home</a><a href="/projects">Work</a><a href="/blog">Blog</a></p>
+        <p class="links"><a href="/">Home</a><a href="/projects/">Work</a><a href="/blog/">Blog</a></p>
       </div>
     </header>
   </div>
