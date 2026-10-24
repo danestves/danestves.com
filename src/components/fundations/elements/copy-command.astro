@@ -1,0 +1,32 @@
+---
+// An install command with a Copy button. Without scripts the button hides and the command stays selectable.
+interface Props {
+  command: string;
+}
+
+const { command } = Astro.props;
+---
+
+<div class="cmd">
+  <code>{command}</code>
+  <button class="cmd__copy" data-copy={command} data-needs-js type="button">Copy</button>
+  <span class="visually-hidden" role="status"></span>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
+      const status = button.nextElementSibling;
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.copy ?? "");
+          button.textContent = "Copied";
+          if (status) status.textContent = `Copied ${button.dataset.copy}`;
+        } catch {
+          if (status) status.textContent = "Copy is blocked here. Select the command and copy it.";
+        }
+        setTimeout(() => (button.textContent = "Copy"), 1600);
+      });
+    });
+  });
+</script>

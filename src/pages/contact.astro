@@ -3,6 +3,12 @@ import Contact from "#/components/forms/contact.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 ---
 
-<BaseLayout>
+<BaseLayout
+  seo={{
+    title: "Contact",
+    description: "Start a project with danestves LLC: write to hi@danestves.com.",
+    useTitleTemplate: true,
+  }}
+>
   <Contact />
 </BaseLayout>

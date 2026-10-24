@@ -1,23 +1,25 @@
 ---
+kind: package
+install: "composer require danestves/laravel-polar"
 pubDate: 2025-02-21
 title: laravel-polar
 subtitle: A package to easily integrate your Laravel application with Polar.sh
 live: "https://github.com/danestves/laravel-polar"
 logo:
-  url: "projects/github.png"
+  url: "/projects/github.png"
   alt: "Laravel Polar"
 image:
-  url: "projects/laravel-polar-og.png"
+  url: "/projects/laravel-polar-og.png"
   alt: "Laravel Polar Integration"
 ---
 
 ## Introduction
 
-**Laravel Polar** is a comprehensive package that seamlessly integrates Polar.sh subscriptions and payments into your Laravel application. It provides an elegant way to handle subscriptions, manage recurring payments, and interact with Polar's API, complete with built-in support for webhooks and subscription management.
+**Laravel Polar** brings Polar.sh subscriptions and payments to a Laravel app. It handles subscriptions, recurring payments and Polar's API, with webhooks and subscription management built in.
 
 ### Background
 
-As the Laravel ecosystem continues to grow, developers need reliable solutions for handling subscriptions and payments. Laravel Polar bridges this gap by providing a robust integration with Polar.sh, following the conventions and patterns that Laravel developers are familiar with.
+Laravel developers need a dependable way to take subscriptions and payments. Laravel Polar connects a Laravel app to Polar.sh, in the conventions and patterns Laravel developers already use.
 
 ## Features
 
@@ -140,7 +142,7 @@ class PolarEventListener
 
 Laravel Polar has become an essential tool for Laravel developers integrating with Polar.sh:
 
-- 25+ stars on GitHub
+- 84 stars and 14 forks on GitHub, as of October 2026
 - Active development and maintenance
 - Growing community adoption
 - Comprehensive documentation
@@ -167,6 +169,6 @@ Future development plans include:
 
 ## Conclusion
 
-Laravel Polar represents a significant step forward in integrating Polar.sh with Laravel applications. Its comprehensive feature set, robust implementation, and active development make it the go-to solution for Laravel developers looking to implement Polar.sh subscriptions and payments.
+Laravel Polar gives a Laravel app Polar.sh subscriptions and payments in the conventions it already uses, and it is still maintained.
 
 **Package:** [laravel-polar](https://packagist.org/packages/danestves/laravel-polar)

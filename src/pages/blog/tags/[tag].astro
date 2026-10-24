@@ -1,21 +1,20 @@
 ---
 import { getCollection } from "astro:content";
 
-import BlogEntries2 from "#/components/blog/blog-entries-2.astro";
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Text from "#/components/fundations/elements/text.astro";
+import PostRows from "#/components/blog/post-rows.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("posts");
-  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-  return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
+  const uniqueTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
+  return uniqueTags.map((tag) => ({
+    params: { tag },
+    props: {
+      posts: allPosts
+        .filter((post) => post.data.tags.includes(tag))
+        .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()),
+    },
+  }));
 }
 
 const { tag } = Astro.params;
@@ -29,22 +28,17 @@ const { posts } = Astro.props;
     useTitleTemplate: true,
   }}
 >
-  <section>
-    <Wrapper class="py-24">
-      <div class="text-center">
-        <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
-          Blog posts
-          <span class="block font-display tracking-wide italic">
-            tagged with {tag}
-          </span>
-        </Text>
-        <Text class="mt-4 text-base-600 dark:text-base-400" tag="p" variant="textLG">
-          Find all the posts tagged with {tag}.
-        </Text>
+  <div class="shell">
+    <header class="page-head">
+      <h1>{tag}</h1>
+      <div class="page-head__aside">
+        <p class="lead">{posts.length === 1 ? "1 post" : `${posts.length} posts`} tagged {tag}.</p>
+        <p class="links"><a href="/blog/tags">All tags</a><a href="/blog">All posts</a></p>
       </div>
-      <ul class="mt-12 grid gap-2 md:grid-cols-2">
-        {posts.map((post) => <BlogEntries2 post={post} />)}
-      </ul>
-    </Wrapper>
-  </section>
+    </header>
+
+    <section aria-label={`Posts tagged ${tag}`} class="section">
+      <PostRows posts={posts} />
+    </section>
+  </div>
 </BaseLayout>

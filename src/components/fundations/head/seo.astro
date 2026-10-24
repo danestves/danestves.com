@@ -2,8 +2,8 @@
 import { SEO } from "astro-seo";
 
 const {
-  title = "Daniel Esteves | Senior Frontend Engineer",
-  description = "Senior Frontend Engineer. Web developer since 16. Passionate about tech, learning, and empowering LATAM through knowledge sharing.",
+  title = "danestves LLC, the studio behind Outlayr and Vela",
+  description = "danestves LLC is the software studio of Daniel Esteves. It builds and publishes Outlayr and Vela, and builds iOS, Android and web apps for clients.",
   useTitleTemplate = false,
   image = `https://api.screenshothis.com/v1/screenshots/take?api_key=ss_live_jRNSxQeqoZAfIZlqGOmzEAOlValCYtNIAlcPlmEbyGjvECgQHKCOJpMBTFTOjRAQ&url=${encodeURIComponent(Astro.url.toString())}&width=1200&height=630&block_ads=true&block_cookie_banners=true&block_trackers=true&prefers_color_scheme=light&is_cached=true`,
   ...rest
@@ -13,17 +13,17 @@ const {
 <SEO
   description={description}
   title={title}
-  titleTemplate={useTitleTemplate && "%s — Daniel Esteves"}
+  titleTemplate={useTitleTemplate && "%s | Daniel Esteves"}
   {...rest}
   openGraph={{
     basic: {
-      title: useTitleTemplate ? `${title} — Daniel Esteves` : "Daniel Esteves | Senior Frontend Engineer",
+      title: useTitleTemplate ? `${title} | Daniel Esteves` : title,
       image,
       type: "website",
     },
     optional: {
       description,
-      siteName: useTitleTemplate ? `${title} — Daniel Esteves` : "Daniel Esteves | Senior Frontend Engineer",
+      siteName: useTitleTemplate ? `${title} | Daniel Esteves` : title,
       locale: "en_US",
     },
   }}
@@ -34,6 +34,6 @@ const {
     image,
     imageAlt: "Daniel Esteves",
     site: "@danestves",
-    title: useTitleTemplate ? `${title} — Daniel Esteves` : "Daniel Esteves | Senior Frontend Engineer",
+    title: useTitleTemplate ? `${title} | Daniel Esteves` : title,
   }}
 />

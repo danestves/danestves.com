@@ -1,79 +1,189 @@
 ---
-import { Image, Source } from "@unpic/astro";
+import type { CollectionEntry } from "astro:content";
 
-import ScrollUpButton from "#/components/assets/scroll-up-button.astro";
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Link from "#/components/fundations/elements/link.astro";
-import Text from "#/components/fundations/elements/text.astro";
+import CopyCommand from "#/components/fundations/elements/copy-command.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 
+interface Props {
+  frontmatter: CollectionEntry<"projects">["data"];
+  seo: Record<string, unknown>;
+}
+
 const { frontmatter, seo } = Astro.props;
+const { title, subtitle, kind, archived, install, screens } = frontmatter;
+
+// Packages have no store links; their one link is the repository.
+const links = frontmatter.links.length
+  ? frontmatter.links
+  : [{ label: new URL(frontmatter.live).hostname.replace(/^www\./, ""), url: frontmatter.live }];
+const wide = screens.some((screen) => screen.width > screen.height);
 ---
 
 <BaseLayout seo={seo}>
-  <ScrollUpButton />
-  <section>
-    <Wrapper class="py-24">
-      <div class="text-center">
-        <picture class="size-12 md:size-16">
-          <Source height={128} media="(min-width: 768px)" priority src={frontmatter.logo.url} width={128} />
-          <Source height={96} media="(max-width: 768px)" priority src={frontmatter.logo.url} width={96} />
-          <Image
-            alt={frontmatter.logo.alt}
-            alt={frontmatter.logo.alt}
-            class="mx-auto !size-12 rounded-xl shadow ring-base-200 md:!size-16 dark:ring-base-800"
-            height={64}
-            priority
-            src={frontmatter.logo.url}
-            transition:name={`project-image-${Astro.params.slug}`}
-            unstyled
-            width={64}
-          />
-        </picture>
-        <Text
-          class="mt-8 font-display tracking-wide text-balance text-base-900 italic dark:text-white"
-          tag="h1"
-          variant="displayXL"
-        >
-          {frontmatter.title}
-        </Text>
-        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
-          {frontmatter.subtitle}
-        </Text>
+  <article class="shell">
+    <header class="page-head">
+      <div class="project__title">
+        {kind === "app" && <img alt="" class="project__icon" height="64" src={frontmatter.logo.url} width="64" />}
+        <h1>{title}</h1>
       </div>
-      <div class="space-y-6">
-        <Image
-          alt={frontmatter.image.alt}
-          class="mt-6 max-h-72 w-full rounded-2xl object-cover object-center shadow ring-1 ring-base-800"
-          height={400}
-          priority
-          src={frontmatter.image.url}
-          width={800}
-        />
-        <div class="flex items-center justify-between">
-          <Text class="ml-2 text-base-600 dark:text-base-400" tag="p" variant="textSM">
-            Published: <time
-              datetime={new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "2-digit",
-              })}
-            >
-              {
-                new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "2-digit",
-                })
-              }</time
-            >
-          </Text>
-          <Link href={frontmatter.live} size="base" title={frontmatter.title} variant="muted">See it live </Link>
+      <div class="page-head__aside">
+        <p class="lead">{subtitle}</p>
+        <p class="links">{links.map((link) => <a href={link.url}>{link.label}</a>)}</p>
+      </div>
+    </header>
+
+    {
+      install && (
+        <div class="project__install">
+          <CopyCommand command={install} />
         </div>
-        <Wrapper variant="prose">
-          <slot />
-        </Wrapper>
-      </div>
-    </Wrapper>
-  </section>
+      )
+    }
+
+    {
+      screens.length > 0 && (
+        <ul
+          aria-label={`${title} screens`}
+          class:list={["project__screens", { "project__screens--wide": wide }]}
+          tabindex="0"
+        >
+          {screens.map((screen) => (
+            <li>
+              <figure
+                data-kind="product"
+                data-slot={screen.url}
+                style={`aspect-ratio: ${screen.width} / ${screen.height}`}
+              >
+                <img alt={screen.alt} height={screen.height} loading="lazy" src={screen.url} width={screen.width} />
+              </figure>
+              <p>{screen.caption}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="project__body">
+      <div class="prose"><slot /></div>
+      <dl class="project__facts">
+        <div>
+          <dt>Since</dt>
+          <dd class="num">{frontmatter.pubDate.getFullYear()}</dd>
+        </div>
+        <div>
+          <dt>What</dt>
+          <dd>{kind === "app" ? "An app published by danestves LLC" : "An open source package by Daniel Esteves"}</dd>
+        </div>
+        {
+          archived && (
+            <div>
+              <dt>Status</dt>
+              <dd>Archived</dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
+  </article>
 </BaseLayout>
+
+<style>
+  .project__title {
+    grid-column: 1 / span 8;
+    display: grid;
+    gap: var(--space-lg);
+    justify-items: start;
+  }
+  .project__icon {
+    width: 64px;
+    height: 64px;
+  }
+  .project__install {
+    max-width: 40rem;
+    margin-top: var(--space-2xl);
+  }
+  .project__screens {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--gap-columns);
+    margin-top: var(--space-2xl);
+  }
+  .project__screens--wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .project__screens figure {
+    border-radius: var(--radius-screen);
+  }
+  .project__screens--wide figure {
+    border-radius: var(--radius-card);
+  }
+  .project__screens p {
+    margin-top: var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--color-ink-2);
+  }
+  .project__body {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-xl);
+    align-items: start;
+    padding-top: var(--section-gap-s);
+  }
+  .prose {
+    grid-column: 1 / span 8;
+  }
+  .project__facts {
+    grid-column: 10 / -1;
+    grid-row: 1;
+    display: grid;
+    gap: var(--space-md);
+    font-size: var(--text-sm);
+  }
+  .project__facts div {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-rule);
+  }
+  .project__facts dt {
+    color: var(--color-muted);
+  }
+  .project__facts dd {
+    margin-top: var(--space-2xs);
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 60rem) {
+    .project__title,
+    .prose,
+    .project__facts {
+      grid-column: 1 / -1;
+    }
+    .project__facts {
+      grid-row: auto;
+    }
+    .project__screens {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .project__screens--wide {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  .project__screens:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  /* Phone captures become a row to swipe, so none sits alone on a last line */
+  @media (max-width: 40rem) {
+    .project__screens:not(.project__screens--wide) {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 62%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+    }
+    .project__screens:not(.project__screens--wide) li {
+      scroll-snap-align: start;
+    }
+  }
+</style>

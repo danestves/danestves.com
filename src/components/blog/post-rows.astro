@@ -1,0 +1,91 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+// Posts as hairline rows: date, title and description, tags. Used by /blog, the tag pages and under each post.
+interface Props {
+  posts: CollectionEntry<"posts">[];
+  headingLevel?: "h2" | "h3";
+}
+
+const { posts, headingLevel: Heading = "h2" } = Astro.props;
+const date = (value: Date) => value.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+---
+
+<ul class="rows">
+  {
+    posts.map((post) => (
+      <li class="post" data-search={`${post.data.title} ${post.data.description}`.toLowerCase()}>
+        <time class="post__date num" datetime={post.data.pubDate.toISOString()}>
+          {date(post.data.pubDate)}
+        </time>
+        <div class="post__text">
+          <Heading class="post__title">
+            <a href={`/blog/posts/${post.id}`}>{post.data.title}</a>
+          </Heading>
+          <p>{post.data.description}</p>
+        </div>
+        <p class="post__tags">
+          {post.data.tags.map((tag) => (
+            <a href={`/blog/tags/${tag}`}>{tag}</a>
+          ))}
+        </p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .post {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-xs);
+    align-items: baseline;
+    padding-block: var(--space-lg);
+  }
+  .post__date {
+    grid-column: 1 / span 2;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .post__text {
+    grid-column: 3 / span 6;
+    display: grid;
+    gap: var(--space-xs);
+  }
+  .post__title {
+    font-size: var(--text-title);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    max-width: none;
+  }
+  .post__title a {
+    text-decoration: none;
+  }
+  .post__title a:hover {
+    text-decoration: underline;
+  }
+  .post__text p {
+    color: var(--color-ink-2);
+  }
+  .post__tags {
+    grid-column: 10 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-md);
+    font-size: var(--text-sm);
+  }
+  .post__tags a {
+    color: var(--color-ink-2);
+  }
+  .post__tags a:hover {
+    color: var(--color-ink);
+  }
+  @media (max-width: 60rem) {
+    .post__date,
+    .post__text,
+    .post__tags {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

@@ -37,6 +37,12 @@ const projects = defineCollection({
     title: z.string(),
     subtitle: z.string(),
     live: z.string(),
+    // "app" is a product danestves LLC publishes; "package" is open source.
+    kind: z.enum(["app", "package"]),
+    // Archived projects keep their page but leave every listing.
+    archived: z.boolean().default(false),
+    links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
+    install: z.string().optional(),
     logo: z.object({
       url: z.string(),
       alt: z.string(),
@@ -45,6 +51,17 @@ const projects = defineCollection({
       url: z.string(),
       alt: z.string(),
     }),
+    screens: z
+      .array(
+        z.object({
+          url: z.string(),
+          alt: z.string(),
+          caption: z.string(),
+          width: z.number(),
+          height: z.number(),
+        }),
+      )
+      .default([]),
   }),
 });
 

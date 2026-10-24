@@ -1,23 +1,25 @@
 ---
+kind: package
+install: "npm add remix-auth remix-auth-auth0"
 pubDate: 2021-12-21
 title: remix-auth-auth0
 subtitle: An Auth0Strategy for Remix Auth, based on the OAuth2Strategy
 live: "https://github.com/danestves/remix-auth-auth0"
 logo:
-  url: "projects/github.png"
+  url: "/projects/github.png"
   alt: "Remix Auth Auth0"
 image:
-  url: "projects/remix-auth-auth0-og.png"
+  url: "/projects/remix-auth-auth0-og.png"
   alt: "Remix Auth Auth0 first step"
 ---
 
 ## Introduction
 
-**Remix Auth Auth0** is a powerful authentication strategy for Remix applications that seamlessly integrates with Auth0. Built on top of the OAuth2Strategy, it provides a robust and secure way to handle user authentication in your Remix applications.
+**Remix Auth Auth0** is a Remix Auth strategy that signs users in with Auth0. Built on the OAuth2Strategy, it handles the login flow, the tokens and the cookies.
 
 ### Background
 
-As Remix applications became more popular, the need for a reliable and easy-to-implement authentication solution grew. This strategy was created to bridge the gap between Remix applications and Auth0's powerful authentication platform, making it simple for developers to implement secure authentication in their applications.
+As Remix grew, its apps needed a simple way to sign users in with Auth0. This strategy connects the two, so Auth0 login in a Remix app is a few lines of setup.
 
 ## Features
 
@@ -118,8 +120,7 @@ await strategy.revokeToken(user.accessToken);
 
 Remix Auth Auth0 has become a crucial tool in the Remix ecosystem:
 
-- Over 120 stars on GitHub
-- 32+ forks by developers
+- 131 stars and 31 forks on GitHub, as of October 2026
 - Active community contributions
 - Regular updates and maintenance
 - Comprehensive documentation and examples
@@ -136,6 +137,6 @@ The project is built with:
 
 ## Conclusion
 
-Remix Auth Auth0 represents a significant contribution to the Remix ecosystem, providing developers with a reliable, secure, and easy-to-implement authentication solution. Its continued development and active community support make it an excellent choice for Remix applications requiring Auth0 integration.
+Remix Auth Auth0 gives a Remix app Auth0 sign-in in a few lines, and it is still maintained.
 
 **Repository:** [remix-auth-auth0](https://github.com/danestves/remix-auth-auth0)

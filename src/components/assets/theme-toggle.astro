@@ -1,34 +1,58 @@
 ---
-const { class: className = "", ...rest } = Astro.props;
+// Light and dark switch. The theme itself is set before paint in base-layout; this only flips and remembers it.
 ---
 
-<button
-  class={className}
-  {...rest}
-  :aria-checked="isDark"
-  id="theme-toggle"
-  role="switch"
-  x-data="{
-    isDark: localStorage.getItem('theme') === 'dark',
-    toggleTheme() {
-        this.isDark = !this.isDark;
-        const theme = this.isDark ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-        document.documentElement.classList.toggle('dark', this.isDark);
-        document.documentElement.setAttribute('data-theme', theme);
-    }
-  }"
-  x-on:click.prevent="toggleTheme()"
->
-  <!-- Single SVG Icon -->
-  <svg
-    class="size-5 text-base-900 dark:text-white"
-    fill="currentColor"
-    viewBox="0 0 256 256"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,16.37a86.4,86.4,0,0,1,16,3V212.67a86.4,86.4,0,0,1-16,3Zm32,9.26a87.81,87.81,0,0,1,16,10.54V195.83a87.81,87.81,0,0,1-16,10.54ZM40,128a88.11,88.11,0,0,1,80-87.63V215.63A88.11,88.11,0,0,1,40,128Zm160,50.54V77.46a87.82,87.82,0,0,1,0,101.08Z"
-    ></path>
+<button aria-label="Dark mode" aria-pressed="false" class="mode" data-needs-js id="theme-toggle" type="button">
+  <svg aria-hidden="true" height="20" viewBox="0 0 24 24" width="20">
+    <circle cx="12" cy="12" fill="none" r="9" stroke="currentColor" stroke-width="1.5"></circle>
+    <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path>
   </svg>
 </button>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const root = document.documentElement;
+    const toggle = document.getElementById("theme-toggle");
+    if (!toggle) return;
+    const sync = () => toggle.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+    toggle.addEventListener("click", () => {
+      const theme = root.dataset.theme === "dark" ? "light" : "dark";
+      root.dataset.theme = theme;
+      localStorage.setItem("theme", theme);
+      sync();
+    });
+    sync();
+  });
+</script>
+
+<style>
+  .mode {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-pill);
+    color: var(--color-ink-2);
+    cursor: pointer;
+    transition:
+      background-color var(--dur-short) var(--ease-out),
+      color var(--dur-short) var(--ease-out);
+  }
+  .mode:hover {
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+  }
+  .mode:active {
+    transform: translateY(1px);
+  }
+  .mode:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  .mode svg {
+    transition: transform var(--dur-long) var(--ease-out);
+  }
+  .mode[aria-pressed="true"] svg {
+    transform: rotate(180deg);
+  }
+</style>
