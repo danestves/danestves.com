@@ -23,9 +23,12 @@ const { Content } = await render(page);
 <ProjectsLayout
   frontmatter={page.data}
   seo={{
-    title: page.data.title,
-    titleTemplate: "%s - Projects | Daniel Esteves",
+    title: page.data.seoTitle ?? page.data.title,
+    useTitleTemplate: true,
     description: page.data.subtitle,
+    image: page.data.image,
+    // Archived projects keep their page for old links but leave search.
+    noindex: page.data.archived,
   }}
 >
   <Content />

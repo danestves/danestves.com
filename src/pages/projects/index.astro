@@ -13,7 +13,7 @@ const packages = projects.filter((project) => project.data.kind === "package");
 
 <BaseLayout
   seo={{
-    title: "Work",
+    title: "Apps and open source",
     description:
       "The apps danestves LLC publishes, Outlayr and Vela, and the open source packages Daniel Esteves maintains.",
     useTitleTemplate: true,
@@ -35,7 +35,7 @@ const packages = projects.filter((project) => project.data.kind === "package");
             <div class="app__text">
               <img alt="" class="app__icon" height="64" src={app.data.logo.url} width="64" />
               <h2 id={`${app.id}-title`}>
-                <a href={`/projects/${app.id}`}>{app.data.title}</a>
+                <a href={`/projects/${app.id}/`}>{app.data.title}</a>
               </h2>
               <p class="lead">{app.data.subtitle}</p>
               <p class="links">
@@ -43,7 +43,7 @@ const packages = projects.filter((project) => project.data.kind === "package");
                   <a href={link.url}>{link.label}</a>
                 ))}
               </p>
-              <a class="text-link" href={`/projects/${app.id}`}>
+              <a class="text-link" href={`/projects/${app.id}/`}>
                 How {app.data.title} works
               </a>
             </div>
@@ -75,7 +75,7 @@ const packages = projects.filter((project) => project.data.kind === "package");
           packages.map((pkg) => (
             <li class="pkg">
               <h3>
-                <a href={`/projects/${pkg.id}`}>{pkg.data.title}</a>
+                <a href={`/projects/${pkg.id}/`}>{pkg.data.title}</a>
               </h3>
               <p class="pkg__what">{pkg.data.subtitle}</p>
               <p class="pkg__year num">Since {pkg.data.pubDate.getFullYear()}</p>

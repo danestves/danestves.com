@@ -20,13 +20,13 @@ const date = (value: Date) => value.toLocaleDateString("en-GB", { day: "numeric"
         </time>
         <div class="post__text">
           <Heading class="post__title">
-            <a href={`/blog/posts/${post.id}`}>{post.data.title}</a>
+            <a href={`/blog/posts/${post.id}/`}>{post.data.title}</a>
           </Heading>
           <p>{post.data.description}</p>
         </div>
         <p class="post__tags">
           {post.data.tags.map((tag) => (
-            <a href={`/blog/tags/${tag}`}>{tag}</a>
+            <a href={`/blog/tags/${tag}/`}>{tag}</a>
           ))}
         </p>
       </li>

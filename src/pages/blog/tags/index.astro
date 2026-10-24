@@ -14,6 +14,8 @@ const tags = [...new Set(allPosts.flatMap((post) => post.data.tags))]
     title: "Blog Tags",
     description: "Find all the posts tagged with a specific tag.",
     useTitleTemplate: true,
+    // Thin while the blog is this small; also left out of the sitemap in astro.config.mjs.
+    noindex: true,
   }}
 >
   <div class="shell">
@@ -21,7 +23,7 @@ const tags = [...new Set(allPosts.flatMap((post) => post.data.tags))]
       <h1>Tags</h1>
       <div class="page-head__aside">
         <p class="lead">Every topic the blog has covered, with its post count.</p>
-        <p class="links"><a href="/blog">All posts</a></p>
+        <p class="links"><a href="/blog/">All posts</a></p>
       </div>
     </header>
 
@@ -30,7 +32,7 @@ const tags = [...new Set(allPosts.flatMap((post) => post.data.tags))]
         {
           tags.map(({ tag, count }) => (
             <li>
-              <a href={`/blog/tags/${tag}`}>{tag}</a>
+              <a href={`/blog/tags/${tag}/`}>{tag}</a>
               <span class="num">{count === 1 ? "1 post" : `${count} posts`}</span>
             </li>
           ))

@@ -1,6 +1,7 @@
 ---
-// The contact form has no server behind it: on submit it opens the visitor's email app
-// with the message written out to hi@danestves.com.
+// The contact form posts to Netlify Forms (detected at deploy from data-netlify). If that post fails, it falls back
+// to opening the visitor's email app with the message written out to hi@danestves.com, so nothing is lost.
+// Without JS the browser posts the form itself and Netlify shows its own thank-you page.
 ---
 
 <div class="shell">
@@ -12,7 +13,17 @@
   </header>
 
   <div class="section contact">
-    <form class="contact__form" data-mailto="hi@danestves.com" novalidate>
+    <form
+      class="contact__form"
+      data-mailto="hi@danestves.com"
+      data-netlify="true"
+      method="POST"
+      name="contact"
+      netlify-honeypot="bot-field"
+      novalidate
+    >
+      <input name="form-name" type="hidden" value="contact" />
+      <p hidden><label>Leave this empty <input name="bot-field" tabindex="-1" /></label></p>
       <div class="field">
         <label for="first-name">First name</label>
         <input autocomplete="given-name" class="input" id="first-name" name="first-name" type="text" />
@@ -34,8 +45,8 @@
         <textarea class="input" id="message" name="message" required rows="6"></textarea>
       </div>
       <div class="contact__send field--wide">
-        <button class="btn" type="submit">Write the email</button>
-        <p aria-live="polite" class="contact__help" id="contact-help">Opens your email app with this message in it.</p>
+        <button class="btn" type="submit">Send</button>
+        <p aria-live="polite" class="contact__help" id="contact-help">It goes to hi@danestves.com.</p>
       </div>
     </form>
 
@@ -57,7 +68,7 @@
     const help = document.getElementById("contact-help");
     if (!form || !help) return;
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const invalid = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea")].filter(
         (field) => !field.checkValidity(),
@@ -71,12 +82,29 @@
       }
 
       const data = new FormData(form);
+      const button = form.querySelector("button");
+      if (button) button.disabled = true;
+      help.textContent = "Sending…";
+      const sent = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams([...data].map(([key, value]) => [key, String(value)])).toString(),
+      })
+        .then((res) => res.ok)
+        .catch(() => false);
+      if (button) button.disabled = false;
+      if (sent) {
+        form.reset();
+        help.textContent = "Sent. You will hear back from hi@danestves.com.";
+        return;
+      }
+
       const name = [data.get("first-name"), data.get("last-name")].filter(Boolean).join(" ");
       const company = String(data.get("company") || "");
       const subject = company ? `A project for ${company}` : "A project";
       const body = `${data.get("message")}\n\n${name}\n${data.get("email")}`;
       window.location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      help.textContent = "Your email app should be open now. If it is not, write to hi@danestves.com.";
+      help.textContent = "The form did not go through, so your email app should open with the message. If it does not, write to hi@danestves.com.";
     });
   });
 </script>

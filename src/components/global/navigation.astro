@@ -3,12 +3,12 @@ import Logo from "#/components/assets/logo.astro";
 import ThemeToggle from "#/components/assets/theme-toggle.astro";
 
 const navLinks = [
-  { text: "Work", href: "/projects" },
-  { text: "Studio", href: "/studio" },
-  { text: "Blog", href: "/blog" },
+  { text: "Work", href: "/projects/" },
+  { text: "Studio", href: "/studio/" },
+  { text: "Blog", href: "/blog/" },
 ];
 
-const isCurrent = (href: string) => Astro.url.pathname === href || Astro.url.pathname.startsWith(`${href}/`);
+const isCurrent = (href: string) => Astro.url.pathname.startsWith(href);
 ---
 
 <header class="nav">

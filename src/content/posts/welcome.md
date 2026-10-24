@@ -3,9 +3,6 @@ title: "Welcome to my new blog"
 pubDate: 2025-05-28
 description: "An introduction to my new personal blog where I'll share insights, tutorials, and updates on my projects."
 author: "Daniel Esteves"
-image:
-  url: "/images/assets/welcome-cover.jpg"
-  alt: "Illustration of a welcome message on a laptop screen"
 tags:
   - announcement
   - introduction

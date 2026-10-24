@@ -1,12 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { ComponentProps } from "astro/types";
 
 import CopyCommand from "#/components/fundations/elements/copy-command.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
+import { breadcrumb, ids } from "#/lib/schema";
 
 interface Props {
   frontmatter: CollectionEntry<"projects">["data"];
-  seo: Record<string, unknown>;
+  seo: ComponentProps<typeof BaseLayout>["seo"];
 }
 
 const { frontmatter, seo } = Astro.props;
@@ -17,9 +19,48 @@ const links = frontmatter.links.length
   ? frontmatter.links
   : [{ label: new URL(frontmatter.live).hostname.replace(/^www\./, ""), url: frontmatter.live }];
 const wide = screens.some((screen) => screen.width > screen.height);
+
+// Store links decide which OS the app runs on, so a store added to `links` shows up here by itself.
+const storeOs: Record<string, string> = { "apps.apple.com": "iOS", "play.google.com": "Android" };
+const installs = frontmatter.links.flatMap((link) => {
+  const os = storeOs[new URL(link.url).hostname];
+  return os ? [{ os, url: link.url }] : [];
+});
+const pageUrl = Astro.url.href;
+const absolute = (path: string) => new URL(path, Astro.site).href;
+const jsonLd = [
+  breadcrumb([
+    ["Home", "/"],
+    ["Projects", "/projects/"],
+    [title, new URL(pageUrl).pathname],
+  ]),
+  // Archived apps have no live store listing; packages are not apps.
+  ...(kind === "app" && !archived
+    ? [
+        {
+          "@type": "MobileApplication",
+          "@id": `${pageUrl}#app`,
+          name: title,
+          description: subtitle,
+          url: frontmatter.live,
+          mainEntityOfPage: pageUrl,
+          image: absolute(frontmatter.logo.url),
+          screenshot: screens.map((screen) => absolute(screen.url)),
+          applicationCategory: frontmatter.category,
+          operatingSystem: installs.map((install) => install.os).join(", "),
+          installUrl: installs.map((install) => install.url),
+          datePublished: frontmatter.pubDate.toISOString(),
+          author: { "@id": ids.org },
+          publisher: { "@id": ids.org },
+          // Free to download; Outlayr and Vela sell upgrades inside the app. Change if an app is ever paid up front.
+          offers: { "@type": "Offer", price: 0, priceCurrency: "USD" },
+        },
+      ]
+    : []),
+];
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout jsonLd={jsonLd} seo={seo}>
   <article class="shell">
     <header class="page-head">
       <div class="project__title">
@@ -47,14 +88,22 @@ const wide = screens.some((screen) => screen.width > screen.height);
           class:list={["project__screens", { "project__screens--wide": wide }]}
           tabindex="0"
         >
-          {screens.map((screen) => (
+          {screens.map((screen, index) => (
             <li>
               <figure
                 data-kind="product"
                 data-slot={screen.url}
                 style={`aspect-ratio: ${screen.width} / ${screen.height}`}
               >
-                <img alt={screen.alt} height={screen.height} loading="lazy" src={screen.url} width={screen.width} />
+                {/* The first screen is the page's largest paint, so it loads first. */}
+                <img
+                  alt={screen.alt}
+                  fetchpriority={index === 0 ? "high" : undefined}
+                  height={screen.height}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  src={screen.url}
+                  width={screen.width}
+                />
               </figure>
               <p>{screen.caption}</p>
             </li>
@@ -85,9 +134,51 @@ const wide = screens.some((screen) => screen.width > screen.height);
       </dl>
     </div>
   </article>
+  {
+    kind === "app" && !archived && (
+      <section aria-labelledby="hire-title" class="shell hire">
+        <div class="hire__head">
+          <h2 id="hire-title">Want an app built like {title}?</h2>
+          <p class="lead">danestves LLC builds iOS, Android and web apps for clients too.</p>
+        </div>
+        <div class="actions">
+          <a class="btn" href="/contact/">Start a project</a>
+          <a class="text-link" href="/studio/">How the studio works</a>
+        </div>
+      </section>
+    )
+  }
 </BaseLayout>
 
 <style>
+  /* The way from a shipped app to hiring the studio that built it */
+  .hire {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-lg);
+    align-items: end;
+    margin-top: var(--section-gap);
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--color-ink);
+  }
+  .hire__head {
+    grid-column: 1 / span 8;
+    display: grid;
+    gap: var(--space-md);
+  }
+  .hire h2 {
+    font-size: var(--text-section);
+  }
+  .hire .actions {
+    grid-column: 9 / -1;
+  }
+  @media (max-width: 60rem) {
+    .hire__head,
+    .hire .actions {
+      grid-column: 1 / -1;
+    }
+  }
   .project__title {
     grid-column: 1 / span 8;
     display: grid;

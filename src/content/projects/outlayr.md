@@ -1,7 +1,9 @@
 ---
 kind: app
+category: FinanceApplication
 pubDate: 2026-10-21
 title: Outlayr
+seoTitle: Outlayr, an expense tracker and budget app
 subtitle: An expense tracker and budget app where you log a purchase in one sentence.
 live: "https://tryoutlayr.com"
 links:
@@ -12,9 +14,6 @@ links:
 logo:
   url: "/projects/outlayr-icon.webp"
   alt: "Outlayr"
-image:
-  url: "/projects/outlayr-log.webp"
-  alt: "Outlayr’s Log: this month’s net, accounts and today’s purchases"
 screens:
   - url: "/projects/outlayr-log.webp"
     alt: "Outlayr’s Log: this month’s net, accounts and today’s purchases"
@@ -42,6 +41,8 @@ screens:
     width: 880
     height: 1912
 ---
+
+Outlayr is an expense tracker and budget app for Android, with iOS next, made by danestves LLC, the software studio of Daniel Esteves. It is not affiliated with Outlayr, Inc.
 
 ## One sentence, one entry
 

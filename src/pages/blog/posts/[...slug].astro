@@ -19,8 +19,10 @@ const { Content } = await render(entry);
   frontmatter={entry.data}
   seo={{
     title: entry.data.title,
-    titleTemplate: "%s - Blog | Daniel Esteves",
+    useTitleTemplate: true,
     description: entry.data.description,
+    image: entry.data.image,
+    article: { publishedTime: entry.data.pubDate, modifiedTime: entry.data.updatedDate, tags: entry.data.tags },
   }}
 >
   <Content />

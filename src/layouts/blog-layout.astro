@@ -1,14 +1,16 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { ComponentProps } from "astro/types";
 
 import { getCollection } from "astro:content";
 
 import PostRows from "#/components/blog/post-rows.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
+import { breadcrumb, ids } from "#/lib/schema";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
-  seo: Record<string, unknown>;
+  seo: ComponentProps<typeof BaseLayout>["seo"];
 }
 
 const { frontmatter, seo } = Astro.props;
@@ -16,12 +18,38 @@ const morePosts = (await getCollection("posts", (post) => post.id !== Astro.para
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 3);
 const published = frontmatter.pubDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+const pageUrl = Astro.url.href;
+const jsonLd = [
+  breadcrumb([
+    ["Home", "/"],
+    ["Blog", "/blog/"],
+    [frontmatter.title, new URL(pageUrl).pathname],
+  ]),
+  {
+    "@type": "BlogPosting",
+    "@id": `${pageUrl}#post`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+    headline: frontmatter.title,
+    description: frontmatter.description,
+    image: [new URL(frontmatter.image?.url ?? "/og/index.jpg", Astro.site).href],
+    datePublished: frontmatter.pubDate.toISOString(),
+    dateModified: (frontmatter.updatedDate ?? frontmatter.pubDate).toISOString(),
+    // Posts are Daniel's; a guest author gets an inline Person instead of his entity.
+    author:
+      frontmatter.author === "Daniel Esteves" ? { "@id": ids.person } : { "@type": "Person", name: frontmatter.author },
+    publisher: { "@id": ids.org },
+    isPartOf: { "@id": ids.website },
+    keywords: frontmatter.tags.join(", "),
+    inLanguage: "en",
+  },
+];
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout jsonLd={jsonLd} seo={seo}>
   <article class="shell">
     <header class="post-head">
-      <a class="post-head__back" href="/blog">Blog</a>
+      <a class="post-head__back" href="/blog/">Blog</a>
       <h1>{frontmatter.title}</h1>
       <p class="lead">{frontmatter.description}</p>
     </header>
@@ -36,7 +64,7 @@ const published = frontmatter.pubDate.toLocaleDateString("en-GB", { day: "numeri
         <div><dt>By</dt><dd>{frontmatter.author}</dd></div>
         <div>
           <dt>Tags</dt>
-          <dd class="post-facts__tags">{frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`}>{tag}</a>)}</dd>
+          <dd class="post-facts__tags">{frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}/`}>{tag}</a>)}</dd>
         </div>
       </dl>
     </div>
@@ -47,7 +75,7 @@ const published = frontmatter.pubDate.toLocaleDateString("en-GB", { day: "numeri
       <section aria-labelledby="more-title" class="shell section">
         <div class="more-head">
           <h2 id="more-title">More posts</h2>
-          <a class="text-link" href="/blog">
+          <a class="text-link" href="/blog/">
             All posts
           </a>
         </div>

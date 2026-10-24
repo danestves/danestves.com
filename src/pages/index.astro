@@ -24,7 +24,7 @@ const packages = [
       <div class="hero__aside">
         <p class="lead">danestves LLC builds iOS, Android and web apps, ours and yours.</p>
         <div class="actions">
-          <a class="btn" href="mailto:hi@danestves.com?subject=A%20project">Start a project</a>
+          <a class="btn" href="/contact/">Start a project</a>
           <a class="text-link" href="#outlayr">See the apps</a>
         </div>
       </div>
@@ -90,7 +90,7 @@ const packages = [
             <div><dt>Languages</dt><dd>English and Spanish</dd></div>
             <div><dt>Built with</dt><dd>Expo and Convex, local-first</dd></div>
           </dl>
-          <a class="text-link" href="/projects/outlayr">More on Outlayr</a>
+          <a class="text-link" href="/projects/outlayr/">More on Outlayr</a>
         </div>
         <ul aria-label="Outlayr screens" class="screens" tabindex="0">
           {
@@ -156,13 +156,13 @@ const packages = [
       <div class="oss__lead">
         <article>
           <p class="oss__stars num">131 <span>GitHub stars</span></p>
-          <h3><a href="/projects/remix-auth-auth0">remix-auth-auth0</a></h3>
+          <h3><a href="/projects/remix-auth-auth0/">remix-auth-auth0</a></h3>
           <p>An Auth0 strategy for Remix Auth, since 2021.</p>
           <CopyCommand command="npm add remix-auth remix-auth-auth0" />
         </article>
         <article>
           <p class="oss__stars num">84 <span>GitHub stars</span></p>
-          <h3><a href="/projects/laravel-polar">laravel-polar</a></h3>
+          <h3><a href="/projects/laravel-polar/">laravel-polar</a></h3>
           <p>Polar.sh subscriptions and payments for Laravel, since 2025.</p>
           <CopyCommand command="composer require danestves/laravel-polar" />
         </article>
@@ -206,9 +206,9 @@ const packages = [
       </figure>
       <div class="studio__who">
         <h2 id="studio-title">Daniel Esteves, since 2016</h2>
-        <p class="lead">danestves LLC is the studio of Daniel Esteves, a developer from Venezuela.</p>
+        <p class="lead">danestves LLC is the studio of Daniel Esteves (danestves), a developer from Venezuela.</p>
         <p class="studio__worked">Currently at ClickIT. Worked with Platzi, Seeed, Reworth and Brightwell.</p>
-        <a class="text-link" href="/studio">How the studio works</a>
+        <a class="text-link" href="/studio/">How the studio works</a>
       </div>
       <dl class="studio__builds">
         <div><dt>Phone apps</dt><dd>Expo and React Native, or SwiftUI for native iOS.</dd></div>
@@ -560,6 +560,8 @@ const packages = [
     font-weight: 500;
   }
   .pkgs tbody th a {
+    display: inline-block;
+    padding-block: 2px; /* a 24px tap target */
     color: var(--color-ink);
     text-decoration: none;
   }

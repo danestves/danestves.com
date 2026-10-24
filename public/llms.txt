@@ -1,0 +1,24 @@
+# danestves LLC
+
+> danestves LLC is the software studio of Daniel Esteves (danestves), a developer from Venezuela writing software since 2016. It builds and publishes the apps Outlayr and Vela, and builds iOS, Android and web apps for clients.
+
+## Apps
+
+- [Outlayr](https://danestves.com/projects/outlayr/): an expense tracker and budget app where you log a purchase in one sentence. Site: https://tryoutlayr.com. Not affiliated with Outlayr, Inc.
+- [Vela](https://danestves.com/projects/vela/): a private period tracker that encrypts before anything syncs. Site: https://hellovela.app
+
+## Studio
+
+- [Studio](https://danestves.com/studio/): how danestves LLC builds apps for clients, with Expo, React Native, SwiftUI, React, Laravel and Astro
+- [Contact](https://danestves.com/contact/): start a project, or write to hi@danestves.com
+
+## Open source
+
+- [remix-auth-auth0](https://danestves.com/projects/remix-auth-auth0/): an Auth0 strategy for Remix Auth
+- [laravel-polar](https://danestves.com/projects/laravel-polar/): Polar.sh subscriptions and payments for Laravel
+
+## Optional
+
+- [Now](https://danestves.com/now/): what Daniel is working on this month
+- [Stack](https://danestves.com/stack/): the software the studio uses
+- [Blog](https://danestves.com/blog/)

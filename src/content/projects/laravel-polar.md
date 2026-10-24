@@ -3,6 +3,7 @@ kind: package
 install: "composer require danestves/laravel-polar"
 pubDate: 2025-02-21
 title: laravel-polar
+seoTitle: laravel-polar, Polar.sh payments for Laravel
 subtitle: A package to easily integrate your Laravel application with Polar.sh
 live: "https://github.com/danestves/laravel-polar"
 logo:
