@@ -1,27 +1,15 @@
 ---
-// Fundations
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Link from "#/components/fundations/elements/link.astro";
-import Text from "#/components/fundations/elements/text.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 ---
 
-<BaseLayout>
-  <section>
-    <Wrapper class="py-24" variant="standard">
-      <div class="text-center">
-        <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
-          Oh, oh...........!
-          <span class="font-display tracking-wide italic"> 404 error </span>
-        </Text>
-        <Text class="mt-4 text-base-600 dark:text-base-400" tag="p" variant="textLG">
-          An error has occurred. The page you are looking for may have been moved, deleted, or does not exist. Please
-          try again. If the problem persists, please contact the site administrator.
-        </Text>
-        <div class="mt-8 flex justify-center">
-          <Link href="/" size="sm" variant="muted">Go back home </Link>
-        </div>
+<BaseLayout seo={{ title: "Page not found", useTitleTemplate: true }}>
+  <div class="shell">
+    <header class="page-head">
+      <h1>Page not found</h1>
+      <div class="page-head__aside">
+        <p class="lead">Nothing lives at this address. It may have moved.</p>
+        <p class="links"><a href="/">Home</a><a href="/projects">Work</a><a href="/blog">Blog</a></p>
       </div>
-    </Wrapper>
-  </section>
+    </header>
+  </div>
 </BaseLayout>

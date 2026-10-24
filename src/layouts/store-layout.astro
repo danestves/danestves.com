@@ -1,122 +1,147 @@
 ---
-import { Image } from "@unpic/astro";
+import type { CollectionEntry } from "astro:content";
 
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Link from "#/components/fundations/elements/link.astro";
-import Text from "#/components/fundations/elements/text.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
+
+interface Props {
+  frontmatter: CollectionEntry<"store">["data"];
+  seo: Record<string, unknown>;
+}
 
 const { frontmatter, seo } = Astro.props;
 ---
 
 <BaseLayout seo={seo}>
-  <section>
-    <Wrapper class="py-24">
-      <div class="text-center">
-        <Text
-          class="text-balance text-base-900 dark:text-white"
-          tag="h1"
-          transition:name={`store-title-${Astro.params.slug}`}
-          variant="displayXL"
-        >
-          {frontmatter.title}
-        </Text>
-
-        <Text
-          class="mt-8 text-balance text-base-600 dark:text-base-400"
-          tag="p"
-          transition:name={`store-description-${Astro.params.slug}`}
-          variant="textLG"
-        >
-          {frontmatter.description}
-        </Text>
-      </div>
-
-      <div class="mt-6 flex items-center justify-center gap-4">
-        <Link
-          aria-label={frontmatter.preview}
-          href={frontmatter.preview}
-          size="sm"
-          title={frontmatter.preview}
-          variant="muted"
-        >
-          Preview demo
-        </Link>
-        <Link aria-label="your label" href="#_" size="sm" title="your title" variant="default">
-          Buy {frontmatter.title} for ${frontmatter.price}
-        </Link>
-      </div>
-
-      <div class="mt-12 space-y-12">
-        <Image
-          alt={frontmatter.image.alt}
-          class="w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
-          height={600}
-          layout="fullWidth"
-          priority
-          src={frontmatter.image.url}
-          transition:name={`store-image-${Astro.params.slug}`}
-          width={600}
-        />
-
-        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
-            Includes
-          </Text>
-          <ul role="list">
-            <!-- Dynamically render highlights -->
-            {
-              frontmatter.highlights.map((highlight) => (
-                <li>
-                  <Text class="text-base-600 dark:text-base-400" tag="p" variant="textSM">
-                    {highlight}
-                  </Text>
-                </li>
-              ))
-            }
-          </ul>
+  <article class="shell">
+    <header class="page-head">
+      <h1>{frontmatter.title}</h1>
+      <div class="page-head__aside">
+        <p class="lead">{frontmatter.description}</p>
+        <p class="price num">${frontmatter.price}</p>
+        <div class="actions">
+          <a class="btn" href={frontmatter.checkout}>Buy {frontmatter.title}</a>
+          <a class="text-link" href={frontmatter.preview}>Preview demo</a>
         </div>
-        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
-            License
-          </Text>
-          <Text class="text-base-600 dark:text-base-400" tag="p" variant="textSM">
-            {frontmatter.license}
-          </Text>
-        </div>
-        <div class="grid gap-2 sm:grid-cols-2">
-          {
-            frontmatter.images.map((image) => (
-              <Image
-                alt={image.alt}
-                class="aspect-[384/246] w-full rounded-2xl object-cover object-top shadow ring-1 ring-base-200 dark:ring-base-800"
-                height={400}
-                layout="fullWidth"
-                src={image.url}
-                width={400}
-              />
-            ))
-          }
-        </div>
-        <dl class="mt-6 grid gap-2 sm:grid-cols-2">
-          {
-            frontmatter.features.map((feature) => (
-              <div class="group relative flex transform flex-col overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
-                <dt>
-                  <Text class="text-base-900 dark:text-white" tag="h3" variant="textLG">
-                    {feature.title}
-                  </Text>
-                </dt>
-                <dd class="mt-24">
-                  <Text class="text-base-600 dark:text-base-400" tag="p" variant="textLG">
-                    {feature.description}
-                  </Text>
-                </dd>
-              </div>
-            ))
-          }
-        </dl>
       </div>
-    </Wrapper>
-  </section>
+    </header>
+
+    <ul class="shots">
+      {
+        [frontmatter.image, ...frontmatter.images].map((image) => (
+          <li>
+            <figure data-kind="product" data-slot={image.url}>
+              <img alt={image.alt} height="1200" loading="lazy" src={image.url} width="1600" />
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+
+    <section aria-labelledby="features-title" class="section">
+      <h2 class="visually-hidden" id="features-title">Features</h2>
+      <dl class="rows features">
+        {
+          frontmatter.features.map((feature) => (
+            <div>
+              <dt>{feature.title}</dt>
+              <dd>{feature.description}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <div class="store-body section">
+      <div class="prose"><slot /></div>
+      <dl class="store-facts">
+        <div>
+          <dt>Includes</dt>
+          <dd><ul>{frontmatter.highlights.map((highlight) => <li>{highlight}</li>)}</ul></dd>
+        </div>
+        <div><dt>License</dt><dd>{frontmatter.license}</dd></div>
+        <div><dt>Sold by</dt><dd>danestves LLC</dd></div>
+      </dl>
+    </div>
+  </article>
 </BaseLayout>
+
+<style>
+  h1 {
+    overflow-wrap: break-word;
+    min-width: 0;
+    text-wrap: balance;
+  }
+  .price {
+    font: 500 var(--text-display-s) / 1 var(--font-display);
+    letter-spacing: -0.03em;
+  }
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-columns);
+    margin-top: var(--space-2xl);
+  }
+  .shots figure {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-card);
+  }
+  .features div {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-xs);
+    padding-block: var(--space-lg);
+  }
+  .features dt {
+    grid-column: 1 / span 4;
+    font-weight: 500;
+  }
+  .features dd {
+    grid-column: 5 / span 6;
+    color: var(--color-ink-2);
+  }
+  .store-body {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-xl);
+    align-items: start;
+  }
+  .prose {
+    grid-column: 1 / span 8;
+  }
+  .store-facts {
+    grid-column: 10 / -1;
+    grid-row: 1;
+    display: grid;
+    gap: var(--space-md);
+    font-size: var(--text-sm);
+  }
+  .store-facts div {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-rule);
+  }
+  .store-facts dt {
+    color: var(--color-muted);
+  }
+  .store-facts dd {
+    margin-top: var(--space-2xs);
+    color: var(--color-ink-2);
+  }
+  @media (max-width: 60rem) {
+    .features dt,
+    .features dd,
+    .prose,
+    .store-facts {
+      grid-column: 1 / -1;
+    }
+    .store-facts {
+      grid-row: auto;
+    }
+  }
+  @media (max-width: 40rem) {
+    .shots {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

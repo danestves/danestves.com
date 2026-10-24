@@ -1,13 +1,15 @@
 ---
+kind: app
+archived: true
 pubDate: 2025-04-07
 title: PolarSync
 subtitle: Seamlessly sync your Polar.sh products to Framer in one click
 live: "https://www.framer.com/marketplace/plugins/polarsync/"
 logo:
-  url: "projects/polarsync.png"
+  url: "/projects/polarsync.png"
   alt: "PolarSync"
 image:
-  url: "projects/polarsync-og.png"
+  url: "/projects/polarsync-og.png"
   alt: "PolarSync first step"
 ---
 

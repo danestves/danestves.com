@@ -1,111 +1,761 @@
 ---
-import { Image, Source } from "@unpic/astro";
-import { getCollection } from "astro:content";
-
-import LogoCloud from "#/components/assets/logo-cloud.astro";
-import BlogEntries2 from "#/components/blog/blog-entries-2.astro";
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Link from "#/components/fundations/elements/link.astro";
-import Text from "#/components/fundations/elements/text.astro";
-import ProjectEntries2 from "#/components/projects/project-entries-2.astro";
-import StackEntries1 from "#/components/stack/stack-entries-1.astro";
-import Avatar from "#/images/assets/avatar.jpg";
+import CopyCommand from "#/components/fundations/elements/copy-command.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 
-const allPosts = await getCollection("posts");
-const allProjects = await getCollection("projects");
+// The hero already shows the Log and Budgets; the chapter shows the rest.
+const outlayrScreens = [
+  { src: "/projects/outlayr-insights.webp", name: "Insights.", line: "What moved this week, and why." },
+  { src: "/projects/outlayr-accounts.webp", name: "Accounts.", line: "165 currencies, at each purchase’s rate." },
+  { src: "/projects/outlayr-upcoming.webp", name: "Upcoming.", line: "What is due next, per month." },
+];
 
-allPosts.sort((a, b) => {
-  const dateA = a.data.pubDate.getTime();
-  const dateB = b.data.pubDate.getTime();
-  return dateB - dateA;
-});
-allProjects.sort((a, b) => {
-  const dateA = a.data.pubDate.getTime();
-  const dateB = b.data.pubDate.getTime();
-  return dateB - dateA;
-});
+const packages = [
+  { name: "markdown-to-text", what: "Markdown in, plain text out", since: 2020, stars: 28 },
+  { name: "remix-auth-clerk", what: "A Clerk strategy for Remix Auth", since: 2024, stars: 23 },
+  { name: "headless-currency-input", what: "Currency inputs for React", since: 2024, stars: 12 },
+  { name: "numberflow", what: "Rolling numbers for SwiftUI", since: 2026, stars: 1 },
+];
 ---
 
 <BaseLayout>
-  <section class="relative overflow-hidden">
-    <Wrapper class="relative py-24" variant="standard">
-      <div class="text-center">
-        <div class="mt-8 text-balance text-base-900 dark:text-white">
-          <Text class="flex items-baseline justify-center gap-3 font-medium" tag="h1" variant="displayXL">
-            Hi, I'm Daniel
-            <picture class="size-12 md:size-16">
-              <Source height={128} media="(min-width: 768px)" priority src={Avatar} width={128} />
-              <Source height={96} media="(max-width: 768px)" priority src={Avatar} width={96} />
-              <Image
-                alt="Daniel Esteves"
-                background="auto"
-                class="rounded-xl duration-300 ease-in-out hover:scale-150 hover:rotate-6"
-                height={64}
-                priority
-                src={Avatar}
-                unstyled
-                width={64}
-              />
-            </picture>
-            ,
-          </Text>
-          <Text class="font-display tracking-wide text-base-600 italic dark:text-base-400" tag="p" variant="displayXL">
-            software engineer.
-          </Text>
+  <section aria-labelledby="hero-title" class="hero">
+    <div class="shell hero__grid">
+      <h1 class="hero__title" id="hero-title">The studio behind Outlayr and Vela</h1>
+      <div class="hero__aside">
+        <p class="lead">danestves LLC builds iOS, Android and web apps, ours and yours.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:hi@danestves.com?subject=A%20project">Start a project</a>
+          <a class="text-link" href="#outlayr">See the apps</a>
         </div>
-        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
-          From frontend beginnings to full-stack solutions, one line of code at a time
-        </Text>
-        <LogoCloud />
       </div>
-    </Wrapper>
+
+      <div class="stage">
+        <form action="#" class="try" data-entry-demo>
+          <label for="entry">Type a purchase the way you would tell Outlayr</label>
+          <input
+            autocomplete="off"
+            id="entry"
+            inputmode="text"
+            name="entry"
+            spellcheck="false"
+            type="text"
+            value="blue bottle 4.50"
+          />
+          <output aria-live="polite" class="entry" for="entry">
+            <span class="entry__amount num" data-out="amount">$4.50</span>
+            <span class="entry__merchant" data-out="merchant">Blue Bottle</span>
+            <span class="entry__meta" data-out="meta">Today</span>
+          </output>
+          <p class="try__note">A demo of how Outlayr reads one sentence. Nothing is saved.</p>
+        </form>
+        <figure class="stage__screen" data-kind="product" data-slot="hero-log">
+          <img
+            alt="Outlayr’s Log: this month’s net, accounts and today’s purchases"
+            fetchpriority="high"
+            height="1912"
+            src="/projects/outlayr-log.webp"
+            width="880"
+          />
+        </figure>
+        <figure class="stage__screen stage__screen--low" data-kind="product" data-slot="hero-budgets">
+          <img
+            alt="Outlayr’s Budgets: what is left this month and where the pace ends"
+            height="1912"
+            src="/projects/outlayr-budgets.webp"
+            width="880"
+          />
+        </figure>
+      </div>
+    </div>
   </section>
-  <section>
-    <Wrapper class="py-12" variant="standard">
-      <div class="flex items-end justify-between">
-        <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
-          Projects
-        </Text>
-        <Link href="/projects" size="xs" variant="muted">See them all </Link>
+
+  <section aria-labelledby="outlayr-title" class="chapter outlayr" id="outlayr">
+    <div class="shell">
+      <div class="outlayr__head">
+        <h2 id="outlayr-title">Outlayr</h2>
+        <p class="lead">
+          An expense tracker and budget app where you log a purchase in one sentence: type it, say it, or scan the
+          receipt.
+        </p>
+        <p class="links">
+          <a href="https://tryoutlayr.com">tryoutlayr.com</a>
+          <a href="https://play.google.com/store/apps/details?id=com.tryoutlayr.app">Google Play</a>
+        </p>
       </div>
-      <div class="mt-6 grid gap-2 md:grid-cols-2" role="list">
-        {
-          allProjects
-            .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-            .slice(0, 2)
-            .map((post) => <ProjectEntries2 post={post} prefetch />)
-        }
+      <div class="outlayr__body">
+        <div class="outlayr__facts">
+          <dl>
+            <div><dt>Where</dt><dd>Google Play since 21 Oct 2026, App Store coming soon</dd></div>
+            <div><dt>Price</dt><dd>Free plan, no ads, data never sold</dd></div>
+            <div><dt>Languages</dt><dd>English and Spanish</dd></div>
+            <div><dt>Built with</dt><dd>Expo and Convex, local-first</dd></div>
+          </dl>
+          <a class="text-link" href="/projects/outlayr">More on Outlayr</a>
+        </div>
+        <ul aria-label="Outlayr screens" class="screens" tabindex="0">
+          {
+            outlayrScreens.map((screen) => (
+              <li>
+                <figure data-kind="product" data-slot={screen.src}>
+                  <img alt="" height="1912" loading="lazy" src={screen.src} width="880" />
+                </figure>
+                <p>
+                  <b>{screen.name}</b> {screen.line}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
       </div>
-    </Wrapper>
+    </div>
   </section>
-  <section>
-    <Wrapper class="py-12" variant="standard">
-      <div class="flex items-end justify-between">
-        <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
-          Blog
-        </Text>
-        <Link href="/blog" size="xs" variant="muted">Read all my blog posts </Link>
+
+  <section aria-labelledby="vela-title" class="chapter vela" id="vela">
+    <div class="shell vela__grid">
+      <div class="vela__head">
+        <h2 id="vela-title">Vela keeps the cycle on the phone</h2>
+        <p class="lead">A period tracker that encrypts before anything syncs, with keys the server never holds.</p>
+        <p class="links">
+          <a href="https://hellovela.app">hellovela.app</a>
+          <a href="https://apps.apple.com/us/app/vela-period-cycle-tracker/id6759990819">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.hellovela.android">Google Play</a>
+          <a href="https://github.com/hellovela/app">Source, AGPL-3.0</a>
+        </p>
       </div>
-      <div class="mt-6 gap-2" role="list">
-        {
-          allPosts
-            .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-            .slice(0, 1)
-            .map((post) => <BlogEntries2 post={post} />)
-        }
-      </div>
-    </Wrapper>
+      <figure class="vela__screen" data-kind="product" data-slot="vela-calendar">
+        <img
+          alt="Vela’s calendar: the cycle by day, with today’s mood and symptoms"
+          height="1000"
+          loading="lazy"
+          src="/projects/vela-calendar.webp"
+          width="1600"
+        />
+      </figure>
+      <figure aria-labelledby="server-cap" class="vela__server">
+        <table>
+          <caption id="server-cap">What Vela’s server stores instead</caption>
+          <thead><tr><th scope="col">Column</th><th scope="col">Value</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><code>ciphertext</code></th><td><code>k7Qm…Z1w=</code></td></tr>
+            <tr><th scope="row"><code>nonce</code></th><td><code>Hc0r…9pE=</code></td></tr>
+            <tr><th scope="row"><code>recordId</code></th><td><code>rec_example</code></td></tr>
+            <tr><th scope="row"><code>userId</code></th><td><code>user_example</code></td></tr>
+          </tbody>
+        </table>
+        <figcaption>Every synced table has these four columns and nothing readable. Values are examples.</figcaption>
+      </figure>
+    </div>
   </section>
-  <section>
-    <Wrapper class="py-12" variant="standard">
-      <div class="flex items-end justify-between">
-        <Text class="font-display tracking-wide text-base-900 italic dark:text-white" tag="h3" variant="displaySM">
-          Stack
-        </Text>
-        <Link href="/stack" size="xs" variant="muted">Check out my whole stack </Link>
+
+  <section aria-labelledby="oss-title" class="chapter" id="open-source">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="oss-title">Open source</h2>
+        <p class="lead">Sign-in for Remix and payments for Laravel, on GitHub.</p>
       </div>
-      <StackEntries1 />
-    </Wrapper>
+      <div class="oss__lead">
+        <article>
+          <p class="oss__stars num">131 <span>GitHub stars</span></p>
+          <h3><a href="/projects/remix-auth-auth0">remix-auth-auth0</a></h3>
+          <p>An Auth0 strategy for Remix Auth, since 2021.</p>
+          <CopyCommand command="npm add remix-auth remix-auth-auth0" />
+        </article>
+        <article>
+          <p class="oss__stars num">84 <span>GitHub stars</span></p>
+          <h3><a href="/projects/laravel-polar">laravel-polar</a></h3>
+          <p>Polar.sh subscriptions and payments for Laravel, since 2025.</p>
+          <CopyCommand command="composer require danestves/laravel-polar" />
+        </article>
+      </div>
+      <div aria-label="More packages" class="table-wrap" role="region" tabindex="0">
+        <table class="pkgs">
+          <thead>
+            <tr>
+              <th scope="col">Package</th>
+              <th scope="col">What it does</th>
+              <th class="num since" scope="col">Since</th>
+              <th class="num" scope="col">Stars</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              packages.map((pkg) => (
+                <tr>
+                  <th scope="row">
+                    <a href={`https://github.com/danestves/${pkg.name}`}>{pkg.name}</a>
+                  </th>
+                  <td>{pkg.what}</td>
+                  <td class="num since">{pkg.since}</td>
+                  <td class="num">{pkg.stars}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="oss__also">
+        Also a contributor to <a href="https://panelui.dev">PanelUI</a>, React Native components for Expo: 167 commits.
+      </p>
+    </div>
+  </section>
+
+  <section aria-labelledby="studio-title" class="chapter studio" id="studio">
+    <div class="shell studio__grid">
+      <figure class="studio__portrait" data-slot="daniel">
+        <img alt="Daniel Esteves" height="800" loading="lazy" src="/images/daniel.jpg" width="800" />
+      </figure>
+      <div class="studio__who">
+        <h2 id="studio-title">Daniel Esteves, since 2016</h2>
+        <p class="lead">danestves LLC is the studio of Daniel Esteves, a developer from Venezuela.</p>
+        <p class="studio__worked">Currently at ClickIT. Worked with Platzi, Seeed, Reworth and Brightwell.</p>
+        <a class="text-link" href="/studio">How the studio works</a>
+      </div>
+      <dl class="studio__builds">
+        <div><dt>Phone apps</dt><dd>Expo and React Native, or SwiftUI for native iOS.</dd></div>
+        <div><dt>Web apps</dt><dd>React, Laravel and Astro.</dd></div>
+        <div><dt>Payments and sign-in</dt><dd>Subscriptions on Polar, auth for Remix.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="close-title" class="close" id="contact">
+    <div class="shell close__grid">
+      <h2 id="close-title">Start a project</h2>
+      <a class="close__mail" href="mailto:hi@danestves.com?subject=A%20project">hi@danestves.com</a>
+      <p class="close__line">Say what it should do, who it is for, and when it should ship.</p>
+      <address class="close__address">
+        danestves LLC<br />651 N Broad St, Suite 201<br />Middletown, DE 19709, USA
+      </address>
+    </div>
   </section>
 </BaseLayout>
+
+<script>
+  import { parseEntry } from "#/scripts/parse-entry";
+
+  // The Outlayr demo: one sentence in, one entry out. Nothing leaves the page.
+  const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+
+  document.addEventListener("astro:page-load", () => {
+    const form = document.querySelector<HTMLFormElement>("[data-entry-demo]");
+    const input = form?.querySelector("input");
+    const out = (name: string) => form?.querySelector<HTMLElement>(`[data-out="${name}"]`);
+    const [amount, merchant, meta] = [out("amount"), out("merchant"), out("meta")];
+    if (!form || !input || !amount || !merchant || !meta) return;
+
+    const render = () => {
+      const entry = parseEntry(input.value);
+      amount.textContent = entry.amount === null ? "No amount yet" : usd.format(entry.amount);
+      amount.classList.toggle("is-empty", entry.amount === null);
+      merchant.textContent = entry.merchant || "Where did you buy it?";
+      merchant.classList.toggle("is-empty", !entry.merchant);
+      meta.textContent = entry.note ? `${entry.day}, ${entry.note}` : entry.day;
+    };
+    form.addEventListener("submit", (event) => event.preventDefault());
+    input.addEventListener("input", render);
+    render();
+  });
+</script>
+
+<style>
+  /* Hero: the head over a stage where Outlayr's sentence works */
+  .hero {
+    padding-top: var(--space-2xl);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-2xl);
+    align-items: end;
+  }
+  .hero__title {
+    grid-column: 1 / span 8;
+    max-width: 13ch;
+  }
+  .hero__aside {
+    grid-column: 9 / -1;
+    display: grid;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-xs);
+  }
+  .stage {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 3fr);
+    column-gap: var(--space-xl);
+    padding: var(--space-2xl) var(--space-2xl) 0;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    background: var(--color-paper-2);
+    overflow: hidden;
+  }
+  .try {
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+  }
+  .try label {
+    font-size: var(--text-sm);
+    color: var(--color-ink-2);
+  }
+  .try input {
+    margin-top: var(--space-sm);
+    min-height: 52px;
+    border-bottom: 1px solid var(--color-ink);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-ink);
+    font: 400 var(--text-2xl) / 1.2 var(--font-body);
+    letter-spacing: -0.01em;
+    outline: 2px solid transparent;
+    outline-offset: 6px;
+    transition: border-color var(--dur-short) var(--ease-out);
+  }
+  .try input:hover {
+    border-color: var(--color-ink-2);
+  }
+  .try input:focus-visible {
+    outline-color: var(--color-focus);
+  }
+  .entry {
+    display: grid;
+    gap: var(--space-2xs);
+    margin-top: var(--space-xl);
+  }
+  .entry__amount {
+    font: 500 var(--text-display-s) / 1 var(--font-display);
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+  }
+  .entry__merchant {
+    font-size: var(--text-xl);
+    color: var(--color-ink);
+  }
+  .entry__meta,
+  .entry .is-empty {
+    color: var(--color-muted);
+  }
+  .try__note {
+    margin-top: var(--space-xl);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  /* Each capture is cut at a row gap: the Log under today's entry, Budgets under its pace line */
+  .stage__screen {
+    align-self: end;
+    aspect-ratio: 880 / 1440;
+    border-radius: var(--radius-screen) var(--radius-screen) 0 0;
+  }
+  .stage__screen--low {
+    aspect-ratio: 880 / 1180;
+  }
+  .stage__screen > img {
+    object-position: top;
+  }
+
+  /* Chapters */
+  .chapter {
+    padding-top: var(--section-gap);
+  }
+
+  /* Outlayr: the app, screen by screen */
+  .outlayr__head {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    align-items: end;
+    margin-bottom: var(--space-2xl);
+  }
+  .outlayr__head h2 {
+    grid-column: 1 / span 4;
+    font-size: var(--text-display);
+    line-height: 1;
+    text-wrap: balance;
+  }
+  .outlayr__head .lead {
+    grid-column: 5 / span 5;
+  }
+  .outlayr__head .links {
+    grid-column: 10 / -1;
+    justify-self: end;
+  }
+  .outlayr__body {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gap-columns);
+  }
+  .outlayr__facts {
+    display: grid;
+    gap: var(--space-lg);
+    align-content: start;
+    justify-items: start;
+  }
+  .outlayr__facts dl {
+    display: grid;
+    gap: var(--space-md);
+  }
+  .outlayr__facts dl div {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-rule);
+  }
+  .outlayr__facts dt {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .outlayr__facts dd {
+    margin-top: var(--space-2xs);
+    color: var(--color-ink-2);
+  }
+  .screens {
+    grid-column: 2 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-columns);
+  }
+  .screens:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  .screens figure {
+    aspect-ratio: 880 / 1912;
+    border-radius: var(--radius-screen);
+  }
+  .screens p {
+    margin-top: var(--space-md);
+    color: var(--color-ink-2);
+  }
+  .screens b {
+    color: var(--color-ink);
+  }
+
+  /* Vela: what the phone shows against what the server holds */
+  .vela {
+    padding-top: var(--section-gap-l);
+  }
+  .vela__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-2xl);
+    align-items: start;
+  }
+  .vela__head {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    display: grid;
+    gap: var(--space-lg);
+  }
+  .vela__head .links {
+    margin-top: var(--space-xs);
+  }
+  .vela__screen {
+    grid-column: 5 / -1;
+    grid-row: 1 / span 2;
+    align-self: end;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-card);
+  }
+  .vela__server {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    align-self: end;
+  }
+  .vela__server table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+  .vela__server caption {
+    padding-bottom: var(--space-sm);
+    text-align: left;
+    color: var(--color-ink-2);
+  }
+  .vela__server thead th {
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--color-ink);
+    text-align: left;
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+  .vela__server tbody th,
+  .vela__server tbody td {
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--color-rule);
+    text-align: left;
+    font-weight: 400;
+  }
+  .vela__server tbody td {
+    color: var(--color-ink-2);
+  }
+  .vela__server figcaption {
+    margin-top: var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  /* Open source: the two big ones, then the rest */
+  .oss__lead {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-columns);
+  }
+  .oss__lead article {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-sm);
+    align-content: start;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-ink);
+  }
+  .oss__lead h3 a {
+    text-decoration: none;
+  }
+  .oss__lead h3 a:hover {
+    text-decoration: underline;
+  }
+  .oss__stars {
+    font: 500 var(--text-display) / 1 var(--font-display);
+    letter-spacing: -0.04em;
+    color: var(--color-ink);
+  }
+  .oss__stars span {
+    font: 400 var(--text-sm) / 1 var(--font-body);
+    letter-spacing: 0;
+    color: var(--color-muted);
+  }
+  .oss__lead article > p:not(.oss__stars) {
+    color: var(--color-ink-2);
+  }
+  .oss__lead :global(.cmd) {
+    margin-top: var(--space-sm);
+  }
+  .table-wrap {
+    margin-top: var(--space-2xl);
+    overflow-x: auto;
+  }
+  .table-wrap:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  .pkgs {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .pkgs th,
+  .pkgs td {
+    padding: var(--space-md) var(--space-lg) var(--space-md) 0;
+    border-bottom: 1px solid var(--color-rule);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .pkgs thead th {
+    padding-block: var(--space-sm);
+    border-bottom-color: var(--color-ink);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+  .pkgs tbody th {
+    font-weight: 500;
+  }
+  .pkgs tbody th a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .pkgs tbody th a:hover {
+    text-decoration: underline;
+  }
+  .pkgs td {
+    color: var(--color-ink-2);
+  }
+  .pkgs .num {
+    text-align: right;
+    padding-right: 0;
+  }
+  .pkgs td.num + td.num,
+  .pkgs th.num + th.num {
+    padding-left: var(--space-xl);
+  }
+  .oss__also {
+    margin-top: var(--space-lg);
+    color: var(--color-ink-2);
+  }
+
+  /* The studio */
+  .studio {
+    padding-top: var(--section-gap-l);
+  }
+  .studio__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-xl);
+    align-items: start;
+  }
+  .studio__portrait {
+    grid-column: 1 / span 3;
+    aspect-ratio: 1;
+    border-radius: var(--radius-card);
+  }
+  .studio__who {
+    grid-column: 4 / span 5;
+    display: grid;
+    gap: var(--space-lg);
+    justify-items: start;
+  }
+  .studio__worked {
+    color: var(--color-muted);
+  }
+  .studio__builds {
+    grid-column: 9 / -1;
+    display: grid;
+    gap: var(--space-lg);
+  }
+  .studio__builds div {
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-rule);
+  }
+  .studio__builds dt {
+    font-weight: 500;
+  }
+  .studio__builds dd {
+    margin-top: var(--space-2xs);
+    color: var(--color-ink-2);
+  }
+
+  /* Close */
+  .close {
+    padding-top: var(--section-gap);
+  }
+  .close__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-lg);
+    align-items: end;
+  }
+  .close h2,
+  .close__mail {
+    grid-column: 1 / -1;
+  }
+  .close__mail {
+    font: 500 var(--text-mega) / 1 var(--font-display);
+    letter-spacing: -0.045em;
+    white-space: nowrap;
+    color: var(--color-ink);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.12em;
+    min-width: 0;
+  }
+  .close__mail:hover {
+    text-decoration-thickness: 4px;
+  }
+  .close__line {
+    grid-column: 1 / span 6;
+    margin-top: var(--space-md);
+    font-size: var(--text-lead);
+    color: var(--color-ink-2);
+  }
+  .close__address {
+    grid-column: 9 / -1;
+    font-style: normal;
+    color: var(--color-ink-2);
+  }
+
+  /* Under 60rem everything stacks in reading order */
+  @media (max-width: 60rem) {
+    .hero__title,
+    .hero__aside {
+      grid-column: 1 / -1;
+    }
+    .hero__grid {
+      row-gap: var(--space-xl);
+    }
+    .stage {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      padding: var(--space-xl) var(--space-lg) 0;
+      row-gap: var(--space-xl);
+    }
+    .try {
+      grid-column: 1 / -1;
+    }
+    .outlayr__head {
+      row-gap: var(--space-md);
+    }
+    .outlayr__head h2,
+    .outlayr__head .lead,
+    .outlayr__head .links {
+      grid-column: 1 / -1;
+      justify-self: start;
+    }
+    .outlayr__body {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .screens {
+      grid-column: 1 / -1;
+    }
+    .vela__head,
+    .vela__screen,
+    .vela__server {
+      grid-column: 1 / -1;
+      grid-row: auto;
+    }
+    .oss__lead {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: var(--space-xl);
+    }
+    .studio__portrait {
+      grid-column: 1 / span 6;
+    }
+    .studio__who,
+    .studio__builds,
+    .close__line,
+    .close__address {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 40rem) {
+    .screens {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 62%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+    }
+    .screens li {
+      scroll-snap-align: start;
+    }
+    .pkgs thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    .pkgs tr {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: var(--space-md);
+      padding-block: var(--space-sm);
+      border-bottom: 1px solid var(--color-rule);
+    }
+    .pkgs th,
+    .pkgs td {
+      padding: 0;
+      border: 0;
+      white-space: normal;
+    }
+    .pkgs .since {
+      display: none;
+    }
+    .pkgs td:not(.num) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .pkgs td.num + td.num {
+      padding-left: 0;
+    }
+  }
+</style>

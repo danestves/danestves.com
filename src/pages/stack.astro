@@ -1,6 +1,4 @@
 ---
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Text from "#/components/fundations/elements/text.astro";
 import StackEntries2 from "#/components/stack/stack-entries-2.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 ---
@@ -12,19 +10,13 @@ import BaseLayout from "#/layouts/base-layout.astro";
     useTitleTemplate: true,
   }}
 >
-  <section>
-    <Wrapper class="py-24" variant="standard">
-      <div class="text-center">
-        <Text class="text-balance text-base-600 dark:text-base-400" tag="h1" variant="displayXL">
-          Software I use daily
-          <span class="font-display tracking-wide italic"> and recommend </span>
-        </Text>
-        <Text class="mt-4 text-base-600 dark:text-base-400" tag="p" variant="textLG">
-          I get askeed about the tools that I use daily and be productive. Here is a list of my favorite software
-          programs, gadgets, and other recommendations.
-        </Text>
+  <div class="shell">
+    <header class="page-head">
+      <h1>Software I use daily</h1>
+      <div class="page-head__aside">
+        <p class="lead">The tools I design, build and focus with, and recommend.</p>
       </div>
-      <StackEntries2 />
-    </Wrapper>
-  </section>
+    </header>
+    <StackEntries2 />
+  </div>
 </BaseLayout>

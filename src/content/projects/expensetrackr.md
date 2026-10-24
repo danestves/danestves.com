@@ -1,13 +1,15 @@
 ---
+kind: app
+archived: true
 pubDate: 2025-04-14
 title: ExpenseTrackr
 subtitle: A modern expense tracking application built with React and Laravel
 live: "https://expensetrackr.app"
 logo:
-  url: "projects/expensetrackr.png"
+  url: "/projects/expensetrackr.png"
   alt: "ExpenseTrackr"
 image:
-  url: "projects/expensetrackr-og.png"
+  url: "/projects/expensetrackr-og.png"
   alt: "ExpenseTrackr Dashboard"
 ---
 

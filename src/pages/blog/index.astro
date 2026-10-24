@@ -1,42 +1,72 @@
 ---
 import { getCollection } from "astro:content";
 
-import BlogEntries1 from "#/components/blog/blog-entries-1.astro";
-import SubscribeCta from "#/components/blog/subscribe-cta.astro";
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Text from "#/components/fundations/elements/text.astro";
+import PostRows from "#/components/blog/post-rows.astro";
 import BaseLayout from "#/layouts/base-layout.astro";
 
-const allPosts = await getCollection("posts") ?? [];
-allPosts.sort((a, b) => {
-  const dateA = a.data.pubDate.getTime();
-  const dateB = b.data.pubDate.getTime();
-  return dateB - dateA;
-});
+const allPosts = (await getCollection("posts")).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+// A search field only earns its place once there is a list to search.
+const searchable = allPosts.length > 5;
 ---
 
 <BaseLayout
   seo={{
     title: "Blog",
-    description: "Welcome to my blog: News and thoughts",
+    description: "Notes from Daniel Esteves on building apps, what worked and what did not.",
     useTitleTemplate: true,
   }}
 >
-  <section>
-    <Wrapper class="py-24" variant="standard">
-      <div class="text-center">
-        <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
-          Welcome to my blog:
-          <span class="font-display tracking-wide italic"> News and thoughts </span>
-        </Text>
-        <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
-          I write about everything that I learn, join me on my journey.
-        </Text>
+  <div class="shell">
+    <header class="page-head">
+      <h1>Blog</h1>
+      <div class="page-head__aside">
+        <p class="lead">What I learn while building, written down.</p>
+        <p class="links"><a href="/rss.xml">RSS feed</a><a href="/blog/tags">All tags</a></p>
       </div>
-      <div class="mt-12 flex flex-col gap-2">
-        {allPosts.map((post) => <BlogEntries1 post={post} />)}
-      </div>
-    </Wrapper>
-  </section>
-  <SubscribeCta />
+    </header>
+
+    <section aria-label="Posts" class="section">
+      {
+        searchable && (
+          <div class="field blog__search" data-needs-js>
+            <label for="searchInput">Search posts</label>
+            <input autocomplete="off" class="input" id="searchInput" type="search" />
+            <p aria-live="polite" class="blog__count" id="searchResults" />
+          </div>
+        )
+      }
+      <PostRows posts={allPosts} />
+    </section>
+  </div>
 </BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const input = document.querySelector<HTMLInputElement>("#searchInput");
+    const count = document.getElementById("searchResults");
+    if (!input || !count) return;
+    const rows = [...document.querySelectorAll<HTMLElement>("[data-search]")];
+
+    input.addEventListener("input", () => {
+      const query = input.value.trim().toLowerCase();
+      const shown = rows.filter((row) => {
+        const match = row.dataset.search?.includes(query) ?? true;
+        row.hidden = !match;
+        return match;
+      }).length;
+      count.textContent = query ? (shown ? `${shown} of ${rows.length} posts` : "No posts match that.") : "";
+    });
+  });
+</script>
+
+<style>
+  .blog__search {
+    max-width: 30rem;
+    margin-bottom: var(--space-xl);
+  }
+  .blog__count {
+    min-height: 1.5em;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+</style>

@@ -1,34 +1,77 @@
 ---
-import BrandGithubIcon from "virtual:icons/tabler/brand-github";
-import BrandXIcon from "virtual:icons/tabler/brand-x";
-import BrandYoutubeIcon from "virtual:icons/tabler/brand-youtube";
+const siteLinks = [
+  { text: "Work", href: "/projects" },
+  { text: "Studio", href: "/studio" },
+  { text: "Blog", href: "/blog" },
+  { text: "Now", href: "/now" },
+  { text: "Stack", href: "/stack" },
+  { text: "Socials", href: "/socials" },
+  { text: "Contact", href: "/contact" },
+  { text: "Experience", href: "/work" },
+  { text: "RSS", href: "/rss.xml" },
+];
 
-import Logo from "#/components/assets/logo.astro";
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Text from "#/components/fundations/elements/text.astro";
+const elsewhere = [
+  { text: "GitHub", href: "https://github.com/danestves" },
+  { text: "X", href: "https://x.com/danestves" },
+  { text: "LinkedIn", href: "https://www.linkedin.com/in/danestves/" },
+  { text: "YouTube", href: "https://www.youtube.com/@danestves" },
+];
 ---
 
-<footer>
-  <Wrapper class="flex flex-col py-24">
-    <a class="mx-auto" href="/"><Logo class="size-8 text-base-900 dark:text-white" /></a>
-    <Text class="mt-12 text-center leading-6 text-balance text-base-600 dark:text-base-400" tag="p" variant="textBase">
-      © Copyright Daniel Esteves <span>{new Date().getFullYear()}</span>. All rights reserved.
-    </Text>
-
-    <div class="mt-12 flex justify-center space-x-6">
-      <a class="text-base-600 dark:text-base-400 dark:hover:text-white" href="https://x.com/danestves">
-        <span class="sr-only">x</span>
-        <BrandXIcon class="size-4" />
-      </a>
-      <a class="text-base-600 dark:text-base-400 dark:hover:text-white" href="https://www.youtube.com/@danestves">
-        <span class="sr-only">YouTube</span>
-        <BrandYoutubeIcon class="size-4" />
-      </a>
-
-      <a class="text-base-600 dark:text-base-400 dark:hover:text-white" href="https://github.com/danestves">
-        <span class="sr-only">GitHub</span>
-        <BrandGithubIcon class="size-4" />
-      </a>
-    </div>
-  </Wrapper>
+<footer class="foot">
+  <div class="shell foot__grid">
+    <p class="foot__legal">© {new Date().getFullYear()} danestves LLC</p>
+    <nav aria-label="Site" class="foot__links">
+      {siteLinks.map((link) => <a href={link.href}>{link.text}</a>)}
+    </nav>
+    <nav aria-label="Elsewhere" class="foot__links">
+      {elsewhere.map((link) => <a href={link.href}>{link.text}</a>)}
+    </nav>
+  </div>
 </footer>
+
+<style>
+  .foot {
+    margin-top: var(--section-gap);
+    padding-block: var(--space-xl) var(--space-2xl);
+    border-top: 1px solid var(--color-rule);
+    font-size: var(--text-sm);
+  }
+  .foot__grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--space-2xl);
+    row-gap: var(--space-md);
+  }
+  .foot__legal {
+    color: var(--color-muted);
+  }
+  .foot__links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-lg);
+    row-gap: var(--space-xs);
+  }
+  .foot__links:last-child {
+    margin-left: auto;
+  }
+  .foot__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    color: var(--color-ink-2);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .foot__links a:hover {
+    color: var(--color-ink);
+    text-decoration: underline;
+  }
+  @media (max-width: 60rem) {
+    .foot__links:last-child {
+      margin-left: 0;
+    }
+  }
+</style>

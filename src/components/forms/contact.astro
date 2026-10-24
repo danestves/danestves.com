@@ -1,93 +1,145 @@
 ---
-import Wrapper from "#/components/fundations/containers/wrapper.astro";
-import Button from "#/components/fundations/elements/button.astro";
-import Text from "#/components/fundations/elements/text.astro";
+// The contact form has no server behind it: on submit it opens the visitor's email app
+// with the message written out to hi@danestves.com.
 ---
 
-<section>
-  <Wrapper class="py-24" variant="standard">
-    <div class="text-center">
-      <Text class="text-balance text-base-900 dark:text-white" tag="h1" variant="displayXL">
-        Get in touch
-
-        <span class="block font-display tracking-wide italic"> Send me a message </span>
-      </Text>
-      <Text class="mt-4 text-balance text-base-600 dark:text-base-400" tag="p" variant="textLG">
-        I am open to collaborating on exciting projects with wonderful individuals. If you require any assistance, I am
-        more than willing to offer my support.
-      </Text>
+<div class="shell">
+  <header class="page-head">
+    <h1>Start a project</h1>
+    <div class="page-head__aside">
+      <p class="lead">Say what it should do, who it is for, and when it should ship.</p>
     </div>
+  </header>
 
-    <form class="mt-6">
-      <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        <div>
-          <label class="sr-only" for="first-name">First name</label>
-          <div>
-            <input
-              autocomplete="given-name"
-              class="outline-inset dark:place-holder-text-base-600 h-10 w-full flex-auto appearance-none rounded-full border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 outline outline-base-200 duration-300 focus:border-base-500 focus:outline-4 focus:outline-base-500/10 focus:outline-none sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
-              id="first-name"
-              name="first-name"
-              placeholder="Your name"
-              type="text"
-            />
-          </div>
-        </div>
-        <div>
-          <label class="sr-only" for="last-name">Last name</label>
-          <div>
-            <input
-              autocomplete="family-name"
-              class="outline-inset dark:place-holder-text-base-600 h-10 w-full flex-auto appearance-none rounded-full border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 outline outline-base-200 duration-300 focus:border-base-500 focus:outline-4 focus:outline-base-500/10 focus:outline-none sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
-              id="last-name"
-              name="last-name"
-              placeholder="Your last name"
-              type="text"
-            />
-          </div>
-        </div>
-        <div class="sm:col-span-2">
-          <label class="sr-only" for="company">Company</label>
-          <div>
-            <input
-              autocomplete="organization"
-              class="outline-inset dark:place-holder-text-base-600 h-10 w-full flex-auto appearance-none rounded-full border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 outline outline-base-200 duration-300 focus:border-base-500 focus:outline-4 focus:outline-base-500/10 focus:outline-none sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
-              id="company"
-              name="company"
-              placeholder="Company name"
-              type="text"
-            />
-          </div>
-        </div>
-        <div class="sm:col-span-2">
-          <label class="sr-only" for="email">Email</label>
-          <div>
-            <input
-              autocomplete="email"
-              class="outline-inset dark:place-holder-text-base-600 h-10 w-full flex-auto appearance-none rounded-full border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 outline outline-base-200 duration-300 focus:border-base-500 focus:outline-4 focus:outline-base-500/10 focus:outline-none sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
-              id="email"
-              name="email"
-              placeholder="Your best email!"
-              type="email"
-            />
-          </div>
-        </div>
-        <div class="sm:col-span-2">
-          <label class="sr-only" for="message">Message</label>
-          <div>
-            <textarea
-              class="outline-inset dark:place-holder-text-base-600 w-full flex-auto resize appearance-none rounded-lg border-transparent bg-base-50 px-3 py-2 text-center text-base-900 shadow-base-800/5 outline outline-base-200 duration-300 focus:border-base-500 focus:outline-4 focus:outline-base-500/10 focus:outline-none sm:text-sm dark:bg-base-800 dark:text-white dark:outline-base-800 dark:placeholder:text-base-400"
-              id="message"
-              name="message"
-              placeholder="Your message goes here..."
-              rows="4"
-            ></textarea>
-          </div>
-        </div>
+  <div class="section contact">
+    <form class="contact__form" data-mailto="hi@danestves.com" novalidate>
+      <div class="field">
+        <label for="first-name">First name</label>
+        <input autocomplete="given-name" class="input" id="first-name" name="first-name" type="text" />
       </div>
-      <div class="mt-2">
-        <Button class="w-full" size="base" type="submit" variant="default">Submit </Button>
+      <div class="field">
+        <label for="last-name">Last name</label>
+        <input autocomplete="family-name" class="input" id="last-name" name="last-name" type="text" />
+      </div>
+      <div class="field field--wide">
+        <label for="company">Company</label>
+        <input autocomplete="organization" class="input" id="company" name="company" type="text" />
+      </div>
+      <div class="field field--wide">
+        <label for="email">Email</label>
+        <input autocomplete="email" class="input" id="email" name="email" required type="email" />
+      </div>
+      <div class="field field--wide">
+        <label for="message">What should it do?</label>
+        <textarea class="input" id="message" name="message" required rows="6"></textarea>
+      </div>
+      <div class="contact__send field--wide">
+        <button class="btn" type="submit">Write the email</button>
+        <p aria-live="polite" class="contact__help" id="contact-help">Opens your email app with this message in it.</p>
       </div>
     </form>
-  </Wrapper>
-</section>
+
+    <aside class="contact__direct">
+      <dl>
+        <div><dt>Email</dt><dd><a href="mailto:hi@danestves.com?subject=A%20project">hi@danestves.com</a></dd></div>
+        <div>
+          <dt>Company</dt>
+          <dd><address>danestves LLC<br />651 N Broad St, Suite 201<br />Middletown, DE 19709, USA</address></dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const form = document.querySelector<HTMLFormElement>("form[data-mailto]");
+    const help = document.getElementById("contact-help");
+    if (!form || !help) return;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const invalid = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea")].filter(
+        (field) => !field.checkValidity(),
+      );
+      form.querySelectorAll("[aria-invalid]").forEach((field) => field.removeAttribute("aria-invalid"));
+      if (invalid.length) {
+        invalid.forEach((field) => field.setAttribute("aria-invalid", "true"));
+        help.textContent = "Add your email as name@example.com and a line about the project.";
+        invalid[0].focus();
+        return;
+      }
+
+      const data = new FormData(form);
+      const name = [data.get("first-name"), data.get("last-name")].filter(Boolean).join(" ");
+      const company = String(data.get("company") || "");
+      const subject = company ? `A project for ${company}` : "A project";
+      const body = `${data.get("message")}\n\n${name}\n${data.get("email")}`;
+      window.location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      help.textContent = "Your email app should be open now. If it is not, write to hi@danestves.com.";
+    });
+  });
+</script>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-2xl);
+    align-items: start;
+    padding-top: var(--section-gap-s);
+  }
+  .contact__form {
+    grid-column: 1 / span 7;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg) var(--gap-columns);
+  }
+  .field--wide {
+    grid-column: 1 / -1;
+  }
+  .contact__send {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+  .contact__help {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .contact__direct {
+    grid-column: 9 / -1;
+  }
+  .contact__direct dl {
+    display: grid;
+    gap: var(--space-md);
+  }
+  .contact__direct div {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-rule);
+  }
+  .contact__direct dt {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .contact__direct dd {
+    margin-top: var(--space-2xs);
+  }
+  .contact__direct address {
+    font-style: normal;
+  }
+
+  @media (max-width: 60rem) {
+    .contact__form,
+    .contact__direct {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 40rem) {
+    .contact__form {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

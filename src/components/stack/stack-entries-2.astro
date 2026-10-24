@@ -1,22 +1,34 @@
 ---
-import { Image } from "@unpic/astro";
-
-import Text from "#/components/fundations/elements/text.astro";
 import Astrojs from "#/images/stacklogos/astro.svg";
+import BetterAuth from "#/images/stacklogos/better-auth.png";
+import Bun from "#/images/stacklogos/bun.png";
+import Claude from "#/images/stacklogos/claude.png";
+import Convex from "#/images/stacklogos/convex.png";
 import Cursor from "#/images/stacklogos/cursor.svg";
+import Drizzle from "#/images/stacklogos/drizzle.png";
+import Expo from "#/images/stacklogos/expo.png";
 import Figma from "#/images/stacklogos/figma.png";
 import Framer from "#/images/stacklogos/framer.png";
 import LaravelHerd from "#/images/stacklogos/laravel-herd.png";
 import Laravel from "#/images/stacklogos/laravel.png";
 import Nextjs from "#/images/stacklogos/nextjs.jpeg";
+import Pnpm from "#/images/stacklogos/pnpm.png";
+import PostHog from "#/images/stacklogos/posthog.png";
 import Raycast from "#/images/stacklogos/raycast.png";
 import React from "#/images/stacklogos/react.png";
 import Remix from "#/images/stacklogos/remix.png";
+import RevenueCat from "#/images/stacklogos/revenuecat.png";
 import Session from "#/images/stacklogos/session.png";
+import T3Code from "#/images/stacklogos/t3-code.png";
+import Tailscale from "#/images/stacklogos/tailscale.png";
 import Tailwind from "#/images/stacklogos/tailwind.svg";
+import TanStack from "#/images/stacklogos/tanstack.png";
 import Tinkerwell from "#/images/stacklogos/tinkerwell.png";
+import Uniwind from "#/images/stacklogos/uniwind.png";
+import Vite from "#/images/stacklogos/vite.png";
 import Zen from "#/images/stacklogos/zen.svg";
 
+// The tools, grouped; logos are the vendors' own icons.
 const stack = [
   {
     title: "Design",
@@ -37,21 +49,92 @@ const stack = [
     ],
   },
   {
-    title: "Developer Tools",
+    title: "Mobile",
     items: [
       {
-        stackLogo: Zen,
-        name: "Zen",
-        about: "Browser",
-        description:
-          "Zen Browser is a free, open-source web browser, a fork of Mozilla Firefox, that prioritizes privacy, customizability, and a streamlined user experience.",
+        stackLogo: Expo,
+        name: "Expo",
+        about: "App Platform",
+        description: "Builds, signs and updates Outlayr and Vela for iOS and Android, with EAS in the cloud.",
       },
+      {
+        stackLogo: React,
+        name: "React Native",
+        about: "Mobile Framework",
+        description: "The UI of both apps, one TypeScript codebase for iPhone and Android.",
+      },
+      {
+        stackLogo: Uniwind,
+        name: "Uniwind",
+        about: "Styling",
+        description: "Tailwind CSS classes in React Native. Both apps are styled with it.",
+      },
+      {
+        stackLogo: RevenueCat,
+        name: "RevenueCat",
+        about: "Subscriptions",
+        description: "In-app purchases and subscriptions for Outlayr and Vela, on both stores.",
+      },
+    ],
+  },
+  {
+    title: "Backend",
+    items: [
+      {
+        stackLogo: Convex,
+        name: "Convex",
+        about: "Backend",
+        description: "Database, server functions and realtime sync for both apps, all in TypeScript.",
+      },
+      {
+        stackLogo: BetterAuth,
+        name: "Better Auth",
+        about: "Authentication",
+        description: "Sign in with Apple and Google for Outlayr and Vela, running on Convex.",
+      },
+      {
+        stackLogo: Drizzle,
+        name: "Drizzle ORM",
+        about: "Database",
+        description: "Typed queries and migrations for the SQLite database each app keeps on the phone.",
+      },
+      {
+        stackLogo: PostHog,
+        name: "PostHog",
+        about: "Analytics",
+        description: "Product analytics for both apps and their websites.",
+      },
+    ],
+  },
+  {
+    title: "Web",
+    items: [
       {
         stackLogo: React,
         name: "React",
         about: "JavaScript Library",
         description:
-          "React is a JavaScript library for building user interfaces. It's declarative, efficient, and extremely flexible.",
+          "React is a JavaScript library for building user interfaces. It’s declarative, efficient, and extremely flexible.",
+      },
+      {
+        stackLogo: TanStack,
+        name: "TanStack Start",
+        about: "Web Framework",
+        description: "The full stack React framework behind the Outlayr website.",
+      },
+      {
+        stackLogo: Astrojs,
+        name: "Astrojs",
+        about: "Static Site Generator",
+        description:
+          "Astro powers the world's fastest websites, client-side web apps, dynamic API endpoints, and everything in-between.",
+      },
+      {
+        stackLogo: Tailwind,
+        name: "Tailwind CSS",
+        about: "CSS Framework",
+        description:
+          "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
       },
       {
         stackLogo: Remix,
@@ -72,7 +155,54 @@ const stack = [
         name: "Laravel",
         about: "PHP Framework",
         description:
-          "Laravel is a web application framework with expressive, elegant syntax. We've already laid the foundation — freeing you to create without sweating the small things.",
+          "Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation, freeing you to create without sweating the small things.",
+      },
+    ],
+  },
+  {
+    title: "Developer tools",
+    items: [
+      {
+        stackLogo: Claude,
+        name: "Claude Code",
+        about: "Coding Agent",
+        description: "The agent I build with, in the terminal and inside T3 Code.",
+      },
+      {
+        stackLogo: T3Code,
+        name: "T3 Code",
+        about: "Agent Workspace",
+        description: "A desktop app for coding agents, with a thread and a worktree for each task.",
+      },
+      {
+        stackLogo: Cursor,
+        name: "Cursor",
+        about: "Code Editor",
+        description: "Built to make you extraordinarily productive, Cursor is the best way to code with AI.",
+      },
+      {
+        stackLogo: Bun,
+        name: "Bun",
+        about: "Runtime",
+        description: "Runtime and package manager for Vela and this site.",
+      },
+      {
+        stackLogo: Pnpm,
+        name: "pnpm",
+        about: "Package Manager",
+        description: "Package manager for the Outlayr monorepo.",
+      },
+      {
+        stackLogo: Vite,
+        name: "Vite+",
+        about: "Toolchain",
+        description: "Dev server, builds, tests, linting and formatting in one tool, in both app repos.",
+      },
+      {
+        stackLogo: Tailscale,
+        name: "Tailscale",
+        about: "Network",
+        description: "A private network between my Mac and the Linux server I develop on.",
       },
       {
         stackLogo: LaravelHerd,
@@ -84,33 +214,20 @@ const stack = [
         stackLogo: Tinkerwell,
         name: "Tinkerwell",
         about: "Developer Tools",
-        description: "Enjoy coding and debugging in an editor designed for fast feedback and quick iterations. ",
-      },
-      {
-        stackLogo: Tailwind,
-        name: "Tailwind CSS",
-        about: "CSS Framework",
-        description:
-          "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
-      },
-      {
-        stackLogo: Astrojs,
-        name: "Astrojs",
-        about: "Static Site Generator",
-        description:
-          "Astro powers the world's fastest websites, client-side web apps, dynamic API endpoints, and everything in-between..",
-      },
-      {
-        stackLogo: Cursor,
-        name: "Cursor",
-        about: "Code Editor",
-        description: "Built to make you extraordinarily productive, Cursor is the best way to code with AI.",
+        description: "Enjoy coding and debugging in an editor designed for fast feedback and quick iterations.",
       },
     ],
   },
   {
     title: "Productivity",
     items: [
+      {
+        stackLogo: Zen,
+        name: "Zen",
+        about: "Browser",
+        description:
+          "Zen Browser is a free, open-source web browser, a fork of Mozilla Firefox, that prioritizes privacy, customizability, and a streamlined user experience.",
+      },
       {
         stackLogo: Session,
         name: "Session",
@@ -129,39 +246,91 @@ const stack = [
 ];
 ---
 
-<div class="mt-24 flex flex-col gap-12">
+<div class="stack">
   {
-    stack.map((section) => (
-      <div class="flex flex-col gap-6">
-        <p class="font-display text-2xl tracking-wide text-base-900 italic dark:text-white">{section.title}</p>
-
-        <ul class="grid gap-2 sm:grid-cols-2 lg:col-span-2" role="list">
+    stack.map((section, index) => (
+      <section aria-labelledby={`stack-${index}`} class="stack__group">
+        <h2 id={`stack-${index}`}>{section.title}</h2>
+        <ul class="rows">
           {section.items.map((item) => (
-            <li class="group relative flex h-full min-h-72 w-full transform flex-col justify-between overflow-hidden rounded-2xl bg-linear-45 from-base-50 to-base-100 p-6 shadow ring-1 ring-base-200 transition-all duration-300 ring-inset hover:shadow-light dark:from-base-800 dark:to-base-950 dark:ring-base-800 dark:hover:shadow-dark">
-              <div class="flex items-center justify-between gap-x-4">
-                <div>
-                  <Text class="font-medium text-base-900 dark:text-white" tag="h3" variant="textBase">
-                    {item.name}
-                  </Text>
-                  <Text class="text-base-600 dark:text-base-400" tag="p" variant="textSM">
-                    {item.about}
-                  </Text>
-                </div>
-                <Image
-                  alt={item.name}
-                  class="overflow-hidden rounded-[15px] duration-300 group-hover:-rotate-45 dark:border dark:border-base-700"
-                  height={48}
-                  src={item.stackLogo.src}
-                  width={48}
-                />
-              </div>
-              <Text class="mt-2 text-base text-base-600 dark:text-base-400" tag="p" variant="textBase">
-                {item.description}
-              </Text>
+            <li class="tool">
+              <img alt="" class="tool__logo" height="40" src={item.stackLogo.src} width="40" />
+              <h3>{item.name}</h3>
+              <p class="tool__about">{item.about}</p>
+              <p class="tool__what">{item.description}</p>
             </li>
           ))}
         </ul>
-      </div>
+      </section>
     ))
   }
 </div>
+
+<style>
+  .stack__group {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    row-gap: var(--space-lg);
+    align-items: start;
+    padding-top: var(--section-gap-s);
+  }
+  .stack__group h2 {
+    grid-column: 1 / span 3;
+    font-size: var(--text-xl);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .stack__group .rows {
+    grid-column: 4 / -1;
+  }
+  .tool {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 2fr) minmax(0, 5fr);
+    column-gap: var(--space-lg);
+    row-gap: var(--space-2xs);
+    align-items: start;
+    padding-block: var(--space-md);
+  }
+  .tool__logo {
+    grid-row: 1 / span 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    object-fit: cover;
+  }
+  .tool h3 {
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+  .tool__about {
+    grid-column: 2;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .tool__what {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    color: var(--color-ink-2);
+  }
+  @media (max-width: 60rem) {
+    .stack__group h2,
+    .stack__group .rows {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 40rem) {
+    .tool {
+      grid-template-columns: 40px minmax(0, 1fr);
+    }
+    .tool__what {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      margin-top: var(--space-xs);
+    }
+  }
+</style>
